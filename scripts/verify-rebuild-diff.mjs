@@ -50,6 +50,6 @@ if (baselineWasmSha256 === rebuiltWasmSha256) {
   console.log(`WASM binary is byte-identical: ${rebuiltWasmSha256}`);
 } else {
   console.log(
-    `WASM binary is host-specific (${baselineWasmSha256} -> ${rebuiltWasmSha256}); integrity and ledger execution remain required`,
+    `WASM binary is host-specific (${baselineWasmSha256} -> ${rebuiltWasmSha256}); integrity and calculation execution remain required`,
   );
 }

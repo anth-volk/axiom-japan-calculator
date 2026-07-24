@@ -3,6 +3,7 @@ import rawManifest from "../../public/generated/manifest.json";
 import type { GeneratedManifest } from "../engine/types";
 import {
   assertJapaneseCoverage,
+  inputDescription,
   inputLabel,
   outputLabel,
   programCopy,
@@ -25,5 +26,29 @@ describe("Japanese localization", () => {
     expect(inputLabel(input, "ja")).toBe("月額報酬");
     expect(programCopy(program, "ja").label).toBe("児童手当");
     expect(outputLabel(program.outputs.at(-1)!, "ja")).toBe("児童手当");
+  });
+});
+
+describe("English input copy", () => {
+  it("does not expose the internal income-tax abbreviation", () => {
+    expect(
+      manifest.inputs
+        .map((input) => inputLabel(input, "en"))
+        .filter((label) => /\bPIT\b/.test(label)),
+    ).toEqual([]);
+  });
+
+  it("uses sentence case, expands income tax, and explains technical bands", () => {
+    const input = manifest.inputs.find(
+      (item) => item.slot === "japan_pit_specific_relative_band_6_count",
+    )!;
+    expect(inputLabel(input, "en")).toBe(
+      "Qualifying relatives in income band 6",
+    );
+    expect(inputLabel(input, "en")).not.toContain("PIT");
+    expect(inputDescription(input, "en")).toContain(
+      "1.05 and 1.10 million yen",
+    );
+    expect(inputDescription(input, "en")).toContain("tax year 2025");
   });
 });

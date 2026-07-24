@@ -22,6 +22,11 @@ export function numericOutput(output: AxiomOutputValue | undefined): number {
 }
 
 export function formatYen(value: number, language: Language = "en"): string {
+  if (language === "ja") {
+    return `${new Intl.NumberFormat("ja-JP", {
+      maximumFractionDigits: 0,
+    }).format(value)}円`;
+  }
   return new Intl.NumberFormat(locale(language), {
     style: "currency",
     currency: "JPY",
@@ -37,7 +42,10 @@ export function formatOutput(
 ): string {
   const primitive = outputPrimitive(value);
   if (primitive === null || primitive === undefined) return "—";
-  if (typeof primitive === "boolean") return primitive ? "Yes" : "No";
+  if (typeof primitive === "boolean") {
+    if (language === "ja") return primitive ? "はい" : "いいえ";
+    return primitive ? "Yes" : "No";
+  }
   const numeric = typeof primitive === "number" ? primitive : Number(primitive);
   if (!Number.isFinite(numeric)) return String(primitive);
   const number = new Intl.NumberFormat(locale(language), {

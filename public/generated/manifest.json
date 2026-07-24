@@ -639,6 +639,347 @@
       ]
     },
     {
+      "slot": "japan_pit_candidate_dependent_total_income",
+      "label": "Income tax candidate dependent total income",
+      "kind": "decimal",
+      "integer": false,
+      "step": 1000,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_cohabiting_elderly_dependent_count",
+      "label": "Income tax cohabiting elderly dependent count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_cohabiting_special_disabled_person_count",
+      "label": "Income tax cohabiting special disabled person count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_elderly_dependent_count",
+      "label": "Income tax elderly dependent count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_income_adjustment_has_qualifying_child_or_disability_condition",
+      "label": "Income tax income adjustment has qualifying child or disability condition",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_is_single_parent",
+      "label": "Income tax is single parent",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_is_special_widow",
+      "label": "Income tax is special widow",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_is_widow",
+      "label": "Income tax is widow",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_is_widow_or_widower",
+      "label": "Income tax is widow or widower",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_meets_working_student_nonincome_conditions",
+      "label": "Income tax meets working student nonincome conditions",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_non_labor_income_amount",
+      "label": "Income tax non labor income amount",
+      "kind": "decimal",
+      "integer": false,
+      "step": 1000,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_ordinary_dependent_count",
+      "label": "Income tax ordinary dependent count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_ordinary_disabled_person_count",
+      "label": "Income tax ordinary disabled person count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_special_disabled_person_count",
+      "label": "Income tax special disabled person count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_specific_relative_age",
+      "label": "Income tax specific relative age",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_specific_relative_band_1_count",
+      "label": "Income tax specific relative band 1 count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_specific_relative_band_2_count",
+      "label": "Income tax specific relative band 2 count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_specific_relative_band_3_count",
+      "label": "Income tax specific relative band 3 count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_specific_relative_band_4_count",
+      "label": "Income tax specific relative band 4 count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_specific_relative_band_5_count",
+      "label": "Income tax specific relative band 5 count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_specific_relative_band_6_count",
+      "label": "Income tax specific relative band 6 count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_specific_relative_band_7_count",
+      "label": "Income tax specific relative band 7 count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_specific_relative_band_8_count",
+      "label": "Income tax specific relative band 8 count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_specific_relative_band_9_count",
+      "label": "Income tax specific relative band 9 count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_specific_relative_meets_non_income_conditions",
+      "label": "Income tax specific relative meets non income conditions",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_specific_relative_total_income",
+      "label": "Income tax specific relative total income",
+      "kind": "decimal",
+      "integer": false,
+      "step": 1000,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_specified_dependent_count",
+      "label": "Income tax specified dependent count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_spouse_is_elderly",
+      "label": "Income tax spouse is elderly",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_spouse_meets_non_income_conditions",
+      "label": "Income tax spouse meets non income conditions",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_spouse_meets_special_deduction_non_income_conditions",
+      "label": "Income tax spouse meets special deduction non income conditions",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_spouse_total_income",
+      "label": "Income tax spouse total income",
+      "kind": "decimal",
+      "integer": false,
+      "step": 1000,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
       "slot": "japan_pit_is_resident_under_article_2",
       "label": "Japanese tax resident",
       "kind": "bool",
@@ -652,347 +993,6 @@
     {
       "slot": "japan_public_pension_other_income_excluding_public_pension",
       "label": "Other income excluding public pension",
-      "kind": "decimal",
-      "integer": false,
-      "step": 1000,
-      "group": "national-income-tax",
-      "programs": [
-        "national-income-tax"
-      ]
-    },
-    {
-      "slot": "japan_pit_candidate_dependent_total_income",
-      "label": "PIT Candidate Dependent Total Income",
-      "kind": "decimal",
-      "integer": false,
-      "step": 1000,
-      "group": "national-income-tax",
-      "programs": [
-        "national-income-tax"
-      ]
-    },
-    {
-      "slot": "japan_pit_cohabiting_elderly_dependent_count",
-      "label": "PIT Cohabiting Elderly Dependent Count",
-      "kind": "decimal",
-      "integer": true,
-      "step": 1,
-      "group": "national-income-tax",
-      "programs": [
-        "national-income-tax"
-      ]
-    },
-    {
-      "slot": "japan_pit_cohabiting_special_disabled_person_count",
-      "label": "PIT Cohabiting Special Disabled Person Count",
-      "kind": "decimal",
-      "integer": true,
-      "step": 1,
-      "group": "national-income-tax",
-      "programs": [
-        "national-income-tax"
-      ]
-    },
-    {
-      "slot": "japan_pit_elderly_dependent_count",
-      "label": "PIT Elderly Dependent Count",
-      "kind": "decimal",
-      "integer": true,
-      "step": 1,
-      "group": "national-income-tax",
-      "programs": [
-        "national-income-tax"
-      ]
-    },
-    {
-      "slot": "japan_pit_income_adjustment_has_qualifying_child_or_disability_condition",
-      "label": "PIT Income Adjustment Has Qualifying Child Or Disability Condition",
-      "kind": "bool",
-      "integer": false,
-      "step": 1000,
-      "group": "national-income-tax",
-      "programs": [
-        "national-income-tax"
-      ]
-    },
-    {
-      "slot": "japan_pit_is_single_parent",
-      "label": "PIT Is Single Parent",
-      "kind": "bool",
-      "integer": false,
-      "step": 1000,
-      "group": "national-income-tax",
-      "programs": [
-        "national-income-tax"
-      ]
-    },
-    {
-      "slot": "japan_pit_is_special_widow",
-      "label": "PIT Is Special Widow",
-      "kind": "bool",
-      "integer": false,
-      "step": 1000,
-      "group": "national-income-tax",
-      "programs": [
-        "national-income-tax"
-      ]
-    },
-    {
-      "slot": "japan_pit_is_widow",
-      "label": "PIT Is Widow",
-      "kind": "bool",
-      "integer": false,
-      "step": 1000,
-      "group": "national-income-tax",
-      "programs": [
-        "national-income-tax"
-      ]
-    },
-    {
-      "slot": "japan_pit_is_widow_or_widower",
-      "label": "PIT Is Widow Or Widower",
-      "kind": "bool",
-      "integer": false,
-      "step": 1000,
-      "group": "national-income-tax",
-      "programs": [
-        "national-income-tax"
-      ]
-    },
-    {
-      "slot": "japan_pit_meets_working_student_nonincome_conditions",
-      "label": "PIT Meets Working Student Nonincome Conditions",
-      "kind": "bool",
-      "integer": false,
-      "step": 1000,
-      "group": "national-income-tax",
-      "programs": [
-        "national-income-tax"
-      ]
-    },
-    {
-      "slot": "japan_pit_non_labor_income_amount",
-      "label": "PIT Non Labor Income Amount",
-      "kind": "decimal",
-      "integer": false,
-      "step": 1000,
-      "group": "national-income-tax",
-      "programs": [
-        "national-income-tax"
-      ]
-    },
-    {
-      "slot": "japan_pit_ordinary_dependent_count",
-      "label": "PIT Ordinary Dependent Count",
-      "kind": "decimal",
-      "integer": true,
-      "step": 1,
-      "group": "national-income-tax",
-      "programs": [
-        "national-income-tax"
-      ]
-    },
-    {
-      "slot": "japan_pit_ordinary_disabled_person_count",
-      "label": "PIT Ordinary Disabled Person Count",
-      "kind": "decimal",
-      "integer": true,
-      "step": 1,
-      "group": "national-income-tax",
-      "programs": [
-        "national-income-tax"
-      ]
-    },
-    {
-      "slot": "japan_pit_special_disabled_person_count",
-      "label": "PIT Special Disabled Person Count",
-      "kind": "decimal",
-      "integer": true,
-      "step": 1,
-      "group": "national-income-tax",
-      "programs": [
-        "national-income-tax"
-      ]
-    },
-    {
-      "slot": "japan_pit_specific_relative_age",
-      "label": "PIT Specific Relative Age",
-      "kind": "decimal",
-      "integer": true,
-      "step": 1,
-      "group": "national-income-tax",
-      "programs": [
-        "national-income-tax"
-      ]
-    },
-    {
-      "slot": "japan_pit_specific_relative_band_1_count",
-      "label": "PIT Specific Relative Band 1 Count",
-      "kind": "decimal",
-      "integer": true,
-      "step": 1,
-      "group": "national-income-tax",
-      "programs": [
-        "national-income-tax"
-      ]
-    },
-    {
-      "slot": "japan_pit_specific_relative_band_2_count",
-      "label": "PIT Specific Relative Band 2 Count",
-      "kind": "decimal",
-      "integer": true,
-      "step": 1,
-      "group": "national-income-tax",
-      "programs": [
-        "national-income-tax"
-      ]
-    },
-    {
-      "slot": "japan_pit_specific_relative_band_3_count",
-      "label": "PIT Specific Relative Band 3 Count",
-      "kind": "decimal",
-      "integer": true,
-      "step": 1,
-      "group": "national-income-tax",
-      "programs": [
-        "national-income-tax"
-      ]
-    },
-    {
-      "slot": "japan_pit_specific_relative_band_4_count",
-      "label": "PIT Specific Relative Band 4 Count",
-      "kind": "decimal",
-      "integer": true,
-      "step": 1,
-      "group": "national-income-tax",
-      "programs": [
-        "national-income-tax"
-      ]
-    },
-    {
-      "slot": "japan_pit_specific_relative_band_5_count",
-      "label": "PIT Specific Relative Band 5 Count",
-      "kind": "decimal",
-      "integer": true,
-      "step": 1,
-      "group": "national-income-tax",
-      "programs": [
-        "national-income-tax"
-      ]
-    },
-    {
-      "slot": "japan_pit_specific_relative_band_6_count",
-      "label": "PIT Specific Relative Band 6 Count",
-      "kind": "decimal",
-      "integer": true,
-      "step": 1,
-      "group": "national-income-tax",
-      "programs": [
-        "national-income-tax"
-      ]
-    },
-    {
-      "slot": "japan_pit_specific_relative_band_7_count",
-      "label": "PIT Specific Relative Band 7 Count",
-      "kind": "decimal",
-      "integer": true,
-      "step": 1,
-      "group": "national-income-tax",
-      "programs": [
-        "national-income-tax"
-      ]
-    },
-    {
-      "slot": "japan_pit_specific_relative_band_8_count",
-      "label": "PIT Specific Relative Band 8 Count",
-      "kind": "decimal",
-      "integer": true,
-      "step": 1,
-      "group": "national-income-tax",
-      "programs": [
-        "national-income-tax"
-      ]
-    },
-    {
-      "slot": "japan_pit_specific_relative_band_9_count",
-      "label": "PIT Specific Relative Band 9 Count",
-      "kind": "decimal",
-      "integer": true,
-      "step": 1,
-      "group": "national-income-tax",
-      "programs": [
-        "national-income-tax"
-      ]
-    },
-    {
-      "slot": "japan_pit_specific_relative_meets_non_income_conditions",
-      "label": "PIT Specific Relative Meets Non Income Conditions",
-      "kind": "bool",
-      "integer": false,
-      "step": 1000,
-      "group": "national-income-tax",
-      "programs": [
-        "national-income-tax"
-      ]
-    },
-    {
-      "slot": "japan_pit_specific_relative_total_income",
-      "label": "PIT Specific Relative Total Income",
-      "kind": "decimal",
-      "integer": false,
-      "step": 1000,
-      "group": "national-income-tax",
-      "programs": [
-        "national-income-tax"
-      ]
-    },
-    {
-      "slot": "japan_pit_specified_dependent_count",
-      "label": "PIT Specified Dependent Count",
-      "kind": "decimal",
-      "integer": true,
-      "step": 1,
-      "group": "national-income-tax",
-      "programs": [
-        "national-income-tax"
-      ]
-    },
-    {
-      "slot": "japan_pit_spouse_is_elderly",
-      "label": "PIT Spouse Is Elderly",
-      "kind": "bool",
-      "integer": false,
-      "step": 1000,
-      "group": "national-income-tax",
-      "programs": [
-        "national-income-tax"
-      ]
-    },
-    {
-      "slot": "japan_pit_spouse_meets_non_income_conditions",
-      "label": "PIT Spouse Meets Non Income Conditions",
-      "kind": "bool",
-      "integer": false,
-      "step": 1000,
-      "group": "national-income-tax",
-      "programs": [
-        "national-income-tax"
-      ]
-    },
-    {
-      "slot": "japan_pit_spouse_meets_special_deduction_non_income_conditions",
-      "label": "PIT Spouse Meets Special Deduction Non Income Conditions",
-      "kind": "bool",
-      "integer": false,
-      "step": 1000,
-      "group": "national-income-tax",
-      "programs": [
-        "national-income-tax"
-      ]
-    },
-    {
-      "slot": "japan_pit_spouse_total_income",
-      "label": "PIT Spouse Total Income",
       "kind": "decimal",
       "integer": false,
       "step": 1000,

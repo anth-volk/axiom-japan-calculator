@@ -10,6 +10,7 @@ import {
 } from "../i18n/translations";
 import { calendarYearLabel } from "../engine/periods";
 import { formatMonth, formatOutput, formatYen } from "../policy/format";
+import { isOutputApplicable } from "../policy/provisionPeriods";
 
 interface ResultsPanelProps {
   manifest: GeneratedManifest;
@@ -148,6 +149,9 @@ export function ResultsPanel({
           if (!program) return null;
           const localizedProgram = programCopy(program, language);
           const isAnnual = program.cadence === "annual";
+          const applicableOutputs = program.outputs.filter((output) =>
+            isOutputApplicable(output, result.calendarYear),
+          );
           return (
               <details
                 key={`${programResult.personId}-${program.id}`}
@@ -194,7 +198,7 @@ export function ResultsPanel({
                     {isAnnual ? copy.calendarTotal : copy.endSnapshot}
                   </p>
                   <dl>
-                    {program.outputs.map((output) => (
+                    {applicableOutputs.map((output) => (
                       <div key={output.id}>
                         <dt>{outputLabel(output, language)}</dt>
                         <dd>
@@ -215,7 +219,7 @@ export function ResultsPanel({
                         : ""}
                     </span>
                     <code>
-                      {program.outputs.find(
+                      {applicableOutputs.find(
                         (output) => output.corpusCitationPath,
                       )?.corpusCitationPath ?? program.summaryOutput}
                     </code>

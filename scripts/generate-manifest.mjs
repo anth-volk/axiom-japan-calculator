@@ -43,7 +43,6 @@ const labelOverrides = {
 };
 
 const acronymTokens = new Map([
-  ["pit", "PIT"],
   ["jpy", "JPY"],
 ]);
 
@@ -53,11 +52,14 @@ function titleCaseToken(token) {
 
 function humanize(slot) {
   if (labelOverrides[slot]) return labelOverrides[slot];
-  return slot
+  const words = slot
     .replace(/^japan_/, "")
     .split("_")
     .map(titleCaseToken)
     .join(" ");
+  return words.startsWith("Pit ")
+    ? `Income tax ${words.slice(4).toLowerCase()}`
+    : words;
 }
 
 function isBooleanSlot(slot) {

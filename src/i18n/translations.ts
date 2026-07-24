@@ -127,7 +127,7 @@ export const RESULT_COPY = {
     running: "Running the Axiom engine…",
     preparing: "Preparing the policy engine…",
     eyebrow: "Axiom result",
-    heading: "Your modeled ledger",
+    heading: "Your estimated result",
     updating: "Updating",
     calendarTax: "Calendar-year national income tax",
     calendarTaxNote: (year: number) =>
@@ -139,7 +139,7 @@ export const RESULT_COPY = {
     benefitsNote: "National benefits with supplied eligibility facts",
     positionNote: "National income tax is shown separately",
     warning:
-      "This is a component ledger, not take-home pay or disposable income. Inhabitant tax and health and long-term-care premiums are not encoded.",
+      "This is a component estimate, not take-home pay or disposable income. Inhabitant tax and health and long-term-care premiums are not encoded.",
     breakdown: "Rule-by-rule breakdown",
     executions: "person-program executions",
     annualTotal: "calendar-year total",
@@ -495,7 +495,31 @@ const EN_INPUT_LABELS: Record<string, string> = {
     "Bonus amount applied to every modeled month",
   japan_employment_insurance_covered_wages_paid:
     "Covered wages applied to every modeled month",
+  japan_pit_candidate_dependent_total_income:
+    "Candidate dependant’s total income",
+  japan_pit_is_single_parent: "Single-parent status",
+  japan_pit_is_special_widow: "Special-widow status",
+  japan_pit_is_widow: "Widow status",
+  japan_pit_is_widow_or_widower: "Widow or widower status",
+  japan_pit_meets_working_student_nonincome_conditions:
+    "Meets the working-student conditions other than income",
+  japan_pit_specific_relative_age: "Candidate relative’s age",
+  japan_pit_specific_relative_meets_non_income_conditions:
+    "Candidate relative meets the non-income conditions",
+  japan_pit_specific_relative_total_income:
+    "Candidate relative’s total income",
+  japan_pit_spouse_meets_non_income_conditions:
+    "Spouse meets the ordinary deduction’s non-income conditions",
+  japan_pit_spouse_meets_special_deduction_non_income_conditions:
+    "Spouse meets the special deduction’s non-income conditions",
 };
+
+function sentenceCaseEnglish(label: string): string {
+  const expanded = label
+    .replace(/\bPIT\b/g, "Income tax")
+    .replace(/\bJPY\b/g, "yen");
+  return `${expanded.charAt(0).toUpperCase()}${expanded.slice(1).toLowerCase()}`;
+}
 
 const EN_PROGRAMS: Record<
   string,
@@ -621,9 +645,15 @@ const JA_OUTPUT_LABELS: Record<string, string> = {
 };
 
 export function inputLabel(input: ManifestInput, language: Language): string {
+  const specificBand = input.slot.match(
+    /^japan_pit_specific_relative_band_(\d)_count$/,
+  );
+  if (language === "en" && specificBand) {
+    return `Qualifying relatives in income band ${specificBand[1]}`;
+  }
   return language === "ja"
     ? JA_INPUT_LABELS[input.slot] ?? input.label
-    : EN_INPUT_LABELS[input.slot] ?? input.label;
+    : sentenceCaseEnglish(EN_INPUT_LABELS[input.slot] ?? input.label);
 }
 
 export function programCopy(
@@ -688,6 +718,102 @@ export const INPUT_HELP: Record<string, Record<Language, string>> = {
     ja: "法的に該当する医学的要件など、所得以外の要件が確認されている必要があります。",
   },
 };
+
+const SPECIFIC_RELATIVE_BANDS = [
+  { en: "the year’s lower threshold and 0.85 million yen", ja: "年ごとの下限額を超え85万円以下" },
+  { en: "0.85 and 0.90 million yen", ja: "85万円を超え90万円以下" },
+  { en: "0.90 and 0.95 million yen", ja: "90万円を超え95万円以下" },
+  { en: "0.95 and 1.00 million yen", ja: "95万円を超え100万円以下" },
+  { en: "1.00 and 1.05 million yen", ja: "100万円を超え105万円以下" },
+  { en: "1.05 and 1.10 million yen", ja: "105万円を超え110万円以下" },
+  { en: "1.10 and 1.15 million yen", ja: "110万円を超え115万円以下" },
+  { en: "1.15 and 1.20 million yen", ja: "115万円を超え120万円以下" },
+  { en: "1.20 and 1.23 million yen", ja: "120万円を超え123万円以下" },
+] as const;
+
+export function inputDescription(
+  input: ManifestInput,
+  language: Language,
+): string {
+  const known = INPUT_HELP[input.slot]?.[language];
+  if (known) return known;
+
+  const band = input.slot.match(
+    /^japan_pit_specific_relative_band_(\d)_count$/,
+  );
+  if (band) {
+    const range = SPECIFIC_RELATIVE_BANDS[Number(band[1]) - 1];
+    return language === "ja"
+      ? `19歳以上23歳未満の特定親族のうち、合計所得が${range.ja}となる人数です。2025年分から使用します。`
+      : `Number of qualifying relatives aged 19–22 whose total income is between ${range.en}. Used from tax year 2025.`;
+  }
+
+  const descriptions: Record<string, Record<Language, string>> = {
+    japan_pit_candidate_dependent_total_income: {
+      en: "The candidate dependant’s statutory total income, used to test whether that person qualifies for an income-tax dependant deduction.",
+      ja: "扶養控除の対象になるかを判定するための、扶養親族候補者の法定合計所得です。",
+    },
+    japan_pit_specific_relative_age: {
+      en: "Age of a candidate relative at the statutory test date. The special-relative deduction is limited to ages 19–22 from 2025.",
+      ja: "法定判定日時点の特定親族候補者の年齢です。2025年分以後は19歳以上23歳未満が対象です。",
+    },
+    japan_pit_specific_relative_total_income: {
+      en: "Statutory total income of one candidate relative, used to place that person in the 2025 special-relative deduction schedule.",
+      ja: "特定親族候補者1人を2025年開始の特定親族特別控除の所得帯に当てはめるための法定合計所得です。",
+    },
+    japan_pit_specific_relative_meets_non_income_conditions: {
+      en: "Turn on only if the candidate relative meets the age, relationship, residence, and shared-livelihood tests other than the income limit.",
+      ja: "所得制限以外の年齢、親族関係、居住、生計同一要件を満たす場合のみオンにします。",
+    },
+  };
+  const exact = descriptions[input.slot]?.[language];
+  if (exact) return exact;
+
+  const programNames: Record<InputGroupId, Record<Language, string>> = {
+    "national-income-tax": {
+      en: "national income-tax calculation",
+      ja: "国の所得税計算",
+    },
+    "employees-pension": {
+      en: "Employees’ Pension calculation",
+      ja: "厚生年金保険料計算",
+    },
+    "national-pension": {
+      en: "National Pension calculation",
+      ja: "国民年金保険料計算",
+    },
+    "employment-insurance": {
+      en: "Employment Insurance calculation",
+      ja: "雇用保険料計算",
+    },
+    "child-allowance": {
+      en: "Child Allowance calculation",
+      ja: "児童手当計算",
+    },
+    "child-rearing-allowance": {
+      en: "Child Rearing Allowance calculation",
+      ja: "児童扶養手当計算",
+    },
+    "disability-allowances": {
+      en: "disability-related allowance calculation",
+      ja: "障害関連手当計算",
+    },
+  };
+  const program = programNames[input.group][language];
+  if (input.kind === "bool") {
+    return language === "ja"
+      ? `${program}で使う法的・受給要件です。該当することを確認できる場合のみオンにします。`
+      : `Legal or eligibility fact used by the ${program}. Turn it on only when the condition has been established.`;
+  }
+  if (input.integer) {
+    return language === "ja"
+      ? `${program}で使う法定区分の人数です。`
+      : `Number of people in this statutory category used by the ${program}.`;
+  }
+  return language === "ja"
+    ? `${program}で使う法定所得・金額です。他の入力から自動推定されません。`
+    : `Statutory income or payment amount used by the ${program}. It is not inferred from other answers.`;
+}
 
 export function assertJapaneseCoverage(
   inputs: ManifestInput[],

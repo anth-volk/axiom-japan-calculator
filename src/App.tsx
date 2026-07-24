@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { HouseholdWizard } from "./components/HouseholdWizard";
-import { ResultsPanel } from "./components/ResultsPanel";
 import { AxiomEngineClient } from "./engine/client";
 import type {
   CalculationResult,
@@ -167,34 +166,18 @@ export default function App() {
         {manifest && household ? (
           <HouseholdWizard
             disabled={calculating}
+            error={error}
             household={household}
             language={language}
             manifest={manifest}
+            result={result}
             onCalculate={calculate}
             onChange={updateHousehold}
           />
         ) : (
           <section className="wizard input-panel--placeholder">
-            <p>{copy.loadingInputs}</p>
-          </section>
-        )}
-        {manifest ? (
-          <ResultsPanel
-            calculating={calculating}
-            error={error}
-            language={language}
-            manifest={manifest}
-            result={result}
-          />
-        ) : (
-          <aside className="results-panel results-panel--loading">
-            <div className="engine-orbit" aria-hidden="true">
-              <span />
-              <span />
-              <span />
-            </div>
             <p>{error ?? copy.verifying}</p>
-          </aside>
+          </section>
         )}
       </div>
 

@@ -121,5 +121,5 @@ for (const program of manifest.programs) {
 }
 
 console.log(
-  "Validated the complete nine-program calendar-year 2018 native component ledger",
+  "Validated the complete nine-program calendar-year 2018 native calculation",
 );

@@ -30,6 +30,8 @@ describe("policy output formatting", () => {
   it("formats Japanese yen without fractional minor units", () => {
     expect(formatYen(82649)).toBe("¥82,649");
     expect(formatOutput(decimal, metadata)).toBe("¥82,649");
+    expect(formatYen(82649, "ja")).toBe("82,649円");
+    expect(formatOutput(decimal, metadata, "ja")).toBe("82,649円");
   });
 
   it("treats missing and nonnumeric outputs safely", () => {

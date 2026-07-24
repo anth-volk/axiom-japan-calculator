@@ -62,12 +62,25 @@ the result:
 4. **Benefits** assigns each child an explicit Child Allowance band and
    collects the primary claimant's income, eligibility, supporter, and
    disability-allowance facts.
-5. **Review** shows who will be calculated before executing the worker.
+5. **Results** runs the worker and shows the household estimate in the wizard
+   itself.
 
 The social-insurance deduction can either be supplied manually or linked to
 the calendar-year Employees' Pension, National Pension, and Employment
 Insurance amounts calculated for that member. The linked option is on by
-default.
+default, and the redundant manual amount is hidden while it is active.
+
+Currency entry is localized without changing the integer-yen values sent to
+Axiom. English annual inputs use millions of yen and monthly inputs use
+thousands of yen. Japanese annual inputs use `万円` and monthly inputs use
+`千円`, with the unit after the value. Japanese calculated amounts likewise
+place `円` after the number.
+
+Provision-specific fields are filtered using their encoded effective periods.
+For example, historical widow/widower fields are replaced from 2020, the 2025
+specific-relative deduction does not appear in earlier years, and the
+post-October-2024 Child Allowance expansion controls high-school bands and the
+removal of its income test.
 
 The wizard never treats a section as a rule selector. All applicable compiled
 programs run. A boolean asserts a legal fact, while an off value says the fact
@@ -75,7 +88,7 @@ does not hold.
 
 ## Important boundary
 
-This app presents a **component ledger**, not take-home pay or disposable
+This app presents a **component estimate**, not take-home pay or disposable
 income. It does not include individual inhabitant tax, National Health
 Insurance, employee health-insurance premiums, long-term-care premiums, Public
 Assistance amounts, municipal benefits, or other Wave 1 exclusions.
@@ -108,14 +121,14 @@ Web Worker
   ├─ executes the Axiom WASM engine
   └─ returns typed policy outputs
         ▼
-Household component ledger and person/rule breakdown
+Household estimate and person/rule breakdown
 ```
 
 The committed generated assets let an ordinary frontend build run without a
 Rust or Python toolchain. CI separately rebuilds the artifacts and WASM from
 the pinned source commits. Policy artifacts, JavaScript bindings, and the
 normalized manifest must match exactly; the host-specific WASM binary must
-pass its regenerated integrity hash and the complete nine-program ledger.
+pass its regenerated integrity hash and the complete nine-program calculation.
 
 ## Pinned provenance
 
@@ -184,7 +197,7 @@ The optimized WASM binary is not assumed to be byte-identical across build
 hosts. `verify:rebuild` requires exact RuleSpec artifacts, JavaScript bindings,
 and every manifest field except the host-specific WASM SHA-256. The rebuilt
 WASM must still match its regenerated hash and reproduce all nine expected
-ledger outputs, so this exception does not bypass runtime verification.
+calculation outputs, so this exception does not bypass runtime verification.
 
 ## Tests and CI
 
@@ -194,16 +207,16 @@ contract. `npm run verify:wasm` executes the validated calendar-year 2018
 scenario through
 all nine programs using the committed WASM binary without a browser, including
 all 12 January–December monthly executions.
-`npm run verify:native` runs the same ledger when `JP_ENGINE_BIN` points to the
-native Axiom engine. `npm run check` performs strict TypeScript checking, and
-`npm run build` produces the static application.
+`npm run verify:native` runs the same calculation when `JP_ENGINE_BIN` points
+to the native Axiom engine. `npm run check` performs strict TypeScript checking,
+and `npm run build` produces the static application.
 
 The GitHub Actions workflow has two independent jobs:
 
 1. test and build the committed browser application; and
 2. check out all three exact source commits, rebuild RuleSpec composition,
    native compiler, WASM runtime, and manifest, then enforce exact policy
-   artifacts and bindings plus native and WASM ledger execution.
+   artifacts and bindings plus native and WASM calculation execution.
 
 ## License
 

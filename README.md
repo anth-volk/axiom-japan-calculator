@@ -71,7 +71,9 @@ Component ledger and rule-level breakdown
 
 The committed generated assets let an ordinary frontend build run without a
 Rust or Python toolchain. CI separately rebuilds the artifacts and WASM from
-the pinned source commits and fails on any generated diff.
+the pinned source commits. Policy artifacts, JavaScript bindings, and the
+normalized manifest must match exactly; the host-specific WASM binary must
+pass its regenerated integrity hash and the complete nine-program ledger.
 
 ## Pinned provenance
 
@@ -117,7 +119,8 @@ It also requires Python 3.14, Rust 1.94.0, and wasm-pack 0.13.1:
 
 ```bash
 npm run build:policy
-git diff --exit-code -- public/engine public/generated
+npm run verify:rebuild
+npm run verify:wasm
 ```
 
 For adjacent checkouts, override the roots:
@@ -135,6 +138,12 @@ The build performs the national income-tax composition, compiles all nine
 program artifacts, compiles the engine's browser WASM package, regenerates the
 manifest, and verifies all hashes and the 108-slot contract.
 
+The optimized WASM binary is not assumed to be byte-identical across build
+hosts. `verify:rebuild` requires exact RuleSpec artifacts, JavaScript bindings,
+and every manifest field except the host-specific WASM SHA-256. The rebuilt
+WASM must still match its regenerated hash and reproduce all nine expected
+ledger outputs, so this exception does not bypass runtime verification.
+
 ## Tests and CI
 
 `npm test` checks the input manifest, presets, and output formatting.
@@ -149,8 +158,8 @@ The GitHub Actions workflow has two independent jobs:
 
 1. test and build the committed browser application; and
 2. check out all three exact source commits, rebuild RuleSpec composition,
-   native compiler, WASM runtime, and manifest, then assert a clean generated
-   diff.
+   native compiler, WASM runtime, and manifest, then enforce exact policy
+   artifacts and bindings plus native and WASM ledger execution.
 
 ## License
 

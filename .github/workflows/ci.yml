@@ -70,7 +70,8 @@ jobs:
       - run: cargo install wasm-pack --version 0.13.1 --locked
       - run: npm ci
       - run: npm run build:policy
-      - run: git diff --exit-code -- public/engine public/generated
+      - run: npm run verify:rebuild
+      - run: npm run verify:wasm
       - run: npm run verify:native
         env:
           JP_ENGINE_BIN: vendor/axiom-rules-engine/target/release/axiom-rules-engine

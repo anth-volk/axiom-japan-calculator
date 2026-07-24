@@ -13,6 +13,7 @@
     "build:policy": "scripts/build-policy-artifacts.sh",
     "verify:generated": "node scripts/verify-generated.mjs",
     "verify:native": "node scripts/verify-native-ledger.mjs",
+    "verify:rebuild": "node scripts/verify-rebuild-diff.mjs",
     "verify:wasm": "node scripts/verify-wasm-ledger.mjs"
   },
   "dependencies": {

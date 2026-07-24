@@ -1,0 +1,301 @@
+{
+  "schemaVersion": 1,
+  "supportedPeriod": {
+    "inclusiveStart": "2017-04-01",
+    "calculatorFullYearStart": "2018-01-01",
+    "inclusiveEnd": "2026-12-31"
+  },
+  "pins": {
+    "rulespec": {
+      "repository": "anth-volk/rulespec-jp",
+      "commit": "0113ad599d6d458b3343c23039533b1a4827121f"
+    },
+    "engine": {
+      "repository": "anth-volk/axiom-rules-engine",
+      "commit": "e5e40d40353f8459da4e46a9feae7279c2fecccc"
+    },
+    "compose": {
+      "repository": "anth-volk/axiom-compose",
+      "commit": "9a514aca29c85a4a5f30a63f2275f9a362dd2b7a"
+    },
+    "rust": "1.94.0",
+    "wasmPack": "0.13.1"
+  },
+  "programs": [
+    {
+      "id": "national-income-tax",
+      "label": "National income tax",
+      "description": "Annual national personal income tax for the encoded employment and public-pension path.",
+      "artifact": "national-income-tax.json",
+      "cadence": "annual",
+      "compile": {
+        "kind": "composition",
+        "spec": "jp/programs/national-income-tax-wave1.yaml"
+      },
+      "summaryBucket": "annualTax",
+      "summaryOutput": "jp:policies/nta/defense-special-income-tax/2027#japan_national_income_tax_including_national_surtaxes",
+      "outputs": [
+        {
+          "id": "jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_article_28",
+          "label": "Employment income after deduction",
+          "role": "detail"
+        },
+        {
+          "id": "jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_deduction_article_28",
+          "label": "Employment-income deduction",
+          "role": "detail"
+        },
+        {
+          "id": "jp:statutes/e-gov/332ac0000000026/article/41-15-3#japan_public_pension_income",
+          "label": "Public-pension income after deduction",
+          "role": "detail"
+        },
+        {
+          "id": "jp:statutes/e-gov/332ac0000000026/article/41-15-3#japan_public_pension_deduction",
+          "label": "Public-pension deduction",
+          "role": "detail"
+        },
+        {
+          "id": "jp:statutes/e-gov/337ac0000000066/article/118#japan_pit_encoded_income_deductions",
+          "label": "Encoded personal deductions",
+          "role": "detail"
+        },
+        {
+          "id": "jp:statutes/e-gov/337ac0000000066/article/118#japan_pit_taxable_general_income",
+          "label": "Taxable general income",
+          "role": "detail"
+        },
+        {
+          "id": "jp:statutes/e-gov/340ac0000000033/article/89#japan_national_income_tax_article_89_base_tax",
+          "label": "Base national income tax",
+          "role": "detail"
+        },
+        {
+          "id": "jp:policies/nta/fixed-income-tax-credit/2024#japan_2024_fixed_income_tax_credit",
+          "label": "2024 fixed income-tax credit",
+          "role": "credit"
+        },
+        {
+          "id": "jp:statutes/e-gov/423ac0000000117/article/13#japan_reconstruction_special_income_tax",
+          "label": "Reconstruction special income tax",
+          "role": "detail"
+        },
+        {
+          "id": "jp:policies/nta/defense-special-income-tax/2027#japan_defense_special_income_tax",
+          "label": "Defense special income tax",
+          "role": "detail"
+        },
+        {
+          "id": "jp:policies/nta/defense-special-income-tax/2027#japan_national_income_tax_including_national_surtaxes",
+          "label": "National income tax including surtaxes",
+          "role": "summary"
+        }
+      ]
+    },
+    {
+      "id": "employees-pension",
+      "label": "Employees’ Pension",
+      "description": "Employee share for an ordinary covered employee in the selected month.",
+      "artifact": "employees-pension.json",
+      "cadence": "monthly",
+      "compile": {
+        "kind": "atomic",
+        "module": "jp/statutes/e-gov/329ac0000000115/article/81.yaml"
+      },
+      "summaryBucket": "monthlyDeduction",
+      "summaryOutput": "jp:statutes/e-gov/329ac0000000115/article/81#japan_employees_pension_employee_total_contribution",
+      "outputs": [
+        {
+          "id": "jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_monthly_remuneration",
+          "label": "Standard monthly remuneration",
+          "role": "detail"
+        },
+        {
+          "id": "jp:statutes/e-gov/329ac0000000115/article/81#japan_employees_pension_employee_monthly_contribution",
+          "label": "Employee monthly contribution",
+          "role": "detail"
+        },
+        {
+          "id": "jp:statutes/e-gov/329ac0000000115/article/81#japan_employees_pension_employee_bonus_contribution",
+          "label": "Employee bonus contribution",
+          "role": "detail"
+        },
+        {
+          "id": "jp:statutes/e-gov/329ac0000000115/article/81#japan_employees_pension_employee_total_contribution",
+          "label": "Employees’ Pension deduction",
+          "role": "summary"
+        }
+      ]
+    },
+    {
+      "id": "national-pension",
+      "label": "National Pension",
+      "description": "Monthly Category 1 contribution after encoded exemptions and deferrals.",
+      "artifact": "national-pension.json",
+      "cadence": "monthly",
+      "compile": {
+        "kind": "atomic",
+        "module": "jp/policies/jps/national-pension/exemptions-and-deferrals.yaml"
+      },
+      "summaryBucket": "monthlyDeduction",
+      "summaryOutput": "jp:policies/jps/national-pension/exemptions-and-deferrals#japan_national_pension_monthly_contribution_after_exemptions_and_deferrals",
+      "outputs": [
+        {
+          "id": "jp:policies/jps/national-pension/contribution-history#japan_national_pension_standard_monthly_contribution",
+          "label": "Standard National Pension contribution",
+          "role": "detail"
+        },
+        {
+          "id": "jp:policies/jps/national-pension/exemptions-and-deferrals#japan_national_pension_monthly_contribution_after_exemptions_and_deferrals",
+          "label": "National Pension deduction after relief",
+          "role": "summary"
+        }
+      ]
+    },
+    {
+      "id": "employment-insurance",
+      "label": "Employment Insurance",
+      "description": "Employee Employment Insurance deduction from the selected wage payment.",
+      "artifact": "employment-insurance.json",
+      "cadence": "monthly",
+      "compile": {
+        "kind": "atomic",
+        "module": "jp/policies/mhlw/employment-insurance/fy2017-rates.yaml"
+      },
+      "summaryBucket": "monthlyDeduction",
+      "summaryOutput": "jp:policies/mhlw/employment-insurance/fy2017-rates#japan_employment_insurance_employee_contribution",
+      "outputs": [
+        {
+          "id": "jp:policies/mhlw/employment-insurance/fy2017-rates#japan_employment_insurance_employee_rate",
+          "label": "Employee contribution rate",
+          "role": "rate"
+        },
+        {
+          "id": "jp:policies/mhlw/employment-insurance/fy2017-rates#japan_employment_insurance_employee_contribution",
+          "label": "Employment Insurance deduction",
+          "role": "summary"
+        }
+      ]
+    },
+    {
+      "id": "child-allowance",
+      "label": "Child Allowance",
+      "description": "National monthly Child Allowance for the encoded child bands and income limits.",
+      "artifact": "child-allowance.json",
+      "cadence": "monthly",
+      "compile": {
+        "kind": "atomic",
+        "module": "jp/statutes/e-gov/346ac0000000073/article/6.yaml"
+      },
+      "summaryBucket": "monthlyBenefit",
+      "summaryOutput": "jp:statutes/e-gov/346ac0000000073/article/6#japan_child_allowance_monthly",
+      "outputs": [
+        {
+          "id": "jp:regulations/e-gov/346co0000000281/article/1#japan_child_allowance_ordinary_income_limit",
+          "label": "Ordinary income limit",
+          "role": "detail"
+        },
+        {
+          "id": "jp:statutes/e-gov/346ac0000000073/article/6#japan_child_allowance_monthly",
+          "label": "Child Allowance",
+          "role": "summary"
+        }
+      ]
+    },
+    {
+      "id": "child-rearing-allowance",
+      "label": "Child Rearing Allowance",
+      "description": "Monthly full or partial allowance using claimant, supporter, and child-support inputs.",
+      "artifact": "child-rearing-allowance.json",
+      "cadence": "monthly",
+      "compile": {
+        "kind": "atomic",
+        "module": "jp/regulations/e-gov/336co0000000405/article/2-4.yaml"
+      },
+      "summaryBucket": "monthlyBenefit",
+      "summaryOutput": "jp:regulations/e-gov/336co0000000405/article/2-4#japan_child_rearing_allowance_monthly",
+      "outputs": [
+        {
+          "id": "jp:regulations/e-gov/336co0000000405/article/2-4#japan_child_rearing_allowance_assessed_income",
+          "label": "Assessed allowance income",
+          "role": "detail"
+        },
+        {
+          "id": "jp:regulations/e-gov/336co0000000405/article/2-4#japan_child_rearing_allowance_full_payment_income_limit",
+          "label": "Full-payment income limit",
+          "role": "detail"
+        },
+        {
+          "id": "jp:regulations/e-gov/336co0000000405/article/2-4#japan_child_rearing_allowance_partial_payment_income_limit",
+          "label": "Partial-payment income limit",
+          "role": "detail"
+        },
+        {
+          "id": "jp:regulations/e-gov/336co0000000405/article/2-4#japan_child_rearing_allowance_monthly",
+          "label": "Child Rearing Allowance",
+          "role": "summary"
+        }
+      ]
+    },
+    {
+      "id": "special-child-rearing-allowance",
+      "label": "Special Child Rearing Allowance",
+      "description": "Monthly grade-one and grade-two disability-related child allowance.",
+      "artifact": "special-child-rearing-allowance.json",
+      "cadence": "monthly",
+      "compile": {
+        "kind": "atomic",
+        "module": "jp/regulations/e-gov/350co0000000207/article/5-2.yaml"
+      },
+      "summaryBucket": "monthlyBenefit",
+      "summaryOutput": "jp:regulations/e-gov/350co0000000207/article/5-2#japan_special_child_rearing_allowance_monthly",
+      "outputs": [
+        {
+          "id": "jp:regulations/e-gov/350co0000000207/article/5-2#japan_special_child_rearing_allowance_monthly",
+          "label": "Special Child Rearing Allowance",
+          "role": "summary"
+        }
+      ]
+    },
+    {
+      "id": "disabled-child-welfare-allowance",
+      "label": "Disabled Child Welfare Allowance",
+      "description": "Monthly national cash allowance after encoded income tests.",
+      "artifact": "disabled-child-welfare-allowance.json",
+      "cadence": "monthly",
+      "compile": {
+        "kind": "atomic",
+        "module": "jp/regulations/e-gov/350co0000000207/article/9-2.yaml"
+      },
+      "summaryBucket": "monthlyBenefit",
+      "summaryOutput": "jp:regulations/e-gov/350co0000000207/article/9-2#japan_disabled_child_welfare_allowance_monthly",
+      "outputs": [
+        {
+          "id": "jp:regulations/e-gov/350co0000000207/article/9-2#japan_disabled_child_welfare_allowance_monthly",
+          "label": "Disabled Child Welfare Allowance",
+          "role": "summary"
+        }
+      ]
+    },
+    {
+      "id": "special-disability-allowance",
+      "label": "Special Disability Allowance",
+      "description": "Monthly national cash allowance after encoded income tests.",
+      "artifact": "special-disability-allowance.json",
+      "cadence": "monthly",
+      "compile": {
+        "kind": "atomic",
+        "module": "jp/regulations/e-gov/350co0000000207/article/10-2.yaml"
+      },
+      "summaryBucket": "monthlyBenefit",
+      "summaryOutput": "jp:regulations/e-gov/350co0000000207/article/10-2#japan_special_disability_allowance_monthly",
+      "outputs": [
+        {
+          "id": "jp:regulations/e-gov/350co0000000207/article/10-2#japan_special_disability_allowance_monthly",
+          "label": "Special Disability Allowance",
+          "role": "summary"
+        }
+      ]
+    }
+  ]
+}

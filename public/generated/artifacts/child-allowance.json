@@ -1,0 +1,1345 @@
+{
+  "artifact_format_version": 2,
+  "engine_version": "0.1.0",
+  "program": {
+    "module": {
+      "summary": "Monthly Child Allowance for individual recipients from 平成29年4月, including the 令和4年6月 upper income limit and the universal 令和6年10月 expansion through high-school age with a 30,000-yen third-child amount. Eligibility, child ordering, age bands, and the assessed income produced under Enforcement Order articles 2 and 3 are explicit factual inputs.",
+      "source_verification": {
+        "corpus_citation_path": "jp/statute/e-gov/346ac0000000073/as-of/2017-04-01/article/6",
+        "source_sha256": "860134e1e91a749ac43c1719265fc1c4c793a3a2a9f8b3dcbca958f0e6dd3298"
+      }
+    },
+    "units": [
+      {
+        "name": "GBP",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "USD",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "EUR",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "GHS",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "GHp",
+        "kind": "currency",
+        "minor_units": 0
+      },
+      {
+        "name": "NGN",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "UGX",
+        "kind": "currency",
+        "minor_units": 0
+      },
+      {
+        "name": "ZMW",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "ETB",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "RWF",
+        "kind": "currency",
+        "minor_units": 0
+      },
+      {
+        "name": "TZS",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "DKK",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "count",
+        "kind": "count"
+      },
+      {
+        "name": "person",
+        "kind": "count"
+      },
+      {
+        "name": "ratio",
+        "kind": "ratio"
+      },
+      {
+        "name": "status",
+        "kind": "custom",
+        "label": "judgment"
+      },
+      {
+        "name": "JPY",
+        "kind": "currency",
+        "minor_units": 0
+      }
+    ],
+    "relations": [],
+    "parameters": [
+      {
+        "id": "jp:regulations/e-gov/346co0000000281/article/1#japan_child_allowance_ordinary_income_limit_base",
+        "name": "japan_child_allowance_ordinary_income_limit_base",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/346co0000000281/as-of/2017-04-01/article/1",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 6220000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/346co0000000281/article/1#japan_child_allowance_income_limit_per_dependent",
+        "name": "japan_child_allowance_income_limit_per_dependent",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/346co0000000281/as-of/2017-04-01/article/1",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 380000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/346co0000000281/article/1#japan_child_allowance_elderly_dependent_extra",
+        "name": "japan_child_allowance_elderly_dependent_extra",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/346co0000000281/as-of/2017-04-01/article/1",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 60000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/346co0000000281/article/7#japan_child_allowance_special_benefit_upper_income_limit_base",
+        "name": "japan_child_allowance_special_benefit_upper_income_limit_base",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/346co0000000281/as-of/2022-06-01/article/7",
+        "versions": [
+          {
+            "effective_from": "2022-06-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 8580000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/346ac0000000073/article/6#japan_child_allowance_under_three_base_amount",
+        "name": "japan_child_allowance_under_three_base_amount",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/346ac0000000073/as-of/2017-04-01/article/6",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 15000
+              }
+            }
+          },
+          {
+            "effective_from": "2024-10-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 15000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/346ac0000000073/article/6#japan_child_allowance_age_three_or_older_base_amount",
+        "name": "japan_child_allowance_age_three_or_older_base_amount",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/346ac0000000073/as-of/2017-04-01/article/6",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 10000
+              }
+            }
+          },
+          {
+            "effective_from": "2024-10-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 10000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/346ac0000000073/article/6#japan_child_allowance_pre_reform_primary_age_third_child_bonus",
+        "name": "japan_child_allowance_pre_reform_primary_age_third_child_bonus",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/346ac0000000073/as-of/2017-04-01/article/6",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 5000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/346ac0000000073/article/6#japan_child_allowance_post_reform_third_child_amount",
+        "name": "japan_child_allowance_post_reform_third_child_amount",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/346ac0000000073/as-of/2017-04-01/article/6",
+        "versions": [
+          {
+            "effective_from": "2024-10-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 30000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/346ac0000000073/article/6#japan_child_allowance_special_benefit_per_child",
+        "name": "japan_child_allowance_special_benefit_per_child",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/346ac0000000073/as-of/2017-04-01/article/6",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 5000
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "id": "jp:regulations/e-gov/346co0000000281/article/1#japan_child_allowance_ordinary_income_limit",
+        "name": "japan_child_allowance_ordinary_income_limit",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/346co0000000281/as-of/2017-04-01/article/1",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "add",
+          "items": [
+            {
+              "kind": "add",
+              "items": [
+                {
+                  "kind": "parameter_lookup",
+                  "parameter": "japan_child_allowance_ordinary_income_limit_base",
+                  "index": {
+                    "kind": "literal",
+                    "value": {
+                      "kind": "integer",
+                      "value": 0
+                    }
+                  }
+                },
+                {
+                  "kind": "mul",
+                  "left": {
+                    "kind": "parameter_lookup",
+                    "parameter": "japan_child_allowance_income_limit_per_dependent",
+                    "index": {
+                      "kind": "literal",
+                      "value": {
+                        "kind": "integer",
+                        "value": 0
+                      }
+                    }
+                  },
+                  "right": {
+                    "kind": "add",
+                    "items": [
+                      {
+                        "kind": "input",
+                        "name": "japan_child_allowance_ordinary_dependent_count"
+                      },
+                      {
+                        "kind": "input",
+                        "name": "japan_child_allowance_elderly_dependent_count"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "mul",
+              "left": {
+                "kind": "parameter_lookup",
+                "parameter": "japan_child_allowance_elderly_dependent_extra",
+                "index": {
+                  "kind": "literal",
+                  "value": {
+                    "kind": "integer",
+                    "value": 0
+                  }
+                }
+              },
+              "right": {
+                "kind": "input",
+                "name": "japan_child_allowance_elderly_dependent_count"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "jp:regulations/e-gov/346co0000000281/article/7#japan_child_allowance_special_benefit_upper_income_limit",
+        "name": "japan_child_allowance_special_benefit_upper_income_limit",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/346co0000000281/as-of/2022-06-01/article/7",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "add",
+          "items": [
+            {
+              "kind": "add",
+              "items": [
+                {
+                  "kind": "parameter_lookup",
+                  "parameter": "japan_child_allowance_special_benefit_upper_income_limit_base",
+                  "index": {
+                    "kind": "literal",
+                    "value": {
+                      "kind": "integer",
+                      "value": 0
+                    }
+                  }
+                },
+                {
+                  "kind": "mul",
+                  "left": {
+                    "kind": "parameter_lookup",
+                    "parameter": "japan_child_allowance_income_limit_per_dependent",
+                    "index": {
+                      "kind": "literal",
+                      "value": {
+                        "kind": "integer",
+                        "value": 0
+                      }
+                    }
+                  },
+                  "right": {
+                    "kind": "add",
+                    "items": [
+                      {
+                        "kind": "input",
+                        "name": "japan_child_allowance_ordinary_dependent_count"
+                      },
+                      {
+                        "kind": "input",
+                        "name": "japan_child_allowance_elderly_dependent_count"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "mul",
+              "left": {
+                "kind": "parameter_lookup",
+                "parameter": "japan_child_allowance_elderly_dependent_extra",
+                "index": {
+                  "kind": "literal",
+                  "value": {
+                    "kind": "integer",
+                    "value": 0
+                  }
+                }
+              },
+              "right": {
+                "kind": "input",
+                "name": "japan_child_allowance_elderly_dependent_count"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "jp:statutes/e-gov/346ac0000000073/article/6#japan_child_allowance_eligible_child_count",
+        "name": "japan_child_allowance_eligible_child_count",
+        "entity": "Person",
+        "dtype": "integer",
+        "unit": null,
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/346ac0000000073/as-of/2017-04-01/article/6",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "add",
+          "items": [
+            {
+              "kind": "add",
+              "items": [
+                {
+                  "kind": "add",
+                  "items": [
+                    {
+                      "kind": "add",
+                      "items": [
+                        {
+                          "kind": "add",
+                          "items": [
+                            {
+                              "kind": "add",
+                              "items": [
+                                {
+                                  "kind": "add",
+                                  "items": [
+                                    {
+                                      "kind": "input",
+                                      "name": "japan_child_allowance_under_three_first_or_second_count"
+                                    },
+                                    {
+                                      "kind": "input",
+                                      "name": "japan_child_allowance_under_three_third_or_later_count"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "kind": "input",
+                                  "name": "japan_child_allowance_primary_age_first_or_second_count"
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "input",
+                              "name": "japan_child_allowance_primary_age_third_or_later_count"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "input",
+                          "name": "japan_child_allowance_junior_high_first_or_second_count"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "input",
+                      "name": "japan_child_allowance_junior_high_third_or_later_count"
+                    }
+                  ]
+                },
+                {
+                  "kind": "input",
+                  "name": "japan_child_allowance_high_school_first_or_second_count"
+                }
+              ]
+            },
+            {
+              "kind": "input",
+              "name": "japan_child_allowance_high_school_third_or_later_count"
+            }
+          ]
+        },
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "semantics": "scalar",
+            "expr": {
+              "kind": "add",
+              "items": [
+                {
+                  "kind": "add",
+                  "items": [
+                    {
+                      "kind": "add",
+                      "items": [
+                        {
+                          "kind": "add",
+                          "items": [
+                            {
+                              "kind": "add",
+                              "items": [
+                                {
+                                  "kind": "input",
+                                  "name": "japan_child_allowance_under_three_first_or_second_count"
+                                },
+                                {
+                                  "kind": "input",
+                                  "name": "japan_child_allowance_under_three_third_or_later_count"
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "input",
+                              "name": "japan_child_allowance_primary_age_first_or_second_count"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "input",
+                          "name": "japan_child_allowance_primary_age_third_or_later_count"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "input",
+                      "name": "japan_child_allowance_junior_high_first_or_second_count"
+                    }
+                  ]
+                },
+                {
+                  "kind": "input",
+                  "name": "japan_child_allowance_junior_high_third_or_later_count"
+                }
+              ]
+            }
+          },
+          {
+            "effective_from": "2024-10-01",
+            "semantics": "scalar",
+            "expr": {
+              "kind": "add",
+              "items": [
+                {
+                  "kind": "add",
+                  "items": [
+                    {
+                      "kind": "add",
+                      "items": [
+                        {
+                          "kind": "add",
+                          "items": [
+                            {
+                              "kind": "add",
+                              "items": [
+                                {
+                                  "kind": "add",
+                                  "items": [
+                                    {
+                                      "kind": "add",
+                                      "items": [
+                                        {
+                                          "kind": "input",
+                                          "name": "japan_child_allowance_under_three_first_or_second_count"
+                                        },
+                                        {
+                                          "kind": "input",
+                                          "name": "japan_child_allowance_under_three_third_or_later_count"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "kind": "input",
+                                      "name": "japan_child_allowance_primary_age_first_or_second_count"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "kind": "input",
+                                  "name": "japan_child_allowance_primary_age_third_or_later_count"
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "input",
+                              "name": "japan_child_allowance_junior_high_first_or_second_count"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "input",
+                          "name": "japan_child_allowance_junior_high_third_or_later_count"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "input",
+                      "name": "japan_child_allowance_high_school_first_or_second_count"
+                    }
+                  ]
+                },
+                {
+                  "kind": "input",
+                  "name": "japan_child_allowance_high_school_third_or_later_count"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/346ac0000000073/article/6#japan_child_allowance_regular_monthly_amount",
+        "name": "japan_child_allowance_regular_monthly_amount",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/346ac0000000073/as-of/2017-04-01/article/6",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "add",
+          "items": [
+            {
+              "kind": "add",
+              "items": [
+                {
+                  "kind": "mul",
+                  "left": {
+                    "kind": "parameter_lookup",
+                    "parameter": "japan_child_allowance_under_three_base_amount",
+                    "index": {
+                      "kind": "literal",
+                      "value": {
+                        "kind": "integer",
+                        "value": 0
+                      }
+                    }
+                  },
+                  "right": {
+                    "kind": "input",
+                    "name": "japan_child_allowance_under_three_first_or_second_count"
+                  }
+                },
+                {
+                  "kind": "mul",
+                  "left": {
+                    "kind": "parameter_lookup",
+                    "parameter": "japan_child_allowance_age_three_or_older_base_amount",
+                    "index": {
+                      "kind": "literal",
+                      "value": {
+                        "kind": "integer",
+                        "value": 0
+                      }
+                    }
+                  },
+                  "right": {
+                    "kind": "add",
+                    "items": [
+                      {
+                        "kind": "add",
+                        "items": [
+                          {
+                            "kind": "input",
+                            "name": "japan_child_allowance_primary_age_first_or_second_count"
+                          },
+                          {
+                            "kind": "input",
+                            "name": "japan_child_allowance_junior_high_first_or_second_count"
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "input",
+                        "name": "japan_child_allowance_high_school_first_or_second_count"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "mul",
+              "left": {
+                "kind": "parameter_lookup",
+                "parameter": "japan_child_allowance_post_reform_third_child_amount",
+                "index": {
+                  "kind": "literal",
+                  "value": {
+                    "kind": "integer",
+                    "value": 0
+                  }
+                }
+              },
+              "right": {
+                "kind": "add",
+                "items": [
+                  {
+                    "kind": "add",
+                    "items": [
+                      {
+                        "kind": "add",
+                        "items": [
+                          {
+                            "kind": "input",
+                            "name": "japan_child_allowance_under_three_third_or_later_count"
+                          },
+                          {
+                            "kind": "input",
+                            "name": "japan_child_allowance_primary_age_third_or_later_count"
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "input",
+                        "name": "japan_child_allowance_junior_high_third_or_later_count"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "input",
+                    "name": "japan_child_allowance_high_school_third_or_later_count"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "semantics": "scalar",
+            "expr": {
+              "kind": "add",
+              "items": [
+                {
+                  "kind": "add",
+                  "items": [
+                    {
+                      "kind": "mul",
+                      "left": {
+                        "kind": "parameter_lookup",
+                        "parameter": "japan_child_allowance_under_three_base_amount",
+                        "index": {
+                          "kind": "literal",
+                          "value": {
+                            "kind": "integer",
+                            "value": 0
+                          }
+                        }
+                      },
+                      "right": {
+                        "kind": "add",
+                        "items": [
+                          {
+                            "kind": "input",
+                            "name": "japan_child_allowance_under_three_first_or_second_count"
+                          },
+                          {
+                            "kind": "input",
+                            "name": "japan_child_allowance_under_three_third_or_later_count"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "kind": "mul",
+                      "left": {
+                        "kind": "parameter_lookup",
+                        "parameter": "japan_child_allowance_age_three_or_older_base_amount",
+                        "index": {
+                          "kind": "literal",
+                          "value": {
+                            "kind": "integer",
+                            "value": 0
+                          }
+                        }
+                      },
+                      "right": {
+                        "kind": "add",
+                        "items": [
+                          {
+                            "kind": "add",
+                            "items": [
+                              {
+                                "kind": "add",
+                                "items": [
+                                  {
+                                    "kind": "input",
+                                    "name": "japan_child_allowance_primary_age_first_or_second_count"
+                                  },
+                                  {
+                                    "kind": "input",
+                                    "name": "japan_child_allowance_primary_age_third_or_later_count"
+                                  }
+                                ]
+                              },
+                              {
+                                "kind": "input",
+                                "name": "japan_child_allowance_junior_high_first_or_second_count"
+                              }
+                            ]
+                          },
+                          {
+                            "kind": "input",
+                            "name": "japan_child_allowance_junior_high_third_or_later_count"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "kind": "mul",
+                  "left": {
+                    "kind": "parameter_lookup",
+                    "parameter": "japan_child_allowance_pre_reform_primary_age_third_child_bonus",
+                    "index": {
+                      "kind": "literal",
+                      "value": {
+                        "kind": "integer",
+                        "value": 0
+                      }
+                    }
+                  },
+                  "right": {
+                    "kind": "input",
+                    "name": "japan_child_allowance_primary_age_third_or_later_count"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "effective_from": "2024-10-01",
+            "semantics": "scalar",
+            "expr": {
+              "kind": "add",
+              "items": [
+                {
+                  "kind": "add",
+                  "items": [
+                    {
+                      "kind": "mul",
+                      "left": {
+                        "kind": "parameter_lookup",
+                        "parameter": "japan_child_allowance_under_three_base_amount",
+                        "index": {
+                          "kind": "literal",
+                          "value": {
+                            "kind": "integer",
+                            "value": 0
+                          }
+                        }
+                      },
+                      "right": {
+                        "kind": "input",
+                        "name": "japan_child_allowance_under_three_first_or_second_count"
+                      }
+                    },
+                    {
+                      "kind": "mul",
+                      "left": {
+                        "kind": "parameter_lookup",
+                        "parameter": "japan_child_allowance_age_three_or_older_base_amount",
+                        "index": {
+                          "kind": "literal",
+                          "value": {
+                            "kind": "integer",
+                            "value": 0
+                          }
+                        }
+                      },
+                      "right": {
+                        "kind": "add",
+                        "items": [
+                          {
+                            "kind": "add",
+                            "items": [
+                              {
+                                "kind": "input",
+                                "name": "japan_child_allowance_primary_age_first_or_second_count"
+                              },
+                              {
+                                "kind": "input",
+                                "name": "japan_child_allowance_junior_high_first_or_second_count"
+                              }
+                            ]
+                          },
+                          {
+                            "kind": "input",
+                            "name": "japan_child_allowance_high_school_first_or_second_count"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "kind": "mul",
+                  "left": {
+                    "kind": "parameter_lookup",
+                    "parameter": "japan_child_allowance_post_reform_third_child_amount",
+                    "index": {
+                      "kind": "literal",
+                      "value": {
+                        "kind": "integer",
+                        "value": 0
+                      }
+                    }
+                  },
+                  "right": {
+                    "kind": "add",
+                    "items": [
+                      {
+                        "kind": "add",
+                        "items": [
+                          {
+                            "kind": "add",
+                            "items": [
+                              {
+                                "kind": "input",
+                                "name": "japan_child_allowance_under_three_third_or_later_count"
+                              },
+                              {
+                                "kind": "input",
+                                "name": "japan_child_allowance_primary_age_third_or_later_count"
+                              }
+                            ]
+                          },
+                          {
+                            "kind": "input",
+                            "name": "japan_child_allowance_junior_high_third_or_later_count"
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "input",
+                        "name": "japan_child_allowance_high_school_third_or_later_count"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/346ac0000000073/article/6#japan_child_allowance_monthly",
+        "name": "japan_child_allowance_monthly",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/346ac0000000073/as-of/2017-04-01/article/6",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "if",
+          "condition": {
+            "kind": "not",
+            "item": {
+              "kind": "comparison",
+              "left": {
+                "kind": "input",
+                "name": "japan_child_allowance_meets_nonfinancial_conditions"
+              },
+              "op": "eq",
+              "right": {
+                "kind": "literal",
+                "value": {
+                  "kind": "bool",
+                  "value": true
+                }
+              }
+            }
+          },
+          "then_expr": {
+            "kind": "literal",
+            "value": {
+              "kind": "decimal",
+              "value": "0"
+            }
+          },
+          "else_expr": {
+            "kind": "derived",
+            "name": "japan_child_allowance_regular_monthly_amount"
+          }
+        },
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "semantics": "scalar",
+            "expr": {
+              "kind": "if",
+              "condition": {
+                "kind": "not",
+                "item": {
+                  "kind": "comparison",
+                  "left": {
+                    "kind": "input",
+                    "name": "japan_child_allowance_meets_nonfinancial_conditions"
+                  },
+                  "op": "eq",
+                  "right": {
+                    "kind": "literal",
+                    "value": {
+                      "kind": "bool",
+                      "value": true
+                    }
+                  }
+                }
+              },
+              "then_expr": {
+                "kind": "literal",
+                "value": {
+                  "kind": "decimal",
+                  "value": "0"
+                }
+              },
+              "else_expr": {
+                "kind": "if",
+                "condition": {
+                  "kind": "comparison",
+                  "left": {
+                    "kind": "input",
+                    "name": "japan_child_allowance_assessed_income"
+                  },
+                  "op": "lt",
+                  "right": {
+                    "kind": "derived",
+                    "name": "japan_child_allowance_ordinary_income_limit"
+                  }
+                },
+                "then_expr": {
+                  "kind": "derived",
+                  "name": "japan_child_allowance_regular_monthly_amount"
+                },
+                "else_expr": {
+                  "kind": "mul",
+                  "left": {
+                    "kind": "parameter_lookup",
+                    "parameter": "japan_child_allowance_special_benefit_per_child",
+                    "index": {
+                      "kind": "literal",
+                      "value": {
+                        "kind": "integer",
+                        "value": 0
+                      }
+                    }
+                  },
+                  "right": {
+                    "kind": "derived",
+                    "name": "japan_child_allowance_eligible_child_count"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "effective_from": "2022-06-01",
+            "semantics": "scalar",
+            "expr": {
+              "kind": "if",
+              "condition": {
+                "kind": "not",
+                "item": {
+                  "kind": "comparison",
+                  "left": {
+                    "kind": "input",
+                    "name": "japan_child_allowance_meets_nonfinancial_conditions"
+                  },
+                  "op": "eq",
+                  "right": {
+                    "kind": "literal",
+                    "value": {
+                      "kind": "bool",
+                      "value": true
+                    }
+                  }
+                }
+              },
+              "then_expr": {
+                "kind": "literal",
+                "value": {
+                  "kind": "decimal",
+                  "value": "0"
+                }
+              },
+              "else_expr": {
+                "kind": "if",
+                "condition": {
+                  "kind": "comparison",
+                  "left": {
+                    "kind": "input",
+                    "name": "japan_child_allowance_assessed_income"
+                  },
+                  "op": "lt",
+                  "right": {
+                    "kind": "derived",
+                    "name": "japan_child_allowance_ordinary_income_limit"
+                  }
+                },
+                "then_expr": {
+                  "kind": "derived",
+                  "name": "japan_child_allowance_regular_monthly_amount"
+                },
+                "else_expr": {
+                  "kind": "if",
+                  "condition": {
+                    "kind": "comparison",
+                    "left": {
+                      "kind": "input",
+                      "name": "japan_child_allowance_assessed_income"
+                    },
+                    "op": "lt",
+                    "right": {
+                      "kind": "derived",
+                      "name": "japan_child_allowance_special_benefit_upper_income_limit"
+                    }
+                  },
+                  "then_expr": {
+                    "kind": "mul",
+                    "left": {
+                      "kind": "parameter_lookup",
+                      "parameter": "japan_child_allowance_special_benefit_per_child",
+                      "index": {
+                        "kind": "literal",
+                        "value": {
+                          "kind": "integer",
+                          "value": 0
+                        }
+                      }
+                    },
+                    "right": {
+                      "kind": "derived",
+                      "name": "japan_child_allowance_eligible_child_count"
+                    }
+                  },
+                  "else_expr": {
+                    "kind": "literal",
+                    "value": {
+                      "kind": "decimal",
+                      "value": "0"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "effective_from": "2024-10-01",
+            "semantics": "scalar",
+            "expr": {
+              "kind": "if",
+              "condition": {
+                "kind": "not",
+                "item": {
+                  "kind": "comparison",
+                  "left": {
+                    "kind": "input",
+                    "name": "japan_child_allowance_meets_nonfinancial_conditions"
+                  },
+                  "op": "eq",
+                  "right": {
+                    "kind": "literal",
+                    "value": {
+                      "kind": "bool",
+                      "value": true
+                    }
+                  }
+                }
+              },
+              "then_expr": {
+                "kind": "literal",
+                "value": {
+                  "kind": "decimal",
+                  "value": "0"
+                }
+              },
+              "else_expr": {
+                "kind": "derived",
+                "name": "japan_child_allowance_regular_monthly_amount"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "metadata": {
+    "evaluation_order": [
+      "japan_child_allowance_eligible_child_count",
+      "japan_child_allowance_ordinary_income_limit",
+      "japan_child_allowance_regular_monthly_amount",
+      "japan_child_allowance_special_benefit_upper_income_limit",
+      "japan_child_allowance_monthly"
+    ],
+    "fast_path": {
+      "strategy": "generic_bulk",
+      "compatible": true,
+      "blockers": []
+    },
+    "input_catalog": [
+      {
+        "slot": "japan_child_allowance_assessed_income",
+        "canonical_request_name": "jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_assessed_income",
+        "request_names": [
+          "jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_assessed_income"
+        ]
+      },
+      {
+        "slot": "japan_child_allowance_elderly_dependent_count",
+        "canonical_request_name": "jp:regulations/e-gov/346co0000000281/article/1#input.japan_child_allowance_elderly_dependent_count",
+        "request_names": [
+          "jp:regulations/e-gov/346co0000000281/article/1#input.japan_child_allowance_elderly_dependent_count",
+          "jp:regulations/e-gov/346co0000000281/article/7#input.japan_child_allowance_elderly_dependent_count"
+        ]
+      },
+      {
+        "slot": "japan_child_allowance_high_school_first_or_second_count",
+        "canonical_request_name": "jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_high_school_first_or_second_count",
+        "request_names": [
+          "jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_high_school_first_or_second_count"
+        ]
+      },
+      {
+        "slot": "japan_child_allowance_high_school_third_or_later_count",
+        "canonical_request_name": "jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_high_school_third_or_later_count",
+        "request_names": [
+          "jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_high_school_third_or_later_count"
+        ]
+      },
+      {
+        "slot": "japan_child_allowance_junior_high_first_or_second_count",
+        "canonical_request_name": "jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_junior_high_first_or_second_count",
+        "request_names": [
+          "jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_junior_high_first_or_second_count"
+        ]
+      },
+      {
+        "slot": "japan_child_allowance_junior_high_third_or_later_count",
+        "canonical_request_name": "jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_junior_high_third_or_later_count",
+        "request_names": [
+          "jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_junior_high_third_or_later_count"
+        ]
+      },
+      {
+        "slot": "japan_child_allowance_meets_nonfinancial_conditions",
+        "canonical_request_name": "jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_meets_nonfinancial_conditions",
+        "request_names": [
+          "jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_meets_nonfinancial_conditions"
+        ]
+      },
+      {
+        "slot": "japan_child_allowance_ordinary_dependent_count",
+        "canonical_request_name": "jp:regulations/e-gov/346co0000000281/article/1#input.japan_child_allowance_ordinary_dependent_count",
+        "request_names": [
+          "jp:regulations/e-gov/346co0000000281/article/1#input.japan_child_allowance_ordinary_dependent_count",
+          "jp:regulations/e-gov/346co0000000281/article/7#input.japan_child_allowance_ordinary_dependent_count"
+        ]
+      },
+      {
+        "slot": "japan_child_allowance_primary_age_first_or_second_count",
+        "canonical_request_name": "jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_primary_age_first_or_second_count",
+        "request_names": [
+          "jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_primary_age_first_or_second_count"
+        ]
+      },
+      {
+        "slot": "japan_child_allowance_primary_age_third_or_later_count",
+        "canonical_request_name": "jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_primary_age_third_or_later_count",
+        "request_names": [
+          "jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_primary_age_third_or_later_count"
+        ]
+      },
+      {
+        "slot": "japan_child_allowance_under_three_first_or_second_count",
+        "canonical_request_name": "jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_under_three_first_or_second_count",
+        "request_names": [
+          "jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_under_three_first_or_second_count"
+        ]
+      },
+      {
+        "slot": "japan_child_allowance_under_three_third_or_later_count",
+        "canonical_request_name": "jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_under_three_third_or_later_count",
+        "request_names": [
+          "jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_under_three_third_or_later_count"
+        ]
+      }
+    ]
+  }
+}

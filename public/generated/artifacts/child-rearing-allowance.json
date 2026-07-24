@@ -1,0 +1,2150 @@
+{
+  "artifact_format_version": 2,
+  "engine_version": "0.1.0",
+  "program": {
+    "module": {
+      "summary": "Child-Rearing Allowance claimant and supporter income limits, treatment of child support, partial-payment coefficients, statutory ten-yen rounding, and final monthly amount from 平成29年4月. The family-status input represents the factual conditions in the Act; this module determines the monetary and income-test consequences.",
+      "source_verification": {
+        "corpus_citation_path": "jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4",
+        "source_sha256": "4dca7cf10d4c42970241870640c0f56dca47fd11b0715c6614a2e74106dcf846"
+      }
+    },
+    "units": [
+      {
+        "name": "GBP",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "USD",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "EUR",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "GHS",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "GHp",
+        "kind": "currency",
+        "minor_units": 0
+      },
+      {
+        "name": "NGN",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "UGX",
+        "kind": "currency",
+        "minor_units": 0
+      },
+      {
+        "name": "ZMW",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "ETB",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "RWF",
+        "kind": "currency",
+        "minor_units": 0
+      },
+      {
+        "name": "TZS",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "DKK",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "count",
+        "kind": "count"
+      },
+      {
+        "name": "person",
+        "kind": "count"
+      },
+      {
+        "name": "ratio",
+        "kind": "ratio"
+      },
+      {
+        "name": "status",
+        "kind": "custom",
+        "label": "judgment"
+      },
+      {
+        "name": "JPY",
+        "kind": "currency",
+        "minor_units": 0
+      }
+    ],
+    "relations": [],
+    "parameters": [
+      {
+        "id": "jp:regulations/e-gov/336co0000000405/article/2-2#japan_child_rearing_allowance_basic_monthly_amount",
+        "name": "japan_child_rearing_allowance_basic_monthly_amount",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-2",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 42290
+              }
+            }
+          },
+          {
+            "effective_from": "2018-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 42500
+              }
+            }
+          },
+          {
+            "effective_from": "2019-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 42910
+              }
+            }
+          },
+          {
+            "effective_from": "2020-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 43160
+              }
+            }
+          },
+          {
+            "effective_from": "2022-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 43070
+              }
+            }
+          },
+          {
+            "effective_from": "2023-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 44140
+              }
+            }
+          },
+          {
+            "effective_from": "2024-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 45500
+              }
+            }
+          },
+          {
+            "effective_from": "2025-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 46690
+              }
+            }
+          },
+          {
+            "effective_from": "2026-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 48050
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/336co0000000405/article/2-2#japan_child_rearing_allowance_first_additional_child_monthly_amount",
+        "name": "japan_child_rearing_allowance_first_additional_child_monthly_amount",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-2",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 9990
+              }
+            }
+          },
+          {
+            "effective_from": "2018-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 10040
+              }
+            }
+          },
+          {
+            "effective_from": "2019-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 10140
+              }
+            }
+          },
+          {
+            "effective_from": "2020-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 10190
+              }
+            }
+          },
+          {
+            "effective_from": "2022-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 10170
+              }
+            }
+          },
+          {
+            "effective_from": "2023-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 10420
+              }
+            }
+          },
+          {
+            "effective_from": "2024-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 10750
+              }
+            }
+          },
+          {
+            "effective_from": "2025-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 11030
+              }
+            }
+          },
+          {
+            "effective_from": "2026-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 11350
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/336co0000000405/article/2-2#japan_child_rearing_allowance_later_additional_child_monthly_amount",
+        "name": "japan_child_rearing_allowance_later_additional_child_monthly_amount",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-2",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 5990
+              }
+            }
+          },
+          {
+            "effective_from": "2018-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 6020
+              }
+            }
+          },
+          {
+            "effective_from": "2019-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 6080
+              }
+            }
+          },
+          {
+            "effective_from": "2020-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 6110
+              }
+            }
+          },
+          {
+            "effective_from": "2022-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 6100
+              }
+            }
+          },
+          {
+            "effective_from": "2023-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 6250
+              }
+            }
+          },
+          {
+            "effective_from": "2024-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 6450
+              }
+            }
+          },
+          {
+            "effective_from": "2024-11-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 10750
+              }
+            }
+          },
+          {
+            "effective_from": "2025-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 11030
+              }
+            }
+          },
+          {
+            "effective_from": "2026-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 11350
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/336co0000000405/article/2-4#japan_child_rearing_allowance_full_payment_income_base",
+        "name": "japan_child_rearing_allowance_full_payment_income_base",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 190000
+              }
+            }
+          },
+          {
+            "effective_from": "2018-08-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 490000
+              }
+            }
+          },
+          {
+            "effective_from": "2024-11-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 690000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/336co0000000405/article/2-4#japan_child_rearing_allowance_partial_payment_income_base",
+        "name": "japan_child_rearing_allowance_partial_payment_income_base",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 1920000
+              }
+            }
+          },
+          {
+            "effective_from": "2024-11-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 2080000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/336co0000000405/article/2-4#japan_child_rearing_allowance_income_limit_ordinary_increment",
+        "name": "japan_child_rearing_allowance_income_limit_ordinary_increment",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 380000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/336co0000000405/article/2-4#japan_child_rearing_allowance_income_limit_elderly_extra",
+        "name": "japan_child_rearing_allowance_income_limit_elderly_extra",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 100000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/336co0000000405/article/2-4#japan_child_rearing_allowance_income_limit_specified_extra",
+        "name": "japan_child_rearing_allowance_income_limit_specified_extra",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 150000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/336co0000000405/article/2-4#japan_child_rearing_allowance_supporter_income_base",
+        "name": "japan_child_rearing_allowance_supporter_income_base",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 2360000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/336co0000000405/article/2-4#japan_child_rearing_allowance_supporter_elderly_extra",
+        "name": "japan_child_rearing_allowance_supporter_elderly_extra",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 60000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/336co0000000405/article/2-4#japan_child_rearing_allowance_child_support_inclusion_rate",
+        "name": "japan_child_rearing_allowance_child_support_inclusion_rate",
+        "unit": null,
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "decimal",
+                "value": "0.8"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/336co0000000405/article/2-4#japan_child_rearing_allowance_basic_partial_reduction_rate",
+        "name": "japan_child_rearing_allowance_basic_partial_reduction_rate",
+        "unit": null,
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "decimal",
+                "value": "0.0186705"
+              }
+            }
+          },
+          {
+            "effective_from": "2018-04-01",
+            "values": {
+              "0": {
+                "kind": "decimal",
+                "value": "0.018763"
+              }
+            }
+          },
+          {
+            "effective_from": "2018-08-01",
+            "values": {
+              "0": {
+                "kind": "decimal",
+                "value": "0.0226993"
+              }
+            }
+          },
+          {
+            "effective_from": "2019-04-01",
+            "values": {
+              "0": {
+                "kind": "decimal",
+                "value": "0.0229231"
+              }
+            }
+          },
+          {
+            "effective_from": "2020-04-01",
+            "values": {
+              "0": {
+                "kind": "decimal",
+                "value": "0.0230559"
+              }
+            }
+          },
+          {
+            "effective_from": "2022-04-01",
+            "values": {
+              "0": {
+                "kind": "decimal",
+                "value": "0.023007"
+              }
+            }
+          },
+          {
+            "effective_from": "2023-04-01",
+            "values": {
+              "0": {
+                "kind": "decimal",
+                "value": "0.0235804"
+              }
+            }
+          },
+          {
+            "effective_from": "2024-04-01",
+            "values": {
+              "0": {
+                "kind": "decimal",
+                "value": "0.0243007"
+              }
+            }
+          },
+          {
+            "effective_from": "2024-11-01",
+            "values": {
+              "0": {
+                "kind": "decimal",
+                "value": "0.025"
+              }
+            }
+          },
+          {
+            "effective_from": "2025-04-01",
+            "values": {
+              "0": {
+                "kind": "decimal",
+                "value": "0.0256619"
+              }
+            }
+          },
+          {
+            "effective_from": "2026-04-01",
+            "values": {
+              "0": {
+                "kind": "decimal",
+                "value": "0.0264029"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/336co0000000405/article/2-4#japan_child_rearing_allowance_first_addition_partial_reduction_rate",
+        "name": "japan_child_rearing_allowance_first_addition_partial_reduction_rate",
+        "unit": null,
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "decimal",
+                "value": "0.0028786"
+              }
+            }
+          },
+          {
+            "effective_from": "2018-04-01",
+            "values": {
+              "0": {
+                "kind": "decimal",
+                "value": "0.002896"
+              }
+            }
+          },
+          {
+            "effective_from": "2018-08-01",
+            "values": {
+              "0": {
+                "kind": "decimal",
+                "value": "0.0035035"
+              }
+            }
+          },
+          {
+            "effective_from": "2019-04-01",
+            "values": {
+              "0": {
+                "kind": "decimal",
+                "value": "0.0035385"
+              }
+            }
+          },
+          {
+            "effective_from": "2020-04-01",
+            "values": {
+              "0": {
+                "kind": "decimal",
+                "value": "0.0035524"
+              }
+            }
+          },
+          {
+            "effective_from": "2022-04-01",
+            "values": {
+              "0": {
+                "kind": "decimal",
+                "value": "0.0035455"
+              }
+            }
+          },
+          {
+            "effective_from": "2023-04-01",
+            "values": {
+              "0": {
+                "kind": "decimal",
+                "value": "0.0036364"
+              }
+            }
+          },
+          {
+            "effective_from": "2024-04-01",
+            "values": {
+              "0": {
+                "kind": "decimal",
+                "value": "0.0037483"
+              }
+            }
+          },
+          {
+            "effective_from": "2024-11-01",
+            "values": {
+              "0": {
+                "kind": "decimal",
+                "value": "0.0038561"
+              }
+            }
+          },
+          {
+            "effective_from": "2025-04-01",
+            "values": {
+              "0": {
+                "kind": "decimal",
+                "value": "0.0039568"
+              }
+            }
+          },
+          {
+            "effective_from": "2026-04-01",
+            "values": {
+              "0": {
+                "kind": "decimal",
+                "value": "0.0040719"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/336co0000000405/article/2-4#japan_child_rearing_allowance_later_addition_partial_reduction_rate",
+        "name": "japan_child_rearing_allowance_later_addition_partial_reduction_rate",
+        "unit": null,
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "decimal",
+                "value": "0.0017225"
+              }
+            }
+          },
+          {
+            "effective_from": "2018-04-01",
+            "values": {
+              "0": {
+                "kind": "decimal",
+                "value": "0.0017341"
+              }
+            }
+          },
+          {
+            "effective_from": "2018-08-01",
+            "values": {
+              "0": {
+                "kind": "decimal",
+                "value": "0.0020979"
+              }
+            }
+          },
+          {
+            "effective_from": "2019-04-01",
+            "values": {
+              "0": {
+                "kind": "decimal",
+                "value": "0.0021189"
+              }
+            }
+          },
+          {
+            "effective_from": "2020-04-01",
+            "values": {
+              "0": {
+                "kind": "decimal",
+                "value": "0.0021259"
+              }
+            }
+          },
+          {
+            "effective_from": "2023-04-01",
+            "values": {
+              "0": {
+                "kind": "decimal",
+                "value": "0.0021748"
+              }
+            }
+          },
+          {
+            "effective_from": "2024-04-01",
+            "values": {
+              "0": {
+                "kind": "decimal",
+                "value": "0.0022448"
+              }
+            }
+          },
+          {
+            "effective_from": "2024-11-01",
+            "values": {
+              "0": {
+                "kind": "decimal",
+                "value": "0.0038561"
+              }
+            }
+          },
+          {
+            "effective_from": "2025-04-01",
+            "values": {
+              "0": {
+                "kind": "decimal",
+                "value": "0.0039568"
+              }
+            }
+          },
+          {
+            "effective_from": "2026-04-01",
+            "values": {
+              "0": {
+                "kind": "decimal",
+                "value": "0.0040719"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/336co0000000405/article/2-4#japan_child_rearing_allowance_rounding_band",
+        "name": "japan_child_rearing_allowance_rounding_band",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 10
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/336co0000000405/article/2-4#japan_child_rearing_allowance_rounding_half_band",
+        "name": "japan_child_rearing_allowance_rounding_half_band",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 5
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "id": "jp:regulations/e-gov/336co0000000405/article/2-2#japan_child_rearing_allowance_full_monthly_amount",
+        "name": "japan_child_rearing_allowance_full_monthly_amount",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-2",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "add",
+          "items": [
+            {
+              "kind": "add",
+              "items": [
+                {
+                  "kind": "parameter_lookup",
+                  "parameter": "japan_child_rearing_allowance_basic_monthly_amount",
+                  "index": {
+                    "kind": "literal",
+                    "value": {
+                      "kind": "integer",
+                      "value": 0
+                    }
+                  }
+                },
+                {
+                  "kind": "mul",
+                  "left": {
+                    "kind": "min",
+                    "items": [
+                      {
+                        "kind": "literal",
+                        "value": {
+                          "kind": "decimal",
+                          "value": "1"
+                        }
+                      },
+                      {
+                        "kind": "max",
+                        "items": [
+                          {
+                            "kind": "literal",
+                            "value": {
+                              "kind": "decimal",
+                              "value": "0"
+                            }
+                          },
+                          {
+                            "kind": "sub",
+                            "left": {
+                              "kind": "input",
+                              "name": "japan_child_rearing_allowance_qualifying_child_count"
+                            },
+                            "right": {
+                              "kind": "literal",
+                              "value": {
+                                "kind": "decimal",
+                                "value": "1"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "right": {
+                    "kind": "parameter_lookup",
+                    "parameter": "japan_child_rearing_allowance_first_additional_child_monthly_amount",
+                    "index": {
+                      "kind": "literal",
+                      "value": {
+                        "kind": "integer",
+                        "value": 0
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "mul",
+              "left": {
+                "kind": "max",
+                "items": [
+                  {
+                    "kind": "literal",
+                    "value": {
+                      "kind": "decimal",
+                      "value": "0"
+                    }
+                  },
+                  {
+                    "kind": "sub",
+                    "left": {
+                      "kind": "input",
+                      "name": "japan_child_rearing_allowance_qualifying_child_count"
+                    },
+                    "right": {
+                      "kind": "literal",
+                      "value": {
+                        "kind": "decimal",
+                        "value": "2"
+                      }
+                    }
+                  }
+                ]
+              },
+              "right": {
+                "kind": "parameter_lookup",
+                "parameter": "japan_child_rearing_allowance_later_additional_child_monthly_amount",
+                "index": {
+                  "kind": "literal",
+                  "value": {
+                    "kind": "integer",
+                    "value": 0
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "jp:regulations/e-gov/336co0000000405/article/2-4#japan_child_rearing_allowance_full_payment_income_limit",
+        "name": "japan_child_rearing_allowance_full_payment_income_limit",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "add",
+          "items": [
+            {
+              "kind": "add",
+              "items": [
+                {
+                  "kind": "add",
+                  "items": [
+                    {
+                      "kind": "parameter_lookup",
+                      "parameter": "japan_child_rearing_allowance_full_payment_income_base",
+                      "index": {
+                        "kind": "literal",
+                        "value": {
+                          "kind": "integer",
+                          "value": 0
+                        }
+                      }
+                    },
+                    {
+                      "kind": "mul",
+                      "left": {
+                        "kind": "parameter_lookup",
+                        "parameter": "japan_child_rearing_allowance_income_limit_ordinary_increment",
+                        "index": {
+                          "kind": "literal",
+                          "value": {
+                            "kind": "integer",
+                            "value": 0
+                          }
+                        }
+                      },
+                      "right": {
+                        "kind": "input",
+                        "name": "japan_child_rearing_allowance_income_limit_person_count"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "kind": "mul",
+                  "left": {
+                    "kind": "parameter_lookup",
+                    "parameter": "japan_child_rearing_allowance_income_limit_elderly_extra",
+                    "index": {
+                      "kind": "literal",
+                      "value": {
+                        "kind": "integer",
+                        "value": 0
+                      }
+                    }
+                  },
+                  "right": {
+                    "kind": "input",
+                    "name": "japan_child_rearing_allowance_elderly_dependent_count"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "mul",
+              "left": {
+                "kind": "parameter_lookup",
+                "parameter": "japan_child_rearing_allowance_income_limit_specified_extra",
+                "index": {
+                  "kind": "literal",
+                  "value": {
+                    "kind": "integer",
+                    "value": 0
+                  }
+                }
+              },
+              "right": {
+                "kind": "input",
+                "name": "japan_child_rearing_allowance_specified_dependent_count"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "jp:regulations/e-gov/336co0000000405/article/2-4#japan_child_rearing_allowance_partial_payment_income_limit",
+        "name": "japan_child_rearing_allowance_partial_payment_income_limit",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "add",
+          "items": [
+            {
+              "kind": "add",
+              "items": [
+                {
+                  "kind": "add",
+                  "items": [
+                    {
+                      "kind": "parameter_lookup",
+                      "parameter": "japan_child_rearing_allowance_partial_payment_income_base",
+                      "index": {
+                        "kind": "literal",
+                        "value": {
+                          "kind": "integer",
+                          "value": 0
+                        }
+                      }
+                    },
+                    {
+                      "kind": "mul",
+                      "left": {
+                        "kind": "parameter_lookup",
+                        "parameter": "japan_child_rearing_allowance_income_limit_ordinary_increment",
+                        "index": {
+                          "kind": "literal",
+                          "value": {
+                            "kind": "integer",
+                            "value": 0
+                          }
+                        }
+                      },
+                      "right": {
+                        "kind": "input",
+                        "name": "japan_child_rearing_allowance_income_limit_person_count"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "kind": "mul",
+                  "left": {
+                    "kind": "parameter_lookup",
+                    "parameter": "japan_child_rearing_allowance_income_limit_elderly_extra",
+                    "index": {
+                      "kind": "literal",
+                      "value": {
+                        "kind": "integer",
+                        "value": 0
+                      }
+                    }
+                  },
+                  "right": {
+                    "kind": "input",
+                    "name": "japan_child_rearing_allowance_elderly_dependent_count"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "mul",
+              "left": {
+                "kind": "parameter_lookup",
+                "parameter": "japan_child_rearing_allowance_income_limit_specified_extra",
+                "index": {
+                  "kind": "literal",
+                  "value": {
+                    "kind": "integer",
+                    "value": 0
+                  }
+                }
+              },
+              "right": {
+                "kind": "input",
+                "name": "japan_child_rearing_allowance_specified_dependent_count"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "jp:regulations/e-gov/336co0000000405/article/2-4#japan_child_rearing_allowance_supporter_income_limit",
+        "name": "japan_child_rearing_allowance_supporter_income_limit",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "if",
+          "condition": {
+            "kind": "comparison",
+            "left": {
+              "kind": "input",
+              "name": "japan_child_rearing_allowance_supporter_dependent_count"
+            },
+            "op": "eq",
+            "right": {
+              "kind": "input",
+              "name": "japan_child_rearing_allowance_supporter_elderly_dependent_count"
+            }
+          },
+          "then_expr": {
+            "kind": "add",
+            "items": [
+              {
+                "kind": "add",
+                "items": [
+                  {
+                    "kind": "parameter_lookup",
+                    "parameter": "japan_child_rearing_allowance_supporter_income_base",
+                    "index": {
+                      "kind": "literal",
+                      "value": {
+                        "kind": "integer",
+                        "value": 0
+                      }
+                    }
+                  },
+                  {
+                    "kind": "mul",
+                    "left": {
+                      "kind": "parameter_lookup",
+                      "parameter": "japan_child_rearing_allowance_income_limit_ordinary_increment",
+                      "index": {
+                        "kind": "literal",
+                        "value": {
+                          "kind": "integer",
+                          "value": 0
+                        }
+                      }
+                    },
+                    "right": {
+                      "kind": "input",
+                      "name": "japan_child_rearing_allowance_supporter_dependent_count"
+                    }
+                  }
+                ]
+              },
+              {
+                "kind": "mul",
+                "left": {
+                  "kind": "parameter_lookup",
+                  "parameter": "japan_child_rearing_allowance_supporter_elderly_extra",
+                  "index": {
+                    "kind": "literal",
+                    "value": {
+                      "kind": "integer",
+                      "value": 0
+                    }
+                  }
+                },
+                "right": {
+                  "kind": "max",
+                  "items": [
+                    {
+                      "kind": "literal",
+                      "value": {
+                        "kind": "decimal",
+                        "value": "0"
+                      }
+                    },
+                    {
+                      "kind": "sub",
+                      "left": {
+                        "kind": "input",
+                        "name": "japan_child_rearing_allowance_supporter_elderly_dependent_count"
+                      },
+                      "right": {
+                        "kind": "literal",
+                        "value": {
+                          "kind": "decimal",
+                          "value": "1"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "else_expr": {
+            "kind": "add",
+            "items": [
+              {
+                "kind": "add",
+                "items": [
+                  {
+                    "kind": "parameter_lookup",
+                    "parameter": "japan_child_rearing_allowance_supporter_income_base",
+                    "index": {
+                      "kind": "literal",
+                      "value": {
+                        "kind": "integer",
+                        "value": 0
+                      }
+                    }
+                  },
+                  {
+                    "kind": "mul",
+                    "left": {
+                      "kind": "parameter_lookup",
+                      "parameter": "japan_child_rearing_allowance_income_limit_ordinary_increment",
+                      "index": {
+                        "kind": "literal",
+                        "value": {
+                          "kind": "integer",
+                          "value": 0
+                        }
+                      }
+                    },
+                    "right": {
+                      "kind": "input",
+                      "name": "japan_child_rearing_allowance_supporter_dependent_count"
+                    }
+                  }
+                ]
+              },
+              {
+                "kind": "mul",
+                "left": {
+                  "kind": "parameter_lookup",
+                  "parameter": "japan_child_rearing_allowance_supporter_elderly_extra",
+                  "index": {
+                    "kind": "literal",
+                    "value": {
+                      "kind": "integer",
+                      "value": 0
+                    }
+                  }
+                },
+                "right": {
+                  "kind": "input",
+                  "name": "japan_child_rearing_allowance_supporter_elderly_dependent_count"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "jp:regulations/e-gov/336co0000000405/article/2-4#japan_child_rearing_allowance_assessed_income",
+        "name": "japan_child_rearing_allowance_assessed_income",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "add",
+          "items": [
+            {
+              "kind": "input",
+              "name": "japan_child_rearing_allowance_adjusted_prior_year_income"
+            },
+            {
+              "kind": "floor",
+              "value": {
+                "kind": "add",
+                "items": [
+                  {
+                    "kind": "mul",
+                    "left": {
+                      "kind": "input",
+                      "name": "japan_child_rearing_allowance_child_support_received"
+                    },
+                    "right": {
+                      "kind": "parameter_lookup",
+                      "parameter": "japan_child_rearing_allowance_child_support_inclusion_rate",
+                      "index": {
+                        "kind": "literal",
+                        "value": {
+                          "kind": "integer",
+                          "value": 0
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "kind": "literal",
+                    "value": {
+                      "kind": "decimal",
+                      "value": "0.5"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "jp:regulations/e-gov/336co0000000405/article/2-4#japan_child_rearing_allowance_basic_partial_reduction",
+        "name": "japan_child_rearing_allowance_basic_partial_reduction",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "add",
+          "items": [
+            {
+              "kind": "mul",
+              "left": {
+                "kind": "floor",
+                "value": {
+                  "kind": "div",
+                  "left": {
+                    "kind": "add",
+                    "items": [
+                      {
+                        "kind": "mul",
+                        "left": {
+                          "kind": "sub",
+                          "left": {
+                            "kind": "derived",
+                            "name": "japan_child_rearing_allowance_assessed_income"
+                          },
+                          "right": {
+                            "kind": "derived",
+                            "name": "japan_child_rearing_allowance_full_payment_income_limit"
+                          }
+                        },
+                        "right": {
+                          "kind": "parameter_lookup",
+                          "parameter": "japan_child_rearing_allowance_basic_partial_reduction_rate",
+                          "index": {
+                            "kind": "literal",
+                            "value": {
+                              "kind": "integer",
+                              "value": 0
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "kind": "parameter_lookup",
+                        "parameter": "japan_child_rearing_allowance_rounding_half_band",
+                        "index": {
+                          "kind": "literal",
+                          "value": {
+                            "kind": "integer",
+                            "value": 0
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "right": {
+                    "kind": "parameter_lookup",
+                    "parameter": "japan_child_rearing_allowance_rounding_band",
+                    "index": {
+                      "kind": "literal",
+                      "value": {
+                        "kind": "integer",
+                        "value": 0
+                      }
+                    }
+                  }
+                }
+              },
+              "right": {
+                "kind": "parameter_lookup",
+                "parameter": "japan_child_rearing_allowance_rounding_band",
+                "index": {
+                  "kind": "literal",
+                  "value": {
+                    "kind": "integer",
+                    "value": 0
+                  }
+                }
+              }
+            },
+            {
+              "kind": "parameter_lookup",
+              "parameter": "japan_child_rearing_allowance_rounding_band",
+              "index": {
+                "kind": "literal",
+                "value": {
+                  "kind": "integer",
+                  "value": 0
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "jp:regulations/e-gov/336co0000000405/article/2-4#japan_child_rearing_allowance_first_addition_partial_reduction",
+        "name": "japan_child_rearing_allowance_first_addition_partial_reduction",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "add",
+          "items": [
+            {
+              "kind": "mul",
+              "left": {
+                "kind": "floor",
+                "value": {
+                  "kind": "div",
+                  "left": {
+                    "kind": "add",
+                    "items": [
+                      {
+                        "kind": "mul",
+                        "left": {
+                          "kind": "sub",
+                          "left": {
+                            "kind": "derived",
+                            "name": "japan_child_rearing_allowance_assessed_income"
+                          },
+                          "right": {
+                            "kind": "derived",
+                            "name": "japan_child_rearing_allowance_full_payment_income_limit"
+                          }
+                        },
+                        "right": {
+                          "kind": "parameter_lookup",
+                          "parameter": "japan_child_rearing_allowance_first_addition_partial_reduction_rate",
+                          "index": {
+                            "kind": "literal",
+                            "value": {
+                              "kind": "integer",
+                              "value": 0
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "kind": "parameter_lookup",
+                        "parameter": "japan_child_rearing_allowance_rounding_half_band",
+                        "index": {
+                          "kind": "literal",
+                          "value": {
+                            "kind": "integer",
+                            "value": 0
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "right": {
+                    "kind": "parameter_lookup",
+                    "parameter": "japan_child_rearing_allowance_rounding_band",
+                    "index": {
+                      "kind": "literal",
+                      "value": {
+                        "kind": "integer",
+                        "value": 0
+                      }
+                    }
+                  }
+                }
+              },
+              "right": {
+                "kind": "parameter_lookup",
+                "parameter": "japan_child_rearing_allowance_rounding_band",
+                "index": {
+                  "kind": "literal",
+                  "value": {
+                    "kind": "integer",
+                    "value": 0
+                  }
+                }
+              }
+            },
+            {
+              "kind": "parameter_lookup",
+              "parameter": "japan_child_rearing_allowance_rounding_band",
+              "index": {
+                "kind": "literal",
+                "value": {
+                  "kind": "integer",
+                  "value": 0
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "jp:regulations/e-gov/336co0000000405/article/2-4#japan_child_rearing_allowance_later_addition_partial_reduction",
+        "name": "japan_child_rearing_allowance_later_addition_partial_reduction",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "add",
+          "items": [
+            {
+              "kind": "mul",
+              "left": {
+                "kind": "floor",
+                "value": {
+                  "kind": "div",
+                  "left": {
+                    "kind": "add",
+                    "items": [
+                      {
+                        "kind": "mul",
+                        "left": {
+                          "kind": "sub",
+                          "left": {
+                            "kind": "derived",
+                            "name": "japan_child_rearing_allowance_assessed_income"
+                          },
+                          "right": {
+                            "kind": "derived",
+                            "name": "japan_child_rearing_allowance_full_payment_income_limit"
+                          }
+                        },
+                        "right": {
+                          "kind": "parameter_lookup",
+                          "parameter": "japan_child_rearing_allowance_later_addition_partial_reduction_rate",
+                          "index": {
+                            "kind": "literal",
+                            "value": {
+                              "kind": "integer",
+                              "value": 0
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "kind": "parameter_lookup",
+                        "parameter": "japan_child_rearing_allowance_rounding_half_band",
+                        "index": {
+                          "kind": "literal",
+                          "value": {
+                            "kind": "integer",
+                            "value": 0
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "right": {
+                    "kind": "parameter_lookup",
+                    "parameter": "japan_child_rearing_allowance_rounding_band",
+                    "index": {
+                      "kind": "literal",
+                      "value": {
+                        "kind": "integer",
+                        "value": 0
+                      }
+                    }
+                  }
+                }
+              },
+              "right": {
+                "kind": "parameter_lookup",
+                "parameter": "japan_child_rearing_allowance_rounding_band",
+                "index": {
+                  "kind": "literal",
+                  "value": {
+                    "kind": "integer",
+                    "value": 0
+                  }
+                }
+              }
+            },
+            {
+              "kind": "parameter_lookup",
+              "parameter": "japan_child_rearing_allowance_rounding_band",
+              "index": {
+                "kind": "literal",
+                "value": {
+                  "kind": "integer",
+                  "value": 0
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "jp:regulations/e-gov/336co0000000405/article/2-4#japan_child_rearing_allowance_monthly",
+        "name": "japan_child_rearing_allowance_monthly",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "if",
+          "condition": {
+            "kind": "not",
+            "item": {
+              "kind": "comparison",
+              "left": {
+                "kind": "input",
+                "name": "japan_child_rearing_allowance_meets_family_conditions"
+              },
+              "op": "eq",
+              "right": {
+                "kind": "literal",
+                "value": {
+                  "kind": "bool",
+                  "value": true
+                }
+              }
+            }
+          },
+          "then_expr": {
+            "kind": "literal",
+            "value": {
+              "kind": "decimal",
+              "value": "0"
+            }
+          },
+          "else_expr": {
+            "kind": "if",
+            "condition": {
+              "kind": "comparison",
+              "left": {
+                "kind": "input",
+                "name": "japan_child_rearing_allowance_qualifying_child_count"
+              },
+              "op": "lte",
+              "right": {
+                "kind": "literal",
+                "value": {
+                  "kind": "integer",
+                  "value": 0
+                }
+              }
+            },
+            "then_expr": {
+              "kind": "literal",
+              "value": {
+                "kind": "decimal",
+                "value": "0"
+              }
+            },
+            "else_expr": {
+              "kind": "if",
+              "condition": {
+                "kind": "comparison",
+                "left": {
+                  "kind": "input",
+                  "name": "japan_child_rearing_allowance_highest_supporter_adjusted_income"
+                },
+                "op": "gte",
+                "right": {
+                  "kind": "derived",
+                  "name": "japan_child_rearing_allowance_supporter_income_limit"
+                }
+              },
+              "then_expr": {
+                "kind": "literal",
+                "value": {
+                  "kind": "decimal",
+                  "value": "0"
+                }
+              },
+              "else_expr": {
+                "kind": "if",
+                "condition": {
+                  "kind": "comparison",
+                  "left": {
+                    "kind": "derived",
+                    "name": "japan_child_rearing_allowance_assessed_income"
+                  },
+                  "op": "lt",
+                  "right": {
+                    "kind": "derived",
+                    "name": "japan_child_rearing_allowance_full_payment_income_limit"
+                  }
+                },
+                "then_expr": {
+                  "kind": "derived",
+                  "name": "japan_child_rearing_allowance_full_monthly_amount"
+                },
+                "else_expr": {
+                  "kind": "if",
+                  "condition": {
+                    "kind": "comparison",
+                    "left": {
+                      "kind": "derived",
+                      "name": "japan_child_rearing_allowance_assessed_income"
+                    },
+                    "op": "gte",
+                    "right": {
+                      "kind": "derived",
+                      "name": "japan_child_rearing_allowance_partial_payment_income_limit"
+                    }
+                  },
+                  "then_expr": {
+                    "kind": "literal",
+                    "value": {
+                      "kind": "decimal",
+                      "value": "0"
+                    }
+                  },
+                  "else_expr": {
+                    "kind": "add",
+                    "items": [
+                      {
+                        "kind": "add",
+                        "items": [
+                          {
+                            "kind": "max",
+                            "items": [
+                              {
+                                "kind": "literal",
+                                "value": {
+                                  "kind": "decimal",
+                                  "value": "0"
+                                }
+                              },
+                              {
+                                "kind": "sub",
+                                "left": {
+                                  "kind": "parameter_lookup",
+                                  "parameter": "japan_child_rearing_allowance_basic_monthly_amount",
+                                  "index": {
+                                    "kind": "literal",
+                                    "value": {
+                                      "kind": "integer",
+                                      "value": 0
+                                    }
+                                  }
+                                },
+                                "right": {
+                                  "kind": "derived",
+                                  "name": "japan_child_rearing_allowance_basic_partial_reduction"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "kind": "mul",
+                            "left": {
+                              "kind": "min",
+                              "items": [
+                                {
+                                  "kind": "literal",
+                                  "value": {
+                                    "kind": "decimal",
+                                    "value": "1"
+                                  }
+                                },
+                                {
+                                  "kind": "max",
+                                  "items": [
+                                    {
+                                      "kind": "literal",
+                                      "value": {
+                                        "kind": "decimal",
+                                        "value": "0"
+                                      }
+                                    },
+                                    {
+                                      "kind": "sub",
+                                      "left": {
+                                        "kind": "input",
+                                        "name": "japan_child_rearing_allowance_qualifying_child_count"
+                                      },
+                                      "right": {
+                                        "kind": "literal",
+                                        "value": {
+                                          "kind": "decimal",
+                                          "value": "1"
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            "right": {
+                              "kind": "max",
+                              "items": [
+                                {
+                                  "kind": "literal",
+                                  "value": {
+                                    "kind": "decimal",
+                                    "value": "0"
+                                  }
+                                },
+                                {
+                                  "kind": "sub",
+                                  "left": {
+                                    "kind": "parameter_lookup",
+                                    "parameter": "japan_child_rearing_allowance_first_additional_child_monthly_amount",
+                                    "index": {
+                                      "kind": "literal",
+                                      "value": {
+                                        "kind": "integer",
+                                        "value": 0
+                                      }
+                                    }
+                                  },
+                                  "right": {
+                                    "kind": "derived",
+                                    "name": "japan_child_rearing_allowance_first_addition_partial_reduction"
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "mul",
+                        "left": {
+                          "kind": "max",
+                          "items": [
+                            {
+                              "kind": "literal",
+                              "value": {
+                                "kind": "decimal",
+                                "value": "0"
+                              }
+                            },
+                            {
+                              "kind": "sub",
+                              "left": {
+                                "kind": "input",
+                                "name": "japan_child_rearing_allowance_qualifying_child_count"
+                              },
+                              "right": {
+                                "kind": "literal",
+                                "value": {
+                                  "kind": "decimal",
+                                  "value": "2"
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "right": {
+                          "kind": "max",
+                          "items": [
+                            {
+                              "kind": "literal",
+                              "value": {
+                                "kind": "decimal",
+                                "value": "0"
+                              }
+                            },
+                            {
+                              "kind": "sub",
+                              "left": {
+                                "kind": "parameter_lookup",
+                                "parameter": "japan_child_rearing_allowance_later_additional_child_monthly_amount",
+                                "index": {
+                                  "kind": "literal",
+                                  "value": {
+                                    "kind": "integer",
+                                    "value": 0
+                                  }
+                                }
+                              },
+                              "right": {
+                                "kind": "derived",
+                                "name": "japan_child_rearing_allowance_later_addition_partial_reduction"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "metadata": {
+    "evaluation_order": [
+      "japan_child_rearing_allowance_assessed_income",
+      "japan_child_rearing_allowance_full_monthly_amount",
+      "japan_child_rearing_allowance_full_payment_income_limit",
+      "japan_child_rearing_allowance_basic_partial_reduction",
+      "japan_child_rearing_allowance_first_addition_partial_reduction",
+      "japan_child_rearing_allowance_later_addition_partial_reduction",
+      "japan_child_rearing_allowance_partial_payment_income_limit",
+      "japan_child_rearing_allowance_supporter_income_limit",
+      "japan_child_rearing_allowance_monthly"
+    ],
+    "fast_path": {
+      "strategy": "generic_bulk",
+      "compatible": true,
+      "blockers": []
+    },
+    "input_catalog": [
+      {
+        "slot": "japan_child_rearing_allowance_adjusted_prior_year_income",
+        "canonical_request_name": "jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_adjusted_prior_year_income",
+        "request_names": [
+          "jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_adjusted_prior_year_income"
+        ]
+      },
+      {
+        "slot": "japan_child_rearing_allowance_child_support_received",
+        "canonical_request_name": "jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_child_support_received",
+        "request_names": [
+          "jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_child_support_received"
+        ]
+      },
+      {
+        "slot": "japan_child_rearing_allowance_elderly_dependent_count",
+        "canonical_request_name": "jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_elderly_dependent_count",
+        "request_names": [
+          "jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_elderly_dependent_count"
+        ]
+      },
+      {
+        "slot": "japan_child_rearing_allowance_highest_supporter_adjusted_income",
+        "canonical_request_name": "jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_highest_supporter_adjusted_income",
+        "request_names": [
+          "jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_highest_supporter_adjusted_income"
+        ]
+      },
+      {
+        "slot": "japan_child_rearing_allowance_income_limit_person_count",
+        "canonical_request_name": "jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_income_limit_person_count",
+        "request_names": [
+          "jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_income_limit_person_count"
+        ]
+      },
+      {
+        "slot": "japan_child_rearing_allowance_meets_family_conditions",
+        "canonical_request_name": "jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_meets_family_conditions",
+        "request_names": [
+          "jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_meets_family_conditions"
+        ]
+      },
+      {
+        "slot": "japan_child_rearing_allowance_qualifying_child_count",
+        "canonical_request_name": "jp:regulations/e-gov/336co0000000405/article/2-2#input.japan_child_rearing_allowance_qualifying_child_count",
+        "request_names": [
+          "jp:regulations/e-gov/336co0000000405/article/2-2#input.japan_child_rearing_allowance_qualifying_child_count",
+          "jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_qualifying_child_count"
+        ]
+      },
+      {
+        "slot": "japan_child_rearing_allowance_specified_dependent_count",
+        "canonical_request_name": "jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_specified_dependent_count",
+        "request_names": [
+          "jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_specified_dependent_count"
+        ]
+      },
+      {
+        "slot": "japan_child_rearing_allowance_supporter_dependent_count",
+        "canonical_request_name": "jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_supporter_dependent_count",
+        "request_names": [
+          "jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_supporter_dependent_count"
+        ]
+      },
+      {
+        "slot": "japan_child_rearing_allowance_supporter_elderly_dependent_count",
+        "canonical_request_name": "jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_supporter_elderly_dependent_count",
+        "request_names": [
+          "jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_supporter_elderly_dependent_count"
+        ]
+      }
+    ]
+  }
+}

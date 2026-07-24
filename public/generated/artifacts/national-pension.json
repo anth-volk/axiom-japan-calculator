@@ -1,0 +1,1930 @@
+{
+  "artifact_format_version": 2,
+  "engine_version": "0.1.0",
+  "program": {
+    "module": {
+      "summary": "National Pension monthly contribution after statutory exemption, application-based full/partial exemptions, student payment special treatment, and the under-50 payment-deferral route. Approval and factual statutory-status decisions remain explicit inputs; all income thresholds and payable amounts are encoded.",
+      "source_verification": {
+        "corpus_citation_path": "jp/statute/e-gov/334ac0000000141/as-of/2017-04-01/article/90",
+        "source_sha256": "ab51e2f8a5b311612a8fa92edfc35e26456e121593d8ee29fad355d6c5993ac6"
+      }
+    },
+    "units": [
+      {
+        "name": "GBP",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "USD",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "EUR",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "GHS",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "GHp",
+        "kind": "currency",
+        "minor_units": 0
+      },
+      {
+        "name": "NGN",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "UGX",
+        "kind": "currency",
+        "minor_units": 0
+      },
+      {
+        "name": "ZMW",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "ETB",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "RWF",
+        "kind": "currency",
+        "minor_units": 0
+      },
+      {
+        "name": "TZS",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "DKK",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "count",
+        "kind": "count"
+      },
+      {
+        "name": "person",
+        "kind": "count"
+      },
+      {
+        "name": "ratio",
+        "kind": "ratio"
+      },
+      {
+        "name": "status",
+        "kind": "custom",
+        "label": "judgment"
+      },
+      {
+        "name": "JPY",
+        "kind": "currency",
+        "minor_units": 0
+      }
+    ],
+    "relations": [],
+    "parameters": [
+      {
+        "id": "jp:policies/jps/national-pension/contribution-history#japan_national_pension_full_monthly_contribution_amount",
+        "name": "japan_national_pension_full_monthly_contribution_amount",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/guidance/jps/national-pension/contribution-history/block-1",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 16490
+              }
+            }
+          },
+          {
+            "effective_from": "2018-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 16340
+              }
+            }
+          },
+          {
+            "effective_from": "2019-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 16410
+              }
+            }
+          },
+          {
+            "effective_from": "2020-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 16540
+              }
+            }
+          },
+          {
+            "effective_from": "2021-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 16610
+              }
+            }
+          },
+          {
+            "effective_from": "2022-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 16590
+              }
+            }
+          },
+          {
+            "effective_from": "2023-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 16520
+              }
+            }
+          },
+          {
+            "effective_from": "2024-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 16980
+              }
+            }
+          },
+          {
+            "effective_from": "2025-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 17510
+              }
+            }
+          },
+          {
+            "effective_from": "2026-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 17920
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:policies/jps/national-pension/contribution-history#japan_national_pension_additional_monthly_contribution_amount",
+        "name": "japan_national_pension_additional_monthly_contribution_amount",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/guidance/jps/national-pension/contribution-history/block-1",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 400
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:policies/jps/national-pension/contribution-history#japan_national_pension_half_payment_monthly_amount",
+        "name": "japan_national_pension_half_payment_monthly_amount",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/guidance/jps/national-pension/contribution-history/block-1",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 8250
+              }
+            }
+          },
+          {
+            "effective_from": "2018-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 8170
+              }
+            }
+          },
+          {
+            "effective_from": "2019-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 8210
+              }
+            }
+          },
+          {
+            "effective_from": "2020-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 8270
+              }
+            }
+          },
+          {
+            "effective_from": "2021-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 8310
+              }
+            }
+          },
+          {
+            "effective_from": "2022-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 8300
+              }
+            }
+          },
+          {
+            "effective_from": "2023-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 8260
+              }
+            }
+          },
+          {
+            "effective_from": "2024-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 8490
+              }
+            }
+          },
+          {
+            "effective_from": "2025-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 8760
+              }
+            }
+          },
+          {
+            "effective_from": "2026-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 8960
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:policies/jps/national-pension/contribution-history#japan_national_pension_quarter_payment_monthly_amount",
+        "name": "japan_national_pension_quarter_payment_monthly_amount",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/guidance/jps/national-pension/contribution-history/block-1",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 4120
+              }
+            }
+          },
+          {
+            "effective_from": "2018-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 4090
+              }
+            }
+          },
+          {
+            "effective_from": "2019-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 4100
+              }
+            }
+          },
+          {
+            "effective_from": "2020-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 4140
+              }
+            }
+          },
+          {
+            "effective_from": "2021-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 4150
+              }
+            }
+          },
+          {
+            "effective_from": "2022-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 4150
+              }
+            }
+          },
+          {
+            "effective_from": "2023-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 4130
+              }
+            }
+          },
+          {
+            "effective_from": "2024-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 4250
+              }
+            }
+          },
+          {
+            "effective_from": "2025-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 4380
+              }
+            }
+          },
+          {
+            "effective_from": "2026-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 4480
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:policies/jps/national-pension/contribution-history#japan_national_pension_three_quarter_payment_monthly_amount",
+        "name": "japan_national_pension_three_quarter_payment_monthly_amount",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/guidance/jps/national-pension/contribution-history/block-1",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 12370
+              }
+            }
+          },
+          {
+            "effective_from": "2018-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 12260
+              }
+            }
+          },
+          {
+            "effective_from": "2019-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 12310
+              }
+            }
+          },
+          {
+            "effective_from": "2020-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 12410
+              }
+            }
+          },
+          {
+            "effective_from": "2021-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 12460
+              }
+            }
+          },
+          {
+            "effective_from": "2022-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 12440
+              }
+            }
+          },
+          {
+            "effective_from": "2023-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 12390
+              }
+            }
+          },
+          {
+            "effective_from": "2024-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 12740
+              }
+            }
+          },
+          {
+            "effective_from": "2025-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 13130
+              }
+            }
+          },
+          {
+            "effective_from": "2026-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 13440
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/334co0000000184/article/6-7#japan_national_pension_full_exemption_per_person_factor",
+        "name": "japan_national_pension_full_exemption_per_person_factor",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/334co0000000184/as-of/2017-04-01/article/6-7",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 350000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/334co0000000184/article/6-7#japan_national_pension_full_exemption_fixed_addition",
+        "name": "japan_national_pension_full_exemption_fixed_addition",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/334co0000000184/as-of/2017-04-01/article/6-7",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 220000
+              }
+            }
+          },
+          {
+            "effective_from": "2021-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 320000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/334co0000000184/article/6-8-2#japan_national_pension_three_quarter_exemption_income_base",
+        "name": "japan_national_pension_three_quarter_exemption_income_base",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/334co0000000184/as-of/2017-04-01/article/6-8-2",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 780000
+              }
+            }
+          },
+          {
+            "effective_from": "2021-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 880000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/334co0000000184/article/6-8-2#japan_national_pension_partial_exemption_ordinary_dependent_increment",
+        "name": "japan_national_pension_partial_exemption_ordinary_dependent_increment",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/334co0000000184/as-of/2017-04-01/article/6-8-2",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 380000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/334co0000000184/article/6-8-2#japan_national_pension_partial_exemption_elderly_dependent_increment",
+        "name": "japan_national_pension_partial_exemption_elderly_dependent_increment",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/334co0000000184/as-of/2017-04-01/article/6-8-2",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 480000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/334co0000000184/article/6-8-2#japan_national_pension_partial_exemption_specified_dependent_increment",
+        "name": "japan_national_pension_partial_exemption_specified_dependent_increment",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/334co0000000184/as-of/2017-04-01/article/6-8-2",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 630000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/334co0000000184/article/6-9#japan_national_pension_half_exemption_income_base",
+        "name": "japan_national_pension_half_exemption_income_base",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/334co0000000184/as-of/2017-04-01/article/6-9",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 1180000
+              }
+            }
+          },
+          {
+            "effective_from": "2021-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 1280000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/334co0000000184/article/6-9-2#japan_national_pension_one_quarter_exemption_income_base",
+        "name": "japan_national_pension_one_quarter_exemption_income_base",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/334co0000000184/as-of/2017-04-01/article/6-9-2",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 1580000
+              }
+            }
+          },
+          {
+            "effective_from": "2021-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 1680000
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "id": "jp:policies/jps/national-pension/contribution-history#japan_national_pension_standard_monthly_contribution",
+        "name": "japan_national_pension_standard_monthly_contribution",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/guidance/jps/national-pension/contribution-history/block-1",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "parameter_lookup",
+          "parameter": "japan_national_pension_full_monthly_contribution_amount",
+          "index": {
+            "kind": "literal",
+            "value": {
+              "kind": "integer",
+              "value": 0
+            }
+          }
+        }
+      },
+      {
+        "id": "jp:policies/jps/national-pension/contribution-history#japan_national_pension_additional_monthly_contribution",
+        "name": "japan_national_pension_additional_monthly_contribution",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/guidance/jps/national-pension/contribution-history/block-1",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "parameter_lookup",
+          "parameter": "japan_national_pension_additional_monthly_contribution_amount",
+          "index": {
+            "kind": "literal",
+            "value": {
+              "kind": "integer",
+              "value": 0
+            }
+          }
+        }
+      },
+      {
+        "id": "jp:policies/jps/national-pension/contribution-history#japan_national_pension_half_payment_monthly_contribution",
+        "name": "japan_national_pension_half_payment_monthly_contribution",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/guidance/jps/national-pension/contribution-history/block-1",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "parameter_lookup",
+          "parameter": "japan_national_pension_half_payment_monthly_amount",
+          "index": {
+            "kind": "literal",
+            "value": {
+              "kind": "integer",
+              "value": 0
+            }
+          }
+        }
+      },
+      {
+        "id": "jp:policies/jps/national-pension/contribution-history#japan_national_pension_quarter_payment_monthly_contribution",
+        "name": "japan_national_pension_quarter_payment_monthly_contribution",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/guidance/jps/national-pension/contribution-history/block-1",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "parameter_lookup",
+          "parameter": "japan_national_pension_quarter_payment_monthly_amount",
+          "index": {
+            "kind": "literal",
+            "value": {
+              "kind": "integer",
+              "value": 0
+            }
+          }
+        }
+      },
+      {
+        "id": "jp:policies/jps/national-pension/contribution-history#japan_national_pension_three_quarter_payment_monthly_contribution",
+        "name": "japan_national_pension_three_quarter_payment_monthly_contribution",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/guidance/jps/national-pension/contribution-history/block-1",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "parameter_lookup",
+          "parameter": "japan_national_pension_three_quarter_payment_monthly_amount",
+          "index": {
+            "kind": "literal",
+            "value": {
+              "kind": "integer",
+              "value": 0
+            }
+          }
+        }
+      },
+      {
+        "id": "jp:regulations/e-gov/334co0000000184/article/6-7#japan_national_pension_full_exemption_applicant_income_limit",
+        "name": "japan_national_pension_full_exemption_applicant_income_limit",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/334co0000000184/as-of/2017-04-01/article/6-7",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "add",
+          "items": [
+            {
+              "kind": "mul",
+              "left": {
+                "kind": "parameter_lookup",
+                "parameter": "japan_national_pension_full_exemption_per_person_factor",
+                "index": {
+                  "kind": "literal",
+                  "value": {
+                    "kind": "integer",
+                    "value": 0
+                  }
+                }
+              },
+              "right": {
+                "kind": "add",
+                "items": [
+                  {
+                    "kind": "input",
+                    "name": "japan_national_pension_income_test_dependent_count"
+                  },
+                  {
+                    "kind": "literal",
+                    "value": {
+                      "kind": "decimal",
+                      "value": "1"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "parameter_lookup",
+              "parameter": "japan_national_pension_full_exemption_fixed_addition",
+              "index": {
+                "kind": "literal",
+                "value": {
+                  "kind": "integer",
+                  "value": 0
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "jp:regulations/e-gov/334co0000000184/article/6-8-2#japan_national_pension_three_quarter_exemption_applicant_income_limit",
+        "name": "japan_national_pension_three_quarter_exemption_applicant_income_limit",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/334co0000000184/as-of/2017-04-01/article/6-8-2",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "add",
+          "items": [
+            {
+              "kind": "add",
+              "items": [
+                {
+                  "kind": "add",
+                  "items": [
+                    {
+                      "kind": "parameter_lookup",
+                      "parameter": "japan_national_pension_three_quarter_exemption_income_base",
+                      "index": {
+                        "kind": "literal",
+                        "value": {
+                          "kind": "integer",
+                          "value": 0
+                        }
+                      }
+                    },
+                    {
+                      "kind": "mul",
+                      "left": {
+                        "kind": "parameter_lookup",
+                        "parameter": "japan_national_pension_partial_exemption_ordinary_dependent_increment",
+                        "index": {
+                          "kind": "literal",
+                          "value": {
+                            "kind": "integer",
+                            "value": 0
+                          }
+                        }
+                      },
+                      "right": {
+                        "kind": "input",
+                        "name": "japan_national_pension_ordinary_dependent_count"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "kind": "mul",
+                  "left": {
+                    "kind": "parameter_lookup",
+                    "parameter": "japan_national_pension_partial_exemption_elderly_dependent_increment",
+                    "index": {
+                      "kind": "literal",
+                      "value": {
+                        "kind": "integer",
+                        "value": 0
+                      }
+                    }
+                  },
+                  "right": {
+                    "kind": "input",
+                    "name": "japan_national_pension_elderly_dependent_count"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "mul",
+              "left": {
+                "kind": "parameter_lookup",
+                "parameter": "japan_national_pension_partial_exemption_specified_dependent_increment",
+                "index": {
+                  "kind": "literal",
+                  "value": {
+                    "kind": "integer",
+                    "value": 0
+                  }
+                }
+              },
+              "right": {
+                "kind": "input",
+                "name": "japan_national_pension_specified_dependent_count"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "jp:regulations/e-gov/334co0000000184/article/6-9#japan_national_pension_half_exemption_applicant_income_limit",
+        "name": "japan_national_pension_half_exemption_applicant_income_limit",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/334co0000000184/as-of/2017-04-01/article/6-9",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "add",
+          "items": [
+            {
+              "kind": "add",
+              "items": [
+                {
+                  "kind": "add",
+                  "items": [
+                    {
+                      "kind": "parameter_lookup",
+                      "parameter": "japan_national_pension_half_exemption_income_base",
+                      "index": {
+                        "kind": "literal",
+                        "value": {
+                          "kind": "integer",
+                          "value": 0
+                        }
+                      }
+                    },
+                    {
+                      "kind": "mul",
+                      "left": {
+                        "kind": "parameter_lookup",
+                        "parameter": "japan_national_pension_partial_exemption_ordinary_dependent_increment",
+                        "index": {
+                          "kind": "literal",
+                          "value": {
+                            "kind": "integer",
+                            "value": 0
+                          }
+                        }
+                      },
+                      "right": {
+                        "kind": "input",
+                        "name": "japan_national_pension_ordinary_dependent_count"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "kind": "mul",
+                  "left": {
+                    "kind": "parameter_lookup",
+                    "parameter": "japan_national_pension_partial_exemption_elderly_dependent_increment",
+                    "index": {
+                      "kind": "literal",
+                      "value": {
+                        "kind": "integer",
+                        "value": 0
+                      }
+                    }
+                  },
+                  "right": {
+                    "kind": "input",
+                    "name": "japan_national_pension_elderly_dependent_count"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "mul",
+              "left": {
+                "kind": "parameter_lookup",
+                "parameter": "japan_national_pension_partial_exemption_specified_dependent_increment",
+                "index": {
+                  "kind": "literal",
+                  "value": {
+                    "kind": "integer",
+                    "value": 0
+                  }
+                }
+              },
+              "right": {
+                "kind": "input",
+                "name": "japan_national_pension_specified_dependent_count"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "jp:regulations/e-gov/334co0000000184/article/6-9#japan_national_pension_student_or_payment_deferral_applicant_income_limit",
+        "name": "japan_national_pension_student_or_payment_deferral_applicant_income_limit",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/334co0000000184/as-of/2017-04-01/article/6-9",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "derived",
+          "name": "japan_national_pension_half_exemption_applicant_income_limit"
+        }
+      },
+      {
+        "id": "jp:regulations/e-gov/334co0000000184/article/6-9-2#japan_national_pension_one_quarter_exemption_applicant_income_limit",
+        "name": "japan_national_pension_one_quarter_exemption_applicant_income_limit",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/334co0000000184/as-of/2017-04-01/article/6-9-2",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "add",
+          "items": [
+            {
+              "kind": "add",
+              "items": [
+                {
+                  "kind": "add",
+                  "items": [
+                    {
+                      "kind": "parameter_lookup",
+                      "parameter": "japan_national_pension_one_quarter_exemption_income_base",
+                      "index": {
+                        "kind": "literal",
+                        "value": {
+                          "kind": "integer",
+                          "value": 0
+                        }
+                      }
+                    },
+                    {
+                      "kind": "mul",
+                      "left": {
+                        "kind": "parameter_lookup",
+                        "parameter": "japan_national_pension_partial_exemption_ordinary_dependent_increment",
+                        "index": {
+                          "kind": "literal",
+                          "value": {
+                            "kind": "integer",
+                            "value": 0
+                          }
+                        }
+                      },
+                      "right": {
+                        "kind": "input",
+                        "name": "japan_national_pension_ordinary_dependent_count"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "kind": "mul",
+                  "left": {
+                    "kind": "parameter_lookup",
+                    "parameter": "japan_national_pension_partial_exemption_elderly_dependent_increment",
+                    "index": {
+                      "kind": "literal",
+                      "value": {
+                        "kind": "integer",
+                        "value": 0
+                      }
+                    }
+                  },
+                  "right": {
+                    "kind": "input",
+                    "name": "japan_national_pension_elderly_dependent_count"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "mul",
+              "left": {
+                "kind": "parameter_lookup",
+                "parameter": "japan_national_pension_partial_exemption_specified_dependent_increment",
+                "index": {
+                  "kind": "literal",
+                  "value": {
+                    "kind": "integer",
+                    "value": 0
+                  }
+                }
+              },
+              "right": {
+                "kind": "input",
+                "name": "japan_national_pension_specified_dependent_count"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "jp:policies/jps/national-pension/exemptions-and-deferrals#japan_national_pension_monthly_contribution_after_exemptions_and_deferrals",
+        "name": "japan_national_pension_monthly_contribution_after_exemptions_and_deferrals",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/334ac0000000141/as-of/2017-04-01/article/90",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "if",
+          "condition": {
+            "kind": "not",
+            "item": {
+              "kind": "comparison",
+              "left": {
+                "kind": "input",
+                "name": "japan_national_pension_is_category_one_insured"
+              },
+              "op": "eq",
+              "right": {
+                "kind": "literal",
+                "value": {
+                  "kind": "bool",
+                  "value": true
+                }
+              }
+            }
+          },
+          "then_expr": {
+            "kind": "literal",
+            "value": {
+              "kind": "decimal",
+              "value": "0"
+            }
+          },
+          "else_expr": {
+            "kind": "if",
+            "condition": {
+              "kind": "comparison",
+              "left": {
+                "kind": "input",
+                "name": "japan_national_pension_has_statutory_full_exemption"
+              },
+              "op": "eq",
+              "right": {
+                "kind": "literal",
+                "value": {
+                  "kind": "bool",
+                  "value": true
+                }
+              }
+            },
+            "then_expr": {
+              "kind": "literal",
+              "value": {
+                "kind": "decimal",
+                "value": "0"
+              }
+            },
+            "else_expr": {
+              "kind": "if",
+              "condition": {
+                "kind": "comparison",
+                "left": {
+                  "kind": "input",
+                  "name": "japan_national_pension_is_student"
+                },
+                "op": "eq",
+                "right": {
+                  "kind": "literal",
+                  "value": {
+                    "kind": "bool",
+                    "value": true
+                  }
+                }
+              },
+              "then_expr": {
+                "kind": "if",
+                "condition": {
+                  "kind": "and",
+                  "items": [
+                    {
+                      "kind": "comparison",
+                      "left": {
+                        "kind": "input",
+                        "name": "japan_national_pension_student_deferral_approved"
+                      },
+                      "op": "eq",
+                      "right": {
+                        "kind": "literal",
+                        "value": {
+                          "kind": "bool",
+                          "value": true
+                        }
+                      }
+                    },
+                    {
+                      "kind": "or",
+                      "items": [
+                        {
+                          "kind": "comparison",
+                          "left": {
+                            "kind": "input",
+                            "name": "japan_national_pension_applicant_adjusted_income"
+                          },
+                          "op": "lte",
+                          "right": {
+                            "kind": "derived",
+                            "name": "japan_national_pension_student_or_payment_deferral_applicant_income_limit"
+                          }
+                        },
+                        {
+                          "kind": "comparison",
+                          "left": {
+                            "kind": "input",
+                            "name": "japan_national_pension_student_or_deferral_non_income_condition"
+                          },
+                          "op": "eq",
+                          "right": {
+                            "kind": "literal",
+                            "value": {
+                              "kind": "bool",
+                              "value": true
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "then_expr": {
+                  "kind": "literal",
+                  "value": {
+                    "kind": "decimal",
+                    "value": "0"
+                  }
+                },
+                "else_expr": {
+                  "kind": "parameter_lookup",
+                  "parameter": "japan_national_pension_full_monthly_contribution_amount",
+                  "index": {
+                    "kind": "literal",
+                    "value": {
+                      "kind": "integer",
+                      "value": 0
+                    }
+                  }
+                }
+              },
+              "else_expr": {
+                "kind": "if",
+                "condition": {
+                  "kind": "and",
+                  "items": [
+                    {
+                      "kind": "and",
+                      "items": [
+                        {
+                          "kind": "comparison",
+                          "left": {
+                            "kind": "input",
+                            "name": "japan_national_pension_exemption_application_approved"
+                          },
+                          "op": "eq",
+                          "right": {
+                            "kind": "literal",
+                            "value": {
+                              "kind": "bool",
+                              "value": true
+                            }
+                          }
+                        },
+                        {
+                          "kind": "or",
+                          "items": [
+                            {
+                              "kind": "comparison",
+                              "left": {
+                                "kind": "input",
+                                "name": "japan_national_pension_applicant_adjusted_income"
+                              },
+                              "op": "lte",
+                              "right": {
+                                "kind": "derived",
+                                "name": "japan_national_pension_full_exemption_applicant_income_limit"
+                              }
+                            },
+                            {
+                              "kind": "comparison",
+                              "left": {
+                                "kind": "input",
+                                "name": "japan_national_pension_applicant_non_income_exemption_condition"
+                              },
+                              "op": "eq",
+                              "right": {
+                                "kind": "literal",
+                                "value": {
+                                  "kind": "bool",
+                                  "value": true
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "comparison",
+                      "left": {
+                        "kind": "input",
+                        "name": "japan_national_pension_spouse_and_household_head_meet_full_exemption_conditions"
+                      },
+                      "op": "eq",
+                      "right": {
+                        "kind": "literal",
+                        "value": {
+                          "kind": "bool",
+                          "value": true
+                        }
+                      }
+                    }
+                  ]
+                },
+                "then_expr": {
+                  "kind": "literal",
+                  "value": {
+                    "kind": "decimal",
+                    "value": "0"
+                  }
+                },
+                "else_expr": {
+                  "kind": "if",
+                  "condition": {
+                    "kind": "and",
+                    "items": [
+                      {
+                        "kind": "and",
+                        "items": [
+                          {
+                            "kind": "comparison",
+                            "left": {
+                              "kind": "input",
+                              "name": "japan_national_pension_exemption_application_approved"
+                            },
+                            "op": "eq",
+                            "right": {
+                              "kind": "literal",
+                              "value": {
+                                "kind": "bool",
+                                "value": true
+                              }
+                            }
+                          },
+                          {
+                            "kind": "or",
+                            "items": [
+                              {
+                                "kind": "comparison",
+                                "left": {
+                                  "kind": "input",
+                                  "name": "japan_national_pension_applicant_adjusted_income"
+                                },
+                                "op": "lte",
+                                "right": {
+                                  "kind": "derived",
+                                  "name": "japan_national_pension_three_quarter_exemption_applicant_income_limit"
+                                }
+                              },
+                              {
+                                "kind": "comparison",
+                                "left": {
+                                  "kind": "input",
+                                  "name": "japan_national_pension_applicant_non_income_exemption_condition"
+                                },
+                                "op": "eq",
+                                "right": {
+                                  "kind": "literal",
+                                  "value": {
+                                    "kind": "bool",
+                                    "value": true
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "comparison",
+                        "left": {
+                          "kind": "input",
+                          "name": "japan_national_pension_spouse_and_household_head_meet_three_quarter_exemption_conditions"
+                        },
+                        "op": "eq",
+                        "right": {
+                          "kind": "literal",
+                          "value": {
+                            "kind": "bool",
+                            "value": true
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "then_expr": {
+                    "kind": "parameter_lookup",
+                    "parameter": "japan_national_pension_quarter_payment_monthly_amount",
+                    "index": {
+                      "kind": "literal",
+                      "value": {
+                        "kind": "integer",
+                        "value": 0
+                      }
+                    }
+                  },
+                  "else_expr": {
+                    "kind": "if",
+                    "condition": {
+                      "kind": "and",
+                      "items": [
+                        {
+                          "kind": "and",
+                          "items": [
+                            {
+                              "kind": "comparison",
+                              "left": {
+                                "kind": "input",
+                                "name": "japan_national_pension_exemption_application_approved"
+                              },
+                              "op": "eq",
+                              "right": {
+                                "kind": "literal",
+                                "value": {
+                                  "kind": "bool",
+                                  "value": true
+                                }
+                              }
+                            },
+                            {
+                              "kind": "or",
+                              "items": [
+                                {
+                                  "kind": "comparison",
+                                  "left": {
+                                    "kind": "input",
+                                    "name": "japan_national_pension_applicant_adjusted_income"
+                                  },
+                                  "op": "lte",
+                                  "right": {
+                                    "kind": "derived",
+                                    "name": "japan_national_pension_half_exemption_applicant_income_limit"
+                                  }
+                                },
+                                {
+                                  "kind": "comparison",
+                                  "left": {
+                                    "kind": "input",
+                                    "name": "japan_national_pension_applicant_non_income_exemption_condition"
+                                  },
+                                  "op": "eq",
+                                  "right": {
+                                    "kind": "literal",
+                                    "value": {
+                                      "kind": "bool",
+                                      "value": true
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "comparison",
+                          "left": {
+                            "kind": "input",
+                            "name": "japan_national_pension_spouse_and_household_head_meet_half_exemption_conditions"
+                          },
+                          "op": "eq",
+                          "right": {
+                            "kind": "literal",
+                            "value": {
+                              "kind": "bool",
+                              "value": true
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "then_expr": {
+                      "kind": "parameter_lookup",
+                      "parameter": "japan_national_pension_half_payment_monthly_amount",
+                      "index": {
+                        "kind": "literal",
+                        "value": {
+                          "kind": "integer",
+                          "value": 0
+                        }
+                      }
+                    },
+                    "else_expr": {
+                      "kind": "if",
+                      "condition": {
+                        "kind": "and",
+                        "items": [
+                          {
+                            "kind": "and",
+                            "items": [
+                              {
+                                "kind": "comparison",
+                                "left": {
+                                  "kind": "input",
+                                  "name": "japan_national_pension_exemption_application_approved"
+                                },
+                                "op": "eq",
+                                "right": {
+                                  "kind": "literal",
+                                  "value": {
+                                    "kind": "bool",
+                                    "value": true
+                                  }
+                                }
+                              },
+                              {
+                                "kind": "or",
+                                "items": [
+                                  {
+                                    "kind": "comparison",
+                                    "left": {
+                                      "kind": "input",
+                                      "name": "japan_national_pension_applicant_adjusted_income"
+                                    },
+                                    "op": "lte",
+                                    "right": {
+                                      "kind": "derived",
+                                      "name": "japan_national_pension_one_quarter_exemption_applicant_income_limit"
+                                    }
+                                  },
+                                  {
+                                    "kind": "comparison",
+                                    "left": {
+                                      "kind": "input",
+                                      "name": "japan_national_pension_applicant_non_income_exemption_condition"
+                                    },
+                                    "op": "eq",
+                                    "right": {
+                                      "kind": "literal",
+                                      "value": {
+                                        "kind": "bool",
+                                        "value": true
+                                      }
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "kind": "comparison",
+                            "left": {
+                              "kind": "input",
+                              "name": "japan_national_pension_spouse_and_household_head_meet_one_quarter_exemption_conditions"
+                            },
+                            "op": "eq",
+                            "right": {
+                              "kind": "literal",
+                              "value": {
+                                "kind": "bool",
+                                "value": true
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "then_expr": {
+                        "kind": "parameter_lookup",
+                        "parameter": "japan_national_pension_three_quarter_payment_monthly_amount",
+                        "index": {
+                          "kind": "literal",
+                          "value": {
+                            "kind": "integer",
+                            "value": 0
+                          }
+                        }
+                      },
+                      "else_expr": {
+                        "kind": "if",
+                        "condition": {
+                          "kind": "and",
+                          "items": [
+                            {
+                              "kind": "and",
+                              "items": [
+                                {
+                                  "kind": "comparison",
+                                  "left": {
+                                    "kind": "input",
+                                    "name": "japan_national_pension_under_50_deferral_approved"
+                                  },
+                                  "op": "eq",
+                                  "right": {
+                                    "kind": "literal",
+                                    "value": {
+                                      "kind": "bool",
+                                      "value": true
+                                    }
+                                  }
+                                },
+                                {
+                                  "kind": "or",
+                                  "items": [
+                                    {
+                                      "kind": "comparison",
+                                      "left": {
+                                        "kind": "input",
+                                        "name": "japan_national_pension_applicant_adjusted_income"
+                                      },
+                                      "op": "lte",
+                                      "right": {
+                                        "kind": "derived",
+                                        "name": "japan_national_pension_student_or_payment_deferral_applicant_income_limit"
+                                      }
+                                    },
+                                    {
+                                      "kind": "comparison",
+                                      "left": {
+                                        "kind": "input",
+                                        "name": "japan_national_pension_student_or_deferral_non_income_condition"
+                                      },
+                                      "op": "eq",
+                                      "right": {
+                                        "kind": "literal",
+                                        "value": {
+                                          "kind": "bool",
+                                          "value": true
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "comparison",
+                              "left": {
+                                "kind": "input",
+                                "name": "japan_national_pension_spouse_meets_payment_deferral_conditions"
+                              },
+                              "op": "eq",
+                              "right": {
+                                "kind": "literal",
+                                "value": {
+                                  "kind": "bool",
+                                  "value": true
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "then_expr": {
+                          "kind": "literal",
+                          "value": {
+                            "kind": "decimal",
+                            "value": "0"
+                          }
+                        },
+                        "else_expr": {
+                          "kind": "parameter_lookup",
+                          "parameter": "japan_national_pension_full_monthly_contribution_amount",
+                          "index": {
+                            "kind": "literal",
+                            "value": {
+                              "kind": "integer",
+                              "value": 0
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "metadata": {
+    "evaluation_order": [
+      "japan_national_pension_additional_monthly_contribution",
+      "japan_national_pension_full_exemption_applicant_income_limit",
+      "japan_national_pension_half_exemption_applicant_income_limit",
+      "japan_national_pension_half_payment_monthly_contribution",
+      "japan_national_pension_one_quarter_exemption_applicant_income_limit",
+      "japan_national_pension_quarter_payment_monthly_contribution",
+      "japan_national_pension_standard_monthly_contribution",
+      "japan_national_pension_student_or_payment_deferral_applicant_income_limit",
+      "japan_national_pension_three_quarter_exemption_applicant_income_limit",
+      "japan_national_pension_monthly_contribution_after_exemptions_and_deferrals",
+      "japan_national_pension_three_quarter_payment_monthly_contribution"
+    ],
+    "fast_path": {
+      "strategy": "generic_bulk",
+      "compatible": true,
+      "blockers": []
+    },
+    "input_catalog": [
+      {
+        "slot": "japan_national_pension_applicant_adjusted_income",
+        "canonical_request_name": "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_applicant_adjusted_income",
+        "request_names": [
+          "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_applicant_adjusted_income"
+        ]
+      },
+      {
+        "slot": "japan_national_pension_applicant_non_income_exemption_condition",
+        "canonical_request_name": "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_applicant_non_income_exemption_condition",
+        "request_names": [
+          "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_applicant_non_income_exemption_condition"
+        ]
+      },
+      {
+        "slot": "japan_national_pension_elderly_dependent_count",
+        "canonical_request_name": "jp:regulations/e-gov/334co0000000184/article/6-8-2#input.japan_national_pension_elderly_dependent_count",
+        "request_names": [
+          "jp:regulations/e-gov/334co0000000184/article/6-8-2#input.japan_national_pension_elderly_dependent_count",
+          "jp:regulations/e-gov/334co0000000184/article/6-9#input.japan_national_pension_elderly_dependent_count",
+          "jp:regulations/e-gov/334co0000000184/article/6-9-2#input.japan_national_pension_elderly_dependent_count"
+        ]
+      },
+      {
+        "slot": "japan_national_pension_exemption_application_approved",
+        "canonical_request_name": "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_exemption_application_approved",
+        "request_names": [
+          "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_exemption_application_approved"
+        ]
+      },
+      {
+        "slot": "japan_national_pension_has_statutory_full_exemption",
+        "canonical_request_name": "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_has_statutory_full_exemption",
+        "request_names": [
+          "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_has_statutory_full_exemption"
+        ]
+      },
+      {
+        "slot": "japan_national_pension_income_test_dependent_count",
+        "canonical_request_name": "jp:regulations/e-gov/334co0000000184/article/6-7#input.japan_national_pension_income_test_dependent_count",
+        "request_names": [
+          "jp:regulations/e-gov/334co0000000184/article/6-7#input.japan_national_pension_income_test_dependent_count"
+        ]
+      },
+      {
+        "slot": "japan_national_pension_is_category_one_insured",
+        "canonical_request_name": "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_is_category_one_insured",
+        "request_names": [
+          "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_is_category_one_insured"
+        ]
+      },
+      {
+        "slot": "japan_national_pension_is_student",
+        "canonical_request_name": "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_is_student",
+        "request_names": [
+          "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_is_student"
+        ]
+      },
+      {
+        "slot": "japan_national_pension_ordinary_dependent_count",
+        "canonical_request_name": "jp:regulations/e-gov/334co0000000184/article/6-8-2#input.japan_national_pension_ordinary_dependent_count",
+        "request_names": [
+          "jp:regulations/e-gov/334co0000000184/article/6-8-2#input.japan_national_pension_ordinary_dependent_count",
+          "jp:regulations/e-gov/334co0000000184/article/6-9#input.japan_national_pension_ordinary_dependent_count",
+          "jp:regulations/e-gov/334co0000000184/article/6-9-2#input.japan_national_pension_ordinary_dependent_count"
+        ]
+      },
+      {
+        "slot": "japan_national_pension_specified_dependent_count",
+        "canonical_request_name": "jp:regulations/e-gov/334co0000000184/article/6-8-2#input.japan_national_pension_specified_dependent_count",
+        "request_names": [
+          "jp:regulations/e-gov/334co0000000184/article/6-8-2#input.japan_national_pension_specified_dependent_count",
+          "jp:regulations/e-gov/334co0000000184/article/6-9#input.japan_national_pension_specified_dependent_count",
+          "jp:regulations/e-gov/334co0000000184/article/6-9-2#input.japan_national_pension_specified_dependent_count"
+        ]
+      },
+      {
+        "slot": "japan_national_pension_spouse_and_household_head_meet_full_exemption_conditions",
+        "canonical_request_name": "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_spouse_and_household_head_meet_full_exemption_conditions",
+        "request_names": [
+          "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_spouse_and_household_head_meet_full_exemption_conditions"
+        ]
+      },
+      {
+        "slot": "japan_national_pension_spouse_and_household_head_meet_half_exemption_conditions",
+        "canonical_request_name": "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_spouse_and_household_head_meet_half_exemption_conditions",
+        "request_names": [
+          "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_spouse_and_household_head_meet_half_exemption_conditions"
+        ]
+      },
+      {
+        "slot": "japan_national_pension_spouse_and_household_head_meet_one_quarter_exemption_conditions",
+        "canonical_request_name": "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_spouse_and_household_head_meet_one_quarter_exemption_conditions",
+        "request_names": [
+          "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_spouse_and_household_head_meet_one_quarter_exemption_conditions"
+        ]
+      },
+      {
+        "slot": "japan_national_pension_spouse_and_household_head_meet_three_quarter_exemption_conditions",
+        "canonical_request_name": "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_spouse_and_household_head_meet_three_quarter_exemption_conditions",
+        "request_names": [
+          "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_spouse_and_household_head_meet_three_quarter_exemption_conditions"
+        ]
+      },
+      {
+        "slot": "japan_national_pension_spouse_meets_payment_deferral_conditions",
+        "canonical_request_name": "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_spouse_meets_payment_deferral_conditions",
+        "request_names": [
+          "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_spouse_meets_payment_deferral_conditions"
+        ]
+      },
+      {
+        "slot": "japan_national_pension_student_deferral_approved",
+        "canonical_request_name": "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_student_deferral_approved",
+        "request_names": [
+          "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_student_deferral_approved"
+        ]
+      },
+      {
+        "slot": "japan_national_pension_student_or_deferral_non_income_condition",
+        "canonical_request_name": "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_student_or_deferral_non_income_condition",
+        "request_names": [
+          "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_student_or_deferral_non_income_condition"
+        ]
+      },
+      {
+        "slot": "japan_national_pension_under_50_deferral_approved",
+        "canonical_request_name": "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_under_50_deferral_approved",
+        "request_names": [
+          "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_under_50_deferral_approved"
+        ]
+      }
+    ]
+  }
+}

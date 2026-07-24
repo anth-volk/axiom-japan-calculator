@@ -1,0 +1,1050 @@
+{
+  "artifact_format_version": 2,
+  "engine_version": "0.1.0",
+  "program": {
+    "module": {
+      "summary": "Monthly Disabled Child Welfare Allowance from 平成29年4月 through 令和8年4月, with claimant and spouse/supporter income restrictions.",
+      "source_verification": {
+        "corpus_citation_path": "jp/regulation/e-gov/350co0000000207/as-of/2017-04-01/article/9-2",
+        "source_sha256": "553ad82897fd35cda65622471d73d090d8dd030e8c62d6cb5ac67bdae62adaf2"
+      }
+    },
+    "units": [
+      {
+        "name": "GBP",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "USD",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "EUR",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "GHS",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "GHp",
+        "kind": "currency",
+        "minor_units": 0
+      },
+      {
+        "name": "NGN",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "UGX",
+        "kind": "currency",
+        "minor_units": 0
+      },
+      {
+        "name": "ZMW",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "ETB",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "RWF",
+        "kind": "currency",
+        "minor_units": 0
+      },
+      {
+        "name": "TZS",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "DKK",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "count",
+        "kind": "count"
+      },
+      {
+        "name": "person",
+        "kind": "count"
+      },
+      {
+        "name": "ratio",
+        "kind": "ratio"
+      },
+      {
+        "name": "status",
+        "kind": "custom",
+        "label": "judgment"
+      },
+      {
+        "name": "JPY",
+        "kind": "currency",
+        "minor_units": 0
+      }
+    ],
+    "relations": [],
+    "parameters": [
+      {
+        "id": "jp:regulations/e-gov/350co0000000207/article/2#japan_special_child_rearing_allowance_claimant_income_base",
+        "name": "japan_special_child_rearing_allowance_claimant_income_base",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/350co0000000207/as-of/2017-04-01/article/2",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 4596000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/350co0000000207/article/2#japan_disability_allowance_ordinary_dependent_increment",
+        "name": "japan_disability_allowance_ordinary_dependent_increment",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/350co0000000207/as-of/2017-04-01/article/2",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 380000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/350co0000000207/article/2#japan_disability_allowance_elderly_dependent_increment",
+        "name": "japan_disability_allowance_elderly_dependent_increment",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/350co0000000207/as-of/2017-04-01/article/2",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 480000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/350co0000000207/article/2#japan_disability_allowance_specified_dependent_increment",
+        "name": "japan_disability_allowance_specified_dependent_increment",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/350co0000000207/as-of/2017-04-01/article/2",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 630000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/350co0000000207/article/2#japan_disability_allowance_supporter_zero_dependent_income_base",
+        "name": "japan_disability_allowance_supporter_zero_dependent_income_base",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/350co0000000207/as-of/2017-04-01/article/2",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 6287000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/350co0000000207/article/2#japan_disability_allowance_supporter_one_dependent_income_base",
+        "name": "japan_disability_allowance_supporter_one_dependent_income_base",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/350co0000000207/as-of/2017-04-01/article/2",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 6536000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/350co0000000207/article/2#japan_disability_allowance_supporter_later_dependent_increment",
+        "name": "japan_disability_allowance_supporter_later_dependent_increment",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/350co0000000207/as-of/2017-04-01/article/2",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 213000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/350co0000000207/article/2#japan_disability_allowance_supporter_elderly_extra",
+        "name": "japan_disability_allowance_supporter_elderly_extra",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/350co0000000207/as-of/2017-04-01/article/2",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 60000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/350co0000000207/article/7#japan_individual_disability_allowance_claimant_income_base",
+        "name": "japan_individual_disability_allowance_claimant_income_base",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/350co0000000207/as-of/2017-04-01/article/7",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 3604000
+              }
+            }
+          },
+          {
+            "effective_from": "2025-08-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 3661000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/350co0000000207/article/7#japan_individual_disability_allowance_ordinary_dependent_increment",
+        "name": "japan_individual_disability_allowance_ordinary_dependent_increment",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/350co0000000207/as-of/2017-04-01/article/7",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 380000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/350co0000000207/article/7#japan_individual_disability_allowance_elderly_dependent_increment",
+        "name": "japan_individual_disability_allowance_elderly_dependent_increment",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/350co0000000207/as-of/2017-04-01/article/7",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 480000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/350co0000000207/article/7#japan_individual_disability_allowance_specified_dependent_increment",
+        "name": "japan_individual_disability_allowance_specified_dependent_increment",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/350co0000000207/as-of/2017-04-01/article/7",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 630000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:regulations/e-gov/350co0000000207/article/9-2#japan_disabled_child_welfare_allowance_monthly_amount",
+        "name": "japan_disabled_child_welfare_allowance_monthly_amount",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/350co0000000207/as-of/2017-04-01/article/9-2",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 14580
+              }
+            }
+          },
+          {
+            "effective_from": "2018-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 14650
+              }
+            }
+          },
+          {
+            "effective_from": "2019-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 14790
+              }
+            }
+          },
+          {
+            "effective_from": "2020-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 14880
+              }
+            }
+          },
+          {
+            "effective_from": "2022-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 14850
+              }
+            }
+          },
+          {
+            "effective_from": "2023-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 15220
+              }
+            }
+          },
+          {
+            "effective_from": "2024-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 15690
+              }
+            }
+          },
+          {
+            "effective_from": "2025-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 16100
+              }
+            }
+          },
+          {
+            "effective_from": "2026-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 16560
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "id": "jp:regulations/e-gov/350co0000000207/article/2#japan_special_child_rearing_allowance_claimant_income_limit",
+        "name": "japan_special_child_rearing_allowance_claimant_income_limit",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/350co0000000207/as-of/2017-04-01/article/2",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "add",
+          "items": [
+            {
+              "kind": "add",
+              "items": [
+                {
+                  "kind": "add",
+                  "items": [
+                    {
+                      "kind": "parameter_lookup",
+                      "parameter": "japan_special_child_rearing_allowance_claimant_income_base",
+                      "index": {
+                        "kind": "literal",
+                        "value": {
+                          "kind": "integer",
+                          "value": 0
+                        }
+                      }
+                    },
+                    {
+                      "kind": "mul",
+                      "left": {
+                        "kind": "parameter_lookup",
+                        "parameter": "japan_disability_allowance_ordinary_dependent_increment",
+                        "index": {
+                          "kind": "literal",
+                          "value": {
+                            "kind": "integer",
+                            "value": 0
+                          }
+                        }
+                      },
+                      "right": {
+                        "kind": "input",
+                        "name": "japan_special_child_rearing_allowance_claimant_ordinary_dependent_count"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "kind": "mul",
+                  "left": {
+                    "kind": "parameter_lookup",
+                    "parameter": "japan_disability_allowance_elderly_dependent_increment",
+                    "index": {
+                      "kind": "literal",
+                      "value": {
+                        "kind": "integer",
+                        "value": 0
+                      }
+                    }
+                  },
+                  "right": {
+                    "kind": "input",
+                    "name": "japan_special_child_rearing_allowance_claimant_elderly_dependent_count"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "mul",
+              "left": {
+                "kind": "parameter_lookup",
+                "parameter": "japan_disability_allowance_specified_dependent_increment",
+                "index": {
+                  "kind": "literal",
+                  "value": {
+                    "kind": "integer",
+                    "value": 0
+                  }
+                }
+              },
+              "right": {
+                "kind": "input",
+                "name": "japan_special_child_rearing_allowance_claimant_specified_dependent_count"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "jp:regulations/e-gov/350co0000000207/article/2#japan_disability_allowance_supporter_income_limit",
+        "name": "japan_disability_allowance_supporter_income_limit",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/350co0000000207/as-of/2017-04-01/article/2",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "if",
+          "condition": {
+            "kind": "comparison",
+            "left": {
+              "kind": "input",
+              "name": "japan_disability_allowance_supporter_dependent_count"
+            },
+            "op": "lte",
+            "right": {
+              "kind": "literal",
+              "value": {
+                "kind": "integer",
+                "value": 0
+              }
+            }
+          },
+          "then_expr": {
+            "kind": "parameter_lookup",
+            "parameter": "japan_disability_allowance_supporter_zero_dependent_income_base",
+            "index": {
+              "kind": "literal",
+              "value": {
+                "kind": "integer",
+                "value": 0
+              }
+            }
+          },
+          "else_expr": {
+            "kind": "if",
+            "condition": {
+              "kind": "comparison",
+              "left": {
+                "kind": "input",
+                "name": "japan_disability_allowance_supporter_dependent_count"
+              },
+              "op": "eq",
+              "right": {
+                "kind": "input",
+                "name": "japan_disability_allowance_supporter_elderly_dependent_count"
+              }
+            },
+            "then_expr": {
+              "kind": "add",
+              "items": [
+                {
+                  "kind": "add",
+                  "items": [
+                    {
+                      "kind": "parameter_lookup",
+                      "parameter": "japan_disability_allowance_supporter_one_dependent_income_base",
+                      "index": {
+                        "kind": "literal",
+                        "value": {
+                          "kind": "integer",
+                          "value": 0
+                        }
+                      }
+                    },
+                    {
+                      "kind": "mul",
+                      "left": {
+                        "kind": "parameter_lookup",
+                        "parameter": "japan_disability_allowance_supporter_later_dependent_increment",
+                        "index": {
+                          "kind": "literal",
+                          "value": {
+                            "kind": "integer",
+                            "value": 0
+                          }
+                        }
+                      },
+                      "right": {
+                        "kind": "max",
+                        "items": [
+                          {
+                            "kind": "literal",
+                            "value": {
+                              "kind": "decimal",
+                              "value": "0"
+                            }
+                          },
+                          {
+                            "kind": "sub",
+                            "left": {
+                              "kind": "input",
+                              "name": "japan_disability_allowance_supporter_dependent_count"
+                            },
+                            "right": {
+                              "kind": "literal",
+                              "value": {
+                                "kind": "decimal",
+                                "value": "1"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "kind": "mul",
+                  "left": {
+                    "kind": "parameter_lookup",
+                    "parameter": "japan_disability_allowance_supporter_elderly_extra",
+                    "index": {
+                      "kind": "literal",
+                      "value": {
+                        "kind": "integer",
+                        "value": 0
+                      }
+                    }
+                  },
+                  "right": {
+                    "kind": "max",
+                    "items": [
+                      {
+                        "kind": "literal",
+                        "value": {
+                          "kind": "decimal",
+                          "value": "0"
+                        }
+                      },
+                      {
+                        "kind": "sub",
+                        "left": {
+                          "kind": "input",
+                          "name": "japan_disability_allowance_supporter_elderly_dependent_count"
+                        },
+                        "right": {
+                          "kind": "literal",
+                          "value": {
+                            "kind": "decimal",
+                            "value": "1"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "else_expr": {
+              "kind": "add",
+              "items": [
+                {
+                  "kind": "add",
+                  "items": [
+                    {
+                      "kind": "parameter_lookup",
+                      "parameter": "japan_disability_allowance_supporter_one_dependent_income_base",
+                      "index": {
+                        "kind": "literal",
+                        "value": {
+                          "kind": "integer",
+                          "value": 0
+                        }
+                      }
+                    },
+                    {
+                      "kind": "mul",
+                      "left": {
+                        "kind": "parameter_lookup",
+                        "parameter": "japan_disability_allowance_supporter_later_dependent_increment",
+                        "index": {
+                          "kind": "literal",
+                          "value": {
+                            "kind": "integer",
+                            "value": 0
+                          }
+                        }
+                      },
+                      "right": {
+                        "kind": "max",
+                        "items": [
+                          {
+                            "kind": "literal",
+                            "value": {
+                              "kind": "decimal",
+                              "value": "0"
+                            }
+                          },
+                          {
+                            "kind": "sub",
+                            "left": {
+                              "kind": "input",
+                              "name": "japan_disability_allowance_supporter_dependent_count"
+                            },
+                            "right": {
+                              "kind": "literal",
+                              "value": {
+                                "kind": "decimal",
+                                "value": "1"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "kind": "mul",
+                  "left": {
+                    "kind": "parameter_lookup",
+                    "parameter": "japan_disability_allowance_supporter_elderly_extra",
+                    "index": {
+                      "kind": "literal",
+                      "value": {
+                        "kind": "integer",
+                        "value": 0
+                      }
+                    }
+                  },
+                  "right": {
+                    "kind": "input",
+                    "name": "japan_disability_allowance_supporter_elderly_dependent_count"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "id": "jp:regulations/e-gov/350co0000000207/article/7#japan_individual_disability_allowance_claimant_income_limit",
+        "name": "japan_individual_disability_allowance_claimant_income_limit",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/350co0000000207/as-of/2017-04-01/article/7",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "add",
+          "items": [
+            {
+              "kind": "add",
+              "items": [
+                {
+                  "kind": "add",
+                  "items": [
+                    {
+                      "kind": "parameter_lookup",
+                      "parameter": "japan_individual_disability_allowance_claimant_income_base",
+                      "index": {
+                        "kind": "literal",
+                        "value": {
+                          "kind": "integer",
+                          "value": 0
+                        }
+                      }
+                    },
+                    {
+                      "kind": "mul",
+                      "left": {
+                        "kind": "parameter_lookup",
+                        "parameter": "japan_individual_disability_allowance_ordinary_dependent_increment",
+                        "index": {
+                          "kind": "literal",
+                          "value": {
+                            "kind": "integer",
+                            "value": 0
+                          }
+                        }
+                      },
+                      "right": {
+                        "kind": "input",
+                        "name": "japan_individual_disability_allowance_claimant_ordinary_dependent_count"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "kind": "mul",
+                  "left": {
+                    "kind": "parameter_lookup",
+                    "parameter": "japan_individual_disability_allowance_elderly_dependent_increment",
+                    "index": {
+                      "kind": "literal",
+                      "value": {
+                        "kind": "integer",
+                        "value": 0
+                      }
+                    }
+                  },
+                  "right": {
+                    "kind": "input",
+                    "name": "japan_individual_disability_allowance_claimant_elderly_dependent_count"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "mul",
+              "left": {
+                "kind": "parameter_lookup",
+                "parameter": "japan_individual_disability_allowance_specified_dependent_increment",
+                "index": {
+                  "kind": "literal",
+                  "value": {
+                    "kind": "integer",
+                    "value": 0
+                  }
+                }
+              },
+              "right": {
+                "kind": "input",
+                "name": "japan_individual_disability_allowance_claimant_specified_dependent_count"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "jp:regulations/e-gov/350co0000000207/article/9-2#japan_disabled_child_welfare_allowance_monthly",
+        "name": "japan_disabled_child_welfare_allowance_monthly",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/regulation/e-gov/350co0000000207/as-of/2017-04-01/article/9-2",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "if",
+          "condition": {
+            "kind": "not",
+            "item": {
+              "kind": "comparison",
+              "left": {
+                "kind": "input",
+                "name": "japan_disabled_child_welfare_allowance_meets_nonfinancial_conditions"
+              },
+              "op": "eq",
+              "right": {
+                "kind": "literal",
+                "value": {
+                  "kind": "bool",
+                  "value": true
+                }
+              }
+            }
+          },
+          "then_expr": {
+            "kind": "literal",
+            "value": {
+              "kind": "decimal",
+              "value": "0"
+            }
+          },
+          "else_expr": {
+            "kind": "if",
+            "condition": {
+              "kind": "comparison",
+              "left": {
+                "kind": "input",
+                "name": "japan_disabled_child_welfare_allowance_claimant_adjusted_income"
+              },
+              "op": "gte",
+              "right": {
+                "kind": "derived",
+                "name": "japan_individual_disability_allowance_claimant_income_limit"
+              }
+            },
+            "then_expr": {
+              "kind": "literal",
+              "value": {
+                "kind": "decimal",
+                "value": "0"
+              }
+            },
+            "else_expr": {
+              "kind": "if",
+              "condition": {
+                "kind": "comparison",
+                "left": {
+                  "kind": "input",
+                  "name": "japan_disabled_child_welfare_allowance_highest_supporter_adjusted_income"
+                },
+                "op": "gte",
+                "right": {
+                  "kind": "derived",
+                  "name": "japan_disability_allowance_supporter_income_limit"
+                }
+              },
+              "then_expr": {
+                "kind": "literal",
+                "value": {
+                  "kind": "decimal",
+                  "value": "0"
+                }
+              },
+              "else_expr": {
+                "kind": "parameter_lookup",
+                "parameter": "japan_disabled_child_welfare_allowance_monthly_amount",
+                "index": {
+                  "kind": "literal",
+                  "value": {
+                    "kind": "integer",
+                    "value": 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "metadata": {
+    "evaluation_order": [
+      "japan_disability_allowance_supporter_income_limit",
+      "japan_individual_disability_allowance_claimant_income_limit",
+      "japan_disabled_child_welfare_allowance_monthly",
+      "japan_special_child_rearing_allowance_claimant_income_limit"
+    ],
+    "fast_path": {
+      "strategy": "generic_bulk",
+      "compatible": true,
+      "blockers": []
+    },
+    "input_catalog": [
+      {
+        "slot": "japan_disability_allowance_supporter_dependent_count",
+        "canonical_request_name": "jp:regulations/e-gov/350co0000000207/article/2#input.japan_disability_allowance_supporter_dependent_count",
+        "request_names": [
+          "jp:regulations/e-gov/350co0000000207/article/2#input.japan_disability_allowance_supporter_dependent_count"
+        ]
+      },
+      {
+        "slot": "japan_disability_allowance_supporter_elderly_dependent_count",
+        "canonical_request_name": "jp:regulations/e-gov/350co0000000207/article/2#input.japan_disability_allowance_supporter_elderly_dependent_count",
+        "request_names": [
+          "jp:regulations/e-gov/350co0000000207/article/2#input.japan_disability_allowance_supporter_elderly_dependent_count"
+        ]
+      },
+      {
+        "slot": "japan_disabled_child_welfare_allowance_claimant_adjusted_income",
+        "canonical_request_name": "jp:regulations/e-gov/350co0000000207/article/9-2#input.japan_disabled_child_welfare_allowance_claimant_adjusted_income",
+        "request_names": [
+          "jp:regulations/e-gov/350co0000000207/article/9-2#input.japan_disabled_child_welfare_allowance_claimant_adjusted_income"
+        ]
+      },
+      {
+        "slot": "japan_disabled_child_welfare_allowance_highest_supporter_adjusted_income",
+        "canonical_request_name": "jp:regulations/e-gov/350co0000000207/article/9-2#input.japan_disabled_child_welfare_allowance_highest_supporter_adjusted_income",
+        "request_names": [
+          "jp:regulations/e-gov/350co0000000207/article/9-2#input.japan_disabled_child_welfare_allowance_highest_supporter_adjusted_income"
+        ]
+      },
+      {
+        "slot": "japan_disabled_child_welfare_allowance_meets_nonfinancial_conditions",
+        "canonical_request_name": "jp:regulations/e-gov/350co0000000207/article/9-2#input.japan_disabled_child_welfare_allowance_meets_nonfinancial_conditions",
+        "request_names": [
+          "jp:regulations/e-gov/350co0000000207/article/9-2#input.japan_disabled_child_welfare_allowance_meets_nonfinancial_conditions"
+        ]
+      },
+      {
+        "slot": "japan_individual_disability_allowance_claimant_elderly_dependent_count",
+        "canonical_request_name": "jp:regulations/e-gov/350co0000000207/article/7#input.japan_individual_disability_allowance_claimant_elderly_dependent_count",
+        "request_names": [
+          "jp:regulations/e-gov/350co0000000207/article/7#input.japan_individual_disability_allowance_claimant_elderly_dependent_count"
+        ]
+      },
+      {
+        "slot": "japan_individual_disability_allowance_claimant_ordinary_dependent_count",
+        "canonical_request_name": "jp:regulations/e-gov/350co0000000207/article/7#input.japan_individual_disability_allowance_claimant_ordinary_dependent_count",
+        "request_names": [
+          "jp:regulations/e-gov/350co0000000207/article/7#input.japan_individual_disability_allowance_claimant_ordinary_dependent_count"
+        ]
+      },
+      {
+        "slot": "japan_individual_disability_allowance_claimant_specified_dependent_count",
+        "canonical_request_name": "jp:regulations/e-gov/350co0000000207/article/7#input.japan_individual_disability_allowance_claimant_specified_dependent_count",
+        "request_names": [
+          "jp:regulations/e-gov/350co0000000207/article/7#input.japan_individual_disability_allowance_claimant_specified_dependent_count"
+        ]
+      },
+      {
+        "slot": "japan_special_child_rearing_allowance_claimant_elderly_dependent_count",
+        "canonical_request_name": "jp:regulations/e-gov/350co0000000207/article/2#input.japan_special_child_rearing_allowance_claimant_elderly_dependent_count",
+        "request_names": [
+          "jp:regulations/e-gov/350co0000000207/article/2#input.japan_special_child_rearing_allowance_claimant_elderly_dependent_count"
+        ]
+      },
+      {
+        "slot": "japan_special_child_rearing_allowance_claimant_ordinary_dependent_count",
+        "canonical_request_name": "jp:regulations/e-gov/350co0000000207/article/2#input.japan_special_child_rearing_allowance_claimant_ordinary_dependent_count",
+        "request_names": [
+          "jp:regulations/e-gov/350co0000000207/article/2#input.japan_special_child_rearing_allowance_claimant_ordinary_dependent_count"
+        ]
+      },
+      {
+        "slot": "japan_special_child_rearing_allowance_claimant_specified_dependent_count",
+        "canonical_request_name": "jp:regulations/e-gov/350co0000000207/article/2#input.japan_special_child_rearing_allowance_claimant_specified_dependent_count",
+        "request_names": [
+          "jp:regulations/e-gov/350co0000000207/article/2#input.japan_special_child_rearing_allowance_claimant_specified_dependent_count"
+        ]
+      }
+    ]
+  }
+}

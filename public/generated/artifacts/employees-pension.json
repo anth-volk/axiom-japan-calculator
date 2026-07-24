@@ -1,0 +1,3273 @@
+{
+  "artifact_format_version": 2,
+  "engine_version": "0.1.0",
+  "program": {
+    "module": {
+      "summary": "Employees' Pension monthly and bonus contributions for ordinary first-category insured employees from 平成29年4月. The total statutory rate, equal employee/employer split, standard-remuneration bases, and official one-yen rounding treatments are encoded. Special public-sector and private-school transitional rates are outside this ordinary-employee path.",
+      "source_verification": {
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/81",
+        "source_sha256": "ee144fcc1c622b3d067afdb944ee1505321ff5663988250b50279c02547714d2"
+      }
+    },
+    "units": [
+      {
+        "name": "GBP",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "USD",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "EUR",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "GHS",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "GHp",
+        "kind": "currency",
+        "minor_units": 0
+      },
+      {
+        "name": "NGN",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "UGX",
+        "kind": "currency",
+        "minor_units": 0
+      },
+      {
+        "name": "ZMW",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "ETB",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "RWF",
+        "kind": "currency",
+        "minor_units": 0
+      },
+      {
+        "name": "TZS",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "DKK",
+        "kind": "currency",
+        "minor_units": 2
+      },
+      {
+        "name": "count",
+        "kind": "count"
+      },
+      {
+        "name": "person",
+        "kind": "count"
+      },
+      {
+        "name": "ratio",
+        "kind": "ratio"
+      },
+      {
+        "name": "status",
+        "kind": "custom",
+        "label": "judgment"
+      },
+      {
+        "name": "JPY",
+        "kind": "currency",
+        "minor_units": 0
+      }
+    ],
+    "relations": [],
+    "parameters": [
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_remuneration_band_01",
+        "name": "japan_employees_pension_standard_remuneration_band_01",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 88000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_remuneration_band_02",
+        "name": "japan_employees_pension_standard_remuneration_band_02",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 98000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_remuneration_band_03",
+        "name": "japan_employees_pension_standard_remuneration_band_03",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 104000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_remuneration_band_04",
+        "name": "japan_employees_pension_standard_remuneration_band_04",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 110000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_remuneration_band_05",
+        "name": "japan_employees_pension_standard_remuneration_band_05",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 118000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_remuneration_band_06",
+        "name": "japan_employees_pension_standard_remuneration_band_06",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 126000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_remuneration_band_07",
+        "name": "japan_employees_pension_standard_remuneration_band_07",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 134000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_remuneration_band_08",
+        "name": "japan_employees_pension_standard_remuneration_band_08",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 142000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_remuneration_band_09",
+        "name": "japan_employees_pension_standard_remuneration_band_09",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 150000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_remuneration_band_10",
+        "name": "japan_employees_pension_standard_remuneration_band_10",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 160000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_remuneration_band_11",
+        "name": "japan_employees_pension_standard_remuneration_band_11",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 170000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_remuneration_band_12",
+        "name": "japan_employees_pension_standard_remuneration_band_12",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 180000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_remuneration_band_13",
+        "name": "japan_employees_pension_standard_remuneration_band_13",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 190000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_remuneration_band_14",
+        "name": "japan_employees_pension_standard_remuneration_band_14",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 200000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_remuneration_band_15",
+        "name": "japan_employees_pension_standard_remuneration_band_15",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 220000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_remuneration_band_16",
+        "name": "japan_employees_pension_standard_remuneration_band_16",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 240000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_remuneration_band_17",
+        "name": "japan_employees_pension_standard_remuneration_band_17",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 260000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_remuneration_band_18",
+        "name": "japan_employees_pension_standard_remuneration_band_18",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 280000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_remuneration_band_19",
+        "name": "japan_employees_pension_standard_remuneration_band_19",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 300000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_remuneration_band_20",
+        "name": "japan_employees_pension_standard_remuneration_band_20",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 320000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_remuneration_band_21",
+        "name": "japan_employees_pension_standard_remuneration_band_21",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 340000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_remuneration_band_22",
+        "name": "japan_employees_pension_standard_remuneration_band_22",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 360000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_remuneration_band_23",
+        "name": "japan_employees_pension_standard_remuneration_band_23",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 380000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_remuneration_band_24",
+        "name": "japan_employees_pension_standard_remuneration_band_24",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 410000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_remuneration_band_25",
+        "name": "japan_employees_pension_standard_remuneration_band_25",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 440000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_remuneration_band_26",
+        "name": "japan_employees_pension_standard_remuneration_band_26",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 470000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_remuneration_band_27",
+        "name": "japan_employees_pension_standard_remuneration_band_27",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 500000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_remuneration_band_28",
+        "name": "japan_employees_pension_standard_remuneration_band_28",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 530000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_remuneration_band_29",
+        "name": "japan_employees_pension_standard_remuneration_band_29",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 560000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_remuneration_band_30",
+        "name": "japan_employees_pension_standard_remuneration_band_30",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 590000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_remuneration_band_31",
+        "name": "japan_employees_pension_standard_remuneration_band_31",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 620000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_remuneration_band_32",
+        "name": "japan_employees_pension_standard_remuneration_band_32",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20",
+        "versions": [
+          {
+            "effective_from": "2020-09-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 650000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/24-4#japan_employees_pension_standard_bonus_rounding_unit",
+        "name": "japan_employees_pension_standard_bonus_rounding_unit",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/24-4",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 1000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/24-4#japan_employees_pension_standard_bonus_cap",
+        "name": "japan_employees_pension_standard_bonus_cap",
+        "unit": "JPY",
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/24-4",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 1500000
+              }
+            }
+          },
+          {
+            "effective_from": "2020-09-01",
+            "values": {
+              "0": {
+                "kind": "integer",
+                "value": 1500000
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/81#japan_employees_pension_total_contribution_rate",
+        "name": "japan_employees_pension_total_contribution_rate",
+        "unit": null,
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/81",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "decimal",
+                "value": "0.18182"
+              }
+            }
+          },
+          {
+            "effective_from": "2017-09-01",
+            "values": {
+              "0": {
+                "kind": "decimal",
+                "value": "0.183"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/81#japan_employees_pension_employee_share",
+        "name": "japan_employees_pension_employee_share",
+        "unit": null,
+        "indexed_by": null,
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/81",
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "values": {
+              "0": {
+                "kind": "decimal",
+                "value": "0.5"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_monthly_remuneration_through_grade_31",
+        "name": "japan_employees_pension_standard_monthly_remuneration_through_grade_31",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "if",
+          "condition": {
+            "kind": "comparison",
+            "left": {
+              "kind": "input",
+              "name": "japan_employees_pension_monthly_remuneration"
+            },
+            "op": "lt",
+            "right": {
+              "kind": "div",
+              "left": {
+                "kind": "add",
+                "items": [
+                  {
+                    "kind": "parameter_lookup",
+                    "parameter": "japan_employees_pension_standard_remuneration_band_01",
+                    "index": {
+                      "kind": "literal",
+                      "value": {
+                        "kind": "integer",
+                        "value": 0
+                      }
+                    }
+                  },
+                  {
+                    "kind": "parameter_lookup",
+                    "parameter": "japan_employees_pension_standard_remuneration_band_02",
+                    "index": {
+                      "kind": "literal",
+                      "value": {
+                        "kind": "integer",
+                        "value": 0
+                      }
+                    }
+                  }
+                ]
+              },
+              "right": {
+                "kind": "literal",
+                "value": {
+                  "kind": "integer",
+                  "value": 2
+                }
+              }
+            }
+          },
+          "then_expr": {
+            "kind": "parameter_lookup",
+            "parameter": "japan_employees_pension_standard_remuneration_band_01",
+            "index": {
+              "kind": "literal",
+              "value": {
+                "kind": "integer",
+                "value": 0
+              }
+            }
+          },
+          "else_expr": {
+            "kind": "if",
+            "condition": {
+              "kind": "comparison",
+              "left": {
+                "kind": "input",
+                "name": "japan_employees_pension_monthly_remuneration"
+              },
+              "op": "lt",
+              "right": {
+                "kind": "div",
+                "left": {
+                  "kind": "add",
+                  "items": [
+                    {
+                      "kind": "parameter_lookup",
+                      "parameter": "japan_employees_pension_standard_remuneration_band_02",
+                      "index": {
+                        "kind": "literal",
+                        "value": {
+                          "kind": "integer",
+                          "value": 0
+                        }
+                      }
+                    },
+                    {
+                      "kind": "parameter_lookup",
+                      "parameter": "japan_employees_pension_standard_remuneration_band_03",
+                      "index": {
+                        "kind": "literal",
+                        "value": {
+                          "kind": "integer",
+                          "value": 0
+                        }
+                      }
+                    }
+                  ]
+                },
+                "right": {
+                  "kind": "literal",
+                  "value": {
+                    "kind": "integer",
+                    "value": 2
+                  }
+                }
+              }
+            },
+            "then_expr": {
+              "kind": "parameter_lookup",
+              "parameter": "japan_employees_pension_standard_remuneration_band_02",
+              "index": {
+                "kind": "literal",
+                "value": {
+                  "kind": "integer",
+                  "value": 0
+                }
+              }
+            },
+            "else_expr": {
+              "kind": "if",
+              "condition": {
+                "kind": "comparison",
+                "left": {
+                  "kind": "input",
+                  "name": "japan_employees_pension_monthly_remuneration"
+                },
+                "op": "lt",
+                "right": {
+                  "kind": "div",
+                  "left": {
+                    "kind": "add",
+                    "items": [
+                      {
+                        "kind": "parameter_lookup",
+                        "parameter": "japan_employees_pension_standard_remuneration_band_03",
+                        "index": {
+                          "kind": "literal",
+                          "value": {
+                            "kind": "integer",
+                            "value": 0
+                          }
+                        }
+                      },
+                      {
+                        "kind": "parameter_lookup",
+                        "parameter": "japan_employees_pension_standard_remuneration_band_04",
+                        "index": {
+                          "kind": "literal",
+                          "value": {
+                            "kind": "integer",
+                            "value": 0
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "right": {
+                    "kind": "literal",
+                    "value": {
+                      "kind": "integer",
+                      "value": 2
+                    }
+                  }
+                }
+              },
+              "then_expr": {
+                "kind": "parameter_lookup",
+                "parameter": "japan_employees_pension_standard_remuneration_band_03",
+                "index": {
+                  "kind": "literal",
+                  "value": {
+                    "kind": "integer",
+                    "value": 0
+                  }
+                }
+              },
+              "else_expr": {
+                "kind": "if",
+                "condition": {
+                  "kind": "comparison",
+                  "left": {
+                    "kind": "input",
+                    "name": "japan_employees_pension_monthly_remuneration"
+                  },
+                  "op": "lt",
+                  "right": {
+                    "kind": "div",
+                    "left": {
+                      "kind": "add",
+                      "items": [
+                        {
+                          "kind": "parameter_lookup",
+                          "parameter": "japan_employees_pension_standard_remuneration_band_04",
+                          "index": {
+                            "kind": "literal",
+                            "value": {
+                              "kind": "integer",
+                              "value": 0
+                            }
+                          }
+                        },
+                        {
+                          "kind": "parameter_lookup",
+                          "parameter": "japan_employees_pension_standard_remuneration_band_05",
+                          "index": {
+                            "kind": "literal",
+                            "value": {
+                              "kind": "integer",
+                              "value": 0
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "right": {
+                      "kind": "literal",
+                      "value": {
+                        "kind": "integer",
+                        "value": 2
+                      }
+                    }
+                  }
+                },
+                "then_expr": {
+                  "kind": "parameter_lookup",
+                  "parameter": "japan_employees_pension_standard_remuneration_band_04",
+                  "index": {
+                    "kind": "literal",
+                    "value": {
+                      "kind": "integer",
+                      "value": 0
+                    }
+                  }
+                },
+                "else_expr": {
+                  "kind": "if",
+                  "condition": {
+                    "kind": "comparison",
+                    "left": {
+                      "kind": "input",
+                      "name": "japan_employees_pension_monthly_remuneration"
+                    },
+                    "op": "lt",
+                    "right": {
+                      "kind": "div",
+                      "left": {
+                        "kind": "add",
+                        "items": [
+                          {
+                            "kind": "parameter_lookup",
+                            "parameter": "japan_employees_pension_standard_remuneration_band_05",
+                            "index": {
+                              "kind": "literal",
+                              "value": {
+                                "kind": "integer",
+                                "value": 0
+                              }
+                            }
+                          },
+                          {
+                            "kind": "parameter_lookup",
+                            "parameter": "japan_employees_pension_standard_remuneration_band_06",
+                            "index": {
+                              "kind": "literal",
+                              "value": {
+                                "kind": "integer",
+                                "value": 0
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "right": {
+                        "kind": "literal",
+                        "value": {
+                          "kind": "integer",
+                          "value": 2
+                        }
+                      }
+                    }
+                  },
+                  "then_expr": {
+                    "kind": "parameter_lookup",
+                    "parameter": "japan_employees_pension_standard_remuneration_band_05",
+                    "index": {
+                      "kind": "literal",
+                      "value": {
+                        "kind": "integer",
+                        "value": 0
+                      }
+                    }
+                  },
+                  "else_expr": {
+                    "kind": "if",
+                    "condition": {
+                      "kind": "comparison",
+                      "left": {
+                        "kind": "input",
+                        "name": "japan_employees_pension_monthly_remuneration"
+                      },
+                      "op": "lt",
+                      "right": {
+                        "kind": "div",
+                        "left": {
+                          "kind": "add",
+                          "items": [
+                            {
+                              "kind": "parameter_lookup",
+                              "parameter": "japan_employees_pension_standard_remuneration_band_06",
+                              "index": {
+                                "kind": "literal",
+                                "value": {
+                                  "kind": "integer",
+                                  "value": 0
+                                }
+                              }
+                            },
+                            {
+                              "kind": "parameter_lookup",
+                              "parameter": "japan_employees_pension_standard_remuneration_band_07",
+                              "index": {
+                                "kind": "literal",
+                                "value": {
+                                  "kind": "integer",
+                                  "value": 0
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "right": {
+                          "kind": "literal",
+                          "value": {
+                            "kind": "integer",
+                            "value": 2
+                          }
+                        }
+                      }
+                    },
+                    "then_expr": {
+                      "kind": "parameter_lookup",
+                      "parameter": "japan_employees_pension_standard_remuneration_band_06",
+                      "index": {
+                        "kind": "literal",
+                        "value": {
+                          "kind": "integer",
+                          "value": 0
+                        }
+                      }
+                    },
+                    "else_expr": {
+                      "kind": "if",
+                      "condition": {
+                        "kind": "comparison",
+                        "left": {
+                          "kind": "input",
+                          "name": "japan_employees_pension_monthly_remuneration"
+                        },
+                        "op": "lt",
+                        "right": {
+                          "kind": "div",
+                          "left": {
+                            "kind": "add",
+                            "items": [
+                              {
+                                "kind": "parameter_lookup",
+                                "parameter": "japan_employees_pension_standard_remuneration_band_07",
+                                "index": {
+                                  "kind": "literal",
+                                  "value": {
+                                    "kind": "integer",
+                                    "value": 0
+                                  }
+                                }
+                              },
+                              {
+                                "kind": "parameter_lookup",
+                                "parameter": "japan_employees_pension_standard_remuneration_band_08",
+                                "index": {
+                                  "kind": "literal",
+                                  "value": {
+                                    "kind": "integer",
+                                    "value": 0
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          "right": {
+                            "kind": "literal",
+                            "value": {
+                              "kind": "integer",
+                              "value": 2
+                            }
+                          }
+                        }
+                      },
+                      "then_expr": {
+                        "kind": "parameter_lookup",
+                        "parameter": "japan_employees_pension_standard_remuneration_band_07",
+                        "index": {
+                          "kind": "literal",
+                          "value": {
+                            "kind": "integer",
+                            "value": 0
+                          }
+                        }
+                      },
+                      "else_expr": {
+                        "kind": "if",
+                        "condition": {
+                          "kind": "comparison",
+                          "left": {
+                            "kind": "input",
+                            "name": "japan_employees_pension_monthly_remuneration"
+                          },
+                          "op": "lt",
+                          "right": {
+                            "kind": "div",
+                            "left": {
+                              "kind": "add",
+                              "items": [
+                                {
+                                  "kind": "parameter_lookup",
+                                  "parameter": "japan_employees_pension_standard_remuneration_band_08",
+                                  "index": {
+                                    "kind": "literal",
+                                    "value": {
+                                      "kind": "integer",
+                                      "value": 0
+                                    }
+                                  }
+                                },
+                                {
+                                  "kind": "parameter_lookup",
+                                  "parameter": "japan_employees_pension_standard_remuneration_band_09",
+                                  "index": {
+                                    "kind": "literal",
+                                    "value": {
+                                      "kind": "integer",
+                                      "value": 0
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "right": {
+                              "kind": "literal",
+                              "value": {
+                                "kind": "integer",
+                                "value": 2
+                              }
+                            }
+                          }
+                        },
+                        "then_expr": {
+                          "kind": "parameter_lookup",
+                          "parameter": "japan_employees_pension_standard_remuneration_band_08",
+                          "index": {
+                            "kind": "literal",
+                            "value": {
+                              "kind": "integer",
+                              "value": 0
+                            }
+                          }
+                        },
+                        "else_expr": {
+                          "kind": "if",
+                          "condition": {
+                            "kind": "comparison",
+                            "left": {
+                              "kind": "input",
+                              "name": "japan_employees_pension_monthly_remuneration"
+                            },
+                            "op": "lt",
+                            "right": {
+                              "kind": "div",
+                              "left": {
+                                "kind": "add",
+                                "items": [
+                                  {
+                                    "kind": "parameter_lookup",
+                                    "parameter": "japan_employees_pension_standard_remuneration_band_09",
+                                    "index": {
+                                      "kind": "literal",
+                                      "value": {
+                                        "kind": "integer",
+                                        "value": 0
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "kind": "parameter_lookup",
+                                    "parameter": "japan_employees_pension_standard_remuneration_band_10",
+                                    "index": {
+                                      "kind": "literal",
+                                      "value": {
+                                        "kind": "integer",
+                                        "value": 0
+                                      }
+                                    }
+                                  }
+                                ]
+                              },
+                              "right": {
+                                "kind": "literal",
+                                "value": {
+                                  "kind": "integer",
+                                  "value": 2
+                                }
+                              }
+                            }
+                          },
+                          "then_expr": {
+                            "kind": "parameter_lookup",
+                            "parameter": "japan_employees_pension_standard_remuneration_band_09",
+                            "index": {
+                              "kind": "literal",
+                              "value": {
+                                "kind": "integer",
+                                "value": 0
+                              }
+                            }
+                          },
+                          "else_expr": {
+                            "kind": "if",
+                            "condition": {
+                              "kind": "comparison",
+                              "left": {
+                                "kind": "input",
+                                "name": "japan_employees_pension_monthly_remuneration"
+                              },
+                              "op": "lt",
+                              "right": {
+                                "kind": "div",
+                                "left": {
+                                  "kind": "add",
+                                  "items": [
+                                    {
+                                      "kind": "parameter_lookup",
+                                      "parameter": "japan_employees_pension_standard_remuneration_band_10",
+                                      "index": {
+                                        "kind": "literal",
+                                        "value": {
+                                          "kind": "integer",
+                                          "value": 0
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "kind": "parameter_lookup",
+                                      "parameter": "japan_employees_pension_standard_remuneration_band_11",
+                                      "index": {
+                                        "kind": "literal",
+                                        "value": {
+                                          "kind": "integer",
+                                          "value": 0
+                                        }
+                                      }
+                                    }
+                                  ]
+                                },
+                                "right": {
+                                  "kind": "literal",
+                                  "value": {
+                                    "kind": "integer",
+                                    "value": 2
+                                  }
+                                }
+                              }
+                            },
+                            "then_expr": {
+                              "kind": "parameter_lookup",
+                              "parameter": "japan_employees_pension_standard_remuneration_band_10",
+                              "index": {
+                                "kind": "literal",
+                                "value": {
+                                  "kind": "integer",
+                                  "value": 0
+                                }
+                              }
+                            },
+                            "else_expr": {
+                              "kind": "if",
+                              "condition": {
+                                "kind": "comparison",
+                                "left": {
+                                  "kind": "input",
+                                  "name": "japan_employees_pension_monthly_remuneration"
+                                },
+                                "op": "lt",
+                                "right": {
+                                  "kind": "div",
+                                  "left": {
+                                    "kind": "add",
+                                    "items": [
+                                      {
+                                        "kind": "parameter_lookup",
+                                        "parameter": "japan_employees_pension_standard_remuneration_band_11",
+                                        "index": {
+                                          "kind": "literal",
+                                          "value": {
+                                            "kind": "integer",
+                                            "value": 0
+                                          }
+                                        }
+                                      },
+                                      {
+                                        "kind": "parameter_lookup",
+                                        "parameter": "japan_employees_pension_standard_remuneration_band_12",
+                                        "index": {
+                                          "kind": "literal",
+                                          "value": {
+                                            "kind": "integer",
+                                            "value": 0
+                                          }
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "right": {
+                                    "kind": "literal",
+                                    "value": {
+                                      "kind": "integer",
+                                      "value": 2
+                                    }
+                                  }
+                                }
+                              },
+                              "then_expr": {
+                                "kind": "parameter_lookup",
+                                "parameter": "japan_employees_pension_standard_remuneration_band_11",
+                                "index": {
+                                  "kind": "literal",
+                                  "value": {
+                                    "kind": "integer",
+                                    "value": 0
+                                  }
+                                }
+                              },
+                              "else_expr": {
+                                "kind": "if",
+                                "condition": {
+                                  "kind": "comparison",
+                                  "left": {
+                                    "kind": "input",
+                                    "name": "japan_employees_pension_monthly_remuneration"
+                                  },
+                                  "op": "lt",
+                                  "right": {
+                                    "kind": "div",
+                                    "left": {
+                                      "kind": "add",
+                                      "items": [
+                                        {
+                                          "kind": "parameter_lookup",
+                                          "parameter": "japan_employees_pension_standard_remuneration_band_12",
+                                          "index": {
+                                            "kind": "literal",
+                                            "value": {
+                                              "kind": "integer",
+                                              "value": 0
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "kind": "parameter_lookup",
+                                          "parameter": "japan_employees_pension_standard_remuneration_band_13",
+                                          "index": {
+                                            "kind": "literal",
+                                            "value": {
+                                              "kind": "integer",
+                                              "value": 0
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    },
+                                    "right": {
+                                      "kind": "literal",
+                                      "value": {
+                                        "kind": "integer",
+                                        "value": 2
+                                      }
+                                    }
+                                  }
+                                },
+                                "then_expr": {
+                                  "kind": "parameter_lookup",
+                                  "parameter": "japan_employees_pension_standard_remuneration_band_12",
+                                  "index": {
+                                    "kind": "literal",
+                                    "value": {
+                                      "kind": "integer",
+                                      "value": 0
+                                    }
+                                  }
+                                },
+                                "else_expr": {
+                                  "kind": "if",
+                                  "condition": {
+                                    "kind": "comparison",
+                                    "left": {
+                                      "kind": "input",
+                                      "name": "japan_employees_pension_monthly_remuneration"
+                                    },
+                                    "op": "lt",
+                                    "right": {
+                                      "kind": "div",
+                                      "left": {
+                                        "kind": "add",
+                                        "items": [
+                                          {
+                                            "kind": "parameter_lookup",
+                                            "parameter": "japan_employees_pension_standard_remuneration_band_13",
+                                            "index": {
+                                              "kind": "literal",
+                                              "value": {
+                                                "kind": "integer",
+                                                "value": 0
+                                              }
+                                            }
+                                          },
+                                          {
+                                            "kind": "parameter_lookup",
+                                            "parameter": "japan_employees_pension_standard_remuneration_band_14",
+                                            "index": {
+                                              "kind": "literal",
+                                              "value": {
+                                                "kind": "integer",
+                                                "value": 0
+                                              }
+                                            }
+                                          }
+                                        ]
+                                      },
+                                      "right": {
+                                        "kind": "literal",
+                                        "value": {
+                                          "kind": "integer",
+                                          "value": 2
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "then_expr": {
+                                    "kind": "parameter_lookup",
+                                    "parameter": "japan_employees_pension_standard_remuneration_band_13",
+                                    "index": {
+                                      "kind": "literal",
+                                      "value": {
+                                        "kind": "integer",
+                                        "value": 0
+                                      }
+                                    }
+                                  },
+                                  "else_expr": {
+                                    "kind": "if",
+                                    "condition": {
+                                      "kind": "comparison",
+                                      "left": {
+                                        "kind": "input",
+                                        "name": "japan_employees_pension_monthly_remuneration"
+                                      },
+                                      "op": "lt",
+                                      "right": {
+                                        "kind": "div",
+                                        "left": {
+                                          "kind": "add",
+                                          "items": [
+                                            {
+                                              "kind": "parameter_lookup",
+                                              "parameter": "japan_employees_pension_standard_remuneration_band_14",
+                                              "index": {
+                                                "kind": "literal",
+                                                "value": {
+                                                  "kind": "integer",
+                                                  "value": 0
+                                                }
+                                              }
+                                            },
+                                            {
+                                              "kind": "parameter_lookup",
+                                              "parameter": "japan_employees_pension_standard_remuneration_band_15",
+                                              "index": {
+                                                "kind": "literal",
+                                                "value": {
+                                                  "kind": "integer",
+                                                  "value": 0
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "right": {
+                                          "kind": "literal",
+                                          "value": {
+                                            "kind": "integer",
+                                            "value": 2
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "then_expr": {
+                                      "kind": "parameter_lookup",
+                                      "parameter": "japan_employees_pension_standard_remuneration_band_14",
+                                      "index": {
+                                        "kind": "literal",
+                                        "value": {
+                                          "kind": "integer",
+                                          "value": 0
+                                        }
+                                      }
+                                    },
+                                    "else_expr": {
+                                      "kind": "if",
+                                      "condition": {
+                                        "kind": "comparison",
+                                        "left": {
+                                          "kind": "input",
+                                          "name": "japan_employees_pension_monthly_remuneration"
+                                        },
+                                        "op": "lt",
+                                        "right": {
+                                          "kind": "div",
+                                          "left": {
+                                            "kind": "add",
+                                            "items": [
+                                              {
+                                                "kind": "parameter_lookup",
+                                                "parameter": "japan_employees_pension_standard_remuneration_band_15",
+                                                "index": {
+                                                  "kind": "literal",
+                                                  "value": {
+                                                    "kind": "integer",
+                                                    "value": 0
+                                                  }
+                                                }
+                                              },
+                                              {
+                                                "kind": "parameter_lookup",
+                                                "parameter": "japan_employees_pension_standard_remuneration_band_16",
+                                                "index": {
+                                                  "kind": "literal",
+                                                  "value": {
+                                                    "kind": "integer",
+                                                    "value": 0
+                                                  }
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          "right": {
+                                            "kind": "literal",
+                                            "value": {
+                                              "kind": "integer",
+                                              "value": 2
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "then_expr": {
+                                        "kind": "parameter_lookup",
+                                        "parameter": "japan_employees_pension_standard_remuneration_band_15",
+                                        "index": {
+                                          "kind": "literal",
+                                          "value": {
+                                            "kind": "integer",
+                                            "value": 0
+                                          }
+                                        }
+                                      },
+                                      "else_expr": {
+                                        "kind": "if",
+                                        "condition": {
+                                          "kind": "comparison",
+                                          "left": {
+                                            "kind": "input",
+                                            "name": "japan_employees_pension_monthly_remuneration"
+                                          },
+                                          "op": "lt",
+                                          "right": {
+                                            "kind": "div",
+                                            "left": {
+                                              "kind": "add",
+                                              "items": [
+                                                {
+                                                  "kind": "parameter_lookup",
+                                                  "parameter": "japan_employees_pension_standard_remuneration_band_16",
+                                                  "index": {
+                                                    "kind": "literal",
+                                                    "value": {
+                                                      "kind": "integer",
+                                                      "value": 0
+                                                    }
+                                                  }
+                                                },
+                                                {
+                                                  "kind": "parameter_lookup",
+                                                  "parameter": "japan_employees_pension_standard_remuneration_band_17",
+                                                  "index": {
+                                                    "kind": "literal",
+                                                    "value": {
+                                                      "kind": "integer",
+                                                      "value": 0
+                                                    }
+                                                  }
+                                                }
+                                              ]
+                                            },
+                                            "right": {
+                                              "kind": "literal",
+                                              "value": {
+                                                "kind": "integer",
+                                                "value": 2
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "then_expr": {
+                                          "kind": "parameter_lookup",
+                                          "parameter": "japan_employees_pension_standard_remuneration_band_16",
+                                          "index": {
+                                            "kind": "literal",
+                                            "value": {
+                                              "kind": "integer",
+                                              "value": 0
+                                            }
+                                          }
+                                        },
+                                        "else_expr": {
+                                          "kind": "if",
+                                          "condition": {
+                                            "kind": "comparison",
+                                            "left": {
+                                              "kind": "input",
+                                              "name": "japan_employees_pension_monthly_remuneration"
+                                            },
+                                            "op": "lt",
+                                            "right": {
+                                              "kind": "div",
+                                              "left": {
+                                                "kind": "add",
+                                                "items": [
+                                                  {
+                                                    "kind": "parameter_lookup",
+                                                    "parameter": "japan_employees_pension_standard_remuneration_band_17",
+                                                    "index": {
+                                                      "kind": "literal",
+                                                      "value": {
+                                                        "kind": "integer",
+                                                        "value": 0
+                                                      }
+                                                    }
+                                                  },
+                                                  {
+                                                    "kind": "parameter_lookup",
+                                                    "parameter": "japan_employees_pension_standard_remuneration_band_18",
+                                                    "index": {
+                                                      "kind": "literal",
+                                                      "value": {
+                                                        "kind": "integer",
+                                                        "value": 0
+                                                      }
+                                                    }
+                                                  }
+                                                ]
+                                              },
+                                              "right": {
+                                                "kind": "literal",
+                                                "value": {
+                                                  "kind": "integer",
+                                                  "value": 2
+                                                }
+                                              }
+                                            }
+                                          },
+                                          "then_expr": {
+                                            "kind": "parameter_lookup",
+                                            "parameter": "japan_employees_pension_standard_remuneration_band_17",
+                                            "index": {
+                                              "kind": "literal",
+                                              "value": {
+                                                "kind": "integer",
+                                                "value": 0
+                                              }
+                                            }
+                                          },
+                                          "else_expr": {
+                                            "kind": "if",
+                                            "condition": {
+                                              "kind": "comparison",
+                                              "left": {
+                                                "kind": "input",
+                                                "name": "japan_employees_pension_monthly_remuneration"
+                                              },
+                                              "op": "lt",
+                                              "right": {
+                                                "kind": "div",
+                                                "left": {
+                                                  "kind": "add",
+                                                  "items": [
+                                                    {
+                                                      "kind": "parameter_lookup",
+                                                      "parameter": "japan_employees_pension_standard_remuneration_band_18",
+                                                      "index": {
+                                                        "kind": "literal",
+                                                        "value": {
+                                                          "kind": "integer",
+                                                          "value": 0
+                                                        }
+                                                      }
+                                                    },
+                                                    {
+                                                      "kind": "parameter_lookup",
+                                                      "parameter": "japan_employees_pension_standard_remuneration_band_19",
+                                                      "index": {
+                                                        "kind": "literal",
+                                                        "value": {
+                                                          "kind": "integer",
+                                                          "value": 0
+                                                        }
+                                                      }
+                                                    }
+                                                  ]
+                                                },
+                                                "right": {
+                                                  "kind": "literal",
+                                                  "value": {
+                                                    "kind": "integer",
+                                                    "value": 2
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            "then_expr": {
+                                              "kind": "parameter_lookup",
+                                              "parameter": "japan_employees_pension_standard_remuneration_band_18",
+                                              "index": {
+                                                "kind": "literal",
+                                                "value": {
+                                                  "kind": "integer",
+                                                  "value": 0
+                                                }
+                                              }
+                                            },
+                                            "else_expr": {
+                                              "kind": "if",
+                                              "condition": {
+                                                "kind": "comparison",
+                                                "left": {
+                                                  "kind": "input",
+                                                  "name": "japan_employees_pension_monthly_remuneration"
+                                                },
+                                                "op": "lt",
+                                                "right": {
+                                                  "kind": "div",
+                                                  "left": {
+                                                    "kind": "add",
+                                                    "items": [
+                                                      {
+                                                        "kind": "parameter_lookup",
+                                                        "parameter": "japan_employees_pension_standard_remuneration_band_19",
+                                                        "index": {
+                                                          "kind": "literal",
+                                                          "value": {
+                                                            "kind": "integer",
+                                                            "value": 0
+                                                          }
+                                                        }
+                                                      },
+                                                      {
+                                                        "kind": "parameter_lookup",
+                                                        "parameter": "japan_employees_pension_standard_remuneration_band_20",
+                                                        "index": {
+                                                          "kind": "literal",
+                                                          "value": {
+                                                            "kind": "integer",
+                                                            "value": 0
+                                                          }
+                                                        }
+                                                      }
+                                                    ]
+                                                  },
+                                                  "right": {
+                                                    "kind": "literal",
+                                                    "value": {
+                                                      "kind": "integer",
+                                                      "value": 2
+                                                    }
+                                                  }
+                                                }
+                                              },
+                                              "then_expr": {
+                                                "kind": "parameter_lookup",
+                                                "parameter": "japan_employees_pension_standard_remuneration_band_19",
+                                                "index": {
+                                                  "kind": "literal",
+                                                  "value": {
+                                                    "kind": "integer",
+                                                    "value": 0
+                                                  }
+                                                }
+                                              },
+                                              "else_expr": {
+                                                "kind": "if",
+                                                "condition": {
+                                                  "kind": "comparison",
+                                                  "left": {
+                                                    "kind": "input",
+                                                    "name": "japan_employees_pension_monthly_remuneration"
+                                                  },
+                                                  "op": "lt",
+                                                  "right": {
+                                                    "kind": "div",
+                                                    "left": {
+                                                      "kind": "add",
+                                                      "items": [
+                                                        {
+                                                          "kind": "parameter_lookup",
+                                                          "parameter": "japan_employees_pension_standard_remuneration_band_20",
+                                                          "index": {
+                                                            "kind": "literal",
+                                                            "value": {
+                                                              "kind": "integer",
+                                                              "value": 0
+                                                            }
+                                                          }
+                                                        },
+                                                        {
+                                                          "kind": "parameter_lookup",
+                                                          "parameter": "japan_employees_pension_standard_remuneration_band_21",
+                                                          "index": {
+                                                            "kind": "literal",
+                                                            "value": {
+                                                              "kind": "integer",
+                                                              "value": 0
+                                                            }
+                                                          }
+                                                        }
+                                                      ]
+                                                    },
+                                                    "right": {
+                                                      "kind": "literal",
+                                                      "value": {
+                                                        "kind": "integer",
+                                                        "value": 2
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                "then_expr": {
+                                                  "kind": "parameter_lookup",
+                                                  "parameter": "japan_employees_pension_standard_remuneration_band_20",
+                                                  "index": {
+                                                    "kind": "literal",
+                                                    "value": {
+                                                      "kind": "integer",
+                                                      "value": 0
+                                                    }
+                                                  }
+                                                },
+                                                "else_expr": {
+                                                  "kind": "if",
+                                                  "condition": {
+                                                    "kind": "comparison",
+                                                    "left": {
+                                                      "kind": "input",
+                                                      "name": "japan_employees_pension_monthly_remuneration"
+                                                    },
+                                                    "op": "lt",
+                                                    "right": {
+                                                      "kind": "div",
+                                                      "left": {
+                                                        "kind": "add",
+                                                        "items": [
+                                                          {
+                                                            "kind": "parameter_lookup",
+                                                            "parameter": "japan_employees_pension_standard_remuneration_band_21",
+                                                            "index": {
+                                                              "kind": "literal",
+                                                              "value": {
+                                                                "kind": "integer",
+                                                                "value": 0
+                                                              }
+                                                            }
+                                                          },
+                                                          {
+                                                            "kind": "parameter_lookup",
+                                                            "parameter": "japan_employees_pension_standard_remuneration_band_22",
+                                                            "index": {
+                                                              "kind": "literal",
+                                                              "value": {
+                                                                "kind": "integer",
+                                                                "value": 0
+                                                              }
+                                                            }
+                                                          }
+                                                        ]
+                                                      },
+                                                      "right": {
+                                                        "kind": "literal",
+                                                        "value": {
+                                                          "kind": "integer",
+                                                          "value": 2
+                                                        }
+                                                      }
+                                                    }
+                                                  },
+                                                  "then_expr": {
+                                                    "kind": "parameter_lookup",
+                                                    "parameter": "japan_employees_pension_standard_remuneration_band_21",
+                                                    "index": {
+                                                      "kind": "literal",
+                                                      "value": {
+                                                        "kind": "integer",
+                                                        "value": 0
+                                                      }
+                                                    }
+                                                  },
+                                                  "else_expr": {
+                                                    "kind": "if",
+                                                    "condition": {
+                                                      "kind": "comparison",
+                                                      "left": {
+                                                        "kind": "input",
+                                                        "name": "japan_employees_pension_monthly_remuneration"
+                                                      },
+                                                      "op": "lt",
+                                                      "right": {
+                                                        "kind": "div",
+                                                        "left": {
+                                                          "kind": "add",
+                                                          "items": [
+                                                            {
+                                                              "kind": "parameter_lookup",
+                                                              "parameter": "japan_employees_pension_standard_remuneration_band_22",
+                                                              "index": {
+                                                                "kind": "literal",
+                                                                "value": {
+                                                                  "kind": "integer",
+                                                                  "value": 0
+                                                                }
+                                                              }
+                                                            },
+                                                            {
+                                                              "kind": "parameter_lookup",
+                                                              "parameter": "japan_employees_pension_standard_remuneration_band_23",
+                                                              "index": {
+                                                                "kind": "literal",
+                                                                "value": {
+                                                                  "kind": "integer",
+                                                                  "value": 0
+                                                                }
+                                                              }
+                                                            }
+                                                          ]
+                                                        },
+                                                        "right": {
+                                                          "kind": "literal",
+                                                          "value": {
+                                                            "kind": "integer",
+                                                            "value": 2
+                                                          }
+                                                        }
+                                                      }
+                                                    },
+                                                    "then_expr": {
+                                                      "kind": "parameter_lookup",
+                                                      "parameter": "japan_employees_pension_standard_remuneration_band_22",
+                                                      "index": {
+                                                        "kind": "literal",
+                                                        "value": {
+                                                          "kind": "integer",
+                                                          "value": 0
+                                                        }
+                                                      }
+                                                    },
+                                                    "else_expr": {
+                                                      "kind": "if",
+                                                      "condition": {
+                                                        "kind": "comparison",
+                                                        "left": {
+                                                          "kind": "input",
+                                                          "name": "japan_employees_pension_monthly_remuneration"
+                                                        },
+                                                        "op": "lt",
+                                                        "right": {
+                                                          "kind": "div",
+                                                          "left": {
+                                                            "kind": "add",
+                                                            "items": [
+                                                              {
+                                                                "kind": "parameter_lookup",
+                                                                "parameter": "japan_employees_pension_standard_remuneration_band_23",
+                                                                "index": {
+                                                                  "kind": "literal",
+                                                                  "value": {
+                                                                    "kind": "integer",
+                                                                    "value": 0
+                                                                  }
+                                                                }
+                                                              },
+                                                              {
+                                                                "kind": "parameter_lookup",
+                                                                "parameter": "japan_employees_pension_standard_remuneration_band_24",
+                                                                "index": {
+                                                                  "kind": "literal",
+                                                                  "value": {
+                                                                    "kind": "integer",
+                                                                    "value": 0
+                                                                  }
+                                                                }
+                                                              }
+                                                            ]
+                                                          },
+                                                          "right": {
+                                                            "kind": "literal",
+                                                            "value": {
+                                                              "kind": "integer",
+                                                              "value": 2
+                                                            }
+                                                          }
+                                                        }
+                                                      },
+                                                      "then_expr": {
+                                                        "kind": "parameter_lookup",
+                                                        "parameter": "japan_employees_pension_standard_remuneration_band_23",
+                                                        "index": {
+                                                          "kind": "literal",
+                                                          "value": {
+                                                            "kind": "integer",
+                                                            "value": 0
+                                                          }
+                                                        }
+                                                      },
+                                                      "else_expr": {
+                                                        "kind": "if",
+                                                        "condition": {
+                                                          "kind": "comparison",
+                                                          "left": {
+                                                            "kind": "input",
+                                                            "name": "japan_employees_pension_monthly_remuneration"
+                                                          },
+                                                          "op": "lt",
+                                                          "right": {
+                                                            "kind": "div",
+                                                            "left": {
+                                                              "kind": "add",
+                                                              "items": [
+                                                                {
+                                                                  "kind": "parameter_lookup",
+                                                                  "parameter": "japan_employees_pension_standard_remuneration_band_24",
+                                                                  "index": {
+                                                                    "kind": "literal",
+                                                                    "value": {
+                                                                      "kind": "integer",
+                                                                      "value": 0
+                                                                    }
+                                                                  }
+                                                                },
+                                                                {
+                                                                  "kind": "parameter_lookup",
+                                                                  "parameter": "japan_employees_pension_standard_remuneration_band_25",
+                                                                  "index": {
+                                                                    "kind": "literal",
+                                                                    "value": {
+                                                                      "kind": "integer",
+                                                                      "value": 0
+                                                                    }
+                                                                  }
+                                                                }
+                                                              ]
+                                                            },
+                                                            "right": {
+                                                              "kind": "literal",
+                                                              "value": {
+                                                                "kind": "integer",
+                                                                "value": 2
+                                                              }
+                                                            }
+                                                          }
+                                                        },
+                                                        "then_expr": {
+                                                          "kind": "parameter_lookup",
+                                                          "parameter": "japan_employees_pension_standard_remuneration_band_24",
+                                                          "index": {
+                                                            "kind": "literal",
+                                                            "value": {
+                                                              "kind": "integer",
+                                                              "value": 0
+                                                            }
+                                                          }
+                                                        },
+                                                        "else_expr": {
+                                                          "kind": "if",
+                                                          "condition": {
+                                                            "kind": "comparison",
+                                                            "left": {
+                                                              "kind": "input",
+                                                              "name": "japan_employees_pension_monthly_remuneration"
+                                                            },
+                                                            "op": "lt",
+                                                            "right": {
+                                                              "kind": "div",
+                                                              "left": {
+                                                                "kind": "add",
+                                                                "items": [
+                                                                  {
+                                                                    "kind": "parameter_lookup",
+                                                                    "parameter": "japan_employees_pension_standard_remuneration_band_25",
+                                                                    "index": {
+                                                                      "kind": "literal",
+                                                                      "value": {
+                                                                        "kind": "integer",
+                                                                        "value": 0
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  {
+                                                                    "kind": "parameter_lookup",
+                                                                    "parameter": "japan_employees_pension_standard_remuneration_band_26",
+                                                                    "index": {
+                                                                      "kind": "literal",
+                                                                      "value": {
+                                                                        "kind": "integer",
+                                                                        "value": 0
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                ]
+                                                              },
+                                                              "right": {
+                                                                "kind": "literal",
+                                                                "value": {
+                                                                  "kind": "integer",
+                                                                  "value": 2
+                                                                }
+                                                              }
+                                                            }
+                                                          },
+                                                          "then_expr": {
+                                                            "kind": "parameter_lookup",
+                                                            "parameter": "japan_employees_pension_standard_remuneration_band_25",
+                                                            "index": {
+                                                              "kind": "literal",
+                                                              "value": {
+                                                                "kind": "integer",
+                                                                "value": 0
+                                                              }
+                                                            }
+                                                          },
+                                                          "else_expr": {
+                                                            "kind": "if",
+                                                            "condition": {
+                                                              "kind": "comparison",
+                                                              "left": {
+                                                                "kind": "input",
+                                                                "name": "japan_employees_pension_monthly_remuneration"
+                                                              },
+                                                              "op": "lt",
+                                                              "right": {
+                                                                "kind": "div",
+                                                                "left": {
+                                                                  "kind": "add",
+                                                                  "items": [
+                                                                    {
+                                                                      "kind": "parameter_lookup",
+                                                                      "parameter": "japan_employees_pension_standard_remuneration_band_26",
+                                                                      "index": {
+                                                                        "kind": "literal",
+                                                                        "value": {
+                                                                          "kind": "integer",
+                                                                          "value": 0
+                                                                        }
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "kind": "parameter_lookup",
+                                                                      "parameter": "japan_employees_pension_standard_remuneration_band_27",
+                                                                      "index": {
+                                                                        "kind": "literal",
+                                                                        "value": {
+                                                                          "kind": "integer",
+                                                                          "value": 0
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  ]
+                                                                },
+                                                                "right": {
+                                                                  "kind": "literal",
+                                                                  "value": {
+                                                                    "kind": "integer",
+                                                                    "value": 2
+                                                                  }
+                                                                }
+                                                              }
+                                                            },
+                                                            "then_expr": {
+                                                              "kind": "parameter_lookup",
+                                                              "parameter": "japan_employees_pension_standard_remuneration_band_26",
+                                                              "index": {
+                                                                "kind": "literal",
+                                                                "value": {
+                                                                  "kind": "integer",
+                                                                  "value": 0
+                                                                }
+                                                              }
+                                                            },
+                                                            "else_expr": {
+                                                              "kind": "if",
+                                                              "condition": {
+                                                                "kind": "comparison",
+                                                                "left": {
+                                                                  "kind": "input",
+                                                                  "name": "japan_employees_pension_monthly_remuneration"
+                                                                },
+                                                                "op": "lt",
+                                                                "right": {
+                                                                  "kind": "div",
+                                                                  "left": {
+                                                                    "kind": "add",
+                                                                    "items": [
+                                                                      {
+                                                                        "kind": "parameter_lookup",
+                                                                        "parameter": "japan_employees_pension_standard_remuneration_band_27",
+                                                                        "index": {
+                                                                          "kind": "literal",
+                                                                          "value": {
+                                                                            "kind": "integer",
+                                                                            "value": 0
+                                                                          }
+                                                                        }
+                                                                      },
+                                                                      {
+                                                                        "kind": "parameter_lookup",
+                                                                        "parameter": "japan_employees_pension_standard_remuneration_band_28",
+                                                                        "index": {
+                                                                          "kind": "literal",
+                                                                          "value": {
+                                                                            "kind": "integer",
+                                                                            "value": 0
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    ]
+                                                                  },
+                                                                  "right": {
+                                                                    "kind": "literal",
+                                                                    "value": {
+                                                                      "kind": "integer",
+                                                                      "value": 2
+                                                                    }
+                                                                  }
+                                                                }
+                                                              },
+                                                              "then_expr": {
+                                                                "kind": "parameter_lookup",
+                                                                "parameter": "japan_employees_pension_standard_remuneration_band_27",
+                                                                "index": {
+                                                                  "kind": "literal",
+                                                                  "value": {
+                                                                    "kind": "integer",
+                                                                    "value": 0
+                                                                  }
+                                                                }
+                                                              },
+                                                              "else_expr": {
+                                                                "kind": "if",
+                                                                "condition": {
+                                                                  "kind": "comparison",
+                                                                  "left": {
+                                                                    "kind": "input",
+                                                                    "name": "japan_employees_pension_monthly_remuneration"
+                                                                  },
+                                                                  "op": "lt",
+                                                                  "right": {
+                                                                    "kind": "div",
+                                                                    "left": {
+                                                                      "kind": "add",
+                                                                      "items": [
+                                                                        {
+                                                                          "kind": "parameter_lookup",
+                                                                          "parameter": "japan_employees_pension_standard_remuneration_band_28",
+                                                                          "index": {
+                                                                            "kind": "literal",
+                                                                            "value": {
+                                                                              "kind": "integer",
+                                                                              "value": 0
+                                                                            }
+                                                                          }
+                                                                        },
+                                                                        {
+                                                                          "kind": "parameter_lookup",
+                                                                          "parameter": "japan_employees_pension_standard_remuneration_band_29",
+                                                                          "index": {
+                                                                            "kind": "literal",
+                                                                            "value": {
+                                                                              "kind": "integer",
+                                                                              "value": 0
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      ]
+                                                                    },
+                                                                    "right": {
+                                                                      "kind": "literal",
+                                                                      "value": {
+                                                                        "kind": "integer",
+                                                                        "value": 2
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                },
+                                                                "then_expr": {
+                                                                  "kind": "parameter_lookup",
+                                                                  "parameter": "japan_employees_pension_standard_remuneration_band_28",
+                                                                  "index": {
+                                                                    "kind": "literal",
+                                                                    "value": {
+                                                                      "kind": "integer",
+                                                                      "value": 0
+                                                                    }
+                                                                  }
+                                                                },
+                                                                "else_expr": {
+                                                                  "kind": "if",
+                                                                  "condition": {
+                                                                    "kind": "comparison",
+                                                                    "left": {
+                                                                      "kind": "input",
+                                                                      "name": "japan_employees_pension_monthly_remuneration"
+                                                                    },
+                                                                    "op": "lt",
+                                                                    "right": {
+                                                                      "kind": "div",
+                                                                      "left": {
+                                                                        "kind": "add",
+                                                                        "items": [
+                                                                          {
+                                                                            "kind": "parameter_lookup",
+                                                                            "parameter": "japan_employees_pension_standard_remuneration_band_29",
+                                                                            "index": {
+                                                                              "kind": "literal",
+                                                                              "value": {
+                                                                                "kind": "integer",
+                                                                                "value": 0
+                                                                              }
+                                                                            }
+                                                                          },
+                                                                          {
+                                                                            "kind": "parameter_lookup",
+                                                                            "parameter": "japan_employees_pension_standard_remuneration_band_30",
+                                                                            "index": {
+                                                                              "kind": "literal",
+                                                                              "value": {
+                                                                                "kind": "integer",
+                                                                                "value": 0
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        ]
+                                                                      },
+                                                                      "right": {
+                                                                        "kind": "literal",
+                                                                        "value": {
+                                                                          "kind": "integer",
+                                                                          "value": 2
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  "then_expr": {
+                                                                    "kind": "parameter_lookup",
+                                                                    "parameter": "japan_employees_pension_standard_remuneration_band_29",
+                                                                    "index": {
+                                                                      "kind": "literal",
+                                                                      "value": {
+                                                                        "kind": "integer",
+                                                                        "value": 0
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  "else_expr": {
+                                                                    "kind": "if",
+                                                                    "condition": {
+                                                                      "kind": "comparison",
+                                                                      "left": {
+                                                                        "kind": "input",
+                                                                        "name": "japan_employees_pension_monthly_remuneration"
+                                                                      },
+                                                                      "op": "lt",
+                                                                      "right": {
+                                                                        "kind": "div",
+                                                                        "left": {
+                                                                          "kind": "add",
+                                                                          "items": [
+                                                                            {
+                                                                              "kind": "parameter_lookup",
+                                                                              "parameter": "japan_employees_pension_standard_remuneration_band_30",
+                                                                              "index": {
+                                                                                "kind": "literal",
+                                                                                "value": {
+                                                                                  "kind": "integer",
+                                                                                  "value": 0
+                                                                                }
+                                                                              }
+                                                                            },
+                                                                            {
+                                                                              "kind": "parameter_lookup",
+                                                                              "parameter": "japan_employees_pension_standard_remuneration_band_31",
+                                                                              "index": {
+                                                                                "kind": "literal",
+                                                                                "value": {
+                                                                                  "kind": "integer",
+                                                                                  "value": 0
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          ]
+                                                                        },
+                                                                        "right": {
+                                                                          "kind": "literal",
+                                                                          "value": {
+                                                                            "kind": "integer",
+                                                                            "value": 2
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    },
+                                                                    "then_expr": {
+                                                                      "kind": "parameter_lookup",
+                                                                      "parameter": "japan_employees_pension_standard_remuneration_band_30",
+                                                                      "index": {
+                                                                        "kind": "literal",
+                                                                        "value": {
+                                                                          "kind": "integer",
+                                                                          "value": 0
+                                                                        }
+                                                                      }
+                                                                    },
+                                                                    "else_expr": {
+                                                                      "kind": "parameter_lookup",
+                                                                      "parameter": "japan_employees_pension_standard_remuneration_band_31",
+                                                                      "index": {
+                                                                        "kind": "literal",
+                                                                        "value": {
+                                                                          "kind": "integer",
+                                                                          "value": 0
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_monthly_remuneration",
+        "name": "japan_employees_pension_standard_monthly_remuneration",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "if",
+          "condition": {
+            "kind": "comparison",
+            "left": {
+              "kind": "input",
+              "name": "japan_employees_pension_monthly_remuneration"
+            },
+            "op": "lt",
+            "right": {
+              "kind": "div",
+              "left": {
+                "kind": "add",
+                "items": [
+                  {
+                    "kind": "parameter_lookup",
+                    "parameter": "japan_employees_pension_standard_remuneration_band_31",
+                    "index": {
+                      "kind": "literal",
+                      "value": {
+                        "kind": "integer",
+                        "value": 0
+                      }
+                    }
+                  },
+                  {
+                    "kind": "parameter_lookup",
+                    "parameter": "japan_employees_pension_standard_remuneration_band_32",
+                    "index": {
+                      "kind": "literal",
+                      "value": {
+                        "kind": "integer",
+                        "value": 0
+                      }
+                    }
+                  }
+                ]
+              },
+              "right": {
+                "kind": "literal",
+                "value": {
+                  "kind": "integer",
+                  "value": 2
+                }
+              }
+            }
+          },
+          "then_expr": {
+            "kind": "derived",
+            "name": "japan_employees_pension_standard_monthly_remuneration_through_grade_31"
+          },
+          "else_expr": {
+            "kind": "parameter_lookup",
+            "parameter": "japan_employees_pension_standard_remuneration_band_32",
+            "index": {
+              "kind": "literal",
+              "value": {
+                "kind": "integer",
+                "value": 0
+              }
+            }
+          }
+        },
+        "versions": [
+          {
+            "effective_from": "2017-04-01",
+            "semantics": "scalar",
+            "expr": {
+              "kind": "derived",
+              "name": "japan_employees_pension_standard_monthly_remuneration_through_grade_31"
+            }
+          },
+          {
+            "effective_from": "2020-09-01",
+            "semantics": "scalar",
+            "expr": {
+              "kind": "if",
+              "condition": {
+                "kind": "comparison",
+                "left": {
+                  "kind": "input",
+                  "name": "japan_employees_pension_monthly_remuneration"
+                },
+                "op": "lt",
+                "right": {
+                  "kind": "div",
+                  "left": {
+                    "kind": "add",
+                    "items": [
+                      {
+                        "kind": "parameter_lookup",
+                        "parameter": "japan_employees_pension_standard_remuneration_band_31",
+                        "index": {
+                          "kind": "literal",
+                          "value": {
+                            "kind": "integer",
+                            "value": 0
+                          }
+                        }
+                      },
+                      {
+                        "kind": "parameter_lookup",
+                        "parameter": "japan_employees_pension_standard_remuneration_band_32",
+                        "index": {
+                          "kind": "literal",
+                          "value": {
+                            "kind": "integer",
+                            "value": 0
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "right": {
+                    "kind": "literal",
+                    "value": {
+                      "kind": "integer",
+                      "value": 2
+                    }
+                  }
+                }
+              },
+              "then_expr": {
+                "kind": "derived",
+                "name": "japan_employees_pension_standard_monthly_remuneration_through_grade_31"
+              },
+              "else_expr": {
+                "kind": "parameter_lookup",
+                "parameter": "japan_employees_pension_standard_remuneration_band_32",
+                "index": {
+                  "kind": "literal",
+                  "value": {
+                    "kind": "integer",
+                    "value": 0
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/24-4#japan_employees_pension_standard_bonus_amount",
+        "name": "japan_employees_pension_standard_bonus_amount",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/24-4",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "min",
+          "items": [
+            {
+              "kind": "parameter_lookup",
+              "parameter": "japan_employees_pension_standard_bonus_cap",
+              "index": {
+                "kind": "literal",
+                "value": {
+                  "kind": "integer",
+                  "value": 0
+                }
+              }
+            },
+            {
+              "kind": "mul",
+              "left": {
+                "kind": "floor",
+                "value": {
+                  "kind": "div",
+                  "left": {
+                    "kind": "input",
+                    "name": "japan_employees_pension_gross_bonus"
+                  },
+                  "right": {
+                    "kind": "parameter_lookup",
+                    "parameter": "japan_employees_pension_standard_bonus_rounding_unit",
+                    "index": {
+                      "kind": "literal",
+                      "value": {
+                        "kind": "integer",
+                        "value": 0
+                      }
+                    }
+                  }
+                }
+              },
+              "right": {
+                "kind": "parameter_lookup",
+                "parameter": "japan_employees_pension_standard_bonus_rounding_unit",
+                "index": {
+                  "kind": "literal",
+                  "value": {
+                    "kind": "integer",
+                    "value": 0
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/81#japan_employees_pension_total_monthly_contribution",
+        "name": "japan_employees_pension_total_monthly_contribution",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/81",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "mul",
+          "left": {
+            "kind": "derived",
+            "name": "japan_employees_pension_standard_monthly_remuneration"
+          },
+          "right": {
+            "kind": "parameter_lookup",
+            "parameter": "japan_employees_pension_total_contribution_rate",
+            "index": {
+              "kind": "literal",
+              "value": {
+                "kind": "integer",
+                "value": 0
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/81#japan_employees_pension_total_bonus_contribution",
+        "name": "japan_employees_pension_total_bonus_contribution",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/81",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "mul",
+          "left": {
+            "kind": "derived",
+            "name": "japan_employees_pension_standard_bonus_amount"
+          },
+          "right": {
+            "kind": "parameter_lookup",
+            "parameter": "japan_employees_pension_total_contribution_rate",
+            "index": {
+              "kind": "literal",
+              "value": {
+                "kind": "integer",
+                "value": 0
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/81#japan_employees_pension_employee_monthly_share_before_rounding",
+        "name": "japan_employees_pension_employee_monthly_share_before_rounding",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/81",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "mul",
+          "left": {
+            "kind": "derived",
+            "name": "japan_employees_pension_total_monthly_contribution"
+          },
+          "right": {
+            "kind": "parameter_lookup",
+            "parameter": "japan_employees_pension_employee_share",
+            "index": {
+              "kind": "literal",
+              "value": {
+                "kind": "integer",
+                "value": 0
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/81#japan_employees_pension_employee_bonus_share_before_rounding",
+        "name": "japan_employees_pension_employee_bonus_share_before_rounding",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/81",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "mul",
+          "left": {
+            "kind": "derived",
+            "name": "japan_employees_pension_total_bonus_contribution"
+          },
+          "right": {
+            "kind": "parameter_lookup",
+            "parameter": "japan_employees_pension_employee_share",
+            "index": {
+              "kind": "literal",
+              "value": {
+                "kind": "integer",
+                "value": 0
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/81#japan_employees_pension_employee_monthly_contribution",
+        "name": "japan_employees_pension_employee_monthly_contribution",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/81",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "if",
+          "condition": {
+            "kind": "comparison",
+            "left": {
+              "kind": "input",
+              "name": "japan_employees_pension_employee_pays_share_in_cash"
+            },
+            "op": "eq",
+            "right": {
+              "kind": "literal",
+              "value": {
+                "kind": "bool",
+                "value": true
+              }
+            }
+          },
+          "then_expr": {
+            "kind": "floor",
+            "value": {
+              "kind": "add",
+              "items": [
+                {
+                  "kind": "derived",
+                  "name": "japan_employees_pension_employee_monthly_share_before_rounding"
+                },
+                {
+                  "kind": "literal",
+                  "value": {
+                    "kind": "decimal",
+                    "value": "0.5"
+                  }
+                }
+              ]
+            }
+          },
+          "else_expr": {
+            "kind": "if",
+            "condition": {
+              "kind": "comparison",
+              "left": {
+                "kind": "sub",
+                "left": {
+                  "kind": "derived",
+                  "name": "japan_employees_pension_employee_monthly_share_before_rounding"
+                },
+                "right": {
+                  "kind": "floor",
+                  "value": {
+                    "kind": "derived",
+                    "name": "japan_employees_pension_employee_monthly_share_before_rounding"
+                  }
+                }
+              },
+              "op": "lte",
+              "right": {
+                "kind": "literal",
+                "value": {
+                  "kind": "decimal",
+                  "value": "0.5"
+                }
+              }
+            },
+            "then_expr": {
+              "kind": "floor",
+              "value": {
+                "kind": "derived",
+                "name": "japan_employees_pension_employee_monthly_share_before_rounding"
+              }
+            },
+            "else_expr": {
+              "kind": "add",
+              "items": [
+                {
+                  "kind": "floor",
+                  "value": {
+                    "kind": "derived",
+                    "name": "japan_employees_pension_employee_monthly_share_before_rounding"
+                  }
+                },
+                {
+                  "kind": "literal",
+                  "value": {
+                    "kind": "decimal",
+                    "value": "1"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/81#japan_employees_pension_employee_bonus_contribution",
+        "name": "japan_employees_pension_employee_bonus_contribution",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/81",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "if",
+          "condition": {
+            "kind": "comparison",
+            "left": {
+              "kind": "input",
+              "name": "japan_employees_pension_employee_pays_share_in_cash"
+            },
+            "op": "eq",
+            "right": {
+              "kind": "literal",
+              "value": {
+                "kind": "bool",
+                "value": true
+              }
+            }
+          },
+          "then_expr": {
+            "kind": "floor",
+            "value": {
+              "kind": "add",
+              "items": [
+                {
+                  "kind": "derived",
+                  "name": "japan_employees_pension_employee_bonus_share_before_rounding"
+                },
+                {
+                  "kind": "literal",
+                  "value": {
+                    "kind": "decimal",
+                    "value": "0.5"
+                  }
+                }
+              ]
+            }
+          },
+          "else_expr": {
+            "kind": "if",
+            "condition": {
+              "kind": "comparison",
+              "left": {
+                "kind": "sub",
+                "left": {
+                  "kind": "derived",
+                  "name": "japan_employees_pension_employee_bonus_share_before_rounding"
+                },
+                "right": {
+                  "kind": "floor",
+                  "value": {
+                    "kind": "derived",
+                    "name": "japan_employees_pension_employee_bonus_share_before_rounding"
+                  }
+                }
+              },
+              "op": "lte",
+              "right": {
+                "kind": "literal",
+                "value": {
+                  "kind": "decimal",
+                  "value": "0.5"
+                }
+              }
+            },
+            "then_expr": {
+              "kind": "floor",
+              "value": {
+                "kind": "derived",
+                "name": "japan_employees_pension_employee_bonus_share_before_rounding"
+              }
+            },
+            "else_expr": {
+              "kind": "add",
+              "items": [
+                {
+                  "kind": "floor",
+                  "value": {
+                    "kind": "derived",
+                    "name": "japan_employees_pension_employee_bonus_share_before_rounding"
+                  }
+                },
+                {
+                  "kind": "literal",
+                  "value": {
+                    "kind": "decimal",
+                    "value": "1"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "id": "jp:statutes/e-gov/329ac0000000115/article/81#japan_employees_pension_employee_total_contribution",
+        "name": "japan_employees_pension_employee_total_contribution",
+        "entity": "Person",
+        "dtype": "decimal",
+        "unit": "JPY",
+        "period": "Month",
+        "source": null,
+        "source_url": null,
+        "corpus_citation_path": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/81",
+        "semantics": "scalar",
+        "expr": {
+          "kind": "if",
+          "condition": {
+            "kind": "comparison",
+            "left": {
+              "kind": "input",
+              "name": "japan_employees_pension_is_ordinary_covered_employee"
+            },
+            "op": "eq",
+            "right": {
+              "kind": "literal",
+              "value": {
+                "kind": "bool",
+                "value": true
+              }
+            }
+          },
+          "then_expr": {
+            "kind": "add",
+            "items": [
+              {
+                "kind": "derived",
+                "name": "japan_employees_pension_employee_monthly_contribution"
+              },
+              {
+                "kind": "derived",
+                "name": "japan_employees_pension_employee_bonus_contribution"
+              }
+            ]
+          },
+          "else_expr": {
+            "kind": "literal",
+            "value": {
+              "kind": "decimal",
+              "value": "0"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "metadata": {
+    "evaluation_order": [
+      "japan_employees_pension_standard_bonus_amount",
+      "japan_employees_pension_standard_monthly_remuneration_through_grade_31",
+      "japan_employees_pension_standard_monthly_remuneration",
+      "japan_employees_pension_total_bonus_contribution",
+      "japan_employees_pension_employee_bonus_share_before_rounding",
+      "japan_employees_pension_employee_bonus_contribution",
+      "japan_employees_pension_total_monthly_contribution",
+      "japan_employees_pension_employee_monthly_share_before_rounding",
+      "japan_employees_pension_employee_monthly_contribution",
+      "japan_employees_pension_employee_total_contribution"
+    ],
+    "fast_path": {
+      "strategy": "generic_bulk",
+      "compatible": true,
+      "blockers": []
+    },
+    "input_catalog": [
+      {
+        "slot": "japan_employees_pension_employee_pays_share_in_cash",
+        "canonical_request_name": "jp:statutes/e-gov/329ac0000000115/article/81#input.japan_employees_pension_employee_pays_share_in_cash",
+        "request_names": [
+          "jp:statutes/e-gov/329ac0000000115/article/81#input.japan_employees_pension_employee_pays_share_in_cash"
+        ]
+      },
+      {
+        "slot": "japan_employees_pension_gross_bonus",
+        "canonical_request_name": "jp:statutes/e-gov/329ac0000000115/article/24-4#input.japan_employees_pension_gross_bonus",
+        "request_names": [
+          "jp:statutes/e-gov/329ac0000000115/article/24-4#input.japan_employees_pension_gross_bonus"
+        ]
+      },
+      {
+        "slot": "japan_employees_pension_is_ordinary_covered_employee",
+        "canonical_request_name": "jp:statutes/e-gov/329ac0000000115/article/81#input.japan_employees_pension_is_ordinary_covered_employee",
+        "request_names": [
+          "jp:statutes/e-gov/329ac0000000115/article/81#input.japan_employees_pension_is_ordinary_covered_employee"
+        ]
+      },
+      {
+        "slot": "japan_employees_pension_monthly_remuneration",
+        "canonical_request_name": "jp:statutes/e-gov/329ac0000000115/article/20#input.japan_employees_pension_monthly_remuneration",
+        "request_names": [
+          "jp:statutes/e-gov/329ac0000000115/article/20#input.japan_employees_pension_monthly_remuneration"
+        ]
+      }
+    ]
+  }
+}

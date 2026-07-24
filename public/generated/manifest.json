@@ -1,0 +1,2128 @@
+{
+  "schemaVersion": 1,
+  "supportedPeriod": {
+    "inclusiveStart": "2017-04-01",
+    "calculatorFullYearStart": "2018-01-01",
+    "inclusiveEnd": "2026-12-31"
+  },
+  "pins": {
+    "rulespec": {
+      "repository": "anth-volk/rulespec-jp",
+      "commit": "0113ad599d6d458b3343c23039533b1a4827121f"
+    },
+    "engine": {
+      "repository": "anth-volk/axiom-rules-engine",
+      "commit": "e5e40d40353f8459da4e46a9feae7279c2fecccc"
+    },
+    "compose": {
+      "repository": "anth-volk/axiom-compose",
+      "commit": "9a514aca29c85a4a5f30a63f2275f9a362dd2b7a"
+    },
+    "rust": "1.94.0",
+    "wasmPack": "0.13.1"
+  },
+  "engineVersion": "0.1.0",
+  "artifactFormatVersion": 2,
+  "engineAssets": {
+    "javascript": "engine/axiom_rules_engine_wasm.js",
+    "javascriptSha256": "470f284a13c35b0c9bb449c58954120438b7ad6febc53fa732bcc82ddcd0781a",
+    "wasm": "engine/axiom_rules_engine_wasm_bg.wasm",
+    "wasmSha256": "d7ca8e2f1f210aca96bb2d7331a03ac5f554921108cf6b3a85536537fe318494"
+  },
+  "inputCount": 108,
+  "inputs": [
+    {
+      "slot": "japan_child_allowance_assessed_income",
+      "label": "Child Allowance assessed income",
+      "kind": "decimal",
+      "integer": false,
+      "step": 1000,
+      "group": "child-allowance",
+      "programs": [
+        "child-allowance"
+      ]
+    },
+    {
+      "slot": "japan_child_allowance_elderly_dependent_count",
+      "label": "Child Allowance Elderly Dependent Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "child-allowance",
+      "programs": [
+        "child-allowance"
+      ]
+    },
+    {
+      "slot": "japan_child_allowance_high_school_first_or_second_count",
+      "label": "Child Allowance High School First Or Second Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "child-allowance",
+      "programs": [
+        "child-allowance"
+      ]
+    },
+    {
+      "slot": "japan_child_allowance_high_school_third_or_later_count",
+      "label": "Child Allowance High School Third Or Later Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "child-allowance",
+      "programs": [
+        "child-allowance"
+      ]
+    },
+    {
+      "slot": "japan_child_allowance_junior_high_first_or_second_count",
+      "label": "Child Allowance Junior High First Or Second Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "child-allowance",
+      "programs": [
+        "child-allowance"
+      ]
+    },
+    {
+      "slot": "japan_child_allowance_junior_high_third_or_later_count",
+      "label": "Child Allowance Junior High Third Or Later Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "child-allowance",
+      "programs": [
+        "child-allowance"
+      ]
+    },
+    {
+      "slot": "japan_child_allowance_ordinary_dependent_count",
+      "label": "Child Allowance Ordinary Dependent Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "child-allowance",
+      "programs": [
+        "child-allowance"
+      ]
+    },
+    {
+      "slot": "japan_child_allowance_primary_age_first_or_second_count",
+      "label": "Child Allowance Primary Age First Or Second Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "child-allowance",
+      "programs": [
+        "child-allowance"
+      ]
+    },
+    {
+      "slot": "japan_child_allowance_primary_age_third_or_later_count",
+      "label": "Child Allowance Primary Age Third Or Later Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "child-allowance",
+      "programs": [
+        "child-allowance"
+      ]
+    },
+    {
+      "slot": "japan_child_allowance_under_three_first_or_second_count",
+      "label": "Child Allowance Under Three First Or Second Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "child-allowance",
+      "programs": [
+        "child-allowance"
+      ]
+    },
+    {
+      "slot": "japan_child_allowance_under_three_third_or_later_count",
+      "label": "Child Allowance Under Three Third Or Later Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "child-allowance",
+      "programs": [
+        "child-allowance"
+      ]
+    },
+    {
+      "slot": "japan_child_allowance_meets_nonfinancial_conditions",
+      "label": "Meets Child Allowance nonfinancial conditions",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "child-allowance",
+      "programs": [
+        "child-allowance"
+      ]
+    },
+    {
+      "slot": "japan_child_rearing_allowance_adjusted_prior_year_income",
+      "label": "Child Rearing Allowance Adjusted Prior Year Income",
+      "kind": "decimal",
+      "integer": false,
+      "step": 1000,
+      "group": "child-rearing-allowance",
+      "programs": [
+        "child-rearing-allowance"
+      ]
+    },
+    {
+      "slot": "japan_child_rearing_allowance_child_support_received",
+      "label": "Child Rearing Allowance Child Support Received",
+      "kind": "decimal",
+      "integer": false,
+      "step": 1000,
+      "group": "child-rearing-allowance",
+      "programs": [
+        "child-rearing-allowance"
+      ]
+    },
+    {
+      "slot": "japan_child_rearing_allowance_elderly_dependent_count",
+      "label": "Child Rearing Allowance Elderly Dependent Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "child-rearing-allowance",
+      "programs": [
+        "child-rearing-allowance"
+      ]
+    },
+    {
+      "slot": "japan_child_rearing_allowance_highest_supporter_adjusted_income",
+      "label": "Child Rearing Allowance Highest Supporter Adjusted Income",
+      "kind": "decimal",
+      "integer": false,
+      "step": 1000,
+      "group": "child-rearing-allowance",
+      "programs": [
+        "child-rearing-allowance"
+      ]
+    },
+    {
+      "slot": "japan_child_rearing_allowance_income_limit_person_count",
+      "label": "Child Rearing Allowance Income Limit Person Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "child-rearing-allowance",
+      "programs": [
+        "child-rearing-allowance"
+      ]
+    },
+    {
+      "slot": "japan_child_rearing_allowance_qualifying_child_count",
+      "label": "Child Rearing Allowance Qualifying Child Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "child-rearing-allowance",
+      "programs": [
+        "child-rearing-allowance"
+      ]
+    },
+    {
+      "slot": "japan_child_rearing_allowance_specified_dependent_count",
+      "label": "Child Rearing Allowance Specified Dependent Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "child-rearing-allowance",
+      "programs": [
+        "child-rearing-allowance"
+      ]
+    },
+    {
+      "slot": "japan_child_rearing_allowance_supporter_dependent_count",
+      "label": "Child Rearing Allowance Supporter Dependent Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "child-rearing-allowance",
+      "programs": [
+        "child-rearing-allowance"
+      ]
+    },
+    {
+      "slot": "japan_child_rearing_allowance_supporter_elderly_dependent_count",
+      "label": "Child Rearing Allowance Supporter Elderly Dependent Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "child-rearing-allowance",
+      "programs": [
+        "child-rearing-allowance"
+      ]
+    },
+    {
+      "slot": "japan_child_rearing_allowance_meets_family_conditions",
+      "label": "Meets Child Rearing Allowance family conditions",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "child-rearing-allowance",
+      "programs": [
+        "child-rearing-allowance"
+      ]
+    },
+    {
+      "slot": "japan_disability_allowance_supporter_dependent_count",
+      "label": "Disability Allowance Supporter Dependent Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "disability-allowances",
+      "programs": [
+        "disabled-child-welfare-allowance",
+        "special-child-rearing-allowance",
+        "special-disability-allowance"
+      ]
+    },
+    {
+      "slot": "japan_disability_allowance_supporter_elderly_dependent_count",
+      "label": "Disability Allowance Supporter Elderly Dependent Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "disability-allowances",
+      "programs": [
+        "disabled-child-welfare-allowance",
+        "special-child-rearing-allowance",
+        "special-disability-allowance"
+      ]
+    },
+    {
+      "slot": "japan_disabled_child_welfare_allowance_claimant_adjusted_income",
+      "label": "Disabled Child Welfare Allowance Claimant Adjusted Income",
+      "kind": "decimal",
+      "integer": false,
+      "step": 1000,
+      "group": "disability-allowances",
+      "programs": [
+        "disabled-child-welfare-allowance"
+      ]
+    },
+    {
+      "slot": "japan_disabled_child_welfare_allowance_highest_supporter_adjusted_income",
+      "label": "Disabled Child Welfare Allowance Highest Supporter Adjusted Income",
+      "kind": "decimal",
+      "integer": false,
+      "step": 1000,
+      "group": "disability-allowances",
+      "programs": [
+        "disabled-child-welfare-allowance"
+      ]
+    },
+    {
+      "slot": "japan_disabled_child_welfare_allowance_meets_nonfinancial_conditions",
+      "label": "Disabled Child Welfare Allowance Meets Nonfinancial Conditions",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "disability-allowances",
+      "programs": [
+        "disabled-child-welfare-allowance"
+      ]
+    },
+    {
+      "slot": "japan_individual_disability_allowance_claimant_elderly_dependent_count",
+      "label": "Individual Disability Allowance Claimant Elderly Dependent Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "disability-allowances",
+      "programs": [
+        "disabled-child-welfare-allowance",
+        "special-disability-allowance"
+      ]
+    },
+    {
+      "slot": "japan_individual_disability_allowance_claimant_ordinary_dependent_count",
+      "label": "Individual Disability Allowance Claimant Ordinary Dependent Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "disability-allowances",
+      "programs": [
+        "disabled-child-welfare-allowance",
+        "special-disability-allowance"
+      ]
+    },
+    {
+      "slot": "japan_individual_disability_allowance_claimant_specified_dependent_count",
+      "label": "Individual Disability Allowance Claimant Specified Dependent Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "disability-allowances",
+      "programs": [
+        "disabled-child-welfare-allowance",
+        "special-disability-allowance"
+      ]
+    },
+    {
+      "slot": "japan_special_child_rearing_allowance_claimant_adjusted_income",
+      "label": "Special Child Rearing Allowance Claimant Adjusted Income",
+      "kind": "decimal",
+      "integer": false,
+      "step": 1000,
+      "group": "disability-allowances",
+      "programs": [
+        "special-child-rearing-allowance"
+      ]
+    },
+    {
+      "slot": "japan_special_child_rearing_allowance_claimant_elderly_dependent_count",
+      "label": "Special Child Rearing Allowance Claimant Elderly Dependent Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "disability-allowances",
+      "programs": [
+        "disabled-child-welfare-allowance",
+        "special-child-rearing-allowance",
+        "special-disability-allowance"
+      ]
+    },
+    {
+      "slot": "japan_special_child_rearing_allowance_claimant_ordinary_dependent_count",
+      "label": "Special Child Rearing Allowance Claimant Ordinary Dependent Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "disability-allowances",
+      "programs": [
+        "disabled-child-welfare-allowance",
+        "special-child-rearing-allowance",
+        "special-disability-allowance"
+      ]
+    },
+    {
+      "slot": "japan_special_child_rearing_allowance_claimant_specified_dependent_count",
+      "label": "Special Child Rearing Allowance Claimant Specified Dependent Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "disability-allowances",
+      "programs": [
+        "disabled-child-welfare-allowance",
+        "special-child-rearing-allowance",
+        "special-disability-allowance"
+      ]
+    },
+    {
+      "slot": "japan_special_child_rearing_allowance_grade_one_child_count",
+      "label": "Special Child Rearing Allowance Grade One Child Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "disability-allowances",
+      "programs": [
+        "special-child-rearing-allowance"
+      ]
+    },
+    {
+      "slot": "japan_special_child_rearing_allowance_grade_two_child_count",
+      "label": "Special Child Rearing Allowance Grade Two Child Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "disability-allowances",
+      "programs": [
+        "special-child-rearing-allowance"
+      ]
+    },
+    {
+      "slot": "japan_special_child_rearing_allowance_highest_supporter_adjusted_income",
+      "label": "Special Child Rearing Allowance Highest Supporter Adjusted Income",
+      "kind": "decimal",
+      "integer": false,
+      "step": 1000,
+      "group": "disability-allowances",
+      "programs": [
+        "special-child-rearing-allowance"
+      ]
+    },
+    {
+      "slot": "japan_special_child_rearing_allowance_meets_nonfinancial_conditions",
+      "label": "Special Child Rearing Allowance Meets Nonfinancial Conditions",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "disability-allowances",
+      "programs": [
+        "special-child-rearing-allowance"
+      ]
+    },
+    {
+      "slot": "japan_special_disability_allowance_claimant_adjusted_income",
+      "label": "Special Disability Allowance Claimant Adjusted Income",
+      "kind": "decimal",
+      "integer": false,
+      "step": 1000,
+      "group": "disability-allowances",
+      "programs": [
+        "special-disability-allowance"
+      ]
+    },
+    {
+      "slot": "japan_special_disability_allowance_highest_supporter_adjusted_income",
+      "label": "Special Disability Allowance Highest Supporter Adjusted Income",
+      "kind": "decimal",
+      "integer": false,
+      "step": 1000,
+      "group": "disability-allowances",
+      "programs": [
+        "special-disability-allowance"
+      ]
+    },
+    {
+      "slot": "japan_special_disability_allowance_meets_nonfinancial_conditions",
+      "label": "Special Disability Allowance Meets Nonfinancial Conditions",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "disability-allowances",
+      "programs": [
+        "special-disability-allowance"
+      ]
+    },
+    {
+      "slot": "japan_employees_pension_gross_bonus",
+      "label": "Bonus paid in the selected month",
+      "kind": "decimal",
+      "integer": false,
+      "step": 1000,
+      "group": "employees-pension",
+      "programs": [
+        "employees-pension"
+      ]
+    },
+    {
+      "slot": "japan_employees_pension_employee_pays_share_in_cash",
+      "label": "Employee pays contribution share in cash",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "employees-pension",
+      "programs": [
+        "employees-pension"
+      ]
+    },
+    {
+      "slot": "japan_employees_pension_monthly_remuneration",
+      "label": "Monthly remuneration",
+      "kind": "decimal",
+      "integer": false,
+      "step": 1000,
+      "group": "employees-pension",
+      "programs": [
+        "employees-pension"
+      ]
+    },
+    {
+      "slot": "japan_employees_pension_is_ordinary_covered_employee",
+      "label": "Ordinary covered employee",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "employees-pension",
+      "programs": [
+        "employees-pension"
+      ]
+    },
+    {
+      "slot": "japan_employment_insurance_covered_wages_paid",
+      "label": "Covered wages paid in the selected month",
+      "kind": "decimal",
+      "integer": false,
+      "step": 1000,
+      "group": "employment-insurance",
+      "programs": [
+        "employment-insurance"
+      ]
+    },
+    {
+      "slot": "japan_employment_insurance_is_agriculture_fisheries_or_sake_business",
+      "label": "Employment Insurance Is Agriculture Fisheries Or Sake Business",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "employment-insurance",
+      "programs": [
+        "employment-insurance"
+      ]
+    },
+    {
+      "slot": "japan_employment_insurance_is_construction_business",
+      "label": "Employment Insurance Is Construction Business",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "employment-insurance",
+      "programs": [
+        "employment-insurance"
+      ]
+    },
+    {
+      "slot": "japan_employment_insurance_is_withheld_from_wages",
+      "label": "Employment Insurance is withheld",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "employment-insurance",
+      "programs": [
+        "employment-insurance"
+      ]
+    },
+    {
+      "slot": "japan_2024_fixed_credit_qualifying_family_member_count",
+      "label": "2024 Fixed Credit Qualifying Family Member Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_employment_gross_cash_earnings",
+      "label": "Annual gross employment earnings",
+      "kind": "decimal",
+      "integer": false,
+      "step": 1000,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_public_pension_gross_receipts",
+      "label": "Annual gross public-pension receipts",
+      "kind": "decimal",
+      "integer": false,
+      "step": 1000,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_social_insurance_contributions_paid_or_withheld",
+      "label": "Annual social-insurance contributions paid or withheld",
+      "kind": "decimal",
+      "integer": false,
+      "step": 1000,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_income_is_ordinary_domestic_source",
+      "label": "Income is ordinary domestic-source income",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_is_resident_under_article_2",
+      "label": "Japanese tax resident",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_public_pension_other_income_excluding_public_pension",
+      "label": "Other income excluding public pension",
+      "kind": "decimal",
+      "integer": false,
+      "step": 1000,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_candidate_dependent_total_income",
+      "label": "PIT Candidate Dependent Total Income",
+      "kind": "decimal",
+      "integer": false,
+      "step": 1000,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_cohabiting_elderly_dependent_count",
+      "label": "PIT Cohabiting Elderly Dependent Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_cohabiting_special_disabled_person_count",
+      "label": "PIT Cohabiting Special Disabled Person Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_elderly_dependent_count",
+      "label": "PIT Elderly Dependent Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_income_adjustment_has_qualifying_child_or_disability_condition",
+      "label": "PIT Income Adjustment Has Qualifying Child Or Disability Condition",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_is_single_parent",
+      "label": "PIT Is Single Parent",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_is_special_widow",
+      "label": "PIT Is Special Widow",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_is_widow",
+      "label": "PIT Is Widow",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_is_widow_or_widower",
+      "label": "PIT Is Widow Or Widower",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_meets_working_student_nonincome_conditions",
+      "label": "PIT Meets Working Student Nonincome Conditions",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_non_labor_income_amount",
+      "label": "PIT Non Labor Income Amount",
+      "kind": "decimal",
+      "integer": false,
+      "step": 1000,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_ordinary_dependent_count",
+      "label": "PIT Ordinary Dependent Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_ordinary_disabled_person_count",
+      "label": "PIT Ordinary Disabled Person Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_special_disabled_person_count",
+      "label": "PIT Special Disabled Person Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_specific_relative_age",
+      "label": "PIT Specific Relative Age",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_specific_relative_band_1_count",
+      "label": "PIT Specific Relative Band 1 Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_specific_relative_band_2_count",
+      "label": "PIT Specific Relative Band 2 Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_specific_relative_band_3_count",
+      "label": "PIT Specific Relative Band 3 Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_specific_relative_band_4_count",
+      "label": "PIT Specific Relative Band 4 Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_specific_relative_band_5_count",
+      "label": "PIT Specific Relative Band 5 Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_specific_relative_band_6_count",
+      "label": "PIT Specific Relative Band 6 Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_specific_relative_band_7_count",
+      "label": "PIT Specific Relative Band 7 Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_specific_relative_band_8_count",
+      "label": "PIT Specific Relative Band 8 Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_specific_relative_band_9_count",
+      "label": "PIT Specific Relative Band 9 Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_specific_relative_meets_non_income_conditions",
+      "label": "PIT Specific Relative Meets Non Income Conditions",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_specific_relative_total_income",
+      "label": "PIT Specific Relative Total Income",
+      "kind": "decimal",
+      "integer": false,
+      "step": 1000,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_specified_dependent_count",
+      "label": "PIT Specified Dependent Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_spouse_is_elderly",
+      "label": "PIT Spouse Is Elderly",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_spouse_meets_non_income_conditions",
+      "label": "PIT Spouse Meets Non Income Conditions",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_spouse_meets_special_deduction_non_income_conditions",
+      "label": "PIT Spouse Meets Special Deduction Non Income Conditions",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_spouse_total_income",
+      "label": "PIT Spouse Total Income",
+      "kind": "decimal",
+      "integer": false,
+      "step": 1000,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_public_pension_recipient_age_at_statutory_test_date",
+      "label": "Public-pension recipient age",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_total_income_amount",
+      "label": "Taxpayer total income amount",
+      "kind": "decimal",
+      "integer": false,
+      "step": 1000,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_pit_taxpayer_total_income",
+      "label": "Taxpayer total income for family deductions",
+      "kind": "decimal",
+      "integer": false,
+      "step": 1000,
+      "group": "national-income-tax",
+      "programs": [
+        "national-income-tax"
+      ]
+    },
+    {
+      "slot": "japan_national_pension_is_category_one_insured",
+      "label": "Category 1 National Pension insured person",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "national-pension",
+      "programs": [
+        "national-pension"
+      ]
+    },
+    {
+      "slot": "japan_national_pension_applicant_adjusted_income",
+      "label": "National Pension Applicant Adjusted Income",
+      "kind": "decimal",
+      "integer": false,
+      "step": 1000,
+      "group": "national-pension",
+      "programs": [
+        "national-pension"
+      ]
+    },
+    {
+      "slot": "japan_national_pension_applicant_non_income_exemption_condition",
+      "label": "National Pension Applicant Non Income Exemption Condition",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "national-pension",
+      "programs": [
+        "national-pension"
+      ]
+    },
+    {
+      "slot": "japan_national_pension_elderly_dependent_count",
+      "label": "National Pension Elderly Dependent Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-pension",
+      "programs": [
+        "national-pension"
+      ]
+    },
+    {
+      "slot": "japan_national_pension_exemption_application_approved",
+      "label": "National Pension Exemption Application Approved",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "national-pension",
+      "programs": [
+        "national-pension"
+      ]
+    },
+    {
+      "slot": "japan_national_pension_has_statutory_full_exemption",
+      "label": "National Pension Has Statutory Full Exemption",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "national-pension",
+      "programs": [
+        "national-pension"
+      ]
+    },
+    {
+      "slot": "japan_national_pension_income_test_dependent_count",
+      "label": "National Pension Income Test Dependent Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-pension",
+      "programs": [
+        "national-pension"
+      ]
+    },
+    {
+      "slot": "japan_national_pension_is_student",
+      "label": "National Pension Is Student",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "national-pension",
+      "programs": [
+        "national-pension"
+      ]
+    },
+    {
+      "slot": "japan_national_pension_ordinary_dependent_count",
+      "label": "National Pension Ordinary Dependent Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-pension",
+      "programs": [
+        "national-pension"
+      ]
+    },
+    {
+      "slot": "japan_national_pension_specified_dependent_count",
+      "label": "National Pension Specified Dependent Count",
+      "kind": "decimal",
+      "integer": true,
+      "step": 1,
+      "group": "national-pension",
+      "programs": [
+        "national-pension"
+      ]
+    },
+    {
+      "slot": "japan_national_pension_spouse_and_household_head_meet_full_exemption_conditions",
+      "label": "National Pension Spouse And Household Head Meet Full Exemption Conditions",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "national-pension",
+      "programs": [
+        "national-pension"
+      ]
+    },
+    {
+      "slot": "japan_national_pension_spouse_and_household_head_meet_half_exemption_conditions",
+      "label": "National Pension Spouse And Household Head Meet Half Exemption Conditions",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "national-pension",
+      "programs": [
+        "national-pension"
+      ]
+    },
+    {
+      "slot": "japan_national_pension_spouse_and_household_head_meet_one_quarter_exemption_conditions",
+      "label": "National Pension Spouse And Household Head Meet One Quarter Exemption Conditions",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "national-pension",
+      "programs": [
+        "national-pension"
+      ]
+    },
+    {
+      "slot": "japan_national_pension_spouse_and_household_head_meet_three_quarter_exemption_conditions",
+      "label": "National Pension Spouse And Household Head Meet Three Quarter Exemption Conditions",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "national-pension",
+      "programs": [
+        "national-pension"
+      ]
+    },
+    {
+      "slot": "japan_national_pension_spouse_meets_payment_deferral_conditions",
+      "label": "National Pension Spouse Meets Payment Deferral Conditions",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "national-pension",
+      "programs": [
+        "national-pension"
+      ]
+    },
+    {
+      "slot": "japan_national_pension_student_deferral_approved",
+      "label": "National Pension Student Deferral Approved",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "national-pension",
+      "programs": [
+        "national-pension"
+      ]
+    },
+    {
+      "slot": "japan_national_pension_student_or_deferral_non_income_condition",
+      "label": "National Pension Student Or Deferral Non Income Condition",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "national-pension",
+      "programs": [
+        "national-pension"
+      ]
+    },
+    {
+      "slot": "japan_national_pension_under_50_deferral_approved",
+      "label": "National Pension Under 50 Deferral Approved",
+      "kind": "bool",
+      "integer": false,
+      "step": 1000,
+      "group": "national-pension",
+      "programs": [
+        "national-pension"
+      ]
+    }
+  ],
+  "programs": [
+    {
+      "id": "national-income-tax",
+      "label": "National income tax",
+      "description": "Annual national personal income tax for the encoded employment and public-pension path.",
+      "artifact": "generated/artifacts/national-income-tax.json",
+      "artifactSha256": "fc8d523f4efb9305a6fc328d6007dc856c8698442a67bcd26938f2c57595d0b3",
+      "cadence": "annual",
+      "summaryBucket": "annualTax",
+      "summaryOutput": "jp:policies/nta/defense-special-income-tax/2027#japan_national_income_tax_including_national_surtaxes",
+      "inputs": [
+        {
+          "slot": "japan_2024_fixed_credit_qualifying_family_member_count",
+          "canonicalRequestName": "jp:policies/nta/fixed-income-tax-credit/2024#input.japan_2024_fixed_credit_qualifying_family_member_count"
+        },
+        {
+          "slot": "japan_employment_gross_cash_earnings",
+          "canonicalRequestName": "jp:statutes/e-gov/332ac0000000026/article/41-3-11#input.japan_employment_gross_cash_earnings"
+        },
+        {
+          "slot": "japan_pit_candidate_dependent_total_income",
+          "canonicalRequestName": "jp:statutes/e-gov/340ac0000000033/article/84#input.japan_pit_candidate_dependent_total_income"
+        },
+        {
+          "slot": "japan_pit_cohabiting_elderly_dependent_count",
+          "canonicalRequestName": "jp:statutes/e-gov/340ac0000000033/article/84#input.japan_pit_cohabiting_elderly_dependent_count"
+        },
+        {
+          "slot": "japan_pit_cohabiting_special_disabled_person_count",
+          "canonicalRequestName": "jp:statutes/e-gov/340ac0000000033/article/79#input.japan_pit_cohabiting_special_disabled_person_count"
+        },
+        {
+          "slot": "japan_pit_elderly_dependent_count",
+          "canonicalRequestName": "jp:statutes/e-gov/340ac0000000033/article/84#input.japan_pit_elderly_dependent_count"
+        },
+        {
+          "slot": "japan_pit_income_adjustment_has_qualifying_child_or_disability_condition",
+          "canonicalRequestName": "jp:statutes/e-gov/332ac0000000026/article/41-3-11#input.japan_pit_income_adjustment_has_qualifying_child_or_disability_condition"
+        },
+        {
+          "slot": "japan_pit_income_is_ordinary_domestic_source",
+          "canonicalRequestName": "jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_income_is_ordinary_domestic_source"
+        },
+        {
+          "slot": "japan_pit_is_resident_under_article_2",
+          "canonicalRequestName": "jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2"
+        },
+        {
+          "slot": "japan_pit_is_single_parent",
+          "canonicalRequestName": "jp:statutes/e-gov/340ac0000000033/article/81#input.japan_pit_is_single_parent"
+        },
+        {
+          "slot": "japan_pit_is_special_widow",
+          "canonicalRequestName": "jp:statutes/e-gov/340ac0000000033/article/81#input.japan_pit_is_special_widow"
+        },
+        {
+          "slot": "japan_pit_is_widow",
+          "canonicalRequestName": "jp:statutes/e-gov/340ac0000000033/article/81#input.japan_pit_is_widow"
+        },
+        {
+          "slot": "japan_pit_is_widow_or_widower",
+          "canonicalRequestName": "jp:statutes/e-gov/340ac0000000033/article/81#input.japan_pit_is_widow_or_widower"
+        },
+        {
+          "slot": "japan_pit_meets_working_student_nonincome_conditions",
+          "canonicalRequestName": "jp:statutes/e-gov/340ac0000000033/article/82#input.japan_pit_meets_working_student_nonincome_conditions"
+        },
+        {
+          "slot": "japan_pit_non_labor_income_amount",
+          "canonicalRequestName": "jp:statutes/e-gov/340ac0000000033/article/82#input.japan_pit_non_labor_income_amount"
+        },
+        {
+          "slot": "japan_pit_ordinary_dependent_count",
+          "canonicalRequestName": "jp:statutes/e-gov/340ac0000000033/article/84#input.japan_pit_ordinary_dependent_count"
+        },
+        {
+          "slot": "japan_pit_ordinary_disabled_person_count",
+          "canonicalRequestName": "jp:statutes/e-gov/340ac0000000033/article/79#input.japan_pit_ordinary_disabled_person_count"
+        },
+        {
+          "slot": "japan_pit_special_disabled_person_count",
+          "canonicalRequestName": "jp:statutes/e-gov/340ac0000000033/article/79#input.japan_pit_special_disabled_person_count"
+        },
+        {
+          "slot": "japan_pit_specific_relative_age",
+          "canonicalRequestName": "jp:statutes/e-gov/340ac0000000033/article/84-2#input.japan_pit_specific_relative_age"
+        },
+        {
+          "slot": "japan_pit_specific_relative_band_1_count",
+          "canonicalRequestName": "jp:statutes/e-gov/340ac0000000033/article/84-2#input.japan_pit_specific_relative_band_1_count"
+        },
+        {
+          "slot": "japan_pit_specific_relative_band_2_count",
+          "canonicalRequestName": "jp:statutes/e-gov/340ac0000000033/article/84-2#input.japan_pit_specific_relative_band_2_count"
+        },
+        {
+          "slot": "japan_pit_specific_relative_band_3_count",
+          "canonicalRequestName": "jp:statutes/e-gov/340ac0000000033/article/84-2#input.japan_pit_specific_relative_band_3_count"
+        },
+        {
+          "slot": "japan_pit_specific_relative_band_4_count",
+          "canonicalRequestName": "jp:statutes/e-gov/340ac0000000033/article/84-2#input.japan_pit_specific_relative_band_4_count"
+        },
+        {
+          "slot": "japan_pit_specific_relative_band_5_count",
+          "canonicalRequestName": "jp:statutes/e-gov/340ac0000000033/article/84-2#input.japan_pit_specific_relative_band_5_count"
+        },
+        {
+          "slot": "japan_pit_specific_relative_band_6_count",
+          "canonicalRequestName": "jp:statutes/e-gov/340ac0000000033/article/84-2#input.japan_pit_specific_relative_band_6_count"
+        },
+        {
+          "slot": "japan_pit_specific_relative_band_7_count",
+          "canonicalRequestName": "jp:statutes/e-gov/340ac0000000033/article/84-2#input.japan_pit_specific_relative_band_7_count"
+        },
+        {
+          "slot": "japan_pit_specific_relative_band_8_count",
+          "canonicalRequestName": "jp:statutes/e-gov/340ac0000000033/article/84-2#input.japan_pit_specific_relative_band_8_count"
+        },
+        {
+          "slot": "japan_pit_specific_relative_band_9_count",
+          "canonicalRequestName": "jp:statutes/e-gov/340ac0000000033/article/84-2#input.japan_pit_specific_relative_band_9_count"
+        },
+        {
+          "slot": "japan_pit_specific_relative_meets_non_income_conditions",
+          "canonicalRequestName": "jp:statutes/e-gov/340ac0000000033/article/84-2#input.japan_pit_specific_relative_meets_non_income_conditions"
+        },
+        {
+          "slot": "japan_pit_specific_relative_total_income",
+          "canonicalRequestName": "jp:statutes/e-gov/340ac0000000033/article/84-2#input.japan_pit_specific_relative_total_income"
+        },
+        {
+          "slot": "japan_pit_specified_dependent_count",
+          "canonicalRequestName": "jp:statutes/e-gov/340ac0000000033/article/84#input.japan_pit_specified_dependent_count"
+        },
+        {
+          "slot": "japan_pit_spouse_is_elderly",
+          "canonicalRequestName": "jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_spouse_is_elderly"
+        },
+        {
+          "slot": "japan_pit_spouse_meets_non_income_conditions",
+          "canonicalRequestName": "jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_spouse_meets_non_income_conditions"
+        },
+        {
+          "slot": "japan_pit_spouse_meets_special_deduction_non_income_conditions",
+          "canonicalRequestName": "jp:statutes/e-gov/340ac0000000033/article/83-2#input.japan_pit_spouse_meets_special_deduction_non_income_conditions"
+        },
+        {
+          "slot": "japan_pit_spouse_total_income",
+          "canonicalRequestName": "jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_spouse_total_income"
+        },
+        {
+          "slot": "japan_pit_taxpayer_total_income",
+          "canonicalRequestName": "jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_taxpayer_total_income"
+        },
+        {
+          "slot": "japan_pit_total_income_amount",
+          "canonicalRequestName": "jp:policies/nta/fixed-income-tax-credit/2024#input.japan_pit_total_income_amount"
+        },
+        {
+          "slot": "japan_public_pension_gross_receipts",
+          "canonicalRequestName": "jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_gross_receipts"
+        },
+        {
+          "slot": "japan_public_pension_other_income_excluding_public_pension",
+          "canonicalRequestName": "jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_other_income_excluding_public_pension"
+        },
+        {
+          "slot": "japan_public_pension_recipient_age_at_statutory_test_date",
+          "canonicalRequestName": "jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_recipient_age_at_statutory_test_date"
+        },
+        {
+          "slot": "japan_social_insurance_contributions_paid_or_withheld",
+          "canonicalRequestName": "jp:statutes/e-gov/340ac0000000033/article/74#input.japan_social_insurance_contributions_paid_or_withheld"
+        }
+      ],
+      "outputs": [
+        {
+          "id": "jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_article_28",
+          "label": "Employment income after deduction",
+          "role": "detail",
+          "dtype": "decimal",
+          "unit": "JPY",
+          "period": "Year",
+          "corpusCitationPath": "jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/28",
+          "sourceUrl": null
+        },
+        {
+          "id": "jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_deduction_article_28",
+          "label": "Employment-income deduction",
+          "role": "detail",
+          "dtype": "decimal",
+          "unit": "JPY",
+          "period": "Year",
+          "corpusCitationPath": "jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/28",
+          "sourceUrl": null
+        },
+        {
+          "id": "jp:statutes/e-gov/332ac0000000026/article/41-15-3#japan_public_pension_income",
+          "label": "Public-pension income after deduction",
+          "role": "detail",
+          "dtype": "decimal",
+          "unit": "JPY",
+          "period": "Year",
+          "corpusCitationPath": "jp/statute/e-gov/332ac0000000026/as-of/2017-04-01/article/41-15-3",
+          "sourceUrl": null
+        },
+        {
+          "id": "jp:statutes/e-gov/332ac0000000026/article/41-15-3#japan_public_pension_deduction",
+          "label": "Public-pension deduction",
+          "role": "detail",
+          "dtype": "decimal",
+          "unit": "JPY",
+          "period": "Year",
+          "corpusCitationPath": "jp/statute/e-gov/332ac0000000026/as-of/2017-04-01/article/41-15-3",
+          "sourceUrl": null
+        },
+        {
+          "id": "jp:statutes/e-gov/337ac0000000066/article/118#japan_pit_encoded_income_deductions",
+          "label": "Encoded personal deductions",
+          "role": "detail",
+          "dtype": "decimal",
+          "unit": "JPY",
+          "period": "Year",
+          "corpusCitationPath": "jp/statute/e-gov/337ac0000000066/as-of/2017-04-01/article/118",
+          "sourceUrl": null
+        },
+        {
+          "id": "jp:statutes/e-gov/337ac0000000066/article/118#japan_pit_taxable_general_income",
+          "label": "Taxable general income",
+          "role": "detail",
+          "dtype": "decimal",
+          "unit": "JPY",
+          "period": "Year",
+          "corpusCitationPath": "jp/statute/e-gov/337ac0000000066/as-of/2017-04-01/article/118",
+          "sourceUrl": null
+        },
+        {
+          "id": "jp:statutes/e-gov/340ac0000000033/article/89#japan_national_income_tax_article_89_base_tax",
+          "label": "Base national income tax",
+          "role": "detail",
+          "dtype": "decimal",
+          "unit": "JPY",
+          "period": "Year",
+          "corpusCitationPath": "jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/89",
+          "sourceUrl": null
+        },
+        {
+          "id": "jp:policies/nta/fixed-income-tax-credit/2024#japan_2024_fixed_income_tax_credit",
+          "label": "2024 fixed income-tax credit",
+          "role": "credit",
+          "dtype": "decimal",
+          "unit": "JPY",
+          "period": "Year",
+          "corpusCitationPath": "jp/guidance/nta/income-tax/fixed-credit/2024/document-1",
+          "sourceUrl": null
+        },
+        {
+          "id": "jp:statutes/e-gov/423ac0000000117/article/13#japan_reconstruction_special_income_tax",
+          "label": "Reconstruction special income tax",
+          "role": "detail",
+          "dtype": "decimal",
+          "unit": "JPY",
+          "period": "Year",
+          "corpusCitationPath": "jp/statute/e-gov/423ac0000000117/as-of/2017-04-01/article/13",
+          "sourceUrl": null
+        },
+        {
+          "id": "jp:policies/nta/defense-special-income-tax/2027#japan_defense_special_income_tax",
+          "label": "Defense special income tax",
+          "role": "detail",
+          "dtype": "decimal",
+          "unit": "JPY",
+          "period": "Year",
+          "corpusCitationPath": "jp/guidance/nta/income-tax/reform/2026/document-1",
+          "sourceUrl": null
+        },
+        {
+          "id": "jp:policies/nta/defense-special-income-tax/2027#japan_national_income_tax_including_national_surtaxes",
+          "label": "National income tax including surtaxes",
+          "role": "summary",
+          "dtype": "decimal",
+          "unit": "JPY",
+          "period": "Year",
+          "corpusCitationPath": "jp/guidance/nta/income-tax/reform/2026/document-1",
+          "sourceUrl": null
+        }
+      ]
+    },
+    {
+      "id": "employees-pension",
+      "label": "Employees’ Pension",
+      "description": "Employee share for an ordinary covered employee in the selected month.",
+      "artifact": "generated/artifacts/employees-pension.json",
+      "artifactSha256": "c11188f99ed4d7c06dac9dc1cb6b9134415617270cdd80224c36e1dd2f6fb364",
+      "cadence": "monthly",
+      "summaryBucket": "monthlyDeduction",
+      "summaryOutput": "jp:statutes/e-gov/329ac0000000115/article/81#japan_employees_pension_employee_total_contribution",
+      "inputs": [
+        {
+          "slot": "japan_employees_pension_employee_pays_share_in_cash",
+          "canonicalRequestName": "jp:statutes/e-gov/329ac0000000115/article/81#input.japan_employees_pension_employee_pays_share_in_cash"
+        },
+        {
+          "slot": "japan_employees_pension_gross_bonus",
+          "canonicalRequestName": "jp:statutes/e-gov/329ac0000000115/article/24-4#input.japan_employees_pension_gross_bonus"
+        },
+        {
+          "slot": "japan_employees_pension_is_ordinary_covered_employee",
+          "canonicalRequestName": "jp:statutes/e-gov/329ac0000000115/article/81#input.japan_employees_pension_is_ordinary_covered_employee"
+        },
+        {
+          "slot": "japan_employees_pension_monthly_remuneration",
+          "canonicalRequestName": "jp:statutes/e-gov/329ac0000000115/article/20#input.japan_employees_pension_monthly_remuneration"
+        }
+      ],
+      "outputs": [
+        {
+          "id": "jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_monthly_remuneration",
+          "label": "Standard monthly remuneration",
+          "role": "detail",
+          "dtype": "decimal",
+          "unit": "JPY",
+          "period": "Month",
+          "corpusCitationPath": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20",
+          "sourceUrl": null
+        },
+        {
+          "id": "jp:statutes/e-gov/329ac0000000115/article/81#japan_employees_pension_employee_monthly_contribution",
+          "label": "Employee monthly contribution",
+          "role": "detail",
+          "dtype": "decimal",
+          "unit": "JPY",
+          "period": "Month",
+          "corpusCitationPath": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/81",
+          "sourceUrl": null
+        },
+        {
+          "id": "jp:statutes/e-gov/329ac0000000115/article/81#japan_employees_pension_employee_bonus_contribution",
+          "label": "Employee bonus contribution",
+          "role": "detail",
+          "dtype": "decimal",
+          "unit": "JPY",
+          "period": "Month",
+          "corpusCitationPath": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/81",
+          "sourceUrl": null
+        },
+        {
+          "id": "jp:statutes/e-gov/329ac0000000115/article/81#japan_employees_pension_employee_total_contribution",
+          "label": "Employees’ Pension deduction",
+          "role": "summary",
+          "dtype": "decimal",
+          "unit": "JPY",
+          "period": "Month",
+          "corpusCitationPath": "jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/81",
+          "sourceUrl": null
+        }
+      ]
+    },
+    {
+      "id": "national-pension",
+      "label": "National Pension",
+      "description": "Monthly Category 1 contribution after encoded exemptions and deferrals.",
+      "artifact": "generated/artifacts/national-pension.json",
+      "artifactSha256": "41f49119050b27164675b703a6e3877c63bcc9cd6ef9c2d18d3be2cc1915b443",
+      "cadence": "monthly",
+      "summaryBucket": "monthlyDeduction",
+      "summaryOutput": "jp:policies/jps/national-pension/exemptions-and-deferrals#japan_national_pension_monthly_contribution_after_exemptions_and_deferrals",
+      "inputs": [
+        {
+          "slot": "japan_national_pension_applicant_adjusted_income",
+          "canonicalRequestName": "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_applicant_adjusted_income"
+        },
+        {
+          "slot": "japan_national_pension_applicant_non_income_exemption_condition",
+          "canonicalRequestName": "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_applicant_non_income_exemption_condition"
+        },
+        {
+          "slot": "japan_national_pension_elderly_dependent_count",
+          "canonicalRequestName": "jp:regulations/e-gov/334co0000000184/article/6-8-2#input.japan_national_pension_elderly_dependent_count"
+        },
+        {
+          "slot": "japan_national_pension_exemption_application_approved",
+          "canonicalRequestName": "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_exemption_application_approved"
+        },
+        {
+          "slot": "japan_national_pension_has_statutory_full_exemption",
+          "canonicalRequestName": "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_has_statutory_full_exemption"
+        },
+        {
+          "slot": "japan_national_pension_income_test_dependent_count",
+          "canonicalRequestName": "jp:regulations/e-gov/334co0000000184/article/6-7#input.japan_national_pension_income_test_dependent_count"
+        },
+        {
+          "slot": "japan_national_pension_is_category_one_insured",
+          "canonicalRequestName": "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_is_category_one_insured"
+        },
+        {
+          "slot": "japan_national_pension_is_student",
+          "canonicalRequestName": "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_is_student"
+        },
+        {
+          "slot": "japan_national_pension_ordinary_dependent_count",
+          "canonicalRequestName": "jp:regulations/e-gov/334co0000000184/article/6-8-2#input.japan_national_pension_ordinary_dependent_count"
+        },
+        {
+          "slot": "japan_national_pension_specified_dependent_count",
+          "canonicalRequestName": "jp:regulations/e-gov/334co0000000184/article/6-8-2#input.japan_national_pension_specified_dependent_count"
+        },
+        {
+          "slot": "japan_national_pension_spouse_and_household_head_meet_full_exemption_conditions",
+          "canonicalRequestName": "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_spouse_and_household_head_meet_full_exemption_conditions"
+        },
+        {
+          "slot": "japan_national_pension_spouse_and_household_head_meet_half_exemption_conditions",
+          "canonicalRequestName": "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_spouse_and_household_head_meet_half_exemption_conditions"
+        },
+        {
+          "slot": "japan_national_pension_spouse_and_household_head_meet_one_quarter_exemption_conditions",
+          "canonicalRequestName": "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_spouse_and_household_head_meet_one_quarter_exemption_conditions"
+        },
+        {
+          "slot": "japan_national_pension_spouse_and_household_head_meet_three_quarter_exemption_conditions",
+          "canonicalRequestName": "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_spouse_and_household_head_meet_three_quarter_exemption_conditions"
+        },
+        {
+          "slot": "japan_national_pension_spouse_meets_payment_deferral_conditions",
+          "canonicalRequestName": "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_spouse_meets_payment_deferral_conditions"
+        },
+        {
+          "slot": "japan_national_pension_student_deferral_approved",
+          "canonicalRequestName": "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_student_deferral_approved"
+        },
+        {
+          "slot": "japan_national_pension_student_or_deferral_non_income_condition",
+          "canonicalRequestName": "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_student_or_deferral_non_income_condition"
+        },
+        {
+          "slot": "japan_national_pension_under_50_deferral_approved",
+          "canonicalRequestName": "jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_under_50_deferral_approved"
+        }
+      ],
+      "outputs": [
+        {
+          "id": "jp:policies/jps/national-pension/contribution-history#japan_national_pension_standard_monthly_contribution",
+          "label": "Standard National Pension contribution",
+          "role": "detail",
+          "dtype": "decimal",
+          "unit": "JPY",
+          "period": "Month",
+          "corpusCitationPath": "jp/guidance/jps/national-pension/contribution-history/block-1",
+          "sourceUrl": null
+        },
+        {
+          "id": "jp:policies/jps/national-pension/exemptions-and-deferrals#japan_national_pension_monthly_contribution_after_exemptions_and_deferrals",
+          "label": "National Pension deduction after relief",
+          "role": "summary",
+          "dtype": "decimal",
+          "unit": "JPY",
+          "period": "Month",
+          "corpusCitationPath": "jp/statute/e-gov/334ac0000000141/as-of/2017-04-01/article/90",
+          "sourceUrl": null
+        }
+      ]
+    },
+    {
+      "id": "employment-insurance",
+      "label": "Employment Insurance",
+      "description": "Employee Employment Insurance deduction from the selected wage payment.",
+      "artifact": "generated/artifacts/employment-insurance.json",
+      "artifactSha256": "f25b4298965bd188ba755a1a11fa9c4b76cde72db95a3ffe57eefedb301255f3",
+      "cadence": "monthly",
+      "summaryBucket": "monthlyDeduction",
+      "summaryOutput": "jp:policies/mhlw/employment-insurance/fy2017-rates#japan_employment_insurance_employee_contribution",
+      "inputs": [
+        {
+          "slot": "japan_employment_insurance_covered_wages_paid",
+          "canonicalRequestName": "jp:policies/mhlw/employment-insurance/fy2017-rates#input.japan_employment_insurance_covered_wages_paid"
+        },
+        {
+          "slot": "japan_employment_insurance_is_agriculture_fisheries_or_sake_business",
+          "canonicalRequestName": "jp:policies/mhlw/employment-insurance/fy2017-rates#input.japan_employment_insurance_is_agriculture_fisheries_or_sake_business"
+        },
+        {
+          "slot": "japan_employment_insurance_is_construction_business",
+          "canonicalRequestName": "jp:policies/mhlw/employment-insurance/fy2017-rates#input.japan_employment_insurance_is_construction_business"
+        },
+        {
+          "slot": "japan_employment_insurance_is_withheld_from_wages",
+          "canonicalRequestName": "jp:policies/mhlw/employment-insurance/fy2017-rates#input.japan_employment_insurance_is_withheld_from_wages"
+        }
+      ],
+      "outputs": [
+        {
+          "id": "jp:policies/mhlw/employment-insurance/fy2017-rates#japan_employment_insurance_employee_rate",
+          "label": "Employee contribution rate",
+          "role": "rate",
+          "dtype": "decimal",
+          "unit": null,
+          "period": "Month",
+          "corpusCitationPath": "jp/guidance/mhlw/employment-insurance/rates/fy2017/document-1",
+          "sourceUrl": null
+        },
+        {
+          "id": "jp:policies/mhlw/employment-insurance/fy2017-rates#japan_employment_insurance_employee_contribution",
+          "label": "Employment Insurance deduction",
+          "role": "summary",
+          "dtype": "decimal",
+          "unit": "JPY",
+          "period": "Month",
+          "corpusCitationPath": "jp/guidance/mhlw/employment-insurance/rates/fy2017/document-1",
+          "sourceUrl": null
+        }
+      ]
+    },
+    {
+      "id": "child-allowance",
+      "label": "Child Allowance",
+      "description": "National monthly Child Allowance for the encoded child bands and income limits.",
+      "artifact": "generated/artifacts/child-allowance.json",
+      "artifactSha256": "ef00d78e6cf14b248f74ec9f42645a2e0266f9c6c9d9ea0d893a0c01d336e294",
+      "cadence": "monthly",
+      "summaryBucket": "monthlyBenefit",
+      "summaryOutput": "jp:statutes/e-gov/346ac0000000073/article/6#japan_child_allowance_monthly",
+      "inputs": [
+        {
+          "slot": "japan_child_allowance_assessed_income",
+          "canonicalRequestName": "jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_assessed_income"
+        },
+        {
+          "slot": "japan_child_allowance_elderly_dependent_count",
+          "canonicalRequestName": "jp:regulations/e-gov/346co0000000281/article/1#input.japan_child_allowance_elderly_dependent_count"
+        },
+        {
+          "slot": "japan_child_allowance_high_school_first_or_second_count",
+          "canonicalRequestName": "jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_high_school_first_or_second_count"
+        },
+        {
+          "slot": "japan_child_allowance_high_school_third_or_later_count",
+          "canonicalRequestName": "jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_high_school_third_or_later_count"
+        },
+        {
+          "slot": "japan_child_allowance_junior_high_first_or_second_count",
+          "canonicalRequestName": "jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_junior_high_first_or_second_count"
+        },
+        {
+          "slot": "japan_child_allowance_junior_high_third_or_later_count",
+          "canonicalRequestName": "jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_junior_high_third_or_later_count"
+        },
+        {
+          "slot": "japan_child_allowance_meets_nonfinancial_conditions",
+          "canonicalRequestName": "jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_meets_nonfinancial_conditions"
+        },
+        {
+          "slot": "japan_child_allowance_ordinary_dependent_count",
+          "canonicalRequestName": "jp:regulations/e-gov/346co0000000281/article/1#input.japan_child_allowance_ordinary_dependent_count"
+        },
+        {
+          "slot": "japan_child_allowance_primary_age_first_or_second_count",
+          "canonicalRequestName": "jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_primary_age_first_or_second_count"
+        },
+        {
+          "slot": "japan_child_allowance_primary_age_third_or_later_count",
+          "canonicalRequestName": "jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_primary_age_third_or_later_count"
+        },
+        {
+          "slot": "japan_child_allowance_under_three_first_or_second_count",
+          "canonicalRequestName": "jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_under_three_first_or_second_count"
+        },
+        {
+          "slot": "japan_child_allowance_under_three_third_or_later_count",
+          "canonicalRequestName": "jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_under_three_third_or_later_count"
+        }
+      ],
+      "outputs": [
+        {
+          "id": "jp:regulations/e-gov/346co0000000281/article/1#japan_child_allowance_ordinary_income_limit",
+          "label": "Ordinary income limit",
+          "role": "detail",
+          "dtype": "decimal",
+          "unit": "JPY",
+          "period": "Month",
+          "corpusCitationPath": "jp/regulation/e-gov/346co0000000281/as-of/2017-04-01/article/1",
+          "sourceUrl": null
+        },
+        {
+          "id": "jp:statutes/e-gov/346ac0000000073/article/6#japan_child_allowance_monthly",
+          "label": "Child Allowance",
+          "role": "summary",
+          "dtype": "decimal",
+          "unit": "JPY",
+          "period": "Month",
+          "corpusCitationPath": "jp/statute/e-gov/346ac0000000073/as-of/2017-04-01/article/6",
+          "sourceUrl": null
+        }
+      ]
+    },
+    {
+      "id": "child-rearing-allowance",
+      "label": "Child Rearing Allowance",
+      "description": "Monthly full or partial allowance using claimant, supporter, and child-support inputs.",
+      "artifact": "generated/artifacts/child-rearing-allowance.json",
+      "artifactSha256": "eb90dea0180ba99c96b5ecd6f45bb965ee3296e6ce0d77ba4d543a1ec769911a",
+      "cadence": "monthly",
+      "summaryBucket": "monthlyBenefit",
+      "summaryOutput": "jp:regulations/e-gov/336co0000000405/article/2-4#japan_child_rearing_allowance_monthly",
+      "inputs": [
+        {
+          "slot": "japan_child_rearing_allowance_adjusted_prior_year_income",
+          "canonicalRequestName": "jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_adjusted_prior_year_income"
+        },
+        {
+          "slot": "japan_child_rearing_allowance_child_support_received",
+          "canonicalRequestName": "jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_child_support_received"
+        },
+        {
+          "slot": "japan_child_rearing_allowance_elderly_dependent_count",
+          "canonicalRequestName": "jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_elderly_dependent_count"
+        },
+        {
+          "slot": "japan_child_rearing_allowance_highest_supporter_adjusted_income",
+          "canonicalRequestName": "jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_highest_supporter_adjusted_income"
+        },
+        {
+          "slot": "japan_child_rearing_allowance_income_limit_person_count",
+          "canonicalRequestName": "jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_income_limit_person_count"
+        },
+        {
+          "slot": "japan_child_rearing_allowance_meets_family_conditions",
+          "canonicalRequestName": "jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_meets_family_conditions"
+        },
+        {
+          "slot": "japan_child_rearing_allowance_qualifying_child_count",
+          "canonicalRequestName": "jp:regulations/e-gov/336co0000000405/article/2-2#input.japan_child_rearing_allowance_qualifying_child_count"
+        },
+        {
+          "slot": "japan_child_rearing_allowance_specified_dependent_count",
+          "canonicalRequestName": "jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_specified_dependent_count"
+        },
+        {
+          "slot": "japan_child_rearing_allowance_supporter_dependent_count",
+          "canonicalRequestName": "jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_supporter_dependent_count"
+        },
+        {
+          "slot": "japan_child_rearing_allowance_supporter_elderly_dependent_count",
+          "canonicalRequestName": "jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_supporter_elderly_dependent_count"
+        }
+      ],
+      "outputs": [
+        {
+          "id": "jp:regulations/e-gov/336co0000000405/article/2-4#japan_child_rearing_allowance_assessed_income",
+          "label": "Assessed allowance income",
+          "role": "detail",
+          "dtype": "decimal",
+          "unit": "JPY",
+          "period": "Month",
+          "corpusCitationPath": "jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4",
+          "sourceUrl": null
+        },
+        {
+          "id": "jp:regulations/e-gov/336co0000000405/article/2-4#japan_child_rearing_allowance_full_payment_income_limit",
+          "label": "Full-payment income limit",
+          "role": "detail",
+          "dtype": "decimal",
+          "unit": "JPY",
+          "period": "Month",
+          "corpusCitationPath": "jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4",
+          "sourceUrl": null
+        },
+        {
+          "id": "jp:regulations/e-gov/336co0000000405/article/2-4#japan_child_rearing_allowance_partial_payment_income_limit",
+          "label": "Partial-payment income limit",
+          "role": "detail",
+          "dtype": "decimal",
+          "unit": "JPY",
+          "period": "Month",
+          "corpusCitationPath": "jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4",
+          "sourceUrl": null
+        },
+        {
+          "id": "jp:regulations/e-gov/336co0000000405/article/2-4#japan_child_rearing_allowance_monthly",
+          "label": "Child Rearing Allowance",
+          "role": "summary",
+          "dtype": "decimal",
+          "unit": "JPY",
+          "period": "Month",
+          "corpusCitationPath": "jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4",
+          "sourceUrl": null
+        }
+      ]
+    },
+    {
+      "id": "special-child-rearing-allowance",
+      "label": "Special Child Rearing Allowance",
+      "description": "Monthly grade-one and grade-two disability-related child allowance.",
+      "artifact": "generated/artifacts/special-child-rearing-allowance.json",
+      "artifactSha256": "a646a6c67999e3129218723b250ceac8e23e0061a2a17feedd8d6b28fd13f112",
+      "cadence": "monthly",
+      "summaryBucket": "monthlyBenefit",
+      "summaryOutput": "jp:regulations/e-gov/350co0000000207/article/5-2#japan_special_child_rearing_allowance_monthly",
+      "inputs": [
+        {
+          "slot": "japan_disability_allowance_supporter_dependent_count",
+          "canonicalRequestName": "jp:regulations/e-gov/350co0000000207/article/2#input.japan_disability_allowance_supporter_dependent_count"
+        },
+        {
+          "slot": "japan_disability_allowance_supporter_elderly_dependent_count",
+          "canonicalRequestName": "jp:regulations/e-gov/350co0000000207/article/2#input.japan_disability_allowance_supporter_elderly_dependent_count"
+        },
+        {
+          "slot": "japan_special_child_rearing_allowance_claimant_adjusted_income",
+          "canonicalRequestName": "jp:regulations/e-gov/350co0000000207/article/5-2#input.japan_special_child_rearing_allowance_claimant_adjusted_income"
+        },
+        {
+          "slot": "japan_special_child_rearing_allowance_claimant_elderly_dependent_count",
+          "canonicalRequestName": "jp:regulations/e-gov/350co0000000207/article/2#input.japan_special_child_rearing_allowance_claimant_elderly_dependent_count"
+        },
+        {
+          "slot": "japan_special_child_rearing_allowance_claimant_ordinary_dependent_count",
+          "canonicalRequestName": "jp:regulations/e-gov/350co0000000207/article/2#input.japan_special_child_rearing_allowance_claimant_ordinary_dependent_count"
+        },
+        {
+          "slot": "japan_special_child_rearing_allowance_claimant_specified_dependent_count",
+          "canonicalRequestName": "jp:regulations/e-gov/350co0000000207/article/2#input.japan_special_child_rearing_allowance_claimant_specified_dependent_count"
+        },
+        {
+          "slot": "japan_special_child_rearing_allowance_grade_one_child_count",
+          "canonicalRequestName": "jp:regulations/e-gov/350co0000000207/article/5-2#input.japan_special_child_rearing_allowance_grade_one_child_count"
+        },
+        {
+          "slot": "japan_special_child_rearing_allowance_grade_two_child_count",
+          "canonicalRequestName": "jp:regulations/e-gov/350co0000000207/article/5-2#input.japan_special_child_rearing_allowance_grade_two_child_count"
+        },
+        {
+          "slot": "japan_special_child_rearing_allowance_highest_supporter_adjusted_income",
+          "canonicalRequestName": "jp:regulations/e-gov/350co0000000207/article/5-2#input.japan_special_child_rearing_allowance_highest_supporter_adjusted_income"
+        },
+        {
+          "slot": "japan_special_child_rearing_allowance_meets_nonfinancial_conditions",
+          "canonicalRequestName": "jp:regulations/e-gov/350co0000000207/article/5-2#input.japan_special_child_rearing_allowance_meets_nonfinancial_conditions"
+        }
+      ],
+      "outputs": [
+        {
+          "id": "jp:regulations/e-gov/350co0000000207/article/5-2#japan_special_child_rearing_allowance_monthly",
+          "label": "Special Child Rearing Allowance",
+          "role": "summary",
+          "dtype": "decimal",
+          "unit": "JPY",
+          "period": "Month",
+          "corpusCitationPath": "jp/regulation/e-gov/350co0000000207/as-of/2017-04-01/article/5-2",
+          "sourceUrl": null
+        }
+      ]
+    },
+    {
+      "id": "disabled-child-welfare-allowance",
+      "label": "Disabled Child Welfare Allowance",
+      "description": "Monthly national cash allowance after encoded income tests.",
+      "artifact": "generated/artifacts/disabled-child-welfare-allowance.json",
+      "artifactSha256": "a2f9e16b9aedc9bd274685968568bdac55a4aa2db1a893c32e30425c44311ac9",
+      "cadence": "monthly",
+      "summaryBucket": "monthlyBenefit",
+      "summaryOutput": "jp:regulations/e-gov/350co0000000207/article/9-2#japan_disabled_child_welfare_allowance_monthly",
+      "inputs": [
+        {
+          "slot": "japan_disability_allowance_supporter_dependent_count",
+          "canonicalRequestName": "jp:regulations/e-gov/350co0000000207/article/2#input.japan_disability_allowance_supporter_dependent_count"
+        },
+        {
+          "slot": "japan_disability_allowance_supporter_elderly_dependent_count",
+          "canonicalRequestName": "jp:regulations/e-gov/350co0000000207/article/2#input.japan_disability_allowance_supporter_elderly_dependent_count"
+        },
+        {
+          "slot": "japan_disabled_child_welfare_allowance_claimant_adjusted_income",
+          "canonicalRequestName": "jp:regulations/e-gov/350co0000000207/article/9-2#input.japan_disabled_child_welfare_allowance_claimant_adjusted_income"
+        },
+        {
+          "slot": "japan_disabled_child_welfare_allowance_highest_supporter_adjusted_income",
+          "canonicalRequestName": "jp:regulations/e-gov/350co0000000207/article/9-2#input.japan_disabled_child_welfare_allowance_highest_supporter_adjusted_income"
+        },
+        {
+          "slot": "japan_disabled_child_welfare_allowance_meets_nonfinancial_conditions",
+          "canonicalRequestName": "jp:regulations/e-gov/350co0000000207/article/9-2#input.japan_disabled_child_welfare_allowance_meets_nonfinancial_conditions"
+        },
+        {
+          "slot": "japan_individual_disability_allowance_claimant_elderly_dependent_count",
+          "canonicalRequestName": "jp:regulations/e-gov/350co0000000207/article/7#input.japan_individual_disability_allowance_claimant_elderly_dependent_count"
+        },
+        {
+          "slot": "japan_individual_disability_allowance_claimant_ordinary_dependent_count",
+          "canonicalRequestName": "jp:regulations/e-gov/350co0000000207/article/7#input.japan_individual_disability_allowance_claimant_ordinary_dependent_count"
+        },
+        {
+          "slot": "japan_individual_disability_allowance_claimant_specified_dependent_count",
+          "canonicalRequestName": "jp:regulations/e-gov/350co0000000207/article/7#input.japan_individual_disability_allowance_claimant_specified_dependent_count"
+        },
+        {
+          "slot": "japan_special_child_rearing_allowance_claimant_elderly_dependent_count",
+          "canonicalRequestName": "jp:regulations/e-gov/350co0000000207/article/2#input.japan_special_child_rearing_allowance_claimant_elderly_dependent_count"
+        },
+        {
+          "slot": "japan_special_child_rearing_allowance_claimant_ordinary_dependent_count",
+          "canonicalRequestName": "jp:regulations/e-gov/350co0000000207/article/2#input.japan_special_child_rearing_allowance_claimant_ordinary_dependent_count"
+        },
+        {
+          "slot": "japan_special_child_rearing_allowance_claimant_specified_dependent_count",
+          "canonicalRequestName": "jp:regulations/e-gov/350co0000000207/article/2#input.japan_special_child_rearing_allowance_claimant_specified_dependent_count"
+        }
+      ],
+      "outputs": [
+        {
+          "id": "jp:regulations/e-gov/350co0000000207/article/9-2#japan_disabled_child_welfare_allowance_monthly",
+          "label": "Disabled Child Welfare Allowance",
+          "role": "summary",
+          "dtype": "decimal",
+          "unit": "JPY",
+          "period": "Month",
+          "corpusCitationPath": "jp/regulation/e-gov/350co0000000207/as-of/2017-04-01/article/9-2",
+          "sourceUrl": null
+        }
+      ]
+    },
+    {
+      "id": "special-disability-allowance",
+      "label": "Special Disability Allowance",
+      "description": "Monthly national cash allowance after encoded income tests.",
+      "artifact": "generated/artifacts/special-disability-allowance.json",
+      "artifactSha256": "9813b8b2889cdd81951d42a0a1c919f753280ffb20423c6a4e00a3118902c00c",
+      "cadence": "monthly",
+      "summaryBucket": "monthlyBenefit",
+      "summaryOutput": "jp:regulations/e-gov/350co0000000207/article/10-2#japan_special_disability_allowance_monthly",
+      "inputs": [
+        {
+          "slot": "japan_disability_allowance_supporter_dependent_count",
+          "canonicalRequestName": "jp:regulations/e-gov/350co0000000207/article/2#input.japan_disability_allowance_supporter_dependent_count"
+        },
+        {
+          "slot": "japan_disability_allowance_supporter_elderly_dependent_count",
+          "canonicalRequestName": "jp:regulations/e-gov/350co0000000207/article/2#input.japan_disability_allowance_supporter_elderly_dependent_count"
+        },
+        {
+          "slot": "japan_individual_disability_allowance_claimant_elderly_dependent_count",
+          "canonicalRequestName": "jp:regulations/e-gov/350co0000000207/article/7#input.japan_individual_disability_allowance_claimant_elderly_dependent_count"
+        },
+        {
+          "slot": "japan_individual_disability_allowance_claimant_ordinary_dependent_count",
+          "canonicalRequestName": "jp:regulations/e-gov/350co0000000207/article/7#input.japan_individual_disability_allowance_claimant_ordinary_dependent_count"
+        },
+        {
+          "slot": "japan_individual_disability_allowance_claimant_specified_dependent_count",
+          "canonicalRequestName": "jp:regulations/e-gov/350co0000000207/article/7#input.japan_individual_disability_allowance_claimant_specified_dependent_count"
+        },
+        {
+          "slot": "japan_special_child_rearing_allowance_claimant_elderly_dependent_count",
+          "canonicalRequestName": "jp:regulations/e-gov/350co0000000207/article/2#input.japan_special_child_rearing_allowance_claimant_elderly_dependent_count"
+        },
+        {
+          "slot": "japan_special_child_rearing_allowance_claimant_ordinary_dependent_count",
+          "canonicalRequestName": "jp:regulations/e-gov/350co0000000207/article/2#input.japan_special_child_rearing_allowance_claimant_ordinary_dependent_count"
+        },
+        {
+          "slot": "japan_special_child_rearing_allowance_claimant_specified_dependent_count",
+          "canonicalRequestName": "jp:regulations/e-gov/350co0000000207/article/2#input.japan_special_child_rearing_allowance_claimant_specified_dependent_count"
+        },
+        {
+          "slot": "japan_special_disability_allowance_claimant_adjusted_income",
+          "canonicalRequestName": "jp:regulations/e-gov/350co0000000207/article/10-2#input.japan_special_disability_allowance_claimant_adjusted_income"
+        },
+        {
+          "slot": "japan_special_disability_allowance_highest_supporter_adjusted_income",
+          "canonicalRequestName": "jp:regulations/e-gov/350co0000000207/article/10-2#input.japan_special_disability_allowance_highest_supporter_adjusted_income"
+        },
+        {
+          "slot": "japan_special_disability_allowance_meets_nonfinancial_conditions",
+          "canonicalRequestName": "jp:regulations/e-gov/350co0000000207/article/10-2#input.japan_special_disability_allowance_meets_nonfinancial_conditions"
+        }
+      ],
+      "outputs": [
+        {
+          "id": "jp:regulations/e-gov/350co0000000207/article/10-2#japan_special_disability_allowance_monthly",
+          "label": "Special Disability Allowance",
+          "role": "summary",
+          "dtype": "decimal",
+          "unit": "JPY",
+          "period": "Month",
+          "corpusCitationPath": "jp/regulation/e-gov/350co0000000207/as-of/2017-04-01/article/10-2",
+          "sourceUrl": null
+        }
+      ]
+    }
+  ]
+}

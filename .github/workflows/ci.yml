@@ -1,0 +1,77 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  app:
+    name: Browser app
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+      - run: npm ci
+      - run: npm run verify:generated
+      - run: npm run verify:wasm
+      - run: npm test
+      - run: npm run check
+      - run: npm run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: browser-build
+          path: dist
+          if-no-files-found: error
+
+  reproducibility:
+    name: Recompile pinned policy and WASM
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
+        with:
+          repository: anth-volk/rulespec-jp
+          ref: 0113ad599d6d458b3343c23039533b1a4827121f
+          path: vendor/rulespec-jp
+      - uses: actions/checkout@v4
+        with:
+          repository: anth-volk/axiom-rules-engine
+          ref: e5e40d40353f8459da4e46a9feae7279c2fecccc
+          path: vendor/axiom-rules-engine
+      - uses: actions/checkout@v4
+        with:
+          repository: anth-volk/axiom-compose
+          ref: 9a514aca29c85a4a5f30a63f2275f9a362dd2b7a
+          path: vendor/axiom-compose
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - uses: dtolnay/rust-toolchain@1.94.0
+        with:
+          targets: wasm32-unknown-unknown
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: vendor/axiom-rules-engine
+
+      - run: cargo install wasm-pack --version 0.13.1 --locked
+      - run: npm ci
+      - run: npm run build:policy
+      - run: git diff --exit-code -- public/engine public/generated
+      - run: npm run verify:native
+        env:
+          JP_ENGINE_BIN: vendor/axiom-rules-engine/target/release/axiom-rules-engine
+      - run: npm run build

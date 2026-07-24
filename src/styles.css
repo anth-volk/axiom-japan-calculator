@@ -327,7 +327,7 @@ details[open] > summary .group-meta svg, details[open] > summary .program-amount
 .explicit-note { margin-top: 32px; border-color: #bd6f61; background: #f3e8e3; }
 .wizard-lead-grid {
   display: grid;
-  grid-template-columns: minmax(260px, 1.5fr) minmax(140px, .55fr) minmax(190px, .8fr);
+  grid-template-columns: minmax(260px, 1.5fr) minmax(190px, .8fr) minmax(170px, .7fr);
   gap: 22px;
   padding-bottom: 32px;
   border-bottom: 1px solid var(--line);
@@ -384,7 +384,7 @@ details[open] > summary .group-meta svg, details[open] > summary .program-amount
 .member-heading strong { overflow: hidden; font-family: Georgia, "Yu Mincho", serif; font-size: 18px; font-weight: 500; text-overflow: ellipsis; white-space: nowrap; }
 .member-biography {
   display: grid;
-  grid-template-columns: 1.2fr .85fr 1fr;
+  grid-template-columns: 1.2fr 1fr;
   gap: 16px;
 }
 .member-calculate, .auto-deduction {

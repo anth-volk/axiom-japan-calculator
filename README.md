@@ -50,9 +50,10 @@ artifacts themselves do not yet consume a multi-person relationship graph.
 The wizard is a conventional family-member builder arranged vertically above
 the result:
 
-1. **Household** selects the calendar year, household size, marital status,
-   member roles, birthdates, and which members receive an individual
-   tax-and-contribution calculation.
+1. **Household** selects the calendar year, marital status, number of children,
+   birthdates, and which members receive an individual tax-and-contribution
+   calculation. The wizard creates one primary adult, a spouse when married,
+   and the selected number of children.
 2. **Income & insurance** collects annual tax measures and monthly social
    insurance facts for each selected member. June and December bonuses can
    differ from ordinary monthly remuneration.

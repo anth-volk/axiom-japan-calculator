@@ -18,14 +18,13 @@ import {
 } from "../i18n/translations";
 import {
   ageAtYearEnd,
-  createMember,
+  reconcileHouseholdComposition,
   type ChildAllowanceBand,
   type DependentCategory,
   type DisabilityCategory,
   type HouseholdDraft,
   type HouseholdMember,
   type MaritalStatus,
-  type MemberRole,
 } from "../policy/household";
 import {
   displayToYen,
@@ -128,8 +127,8 @@ const COPY = {
     calendarYear: "Calendar year",
     calendarNote:
       "Individual income tax is assessed by calendar year. 2017 begins at the model’s April 1 support boundary.",
-    size: "Household size",
     marital: "Marital status",
+    children: "Number of children",
     maritalOptions: {
       single: "Single",
       married: "Married",
@@ -137,7 +136,6 @@ const COPY = {
       widowed: "Widowed",
     },
     name: "Name or label",
-    role: "Household role",
     roles: {
       primary: "Primary taxpayer / claimant",
       spouse: "Spouse",
@@ -241,8 +239,8 @@ const COPY = {
     calendarYear: "暦年",
     calendarNote:
       "個人所得税は暦年単位です。2017年はモデルの対応開始日である4月1日から計算します。",
-    size: "世帯人数",
     marital: "婚姻状況",
+    children: "子どもの人数",
     maritalOptions: {
       single: "未婚",
       married: "既婚",
@@ -250,7 +248,6 @@ const COPY = {
       widowed: "死別",
     },
     name: "氏名または表示名",
-    role: "世帯での役割",
     roles: {
       primary: "主たる納税者・受給者",
       spouse: "配偶者",
@@ -614,33 +611,6 @@ export function HouseholdWizard({
     }));
   }
 
-  function setHouseholdSize(size: number) {
-    const nextSize = Math.max(1, Math.min(10, size));
-    const members = household.members.slice(0, nextSize);
-    while (members.length < nextSize) {
-      const role: MemberRole =
-        household.maritalStatus === "married" &&
-        !members.some((member) => member.role === "spouse")
-          ? "spouse"
-          : "child";
-      const member = createMember(manifest, members.length, role);
-      member.name =
-        language === "ja"
-          ? role === "spouse"
-            ? "配偶者"
-            : role === "child"
-              ? `子${members.length}`
-              : `世帯員${members.length + 1}`
-          : role === "spouse"
-            ? "Spouse"
-            : role === "child"
-              ? `Child ${members.length}`
-              : `Member ${members.length + 1}`;
-      members.push(member);
-    }
-    onChange({ ...household, members });
-  }
-
   function setCalendarYear(calendarYear: number) {
     const members = household.members.map((member) => ({
       ...member,
@@ -654,26 +624,27 @@ export function HouseholdWizard({
   }
 
   function setMaritalStatus(maritalStatus: MaritalStatus) {
-    const members = household.members.map((member) => ({ ...member }));
-    if (maritalStatus === "married" && members.length > 1) {
-      const existingSpouse = members.find((member) => member.role === "spouse");
-      if (!existingSpouse) {
-        members[1] = {
-          ...members[1],
-          role: "spouse",
-          calculateTaxAndContributions: true,
-          dependentCategory: "none",
-          childAllowanceBand: "none",
-        };
-      }
-    } else if (maritalStatus !== "married") {
-      for (let index = 1; index < members.length; index += 1) {
-        if (members[index].role === "spouse") {
-          members[index] = { ...members[index], role: "other" };
-        }
-      }
-    }
-    onChange({ ...household, maritalStatus, members });
+    onChange(
+      reconcileHouseholdComposition(
+        manifest,
+        household,
+        maritalStatus,
+        household.members.filter((member) => member.role === "child").length,
+        language,
+      ),
+    );
+  }
+
+  function setChildCount(childCount: number) {
+    onChange(
+      reconcileHouseholdComposition(
+        manifest,
+        household,
+        household.maritalStatus,
+        childCount,
+        language,
+      ),
+    );
   }
 
   function goToStep(nextStep: number) {
@@ -758,19 +729,9 @@ export function HouseholdWizard({
                 <small>{copy.calendarNote}</small>
               </label>
               <label>
-                <span>{copy.size}</span>
-                <input
-                  disabled={disabled}
-                  max="10"
-                  min="1"
-                  type="number"
-                  value={household.members.length}
-                  onChange={(event) => setHouseholdSize(Number(event.target.value))}
-                />
-              </label>
-              <label>
                 <span>{copy.marital}</span>
                 <select
+                  data-testid="marital-status-select"
                   disabled={disabled}
                   value={household.maritalStatus}
                   onChange={(event) =>
@@ -786,10 +747,31 @@ export function HouseholdWizard({
                   ))}
                 </select>
               </label>
+              <label>
+                <span>{copy.children}</span>
+                <select
+                  data-testid="child-count-select"
+                  disabled={disabled}
+                  value={
+                    household.members.filter(
+                      (member) => member.role === "child",
+                    ).length
+                  }
+                  onChange={(event) =>
+                    setChildCount(Number(event.target.value))
+                  }
+                >
+                  {Array.from({ length: 11 }, (_, count) => (
+                    <option key={count} value={count}>
+                      {count}
+                    </option>
+                  ))}
+                </select>
+              </label>
             </div>
 
             <div className="member-cards">
-              {household.members.map((member, index) => (
+              {household.members.map((member) => (
                 <article className="member-card" key={member.id}>
                   <MemberHeading language={language} member={member} />
                   <div className="member-biography">
@@ -806,31 +788,6 @@ export function HouseholdWizard({
                           }))
                         }
                       />
-                    </label>
-                    <label>
-                      <span>{copy.role}</span>
-                      <select
-                        disabled={disabled || index === 0}
-                        value={member.role}
-                        onChange={(event) =>
-                          updateMember(member.id, (current) => ({
-                            ...current,
-                            role: event.target.value as MemberRole,
-                          }))
-                        }
-                      >
-                        {(
-                          Object.keys(copy.roles) as MemberRole[]
-                        ).map((role) => (
-                          <option
-                            disabled={role === "primary" && index !== 0}
-                            key={role}
-                            value={role}
-                          >
-                            {copy.roles[role]}
-                          </option>
-                        ))}
-                      </select>
                     </label>
                     <label>
                       <span>{copy.birthDate}</span>

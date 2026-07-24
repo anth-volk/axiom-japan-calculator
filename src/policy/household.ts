@@ -68,7 +68,12 @@ export function createMember(
     id: `member-${crypto.randomUUID()}`,
     name: index === 0 ? "Primary taxpayer" : `Member ${index + 1}`,
     role,
-    birthDate: index === 0 ? "1978-06-15" : "2010-06-15",
+    birthDate:
+      role === "child"
+        ? "2010-06-15"
+        : index === 0
+          ? "1978-06-15"
+          : "1980-06-15",
     calculateTaxAndContributions: role === "primary" || role === "spouse",
     dependentCategory: "none",
     disabilityCategory: "none",
@@ -78,6 +83,69 @@ export function createMember(
     useModeledSocialInsurance: true,
     values,
   };
+}
+
+export function reconcileHouseholdComposition(
+  manifest: GeneratedManifest,
+  household: HouseholdDraft,
+  maritalStatus: MaritalStatus,
+  requestedChildCount: number,
+  language: "en" | "ja" = "en",
+): HouseholdDraft {
+  const finiteChildCount = Number.isFinite(requestedChildCount)
+    ? requestedChildCount
+    : 0;
+  const childCount = Math.max(
+    0,
+    Math.min(10, Math.trunc(finiteChildCount)),
+  );
+  const existingPrimary =
+    household.members.find((member) => member.role === "primary") ??
+    household.members[0] ??
+    createMember(manifest, 0, "primary");
+  const primary = {
+    ...existingPrimary,
+    role: "primary" as const,
+    calculateTaxAndContributions: true,
+  };
+
+  const members: HouseholdMember[] = [primary];
+  if (maritalStatus === "married") {
+    const existingSpouse = household.members.find(
+      (member) => member.role === "spouse",
+    );
+    const spouse =
+      existingSpouse ??
+      createMember(manifest, members.length, "spouse");
+    members.push({
+      ...spouse,
+      name:
+        existingSpouse?.name ?? (language === "ja" ? "配偶者" : "Spouse"),
+      role: "spouse",
+    });
+  }
+
+  const children = household.members
+    .filter((member) => member.role === "child")
+    .slice(0, childCount);
+  while (children.length < childCount) {
+    const ordinal = children.length + 1;
+    const child = createMember(
+      manifest,
+      members.length + children.length,
+      "child",
+    );
+    child.name = language === "ja" ? `子${ordinal}` : `Child ${ordinal}`;
+    children.push(child);
+  }
+  members.push(
+    ...children.map((child) => ({
+      ...child,
+      role: "child" as const,
+    })),
+  );
+
+  return { ...household, maritalStatus, members };
 }
 
 export function createExampleHousehold(

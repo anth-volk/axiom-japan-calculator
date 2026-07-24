@@ -5,6 +5,7 @@ import {
   buildCalculationPeople,
   createExampleHousehold,
   createMember,
+  reconcileHouseholdComposition,
 } from "./household";
 
 const manifest = rawManifest as GeneratedManifest;
@@ -37,5 +38,40 @@ describe("household wizard mapping", () => {
       people[1].monthlyOverrides["2018-06"]
         .japan_employees_pension_gross_bonus,
     ).toBe("500000");
+  });
+
+  it("derives adults and children from marital status and child count", () => {
+    const initial = createExampleHousehold(manifest);
+    const existingChildId = initial.members[1].id;
+    const married = reconcileHouseholdComposition(
+      manifest,
+      initial,
+      "married",
+      3,
+    );
+
+    expect(married.members.map((member) => member.role)).toEqual([
+      "primary",
+      "spouse",
+      "child",
+      "child",
+      "child",
+    ]);
+    expect(married.members[2].id).toBe(existingChildId);
+    expect(married.members[1].birthDate).toBe("1980-06-15");
+
+    const divorced = reconcileHouseholdComposition(
+      manifest,
+      married,
+      "divorced",
+      3,
+    );
+    expect(divorced.members.map((member) => member.role)).toEqual([
+      "primary",
+      "child",
+      "child",
+      "child",
+    ]);
+    expect(divorced.members[1].id).toBe(existingChildId);
   });
 });

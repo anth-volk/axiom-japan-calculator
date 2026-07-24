@@ -34,7 +34,6 @@ export interface HouseholdMember {
   name: string;
   role: MemberRole;
   birthDate: string;
-  calculateTaxAndContributions: boolean;
   dependentCategory: DependentCategory;
   disabilityCategory: DisabilityCategory;
   childAllowanceBand: ChildAllowanceBand;
@@ -74,7 +73,6 @@ export function createMember(
         : index === 0
           ? "1978-06-15"
           : "1980-06-15",
-    calculateTaxAndContributions: role === "primary" || role === "spouse",
     dependentCategory: "none",
     disabilityCategory: "none",
     childAllowanceBand: role === "child" ? "primary-first-second" : "none",
@@ -106,7 +104,6 @@ export function reconcileHouseholdComposition(
   const primary = {
     ...existingPrimary,
     role: "primary" as const,
-    calculateTaxAndContributions: true,
   };
 
   const members: HouseholdMember[] = [primary];
@@ -280,26 +277,26 @@ function applyFamilyFacts(
     ageAtYearEnd(member.birthDate, household.calendarYear),
   );
 
-  if (member.role === "primary") {
-    const bandSlots: Record<Exclude<ChildAllowanceBand, "none">, string> = {
-      "under-three-first-second":
-        "japan_child_allowance_under_three_first_or_second_count",
-      "under-three-third-plus":
-        "japan_child_allowance_under_three_third_or_later_count",
-      "primary-first-second":
-        "japan_child_allowance_primary_age_first_or_second_count",
-      "primary-third-plus":
-        "japan_child_allowance_primary_age_third_or_later_count",
-      "junior-high-first-second":
-        "japan_child_allowance_junior_high_first_or_second_count",
-      "junior-high-third-plus":
-        "japan_child_allowance_junior_high_third_or_later_count",
-      "high-school-first-second":
-        "japan_child_allowance_high_school_first_or_second_count",
-      "high-school-third-plus":
-        "japan_child_allowance_high_school_third_or_later_count",
-    };
-    for (const slot of Object.values(bandSlots)) setCount(values, slot, 0);
+  const bandSlots: Record<Exclude<ChildAllowanceBand, "none">, string> = {
+    "under-three-first-second":
+      "japan_child_allowance_under_three_first_or_second_count",
+    "under-three-third-plus":
+      "japan_child_allowance_under_three_third_or_later_count",
+    "primary-first-second":
+      "japan_child_allowance_primary_age_first_or_second_count",
+    "primary-third-plus":
+      "japan_child_allowance_primary_age_third_or_later_count",
+    "junior-high-first-second":
+      "japan_child_allowance_junior_high_first_or_second_count",
+    "junior-high-third-plus":
+      "japan_child_allowance_junior_high_third_or_later_count",
+    "high-school-first-second":
+      "japan_child_allowance_high_school_first_or_second_count",
+    "high-school-third-plus":
+      "japan_child_allowance_high_school_third_or_later_count",
+  };
+  for (const slot of Object.values(bandSlots)) setCount(values, slot, 0);
+  if (values.japan_child_allowance_meets_nonfinancial_conditions === true) {
     for (const candidate of household.members) {
       if (candidate.childAllowanceBand === "none") continue;
       const slot = bandSlots[candidate.childAllowanceBand];
@@ -312,30 +309,27 @@ function applyFamilyFacts(
 export function buildCalculationPeople(
   household: HouseholdDraft,
 ): CalculationPersonInput[] {
-  return household.members
-    .filter((member) => member.calculateTaxAndContributions)
-    .map((member) => {
-      const monthlyOverrides: Record<
-        string,
-        Record<string, InputValue>
-      > = {};
-      if (numberValue(member.summerBonus) !== 0) {
-        monthlyOverrides[`${household.calendarYear}-06`] = {
-          japan_employees_pension_gross_bonus: member.summerBonus,
-        };
-      }
-      if (numberValue(member.winterBonus) !== 0) {
-        monthlyOverrides[`${household.calendarYear}-12`] = {
-          japan_employees_pension_gross_bonus: member.winterBonus,
-        };
-      }
-      return {
-        id: member.id,
-        label: member.name,
-        values: applyFamilyFacts(household, member),
-        monthlyOverrides,
-        includeBenefits: member.role === "primary",
-        useModeledSocialInsurance: member.useModeledSocialInsurance,
+  return household.members.map((member) => {
+    const monthlyOverrides: Record<
+      string,
+      Record<string, InputValue>
+    > = {};
+    if (numberValue(member.summerBonus) !== 0) {
+      monthlyOverrides[`${household.calendarYear}-06`] = {
+        japan_employees_pension_gross_bonus: member.summerBonus,
       };
-    });
+    }
+    if (numberValue(member.winterBonus) !== 0) {
+      monthlyOverrides[`${household.calendarYear}-12`] = {
+        japan_employees_pension_gross_bonus: member.winterBonus,
+      };
+    }
+    return {
+      id: member.id,
+      label: member.name,
+      values: applyFamilyFacts(household, member),
+      monthlyOverrides,
+      useModeledSocialInsurance: member.useModeledSocialInsurance,
+    };
+  });
 }

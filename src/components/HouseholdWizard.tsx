@@ -144,9 +144,8 @@ const COPY = {
     },
     birthDate: "Date of birth",
     age: "Age at year end",
-    include: "Calculate this member’s tax and contributions",
     incomeIntro:
-      "Annual income and monthly coverage facts are entered separately for each calculated member.",
+      "Annual income and monthly coverage facts are entered separately for every household member. Every member receives the complete calculation.",
     income: "Annual income and tax measures",
     employeesPension: "Employees’ pension",
     employeesPensionDescription:
@@ -200,7 +199,10 @@ const COPY = {
     explicitNote:
       "These are legal classifications or statutory income measures that the model cannot infer safely from biography or gross pay.",
     benefitsIntro:
-      "Benefits are calculated once for the primary claimant. Assign each child’s statutory Child Allowance band, then supply the remaining claimant and eligibility facts.",
+      "Every household member is evaluated under all five benefit programs. Assign each child’s statutory Child Allowance band once, then enter each member’s claimant and eligibility facts.",
+    householdChildren: "Household children",
+    householdChildrenDescription:
+      "These classifications supply Child Allowance counts to each member who meets the program’s nonfinancial conditions.",
     childBand: "Child allowance band",
     childBands: {
       none: "Not counted",
@@ -256,9 +258,8 @@ const COPY = {
     },
     birthDate: "生年月日",
     age: "年末時点の年齢",
-    include: "この人の税・保険料を計算する",
     incomeIntro:
-      "年額の所得と月次の加入・賃金情報を、計算対象者ごとに入力します。",
+      "年額の所得と月次の加入・賃金情報を世帯員ごとに入力します。すべての世帯員について全制度を計算します。",
     income: "年額所得・税務上の金額",
     employeesPension: "厚生年金保険",
     employeesPensionDescription:
@@ -312,7 +313,10 @@ const COPY = {
     explicitNote:
       "経歴や総収入だけでは安全に推定できない法的区分・法定所得指標です。",
     benefitsIntro:
-      "給付は主たる受給者について世帯単位で1回計算します。各児童の法定区分を選び、残りの受給者・受給要件を入力してください。",
+      "5つの給付制度をすべての世帯員について判定します。児童手当の法定区分を世帯として一度指定し、各世帯員の受給者・受給要件を入力してください。",
+    householdChildren: "世帯の子ども",
+    householdChildrenDescription:
+      "児童手当の非金銭的要件を満たす世帯員について、ここで指定した児童数を使用します。",
     childBand: "児童手当の区分",
     childBands: {
       none: "人数に含めない",
@@ -485,11 +489,6 @@ export function HouseholdWizard({
     () => new Map(manifest.inputs.map((input) => [input.slot, input])),
     [manifest],
   );
-  const calculatedMembers = household.members.filter(
-    (member) => member.calculateTaxAndContributions,
-  );
-  const primary = household.members.find((member) => member.role === "primary")!;
-
   const inputsFor = (slots: string[]) =>
     slots
       .map((slot) => inputMap.get(slot))
@@ -811,20 +810,6 @@ export function HouseholdWizard({
                       </small>
                     </label>
                   </div>
-                  <label className="member-calculate">
-                    <input
-                      checked={member.calculateTaxAndContributions}
-                      disabled={disabled || member.role === "primary"}
-                      type="checkbox"
-                      onChange={(event) =>
-                        updateMember(member.id, (current) => ({
-                          ...current,
-                          calculateTaxAndContributions: event.target.checked,
-                        }))
-                      }
-                    />
-                    <span>{copy.include}</span>
-                  </label>
                 </article>
               ))}
             </div>
@@ -834,7 +819,7 @@ export function HouseholdWizard({
         {step === 1 && (
           <>
             <p className="wizard-page-intro">{copy.incomeIntro}</p>
-            {calculatedMembers.map((member) => (
+            {household.members.map((member) => (
               <article className="wizard-member-section" key={member.id}>
                 <MemberHeading language={language} member={member} />
                 <h3>{copy.income}</h3>
@@ -990,7 +975,7 @@ export function HouseholdWizard({
               ))}
             </div>
             <p className="explicit-note">{copy.explicitNote}</p>
-            {calculatedMembers.map((member) => (
+            {household.members.map((member) => (
               <article className="wizard-member-section" key={member.id}>
                 <MemberHeading language={language} member={member} />
                 <div className="form-module-list">
@@ -1055,84 +1040,90 @@ export function HouseholdWizard({
         {step === 3 && (
           <>
             <p className="wizard-page-intro">{copy.benefitsIntro}</p>
-            <article className="wizard-member-section">
-              <MemberHeading language={language} member={primary} />
-              <div className="form-module-list">
-                <FormModule
-                  description={copy.childBenefitsDescription}
-                  open
-                  title={copy.childBenefitsModule}
-                >
-                  <div className="classification-grid classification-grid--inside">
-                    {household.members
-                      .filter((member) => member.role === "child")
-                      .map((member) => (
-                        <article key={member.id}>
-                          <MemberHeading language={language} member={member} />
-                          <label>
-                            <span>{copy.childBand}</span>
-                            <select
-                              disabled={disabled}
-                              value={member.childAllowanceBand}
-                              onChange={(event) =>
-                                updateMember(member.id, (current) => ({
-                                  ...current,
-                                  childAllowanceBand: event.target
-                                    .value as ChildAllowanceBand,
-                                }))
-                              }
-                            >
-                              {(
-                                Object.keys(
-                                  copy.childBands,
-                                ) as ChildAllowanceBand[]
-                              )
-                                .filter(
-                                  (band) =>
-                                    household.calendarYear >= 2024 ||
-                                    !band.startsWith("high-school"),
-                                )
-                                .map((band) => (
-                                  <option key={band} value={band}>
-                                    {copy.childBands[band]}
-                                  </option>
-                                ))}
-                            </select>
-                          </label>
-                        </article>
-                      ))}
-                  </div>
-                  <div className="form-subsection">
-                    <h4>{copy.childAllowanceSubsection}</h4>
-                    {renderFields(primary, childAllowanceInputs)}
-                  </div>
-                  <div className="form-subsection">
-                    <h4>{copy.childRearingSubsection}</h4>
-                    {renderFields(primary, childRearingInputs)}
-                  </div>
-                  <div className="form-subsection">
-                    <h4>{copy.specialChildSubsection}</h4>
-                    {renderFields(primary, specialChildInputs)}
-                  </div>
-                  <div className="form-subsection">
-                    <h4>{copy.disabledChildSubsection}</h4>
-                    {renderFields(primary, disabledChildInputs)}
-                  </div>
-                  <div className="form-subsection">
-                    <h4>{copy.sharedDisabilitySubsection}</h4>
-                    {renderFields(primary, sharedDisabilityInputs)}
-                  </div>
-                </FormModule>
-                {adultDisabilityInputs.length > 0 && (
-                  <FormModule
-                    description={copy.adultDisabilityDescription}
-                    title={copy.adultDisabilityModule}
-                  >
-                    {renderFields(primary, adultDisabilityInputs)}
-                  </FormModule>
-                )}
+            <article className="wizard-member-section household-children">
+              <h3>{copy.householdChildren}</h3>
+              <p>{copy.householdChildrenDescription}</p>
+              <div className="classification-grid classification-grid--inside">
+                {household.members
+                  .filter((member) => member.role === "child")
+                  .map((member) => (
+                    <article key={member.id}>
+                      <MemberHeading language={language} member={member} />
+                      <label>
+                        <span>{copy.childBand}</span>
+                        <select
+                          disabled={disabled}
+                          value={member.childAllowanceBand}
+                          onChange={(event) =>
+                            updateMember(member.id, (current) => ({
+                              ...current,
+                              childAllowanceBand: event.target
+                                .value as ChildAllowanceBand,
+                            }))
+                          }
+                        >
+                          {(
+                            Object.keys(
+                              copy.childBands,
+                            ) as ChildAllowanceBand[]
+                          )
+                            .filter(
+                              (band) =>
+                                household.calendarYear >= 2024 ||
+                                !band.startsWith("high-school"),
+                            )
+                            .map((band) => (
+                              <option key={band} value={band}>
+                                {copy.childBands[band]}
+                              </option>
+                            ))}
+                        </select>
+                      </label>
+                    </article>
+                  ))}
               </div>
             </article>
+            {household.members.map((member) => (
+              <article className="wizard-member-section" key={member.id}>
+                <MemberHeading language={language} member={member} />
+                <div className="form-module-list">
+                  <FormModule
+                    description={copy.childBenefitsDescription}
+                    open
+                    title={copy.childBenefitsModule}
+                  >
+                    <div className="form-subsection">
+                      <h4>{copy.childAllowanceSubsection}</h4>
+                      {renderFields(member, childAllowanceInputs)}
+                    </div>
+                    <div className="form-subsection">
+                      <h4>{copy.childRearingSubsection}</h4>
+                      {renderFields(member, childRearingInputs)}
+                    </div>
+                    <div className="form-subsection">
+                      <h4>{copy.specialChildSubsection}</h4>
+                      {renderFields(member, specialChildInputs)}
+                    </div>
+                    <div className="form-subsection">
+                      <h4>{copy.disabledChildSubsection}</h4>
+                      {renderFields(member, disabledChildInputs)}
+                    </div>
+                    <div className="form-subsection">
+                      <h4>{copy.sharedDisabilitySubsection}</h4>
+                      {renderFields(member, sharedDisabilityInputs)}
+                    </div>
+                  </FormModule>
+                  {adultDisabilityInputs.length > 0 && (
+                    <FormModule
+                      description={copy.adultDisabilityDescription}
+                      title={copy.adultDisabilityModule}
+                    >
+                      {renderFields(member, adultDisabilityInputs)}
+                    </FormModule>
+                  )}
+                </div>
+              </article>
+            ))}
           </>
         )}
 
@@ -1169,7 +1160,7 @@ export function HouseholdWizard({
           <button
             className="calculate-button"
             data-testid="calculate-button"
-            disabled={disabled || calculatedMembers.length === 0}
+            disabled={disabled}
             type="button"
             onClick={() => goToStep(copy.steps.length - 1)}
           >
@@ -1179,7 +1170,7 @@ export function HouseholdWizard({
           <button
             className="primary-button"
             data-testid="recalculate-button"
-            disabled={disabled || calculatedMembers.length === 0}
+            disabled={disabled}
             type="button"
             onClick={onCalculate}
           >

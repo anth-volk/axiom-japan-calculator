@@ -39,11 +39,11 @@ Fact-intensive determinations—such as custody, co-residence, disability grade,
 agency approval, or pension coverage—remain explicit inputs. The calculator
 does not infer them.
 
-The current RuleSpec programs are person-scoped. The browser evaluates tax and
-contribution programs once for each household member selected for calculation.
-It evaluates benefit programs once for the primary household claimant.
-Household relationships are translated into each `Person` request; the Wave 1
-artifacts themselves do not yet consume a multi-person relationship graph.
+The current RuleSpec programs are person-scoped. The browser evaluates the
+complete set of tax, contribution, and benefit programs for every household
+member. Household relationships are translated into each `Person` request; the
+Wave 1 artifacts themselves do not yet consume a multi-person relationship
+graph.
 
 ## Household wizard
 
@@ -51,18 +51,17 @@ The wizard is a conventional family-member builder arranged vertically above
 the result:
 
 1. **Household** selects the calendar year, marital status, number of children,
-   birthdates, and which members receive an individual tax-and-contribution
-   calculation. The wizard creates one primary adult, a spouse when married,
-   and the selected number of children.
+   and birthdates. The wizard creates one primary adult, a spouse when married,
+   and the selected number of children. Every member is calculated.
 2. **Income & insurance** collects annual tax measures and monthly social
-   insurance facts for each selected member. June and December bonuses can
+   insurance facts for every member. June and December bonuses can
    differ from ordinary monthly remuneration.
 3. **Tax facts** assigns dependant and disability categories to people. The
    wizard derives the primary taxpayer's encoded counts and retains all other
    statutory tests as explicit fields.
 4. **Benefits** assigns each child an explicit Child Allowance band and
-   collects the primary claimant's income, eligibility, supporter, and
-   disability-allowance facts.
+   collects claimant, eligibility, supporter, and disability-allowance facts
+   separately for every household member.
 5. **Results** runs the worker and shows the household estimate in the wizard
    itself.
 

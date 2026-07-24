@@ -387,7 +387,7 @@ details[open] > summary .group-meta svg, details[open] > summary .program-amount
   grid-template-columns: 1.2fr 1fr;
   gap: 16px;
 }
-.member-calculate, .auto-deduction {
+.auto-deduction {
   display: flex;
   align-items: flex-start;
   gap: 10px;
@@ -395,7 +395,7 @@ details[open] > summary .group-meta svg, details[open] > summary .program-amount
   color: #46574e;
   font-size: 16px;
 }
-.member-calculate input, .auto-deduction input { margin-top: 1px; accent-color: var(--green); }
+.auto-deduction input { margin-top: 1px; accent-color: var(--green); }
 .auto-deduction {
   padding: 16px;
   margin: 22px 0 28px;

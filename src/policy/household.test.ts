@@ -11,15 +11,18 @@ import {
 const manifest = rawManifest as GeneratedManifest;
 
 describe("household wizard mapping", () => {
-  it("maps the example to one taxpayer and one household claimant", () => {
+  it("maps every household member into a complete calculation", () => {
     const household = createExampleHousehold(manifest);
     const people = buildCalculationPeople(household);
-    expect(people).toHaveLength(1);
-    expect(people[0].includeBenefits).toBe(true);
+    expect(people).toHaveLength(2);
     expect(
       people[0].values
         .japan_child_allowance_primary_age_first_or_second_count,
     ).toBe("1");
+    expect(
+      people[1].values
+        .japan_child_allowance_primary_age_first_or_second_count,
+    ).toBe("0");
     expect(people[0].values.japan_pit_ordinary_dependent_count).toBe("0");
   });
 
@@ -31,11 +34,13 @@ describe("household wizard mapping", () => {
     household.maritalStatus = "married";
     household.members.push(spouse);
     const people = buildCalculationPeople(household);
+    const spouseCalculation = people.find(
+      (person) => person.id === spouse.id,
+    )!;
 
-    expect(people).toHaveLength(2);
-    expect(people.filter((person) => person.includeBenefits)).toHaveLength(1);
+    expect(people).toHaveLength(3);
     expect(
-      people[1].monthlyOverrides["2018-06"]
+      spouseCalculation.monthlyOverrides["2018-06"]
         .japan_employees_pension_gross_bonus,
     ).toBe("500000");
   });

@@ -303,13 +303,11 @@ async function calculate(
       executeProgram(runtime, taxProgram, calendarYear, person, taxValues),
     );
 
-    if (person.includeBenefits) {
-      programs.push(
-        ...benefitPrograms.map((program) =>
-          executeProgram(runtime, program, calendarYear, person),
-        ),
-      );
-    }
+    programs.push(
+      ...benefitPrograms.map((program) =>
+        executeProgram(runtime, program, calendarYear, person),
+      ),
+    );
   }
   const period = calendarYearPeriod(calendarYear);
   return {

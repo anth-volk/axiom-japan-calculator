@@ -130,7 +130,6 @@ export interface CalculationPersonInput {
   label: string;
   values: Record<string, InputValue>;
   monthlyOverrides: Record<string, Record<string, InputValue>>;
-  includeBenefits: boolean;
   useModeledSocialInsurance: boolean;
 }
 

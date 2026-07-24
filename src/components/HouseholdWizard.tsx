@@ -164,8 +164,9 @@ const COPY = {
     deductionSource: "Income-tax social-insurance deduction",
     deductionSourcePrompt:
       "Choose the amount to use for this deduction in the income-tax calculation.",
-    calculatedDeduction:
-      "Use the Employees’ Pension, National Pension, and Employment Insurance contributions calculated here",
+    calculatedDeduction: "Use contributions calculated by this calculator",
+    calculatedDeductionDetail:
+      "Employees’ Pension, National Pension, and Employment Insurance",
     manualDeduction: "Enter an annual deduction amount manually",
     contributionCalculationNote:
       "Pension and employment-insurance contributions are calculated for every household member regardless of this choice.",
@@ -283,8 +284,8 @@ const COPY = {
     deductionSource: "所得税の社会保険料控除",
     deductionSourcePrompt:
       "所得税計算でこの控除に使用する金額を選択してください。",
-    calculatedDeduction:
-      "ここで計算した厚生年金、国民年金、雇用保険の保険料を使用",
+    calculatedDeduction: "この計算機で計算した保険料を使用",
+    calculatedDeductionDetail: "厚生年金、国民年金、雇用保険",
     manualDeduction: "控除額の年額を手入力",
     contributionCalculationNote:
       "この選択にかかわらず、すべての世帯員について年金・雇用保険料を計算します。",
@@ -840,13 +841,29 @@ export function HouseholdWizard({
                 <MemberHeading language={language} member={member} />
                 <h3>{copy.income}</h3>
                 {renderFields(member, inputsFor(ANNUAL_INCOME_SLOTS))}
-                <fieldset className="deduction-source" disabled={disabled}>
-                  <legend>{copy.deductionSource}</legend>
+                <section
+                  aria-labelledby={`deduction-source-title-${member.id}`}
+                  className="deduction-source"
+                >
+                  <h4 id={`deduction-source-title-${member.id}`}>
+                    {copy.deductionSource}
+                  </h4>
                   <p>{copy.deductionSourcePrompt}</p>
-                  <div className="deduction-source__options">
-                    <label>
+                  <div
+                    aria-labelledby={`deduction-source-title-${member.id}`}
+                    className="deduction-source__options"
+                    role="radiogroup"
+                  >
+                    <label
+                      className={`deduction-source__option${
+                        member.useModeledSocialInsurance
+                          ? " deduction-source__option--selected"
+                          : ""
+                      }`}
+                    >
                       <input
                         checked={member.useModeledSocialInsurance}
+                        disabled={disabled}
                         name={`deduction-source-${member.id}`}
                         type="radio"
                         onChange={() =>
@@ -856,11 +873,21 @@ export function HouseholdWizard({
                           }))
                         }
                       />
-                      <span>{copy.calculatedDeduction}</span>
+                      <span>
+                        <strong>{copy.calculatedDeduction}</strong>
+                        <small>{copy.calculatedDeductionDetail}</small>
+                      </span>
                     </label>
-                    <label>
+                    <label
+                      className={`deduction-source__option${
+                        !member.useModeledSocialInsurance
+                          ? " deduction-source__option--selected"
+                          : ""
+                      }`}
+                    >
                       <input
                         checked={!member.useModeledSocialInsurance}
+                        disabled={disabled}
                         name={`deduction-source-${member.id}`}
                         type="radio"
                         onChange={() =>
@@ -870,13 +897,15 @@ export function HouseholdWizard({
                           }))
                         }
                       />
-                      <span>{copy.manualDeduction}</span>
+                      <span>
+                        <strong>{copy.manualDeduction}</strong>
+                      </span>
                     </label>
                   </div>
                   <p className="deduction-source__note">
                     {copy.contributionCalculationNote}
                   </p>
-                </fieldset>
+                </section>
                 {!member.useModeledSocialInsurance &&
                   renderFields(
                     member,

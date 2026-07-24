@@ -388,39 +388,79 @@ details[open] > summary .group-meta svg, details[open] > summary .program-amount
   grid-template-columns: 1.2fr 1fr;
   gap: 16px;
 }
-.deduction-source {
+.wizard .deduction-source {
+  display: grid;
+  width: 100%;
   min-width: 0;
   padding: 16px;
   margin: 22px 0 28px;
-  border: 0;
+  border: 1px solid #cbd4ca;
+  border-left: 4px solid var(--green);
+  border-radius: 3px;
   background: #e5ebe3;
   color: #46574e;
   font-size: 16px;
 }
-.deduction-source legend {
-  padding: 0;
+.wizard .deduction-source h4 {
+  margin: 0;
   color: var(--ink);
   font-family: Georgia, "Yu Mincho", serif;
   font-size: 19px;
   font-weight: 500;
+  line-height: 1.35;
 }
-.deduction-source p { margin: 7px 0 0; line-height: 1.5; }
-.deduction-source__options { display: grid; gap: 10px; margin-top: 15px; }
-.deduction-source__options label {
-  display: flex;
-  align-items: flex-start;
+.wizard .deduction-source p {
+  margin: 7px 0 0;
+  line-height: 1.5;
+}
+.wizard .deduction-source__options {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 10px;
+  width: 100%;
+  margin-top: 15px;
+}
+.wizard .deduction-source__option {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  gap: 11px;
+  align-items: start;
+  width: 100%;
   padding: 11px 12px;
   border: 1px solid #c6d0c5;
+  border-radius: 2px;
   background: rgb(255 255 255 / 52%);
   line-height: 1.45;
+  cursor: pointer;
 }
-.deduction-source__options input {
-  flex: none;
+.wizard .deduction-source__option--selected {
+  border-color: var(--green);
+  background: #fff;
+  box-shadow: 0 0 0 1px rgb(30 102 81 / 8%);
+}
+.wizard .deduction-source__option > span {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+.wizard .deduction-source__option strong {
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 650;
+  line-height: 1.4;
+}
+.wizard .deduction-source__option small {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.4;
+}
+.wizard .deduction-source__option input {
+  width: 18px;
+  height: 18px;
   margin-top: 4px;
   accent-color: var(--green);
 }
-.deduction-source .deduction-source__note {
+.wizard .deduction-source .deduction-source__note {
   margin-top: 14px;
   color: #5f6d65;
 }

@@ -161,9 +161,10 @@ const COPY = {
     winterBonus: "Employees’ pension bonus paid in December",
     bonusDescription:
       "Gross bonus payment subject to the encoded Employees’ Pension contribution for that month.",
-    autoInsurance: "Use calculated contributions for the income-tax deduction",
+    autoInsurance:
+      "Use calculated pension and employment-insurance contributions for the income-tax deduction",
     autoInsuranceNote:
-      "When on, the calculated Employees’ Pension, National Pension, and Employment Insurance totals replace the manual annual social-insurance amount for income tax.",
+      "The contribution inputs below remain because they calculate each contribution. Turn this off only to enter a different manual annual social-insurance deduction.",
     taxIntro:
       "Family categories below are converted into the encoded dependant and disability counts for the primary taxpayer. Other legal tests remain explicit.",
     dependant: "Primary taxpayer’s dependant category",
@@ -275,9 +276,10 @@ const COPY = {
     winterBonus: "12月支給の厚生年金対象賞与",
     bonusDescription:
       "その月の厚生年金保険料の対象となる総支給賞与額です。",
-    autoInsurance: "計算した保険料を所得税の社会保険料控除に使用",
+    autoInsurance:
+      "計算した年金・雇用保険料を所得税の社会保険料控除に使用",
     autoInsuranceNote:
-      "オンの場合、厚生年金、国民年金、雇用保険の計算合計を、所得税用の手入力年額に代えて使用します。",
+      "下の入力項目は各保険料の計算に必要なため常に表示します。別の社会保険料控除年額を手入力する場合のみオフにしてください。",
     taxIntro:
       "以下の家族区分は、主たる納税者についてエンコード済みの扶養・障害人数に変換されます。その他の法的要件は明示入力です。",
     dependant: "主たる納税者の扶養親族区分",
@@ -368,7 +370,7 @@ function FactField({
       <label className="wizard-fact wizard-fact--boolean">
         <span>
           <strong>{inputLabel(input, language)}</strong>
-          <small>{help}</small>
+          {help && <small>{help}</small>}
         </span>
         <span className="switch">
           <input
@@ -407,7 +409,7 @@ function FactField({
     <label className="wizard-fact">
       <span>
         <strong>{inputLabel(input, language)}</strong>
-        <small>{help}</small>
+        {help && <small>{help}</small>}
       </span>
       <span className="wizard-number">
         {isMoney && moneyPrefix(language) && (

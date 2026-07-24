@@ -680,8 +680,8 @@ export function outputLabel(
 
 export const INPUT_HELP: Record<string, Record<Language, string>> = {
   japan_social_insurance_contributions_paid_or_withheld: {
-    en: "Manual annual amount used only when the modeled-contributions option below is off.",
-    ja: "下の「計算した保険料を使用」をオフにした場合のみ使われる手入力の年額です。",
+    en: "Manual annual amount used only when the calculated-contributions option is off.",
+    ja: "「計算した保険料を使用」をオフにした場合のみ使われる手入力の年額です。",
   },
   japan_pit_total_income_amount: {
     en: "A statutory total-income input used by several deductions and credits. The current RuleSpec does not infer it from every income class.",
@@ -766,51 +766,7 @@ export function inputDescription(
   };
   const exact = descriptions[input.slot]?.[language];
   if (exact) return exact;
-
-  const programNames: Record<InputGroupId, Record<Language, string>> = {
-    "national-income-tax": {
-      en: "national income-tax calculation",
-      ja: "国の所得税計算",
-    },
-    "employees-pension": {
-      en: "Employees’ Pension calculation",
-      ja: "厚生年金保険料計算",
-    },
-    "national-pension": {
-      en: "National Pension calculation",
-      ja: "国民年金保険料計算",
-    },
-    "employment-insurance": {
-      en: "Employment Insurance calculation",
-      ja: "雇用保険料計算",
-    },
-    "child-allowance": {
-      en: "Child Allowance calculation",
-      ja: "児童手当計算",
-    },
-    "child-rearing-allowance": {
-      en: "Child Rearing Allowance calculation",
-      ja: "児童扶養手当計算",
-    },
-    "disability-allowances": {
-      en: "disability-related allowance calculation",
-      ja: "障害関連手当計算",
-    },
-  };
-  const program = programNames[input.group][language];
-  if (input.kind === "bool") {
-    return language === "ja"
-      ? `${program}で使う法的・受給要件です。該当することを確認できる場合のみオンにします。`
-      : `Legal or eligibility fact used by the ${program}. Turn it on only when the condition has been established.`;
-  }
-  if (input.integer) {
-    return language === "ja"
-      ? `${program}で使う法定区分の人数です。`
-      : `Number of people in this statutory category used by the ${program}.`;
-  }
-  return language === "ja"
-    ? `${program}で使う法定所得・金額です。他の入力から自動推定されません。`
-    : `Statutory income or payment amount used by the ${program}. It is not inferred from other answers.`;
+  return "";
 }
 
 export function assertJapaneseCoverage(

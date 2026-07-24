@@ -2,7 +2,7 @@
 
 An independent, browser-only calculator for the national tax, contribution,
 and benefit rules encoded in
-[`anth-volk/rulespec-jp`](https://github.com/anth-volk/rulespec-jp) Wave 1.
+[`anth-volk/rulespec-jp`](https://github.com/anth-volk/rulespec-jp).
 
 The app sends a household's answers to the Axiom Rules Engine compiled to
 WebAssembly (WASM) inside a Web Worker. It makes no household-data network
@@ -23,7 +23,7 @@ inputs** used by nine executable programs. Biographical and family answers
 produce the relevant aggregate count inputs; fact-intensive legal
 classifications remain explicit fields.
 
-| Cadence | Wave 1 component |
+| Cadence | Encoded component |
 |---|---|
 | Calendar year | National income tax for the encoded employment and public-pension path |
 | Monthly executions summed within the calendar year | Employees' Pension employee contribution |
@@ -42,7 +42,7 @@ does not infer them.
 The current RuleSpec programs are person-scoped. The browser evaluates the
 complete set of tax, contribution, and benefit programs for every household
 member. Household relationships are translated into each `Person` request; the
-Wave 1 artifacts themselves do not yet consume a multi-person relationship
+The policy artifacts themselves do not yet consume a multi-person relationship
 graph.
 
 ## Household wizard
@@ -91,7 +91,7 @@ does not hold.
 This app presents a **component estimate**, not take-home pay or disposable
 income. It does not include individual inhabitant tax, National Health
 Insurance, employee health-insurance premiums, long-term-care premiums, Public
-Assistance amounts, municipal benefits, or other Wave 1 exclusions.
+Assistance amounts, municipal benefits, or other exclusions.
 
 Monthly and annual rules have an inclusive support boundary of `2017-04-01`.
 The selector uses calendar years 2017 through 2026 because Japanese individual

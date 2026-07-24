@@ -108,7 +108,6 @@ export default function App() {
         <nav aria-label={copy.brand}>
           <a className="wordmark wordmark--plain" href="#top" id="top">
             <strong>{copy.brand}</strong>
-            <small>{copy.brandNote}</small>
           </a>
           <div className="nav-actions">
             <a
@@ -176,6 +175,11 @@ export default function App() {
         )}
       </div>
 
+      <section className="scope-banner scope-banner--bottom">
+        <span>{copy.experimental}</span>
+        <p>{copy.scope}</p>
+      </section>
+
       <footer>
         <p>
           {copy.footerLead}{" "}
@@ -189,11 +193,6 @@ export default function App() {
           {copy.footerTail}
         </p>
       </footer>
-
-      <section className="scope-banner scope-banner--bottom">
-        <span>{copy.experimental}</span>
-        <p>{copy.scope}</p>
-      </section>
     </main>
   );
 }

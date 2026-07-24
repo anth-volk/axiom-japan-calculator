@@ -2,6 +2,9 @@ import { describe, expect, it } from "vitest";
 import rawManifest from "../../public/generated/manifest.json";
 import type { GeneratedManifest } from "../engine/types";
 import {
+  INPUT_PANEL_COPY,
+  PRESET_COPY,
+  UI_COPY,
   assertJapaneseCoverage,
   inputDescription,
   inputLabel,
@@ -12,6 +15,12 @@ import {
 const manifest = rawManifest as GeneratedManifest;
 
 describe("Japanese localization", () => {
+  it("does not expose retired release terminology in interface copy", () => {
+    expect(
+      JSON.stringify([UI_COPY, PRESET_COPY, INPUT_PANEL_COPY]),
+    ).not.toMatch(/wave[\s-]*1/i);
+  });
+
   it("covers every generated input, program, and visible output", () => {
     expect(assertJapaneseCoverage(manifest.inputs, manifest.programs)).toEqual([]);
   });

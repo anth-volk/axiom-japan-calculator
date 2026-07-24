@@ -5,7 +5,7 @@ import { buildPreset } from "./presets";
 
 const manifest = rawManifest as GeneratedManifest;
 
-describe("generated Wave 1 input contract", () => {
+describe("generated input contract", () => {
   it("exposes all nine programs and 108 unique inputs", () => {
     expect(manifest.programs).toHaveLength(9);
     expect(manifest.inputs).toHaveLength(108);

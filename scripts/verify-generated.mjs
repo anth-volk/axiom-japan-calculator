@@ -22,7 +22,7 @@ if (manifest.programs.length !== 9) {
 
 if (manifest.inputs.length !== manifest.inputCount || manifest.inputCount !== 108) {
   throw new Error(
-    `Expected the pinned Wave 1 input contract to contain 108 slots, got ${manifest.inputs.length}`,
+    `Expected the pinned input contract to contain 108 slots, got ${manifest.inputs.length}`,
   );
 }
 

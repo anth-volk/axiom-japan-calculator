@@ -8,7 +8,7 @@ import {
   monthPeriod,
 } from "./periods";
 
-describe("Japan Wave 1 calendar years", () => {
+describe("Japan calendar years", () => {
   it("uses the explicit April 1, 2017 inclusive boundary", () => {
     expect(isSupportedCalendarYear(2016)).toBe(false);
     expect(isSupportedCalendarYear(2017)).toBe(true);

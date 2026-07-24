@@ -15,7 +15,6 @@ export const LANGUAGES: Array<{ id: Language; label: string }> = [
 export const UI_COPY = {
   en: {
     brand: "Axiom · Japan",
-    brandNote: "Independent Wave 1 calculator",
     language: "Language",
     source: "Source",
     heroEyebrow: "National policy · calendar years 2017–2026",
@@ -27,8 +26,8 @@ export const UI_COPY = {
     calculating: "Calculating…",
     experimental: "Experimental & unsigned",
     scope:
-      "National Wave 1 only. The model does not include inhabitant tax, health insurance, long-term-care premiums, Public Assistance amounts, or municipal benefits. It is not official Japanese tax advice.",
-    loadingInputs: "Loading the complete Wave 1 input contract…",
+      "National policies only. The model does not include inhabitant tax, health insurance, long-term-care premiums, Public Assistance amounts, or municipal benefits. It is not official Japanese tax advice.",
+    loadingInputs: "Loading the complete input contract…",
     verifying: "Verifying the Axiom engine and policy artifacts…",
     footerLead: "Built from the independent",
     footerTail:
@@ -36,7 +35,6 @@ export const UI_COPY = {
   },
   ja: {
     brand: "アクシオム・ジャパン",
-    brandNote: "独立版 Wave 1 計算機",
     language: "言語",
     source: "ソース",
     heroEyebrow: "国の制度 · 2017年〜2026年",
@@ -49,8 +47,8 @@ export const UI_COPY = {
     calculating: "計算中…",
     experimental: "実験版・未署名",
     scope:
-      "国のWave 1制度のみです。住民税、医療保険料、介護保険料、生活保護費、市区町村の給付は含みません。日本の公的な税務助言ではありません。",
-    loadingInputs: "Wave 1の入力項目を読み込んでいます…",
+      "国の制度のみです。住民税、医療保険料、介護保険料、生活保護費、市区町村の給付は含みません。日本の公的な税務助言ではありません。",
+    loadingInputs: "入力項目を読み込んでいます…",
     verifying: "Axiomエンジンと制度アーティファクトを検証しています…",
     footerLead: "独立版",
     footerTail:
@@ -63,7 +61,7 @@ export const PRESET_COPY = {
     "validated-working-parent": {
       label: "Validated 2018 working parent",
       description:
-        "The complete Wave 1 component scenario: ¥3.6m employment earnings, one primary-school child, and ordinary employee coverage.",
+        "The complete validated scenario: ¥3.6m employment earnings, one primary-school child, and ordinary employee coverage.",
     },
     blank: {
       label: "Blank household",
@@ -75,7 +73,7 @@ export const PRESET_COPY = {
     "validated-working-parent": {
       label: "検証済み：2018年の就労親",
       description:
-        "Wave 1の完全な構成要素シナリオです。給与収入360万円、小学生の子1人、一般の被用者として設定します。",
+        "完全な検証済みシナリオです。給与収入360万円、小学生の子1人、一般の被用者として設定します。",
     },
     blank: {
       label: "空の世帯",
@@ -99,7 +97,7 @@ export const INPUT_PANEL_COPY = {
     ],
     search: "Find an income, deduction, status, or allowance…",
     clear: "Clear",
-    noMatch: "No Wave 1 inputs match",
+    noMatch: "No inputs match",
   },
   ja: {
     eyebrow: "世帯の事実",
@@ -115,7 +113,7 @@ export const INPUT_PANEL_COPY = {
     ],
     search: "所得、控除、状態、手当を検索…",
     clear: "消去",
-    noMatch: "一致するWave 1の入力項目はありません：",
+    noMatch: "一致する入力項目はありません：",
   },
 } as const;
 

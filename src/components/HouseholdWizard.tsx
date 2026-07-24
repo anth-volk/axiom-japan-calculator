@@ -123,7 +123,7 @@ const COPY = {
     eyebrow: "Household wizard",
     title: "Build the modeled household",
     intro:
-      "Enter people first, then each person’s income, insurance, tax facts, and household benefits. All nine Wave 1 programs run when relevant.",
+      "Enter people first, then each person’s income, insurance, tax facts, and household benefits. All nine encoded programs run when relevant.",
     steps: ["Household", "Income & insurance", "Tax facts", "Benefits", "Results"],
     calendarYear: "Calendar year",
     calendarNote:
@@ -237,7 +237,7 @@ const COPY = {
     eyebrow: "世帯入力ウィザード",
     title: "モデル化する世帯を作成",
     intro:
-      "最初に世帯員を登録し、次に各人の所得、保険、税務上の事実、世帯給付を入力します。該当するWave 1の9制度を実行します。",
+      "最初に世帯員を登録し、次に各人の所得、保険、税務上の事実、世帯給付を入力します。該当する9つの制度を実行します。",
     steps: ["世帯", "所得・保険", "税務上の事実", "給付", "結果"],
     calendarYear: "暦年",
     calendarNote:
@@ -684,7 +684,7 @@ export function HouseholdWizard({
           <h2 id="wizard-title">{copy.title}</h2>
           <p className="wizard-intro">{copy.intro}</p>
         </div>
-        <span className="count-pill">108 Wave 1 inputs</span>
+        <span className="count-pill">108 encoded inputs</span>
       </div>
 
       <ol className="wizard-progress">

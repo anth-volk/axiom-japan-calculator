@@ -6,7 +6,7 @@ export const PRESETS = [
     id: "validated-working-parent",
     label: "Validated 2018 working parent",
     description:
-      "The complete Wave 1 component scenario from rulespec-jp: ¥3.6m employment earnings, one primary-school child, and ordinary employee coverage.",
+      "The complete validated scenario from rulespec-jp: ¥3.6m employment earnings, one primary-school child, and ordinary employee coverage.",
   },
   {
     id: "blank",

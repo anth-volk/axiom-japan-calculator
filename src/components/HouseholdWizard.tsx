@@ -161,10 +161,14 @@ const COPY = {
     winterBonus: "Employees’ pension bonus paid in December",
     bonusDescription:
       "Gross bonus payment subject to the encoded Employees’ Pension contribution for that month.",
-    autoInsurance:
-      "Use calculated pension and employment-insurance contributions for the income-tax deduction",
-    autoInsuranceNote:
-      "The contribution inputs below remain because they calculate each contribution. Turn this off only to enter a different manual annual social-insurance deduction.",
+    deductionSource: "Income-tax social-insurance deduction",
+    deductionSourcePrompt:
+      "Choose the amount to use for this deduction in the income-tax calculation.",
+    calculatedDeduction:
+      "Use the Employees’ Pension, National Pension, and Employment Insurance contributions calculated here",
+    manualDeduction: "Enter an annual deduction amount manually",
+    contributionCalculationNote:
+      "Pension and employment-insurance contributions are calculated for every household member regardless of this choice.",
     taxIntro:
       "Family categories below are converted into the encoded dependant and disability counts for the primary taxpayer. Other legal tests remain explicit.",
     dependant: "Primary taxpayer’s dependant category",
@@ -276,10 +280,14 @@ const COPY = {
     winterBonus: "12月支給の厚生年金対象賞与",
     bonusDescription:
       "その月の厚生年金保険料の対象となる総支給賞与額です。",
-    autoInsurance:
-      "計算した年金・雇用保険料を所得税の社会保険料控除に使用",
-    autoInsuranceNote:
-      "下の入力項目は各保険料の計算に必要なため常に表示します。別の社会保険料控除年額を手入力する場合のみオフにしてください。",
+    deductionSource: "所得税の社会保険料控除",
+    deductionSourcePrompt:
+      "所得税計算でこの控除に使用する金額を選択してください。",
+    calculatedDeduction:
+      "ここで計算した厚生年金、国民年金、雇用保険の保険料を使用",
+    manualDeduction: "控除額の年額を手入力",
+    contributionCalculationNote:
+      "この選択にかかわらず、すべての世帯員について年金・雇用保険料を計算します。",
     taxIntro:
       "以下の家族区分は、主たる納税者についてエンコード済みの扶養・障害人数に変換されます。その他の法的要件は明示入力です。",
     dependant: "主たる納税者の扶養親族区分",
@@ -832,23 +840,43 @@ export function HouseholdWizard({
                 <MemberHeading language={language} member={member} />
                 <h3>{copy.income}</h3>
                 {renderFields(member, inputsFor(ANNUAL_INCOME_SLOTS))}
-                <label className="auto-deduction">
-                  <input
-                    checked={member.useModeledSocialInsurance}
-                    disabled={disabled}
-                    type="checkbox"
-                    onChange={(event) =>
-                      updateMember(member.id, (current) => ({
-                        ...current,
-                        useModeledSocialInsurance: event.target.checked,
-                      }))
-                    }
-                  />
-                  <span>
-                    <strong>{copy.autoInsurance}</strong>
-                    <small>{copy.autoInsuranceNote}</small>
-                  </span>
-                </label>
+                <fieldset className="deduction-source" disabled={disabled}>
+                  <legend>{copy.deductionSource}</legend>
+                  <p>{copy.deductionSourcePrompt}</p>
+                  <div className="deduction-source__options">
+                    <label>
+                      <input
+                        checked={member.useModeledSocialInsurance}
+                        name={`deduction-source-${member.id}`}
+                        type="radio"
+                        onChange={() =>
+                          updateMember(member.id, (current) => ({
+                            ...current,
+                            useModeledSocialInsurance: true,
+                          }))
+                        }
+                      />
+                      <span>{copy.calculatedDeduction}</span>
+                    </label>
+                    <label>
+                      <input
+                        checked={!member.useModeledSocialInsurance}
+                        name={`deduction-source-${member.id}`}
+                        type="radio"
+                        onChange={() =>
+                          updateMember(member.id, (current) => ({
+                            ...current,
+                            useModeledSocialInsurance: false,
+                          }))
+                        }
+                      />
+                      <span>{copy.manualDeduction}</span>
+                    </label>
+                  </div>
+                  <p className="deduction-source__note">
+                    {copy.contributionCalculationNote}
+                  </p>
+                </fieldset>
                 {!member.useModeledSocialInsurance &&
                   renderFields(
                     member,

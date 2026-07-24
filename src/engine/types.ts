@@ -108,11 +108,18 @@ export interface ProgramResult {
   actualMode: string;
   fallbackReason: string | null;
   outputs: Record<string, AxiomOutputValue>;
+  summaryAmount: number;
+  monthlySummaries: Array<{
+    month: string;
+    amount: number;
+  }>;
 }
 
 export interface CalculationResult {
-  month: string;
-  taxYear: number;
+  fiscalYear: number;
+  fiscalYearStart: string;
+  fiscalYearEnd: string;
+  taxCalendarYear: number;
   programs: ProgramResult[];
   elapsedMs: number;
 }
@@ -122,7 +129,7 @@ export type WorkerRequest =
   | {
       type: "calculate";
       id: number;
-      month: string;
+      fiscalYear: number;
       values: Record<string, InputValue>;
     };
 

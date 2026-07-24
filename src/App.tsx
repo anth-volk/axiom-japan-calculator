@@ -2,22 +2,47 @@ import { useEffect, useRef, useState } from "react";
 import { InputPanel } from "./components/InputPanel";
 import { ResultsPanel } from "./components/ResultsPanel";
 import { AxiomEngineClient } from "./engine/client";
+import {
+  SUPPORTED_FISCAL_YEARS,
+  fiscalYearLabel,
+} from "./engine/periods";
 import type {
   CalculationResult,
   GeneratedManifest,
   InputValue,
 } from "./engine/types";
+import {
+  LANGUAGES,
+  PRESET_COPY,
+  UI_COPY,
+  type Language,
+} from "./i18n/translations";
 import { buildPreset, PRESETS, type PresetId } from "./policy/presets";
+
+function initialLanguage(): Language {
+  const stored = window.localStorage.getItem("axiom-japan-language");
+  if (stored === "en" || stored === "ja") return stored;
+  return window.navigator.language.toLowerCase().startsWith("ja") ? "ja" : "en";
+}
 
 export default function App() {
   const clientRef = useRef<AxiomEngineClient | null>(null);
   const [manifest, setManifest] = useState<GeneratedManifest | null>(null);
   const [values, setValues] = useState<Record<string, InputValue>>({});
-  const [month, setMonth] = useState("2018-04");
+  const [fiscalYear, setFiscalYear] = useState(2018);
   const [preset, setPreset] = useState<PresetId>("validated-working-parent");
+  const [language, setLanguage] = useState<Language>(initialLanguage);
   const [result, setResult] = useState<CalculationResult | null>(null);
   const [calculating, setCalculating] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const copy = UI_COPY[language];
+  const presetCopy = PRESET_COPY[language];
+
+  useEffect(() => {
+    document.documentElement.lang = language;
+    document.documentElement.dir = "ltr";
+    window.localStorage.setItem("axiom-japan-language", language);
+  }, [language]);
 
   useEffect(() => {
     const client = new AxiomEngineClient();
@@ -32,7 +57,7 @@ export default function App() {
         const initialValues = buildPreset(loadedManifest, "validated-working-parent");
         setManifest(loadedManifest);
         setValues(initialValues);
-        const initialResult = await client.calculate("2018-04", initialValues);
+        const initialResult = await client.calculate(2018, initialValues);
         if (active) setResult(initialResult);
       })
       .catch((bootError: unknown) => {
@@ -58,7 +83,7 @@ export default function App() {
   function applyPreset(nextPreset: PresetId) {
     if (!manifest) return;
     setPreset(nextPreset);
-    setMonth("2018-04");
+    setFiscalYear(2018);
     setValues(buildPreset(manifest, nextPreset));
     setResult(null);
     setError(null);
@@ -70,7 +95,7 @@ export default function App() {
     setCalculating(true);
     setError(null);
     try {
-      setResult(await client.calculate(month, values));
+      setResult(await client.calculate(fiscalYear, values));
     } catch (calculationError) {
       setError(
         calculationError instanceof Error
@@ -85,52 +110,61 @@ export default function App() {
   return (
     <main>
       <header className="hero">
-        <nav aria-label="Calculator context">
-          <a className="wordmark" href="#top" id="top">
-            <span>公理</span>
-            <span>
-              <strong>Axiom · Japan</strong>
-              <small>Independent Wave 1 calculator</small>
-            </span>
+        <nav aria-label={copy.brand}>
+          <a className="wordmark wordmark--plain" href="#top" id="top">
+            <strong>{copy.brand}</strong>
+            <small>{copy.brandNote}</small>
           </a>
-          <a
-            className="repo-link"
-            href="https://github.com/anth-volk/axiom-japan-calculator"
-            rel="noreferrer"
-            target="_blank"
-          >
-            Source
-            <svg aria-hidden="true" viewBox="0 0 16 16">
-              <path d="M6 3h7v7M13 3 5 11M3 5v8h8" />
-            </svg>
-          </a>
+          <div className="nav-actions">
+            <a
+              className="repo-link"
+              href="https://github.com/anth-volk/axiom-japan-calculator"
+              rel="noreferrer"
+              target="_blank"
+            >
+              {copy.source}
+              <svg aria-hidden="true" viewBox="0 0 16 16">
+                <path d="M6 3h7v7M13 3 5 11M3 5v8h8" />
+              </svg>
+            </a>
+            <label className="language-selector">
+              <span className="sr-only">{copy.language}</span>
+              <select
+                aria-label={copy.language}
+                data-testid="language-selector"
+                value={language}
+                onChange={(event) =>
+                  setLanguage(event.target.value as Language)
+                }
+              >
+                {LANGUAGES.map((item) => (
+                  <option key={item.id} value={item.id}>
+                    {item.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
         </nav>
 
         <div className="hero-grid">
           <div>
-            <p className="eyebrow">National policy · 2017–2026</p>
-            <h1>
-              See the rules
-              <br />
-              shape a household.
-            </h1>
+            <p className="eyebrow">{copy.heroEyebrow}</p>
+            <h1>{copy.heroTitle}</h1>
           </div>
           <div className="hero-intro">
-            <p>
-              Calculate encoded Japanese national income tax, pension and
-              Employment Insurance deductions, and five national benefit paths.
-            </p>
+            <p>{copy.heroIntro}</p>
             <div className="privacy-note">
               <span className="privacy-pulse" />
-              Runs locally in your browser. Household answers are not uploaded.
+              {copy.privacy}
             </div>
           </div>
         </div>
       </header>
 
-      <section className="control-bar" aria-label="Calculation controls">
+      <section className="control-bar" aria-label={copy.calculate}>
         <label>
-          <span>Scenario</span>
+          <span>{copy.scenario}</span>
           <select
             data-testid="preset-select"
             disabled={!manifest || calculating}
@@ -139,29 +173,32 @@ export default function App() {
           >
             {PRESETS.map((item) => (
               <option key={item.id} value={item.id}>
-                {item.label}
+                {presetCopy[item.id].label}
               </option>
             ))}
           </select>
         </label>
         <label>
-          <span>Calculation month</span>
-          <input
-            data-testid="calculation-month"
+          <span>{copy.fiscalYear}</span>
+          <select
+            data-testid="fiscal-year-select"
             disabled={!manifest || calculating}
-            max="2026-12"
-            min="2017-04"
-            type="month"
-            value={month}
+            value={fiscalYear}
             onChange={(event) => {
-              setMonth(event.target.value);
+              setFiscalYear(Number(event.target.value));
               setResult(null);
             }}
-          />
+          >
+            {SUPPORTED_FISCAL_YEARS.map((year) => (
+              <option key={year} value={year}>
+                {fiscalYearLabel(year, language, true)}
+              </option>
+            ))}
+          </select>
         </label>
         <div className="scenario-description">
-          <span>Preset note</span>
-          <p>{PRESETS.find((item) => item.id === preset)?.description}</p>
+          <span>{copy.presetNote}</span>
+          <p>{presetCopy[preset].description}</p>
         </div>
         <button
           className="calculate-button"
@@ -170,7 +207,7 @@ export default function App() {
           type="button"
           onClick={calculate}
         >
-          <span>{calculating ? "Calculating…" : "Calculate with Axiom"}</span>
+          <span>{calculating ? copy.calculating : copy.calculate}</span>
           <svg aria-hidden="true" viewBox="0 0 20 20">
             <path d="M4 10h12m-4-4 4 4-4 4" />
           </svg>
@@ -178,31 +215,29 @@ export default function App() {
       </section>
 
       <section className="scope-banner">
-        <span>Experimental & unsigned</span>
-        <p>
-          National Wave 1 only. The model does not include inhabitant tax,
-          health insurance, long-term-care premiums, Public Assistance amounts,
-          or municipal benefits. It is not official Japanese tax advice.
-        </p>
+        <span>{copy.experimental}</span>
+        <p>{copy.scope}</p>
       </section>
 
       <div className="workspace">
         {manifest ? (
           <InputPanel
             disabled={calculating}
+            language={language}
             manifest={manifest}
             values={values}
             onChange={updateValue}
           />
         ) : (
           <section className="input-panel input-panel--placeholder">
-            <p>Loading the complete Wave 1 input contract…</p>
+            <p>{copy.loadingInputs}</p>
           </section>
         )}
         {manifest ? (
           <ResultsPanel
             calculating={calculating}
             error={error}
+            language={language}
             manifest={manifest}
             result={result}
           />
@@ -213,14 +248,14 @@ export default function App() {
               <span />
               <span />
             </div>
-            <p>{error ?? "Verifying the Axiom engine and policy artifacts…"}</p>
+            <p>{error ?? copy.verifying}</p>
           </aside>
         )}
       </div>
 
       <footer>
         <p>
-          Built from the independent{" "}
+          {copy.footerLead}{" "}
           <a
             href="https://github.com/anth-volk/rulespec-jp"
             rel="noreferrer"
@@ -228,8 +263,7 @@ export default function App() {
           >
             anth-volk/rulespec-jp
           </a>{" "}
-          encoding. Not reviewed or endorsed by The Axiom Foundation or the
-          Government of Japan.
+          {copy.footerTail}
         </p>
       </footer>
     </main>

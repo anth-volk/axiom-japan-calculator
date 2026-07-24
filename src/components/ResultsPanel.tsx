@@ -3,13 +3,21 @@ import type {
   GeneratedManifest,
   ProgramResult,
 } from "../engine/types";
-import { formatOutput, formatYen, numericOutput } from "../policy/format";
+import {
+  RESULT_COPY,
+  outputLabel,
+  programCopy,
+  type Language,
+} from "../i18n/translations";
+import { fiscalYearLabel } from "../engine/periods";
+import { formatMonth, formatOutput, formatYen } from "../policy/format";
 
 interface ResultsPanelProps {
   manifest: GeneratedManifest;
   result: CalculationResult | null;
   calculating: boolean;
   error: string | null;
+  language: Language;
 }
 
 function resultMap(result: CalculationResult) {
@@ -23,10 +31,10 @@ function summaryValue(
 ) {
   return manifest.programs
     .filter((program) => program.summaryBucket === bucket)
-    .reduce((sum, program) => {
-      const output = results.get(program.id)?.outputs[program.summaryOutput];
-      return sum + numericOutput(output);
-    }, 0);
+    .reduce(
+      (sum, program) => sum + (results.get(program.id)?.summaryAmount ?? 0),
+      0,
+    );
 }
 
 export function ResultsPanel({
@@ -34,17 +42,17 @@ export function ResultsPanel({
   result,
   calculating,
   error,
+  language,
 }: ResultsPanelProps) {
+  const copy = RESULT_COPY[language];
+
   if (error) {
     return (
       <aside className="results-panel">
         <div className="result-error" role="alert">
-          <span>Calculation stopped</span>
+          <span>{copy.stopped}</span>
           <strong>{error}</strong>
-          <p>
-            Review the selected period and the explicit statutory inputs, then run the
-            calculator again.
-          </p>
+          <p>{copy.review}</p>
         </div>
       </aside>
     );
@@ -58,60 +66,63 @@ export function ResultsPanel({
           <span />
           <span />
         </div>
-        <p>{calculating ? "Running the Axiom engine…" : "Preparing the policy engine…"}</p>
+        <p>{calculating ? copy.running : copy.preparing}</p>
       </aside>
     );
   }
 
   const byProgram = resultMap(result);
   const annualTax = summaryValue(manifest, byProgram, "annualTax");
-  const monthlyDeductions = summaryValue(manifest, byProgram, "monthlyDeduction");
-  const monthlyBenefits = summaryValue(manifest, byProgram, "monthlyBenefit");
-  const monthlyPosition = monthlyBenefits - monthlyDeductions;
+  const fiscalDeductions = summaryValue(
+    manifest,
+    byProgram,
+    "monthlyDeduction",
+  );
+  const fiscalBenefits = summaryValue(manifest, byProgram, "monthlyBenefit");
+  const fiscalPosition = fiscalBenefits - fiscalDeductions;
+  const fiscalLabel = fiscalYearLabel(result.fiscalYear, language);
 
   return (
     <aside className="results-panel" aria-busy={calculating} aria-live="polite">
       <div className="results-heading">
         <div>
-          <p className="eyebrow">Axiom result</p>
-          <h2>Your modeled ledger</h2>
+          <p className="eyebrow">{copy.eyebrow}</p>
+          <h2>{copy.heading}</h2>
         </div>
         <span className={`status-dot ${calculating ? "status-dot--busy" : ""}`}>
-          {calculating ? "Updating" : `${result.elapsedMs.toFixed(0)} ms`}
+          {calculating ? copy.updating : `${result.elapsedMs.toFixed(0)} ms`}
         </span>
       </div>
 
       <div className="summary-grid">
         <article className="summary-card summary-card--ink">
-          <span>Annual national income tax</span>
-          <strong data-testid="summary-annual-tax">{formatYen(annualTax)}</strong>
-          <small>
-            {result.taxYear === 2017
-              ? "2017 execution begins at the April 1 support boundary"
-              : `Tax year ${result.taxYear}, including encoded national surtaxes`}
-          </small>
+          <span>{copy.calendarTax}</span>
+          <strong data-testid="summary-annual-tax">
+            {formatYen(annualTax, language)}
+          </strong>
+          <small>{copy.calendarTaxNote(result.taxCalendarYear)}</small>
         </article>
         <article className="summary-card">
-          <span>Monthly modeled deductions</span>
-          <strong data-testid="summary-monthly-deductions">
-            {formatYen(monthlyDeductions)}
+          <span>{copy.fiscalDeductions}</span>
+          <strong data-testid="summary-fiscal-deductions">
+            {formatYen(fiscalDeductions, language)}
           </strong>
-          <small>Pension and Employment Insurance for {result.month}</small>
+          <small>{copy.fiscalNote(fiscalLabel)}</small>
         </article>
         <article className="summary-card">
-          <span>Monthly modeled benefits</span>
-          <strong data-testid="summary-monthly-benefits">
-            {formatYen(monthlyBenefits)}
+          <span>{copy.fiscalBenefits}</span>
+          <strong data-testid="summary-fiscal-benefits">
+            {formatYen(fiscalBenefits, language)}
           </strong>
-          <small>National benefits with supplied eligibility facts</small>
+          <small>{copy.benefitsNote}</small>
         </article>
         <article className="summary-card summary-card--accent">
-          <span>Benefits minus contributions</span>
-          <strong data-testid="summary-monthly-position">
-            {monthlyPosition < 0 ? "−" : "+"}
-            {formatYen(Math.abs(monthlyPosition))}
+          <span>{copy.fiscalPosition}</span>
+          <strong data-testid="summary-fiscal-position">
+            {fiscalPosition < 0 ? "−" : "+"}
+            {formatYen(Math.abs(fiscalPosition), language)}
           </strong>
-          <small>Selected month only; annual income tax is separate</small>
+          <small>{copy.positionNote}</small>
         </article>
       </div>
 
@@ -120,55 +131,86 @@ export function ResultsPanel({
           <path d="M12 3 2.8 20h18.4L12 3Zm0 6v5m0 3.5v.1" />
         </svg>
         <p>
-          This is a component ledger, not take-home pay or disposable income.
-          Inhabitant tax and health and long-term-care premiums are not encoded.
-          {result.taxYear === 2017 &&
-            " The 2017 annual execution interval is April 1–December 31; annual inputs are not prorated."}
+          {copy.warning}
+          {result.fiscalYear === 2017 &&
+            (language === "ja"
+              ? " 2017年分の所得税の実行期間は、対応開始日の4月1日から12月31日までです。年額入力は按分しません。"
+              : " The 2017 income-tax execution interval begins at the April 1 support boundary and annual inputs are not prorated.")}
         </p>
       </div>
 
       <div className="breakdown">
         <div className="breakdown-heading">
-          <h3>Rule-by-rule breakdown</h3>
-          <span>{manifest.programs.length} compiled programs</span>
+          <h3>{copy.breakdown}</h3>
+          <span>
+            {manifest.programs.length} {copy.compiledPrograms}
+          </span>
         </div>
 
         {manifest.programs.map((program) => {
           const programResult = byProgram.get(program.id);
-          const summary = programResult?.outputs[program.summaryOutput];
+          const localizedProgram = programCopy(program, language);
+          const isAnnual = program.cadence === "annual";
           return (
             <details
               key={program.id}
               className="result-program"
-              open={program.id === "national-income-tax" || numericOutput(summary) > 0}
+              open={
+                program.id === "national-income-tax" ||
+                (programResult?.summaryAmount ?? 0) > 0
+              }
             >
               <summary>
                 <span>
-                  <strong>{program.label}</strong>
-                  <small>{program.description}</small>
+                  <strong>{localizedProgram.label}</strong>
+                  <small>{localizedProgram.description}</small>
                 </span>
                 <span className="program-amount">
-                  {formatOutput(
-                    summary,
-                    program.outputs.find((output) => output.id === program.summaryOutput)!,
-                  )}
+                  {formatYen(programResult?.summaryAmount ?? 0, language)}
                   <svg aria-hidden="true" viewBox="0 0 16 16">
                     <path d="m3 6 5 5 5-5" />
                   </svg>
                 </span>
               </summary>
               <div className="program-body">
+                {!isAnnual && (
+                  <p className="program-period-label">{copy.fiscalTotal}</p>
+                )}
+
+                {!isAnnual && programResult?.monthlySummaries.length ? (
+                  <div className="monthly-schedule">
+                    <strong>{copy.monthlySchedule}</strong>
+                    <dl>
+                      {programResult.monthlySummaries.map((month) => (
+                        <div key={month.month}>
+                          <dt>{formatMonth(month.month, language)}</dt>
+                          <dd>{formatYen(month.amount, language)}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                  </div>
+                ) : null}
+
+                <p className="program-period-label">
+                  {isAnnual ? copy.calendarTotal : copy.endSnapshot}
+                </p>
                 <dl>
                   {program.outputs.map((output) => (
                     <div key={output.id}>
-                      <dt>{output.label}</dt>
-                      <dd>{formatOutput(programResult?.outputs[output.id], output)}</dd>
+                      <dt>{outputLabel(output, language)}</dt>
+                      <dd>
+                        {formatOutput(
+                          programResult?.outputs[output.id],
+                          output,
+                          language,
+                        )}
+                      </dd>
                     </div>
                   ))}
                 </dl>
                 <div className="program-provenance">
                   <span>
-                    Execution: {programResult?.actualMode ?? "—"}
+                    {copy.execution}: {programResult?.actualMode ?? "—"}
                     {programResult?.fallbackReason
                       ? ` (${programResult.fallbackReason})`
                       : ""}
@@ -185,20 +227,20 @@ export function ResultsPanel({
       </div>
 
       <div className="provenance-card">
-        <p className="eyebrow">Reproducibility</p>
+        <p className="eyebrow">{copy.reproducibility}</p>
         <div>
-          <span>Rules</span>
+          <span>{copy.rules}</span>
           <code>{manifest.pins.rulespec.commit.slice(0, 12)}</code>
         </div>
         <div>
-          <span>Engine</span>
+          <span>{copy.engine}</span>
           <code>
             {manifest.engineVersion} · artifact v{manifest.artifactFormatVersion}
           </code>
         </div>
         <div>
-          <span>Runtime</span>
-          <code>Web Worker · verified WASM + artifacts</code>
+          <span>{copy.runtime}</span>
+          <code>{copy.workerRuntime}</code>
         </div>
       </div>
     </aside>

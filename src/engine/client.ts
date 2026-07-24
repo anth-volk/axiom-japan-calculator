@@ -11,7 +11,7 @@ type WorkerRequestWithoutId =
   | { type: "boot"; baseUrl: string }
   | {
       type: "calculate";
-      month: string;
+      fiscalYear: number;
       values: Record<string, InputValue>;
     };
 
@@ -64,10 +64,10 @@ export class AxiomEngineClient {
   }
 
   calculate(
-    month: string,
+    fiscalYear: number,
     values: Record<string, InputValue>,
   ): Promise<CalculationResult> {
-    return this.request({ type: "calculate", month, values });
+    return this.request({ type: "calculate", fiscalYear, values });
   }
 
   destroy() {

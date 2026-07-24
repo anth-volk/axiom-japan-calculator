@@ -5,12 +5,20 @@ import type {
   InputValue,
   ManifestInput,
 } from "../engine/types";
-import { GROUP_COPY, GROUP_ORDER, INPUT_HELP } from "../policy/copy";
+import {
+  GROUP_COPY,
+  GROUP_ORDER,
+  INPUT_HELP,
+  INPUT_PANEL_COPY,
+  inputLabel,
+  type Language,
+} from "../i18n/translations";
 
 interface InputPanelProps {
   manifest: GeneratedManifest;
   values: Record<string, InputValue>;
   disabled: boolean;
+  language: Language;
   onChange: (slot: string, value: InputValue) => void;
 }
 
@@ -18,20 +26,23 @@ function InputControl({
   input,
   value,
   disabled,
+  language,
   onChange,
 }: {
   input: ManifestInput;
   value: InputValue;
   disabled: boolean;
+  language: Language;
   onChange: (slot: string, value: InputValue) => void;
 }) {
-  const help = INPUT_HELP[input.slot];
+  const help = INPUT_HELP[input.slot]?.[language];
+  const label = inputLabel(input, language);
 
   if (input.kind === "bool") {
     return (
       <label className="input-row input-row--boolean" data-testid={`row-${input.slot}`}>
         <span className="input-copy">
-          <span className="input-label">{input.label}</span>
+          <span className="input-label">{label}</span>
           {help && <span className="input-help">{help}</span>}
           <code className="input-code">{input.slot}</code>
         </span>
@@ -54,13 +65,21 @@ function InputControl({
   return (
     <label className="input-row" data-testid={`row-${input.slot}`}>
       <span className="input-copy">
-        <span className="input-label">{input.label}</span>
+        <span className="input-label">{label}</span>
         {help && <span className="input-help">{help}</span>}
         <code className="input-code">{input.slot}</code>
       </span>
       <span className="number-shell">
         <span className="number-prefix">
-          {input.slot.includes("age") ? "yr" : input.integer ? "#" : "¥"}
+          {input.slot.includes("age")
+            ? language === "ja"
+              ? "歳"
+              : "yr"
+            : input.integer
+              ? language === "ja"
+                ? "人"
+                : "#"
+              : "¥"}
         </span>
         <input
           data-testid={`input-${input.slot}`}
@@ -81,13 +100,16 @@ export function InputPanel({
   manifest,
   values,
   disabled,
+  language,
   onChange,
 }: InputPanelProps) {
+  const copy = INPUT_PANEL_COPY[language];
+  const groupCopy = GROUP_COPY[language];
   const [search, setSearch] = useState("");
   const [openGroups, setOpenGroups] = useState<Set<InputGroupId>>(
     () =>
       new Set(
-        GROUP_ORDER.filter((group) => GROUP_COPY[group].open),
+        GROUP_ORDER.filter((group) => GROUP_COPY.en[group].open),
       ),
   );
 
@@ -98,12 +120,12 @@ export function InputPanel({
         (input) =>
           input.group === group &&
           (!query ||
-            input.label.toLowerCase().includes(query) ||
+            inputLabel(input, language).toLowerCase().includes(query) ||
             input.slot.toLowerCase().includes(query)),
       );
       return { group, inputs };
     }).filter(({ inputs }) => inputs.length > 0);
-  }, [manifest.inputs, search]);
+  }, [language, manifest.inputs, search]);
 
   function handleToggle(group: InputGroupId, open: boolean) {
     if (search) return;
@@ -119,33 +141,49 @@ export function InputPanel({
     <section aria-labelledby="inputs-heading" className="input-panel">
       <div className="section-heading">
         <div>
-          <p className="eyebrow">Household facts</p>
-          <h2 id="inputs-heading">Tell the rules what is true</h2>
+          <p className="eyebrow">{copy.eyebrow}</p>
+          <h2 id="inputs-heading">{copy.heading}</h2>
         </div>
-        <span className="count-pill">{manifest.inputCount} inputs available</span>
+        <span className="count-pill">
+          {manifest.inputCount} {copy.available}
+        </span>
       </div>
 
+      <aside className="household-explainer">
+        <strong>{copy.explainerTitle}</strong>
+        <p>{copy.explainerBody}</p>
+        <ul>
+          {copy.explainerPoints.map((point) => (
+            <li key={point}>{point}</li>
+          ))}
+        </ul>
+      </aside>
+
       <label className="search-box">
-        <span className="sr-only">Search policy inputs</span>
+        <span className="sr-only">{copy.search}</span>
         <svg aria-hidden="true" viewBox="0 0 24 24">
           <path d="m21 21-4.35-4.35m2.35-5.4a7.75 7.75 0 1 1-15.5 0 7.75 7.75 0 0 1 15.5 0Z" />
         </svg>
         <input
-          placeholder="Find an income, deduction, status, or allowance…"
+          placeholder={copy.search}
           type="search"
           value={search}
           onChange={(event) => setSearch(event.target.value)}
         />
         {search && (
-          <button aria-label="Clear input search" type="button" onClick={() => setSearch("")}>
-            Clear
+          <button
+            aria-label={copy.clear}
+            type="button"
+            onClick={() => setSearch("")}
+          >
+            {copy.clear}
           </button>
         )}
       </label>
 
       <div className="input-groups">
         {grouped.map(({ group, inputs }) => {
-          const copy = GROUP_COPY[group];
+          const groupText = groupCopy[group];
           const open = Boolean(search) || openGroups.has(group);
           return (
             <details
@@ -158,9 +196,9 @@ export function InputPanel({
             >
               <summary>
                 <span>
-                  <span className="group-eyebrow">{copy.eyebrow}</span>
-                  <strong>{copy.title}</strong>
-                  <small>{copy.description}</small>
+                  <span className="group-eyebrow">{groupText.eyebrow}</span>
+                  <strong>{groupText.title}</strong>
+                  <small>{groupText.description}</small>
                 </span>
                 <span className="group-meta">
                   {inputs.length}
@@ -175,6 +213,7 @@ export function InputPanel({
                     key={input.slot}
                     disabled={disabled}
                     input={input}
+                    language={language}
                     value={values[input.slot] ?? (input.kind === "bool" ? false : "0")}
                     onChange={onChange}
                   />
@@ -186,7 +225,9 @@ export function InputPanel({
       </div>
 
       {grouped.length === 0 && (
-        <p className="empty-search">No Wave 1 inputs match “{search}”.</p>
+        <p className="empty-search">
+          {copy.noMatch} “{search}”.
+        </p>
       )}
     </section>
   );

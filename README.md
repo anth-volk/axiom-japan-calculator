@@ -9,6 +9,9 @@ WebAssembly (WASM) inside a Web Worker. It makes no household-data network
 requests. Nine compiled policy programs and their integrity hashes are shipped
 as static assets.
 
+The interface is fully available in English and Japanese. Japanese is rendered
+left-to-right, and the Japanese brand name is `アクシオム・ジャパン`.
+
 This is experimental, unsigned work under `anth-volk`. It is not official
 Axiom Foundation material, has not been reviewed or endorsed by The Axiom
 Foundation or the Government of Japan, and is not tax advice.
@@ -20,15 +23,15 @@ used by nine executable programs.
 
 | Cadence | Wave 1 component |
 |---|---|
-| Annual | National income tax for the encoded employment and public-pension path |
-| Selected month | Employees' Pension employee contribution |
-| Selected wage payment | Employment Insurance employee contribution |
-| Selected month | National Pension contribution after encoded relief |
-| Selected month | Child Allowance |
-| Selected month | Child Rearing Allowance |
-| Selected month | Special Child Rearing Allowance |
-| Selected month | Disabled Child Welfare Allowance |
-| Selected month | Special Disability Allowance |
+| Calendar year matching the fiscal-year start | National income tax for the encoded employment and public-pension path |
+| April–March fiscal-year total | Employees' Pension employee contribution |
+| April–March fiscal-year total | Employment Insurance employee contribution |
+| April–March fiscal-year total | National Pension contribution after encoded relief |
+| April–March fiscal-year total | Child Allowance |
+| April–March fiscal-year total | Child Rearing Allowance |
+| April–March fiscal-year total | Special Child Rearing Allowance |
+| April–March fiscal-year total | Disabled Child Welfare Allowance |
+| April–March fiscal-year total | Special Disability Allowance |
 
 Fact-intensive determinations—such as custody, co-residence, disability grade,
 agency approval, or pension coverage—remain explicit inputs. The calculator
@@ -39,6 +42,33 @@ evaluates one primary `Person`, with household, dependant, child, supporter,
 and status facts supplied as aggregate/count inputs where the encoded rule
 requires them. There is no multi-person relationship graph in Wave 1.
 
+## Household setter and rule sections
+
+The left side is an explicit input editor, not a conventional family-member
+builder.
+
+- The calculator always runs all nine compiled rule programs. Expanding,
+  collapsing, or searching an input section does not activate or deactivate a
+  program.
+- A boolean switch asserts a legal or household fact. Off means that the fact
+  is false; it does not mean that the corresponding program is skipped.
+- Numeric fields supply statutory income measures, payment amounts, ages, and
+  counts. Some measures—such as total income for a deduction—must be supplied
+  explicitly because Wave 1 does not derive every legal income concept.
+- The current model evaluates one primary `Person`. Spouses, children,
+  dependants, and supporters are represented through counts, amounts, and
+  status facts rather than separate person records.
+- Monthly inputs are reused for each of the 12 months in the selected fiscal
+  year. A changing salary, bonus, custody status, or child count cannot yet be
+  entered month by month.
+- Annual income inputs are used for national income tax in the calendar year
+  matching the fiscal year's starting year. They are not constructed by adding
+  the monthly contribution inputs.
+
+The sections are grouped by the policy programs that consume their facts so a
+user can find relevant inputs. They are therefore rule-oriented input groups,
+not rule selectors.
+
 ## Important boundary
 
 This app presents a **component ledger**, not take-home pay or disposable
@@ -47,12 +77,24 @@ Insurance, employee health-insurance premiums, long-term-care premiums, Public
 Assistance amounts, municipal benefits, or other Wave 1 exclusions.
 
 Monthly benefit and contribution rules and the interface have an inclusive
-support boundary of `2017-04-01`. For a selected 2017 month, the annual-tax
-execution interval is April 1–December 31; supplied annual values are not
+support boundary of `2017-04-01`. The selectable complete fiscal years are
+FY2017 through FY2025. FY2018 means April 2018 through March 2019.
+
+Each selector option also shows the Japanese era-year convention: for example,
+`FY 2018 (Heisei 30)` / `2018年度（平成30年度）`. FY2019 is shown as
+`FY 2019 (Reiwa 1)` / `2019年度（令和元年度）`, following the government's
+post-transition convention that the whole national budget year use
+`令和元年度`. See the
+[Cabinet Office transition explanation](https://www.cao.go.jp/minister/1810_t_hirai/kaiken/2019/0402kaiken.html)
+and the
+[Ministry of Finance FY2019 accounts](https://www.mof.go.jp/policy/budget/budger_workflow/account/fy2019/index.html).
+
+For FY2017, the national income-tax execution interval begins at the April 1
+support boundary and ends December 31; supplied annual values are not
 prorated. Calendar Year 2018 is the first complete annual component-validation
-period and remains the default preset. The underlying Japanese source
-provenance preserves era dates such as `平成29年4月1日`, while execution uses
-normalized Gregorian ISO dates.
+period and remains the default preset. Japanese source provenance preserves
+era dates such as `平成29年4月1日`, while execution uses normalized Gregorian
+ISO dates.
 
 ## Architecture
 
@@ -148,8 +190,9 @@ ledger outputs, so this exception does not bypass runtime verification.
 
 `npm test` checks the input manifest, presets, and output formatting.
 `npm run verify:generated` checks the committed asset hashes and program
-contract. `npm run verify:wasm` executes the validated 2018 scenario through
-all nine programs using the committed WASM binary without a browser.
+contract. `npm run verify:wasm` executes the validated FY2018 scenario through
+all nine programs using the committed WASM binary without a browser, including
+all 12 April–March monthly executions.
 `npm run verify:native` runs the same ledger when `JP_ENGINE_BIN` points to the
 native Axiom engine. `npm run check` performs strict TypeScript checking, and
 `npm run build` produces the static application.

@@ -11,7 +11,13 @@ import type {
   WorkerRequest,
   WorkerResponse,
 } from "./types";
-import { annualPeriod, isSupportedMonth, monthPeriod } from "./periods";
+import {
+  fiscalYearMonths,
+  fiscalYearPeriod,
+  isSupportedFiscalYear,
+  monthPeriod,
+  taxPeriodForFiscalYear,
+} from "./periods";
 
 interface AxiomWasmModule {
   default: (options?: {
@@ -129,17 +135,19 @@ function scalarFor(input: ManifestInput, value: InputValue | undefined) {
   return { kind: "decimal", value: text };
 }
 
-function executeProgram(
+function numericOutput(output: AxiomOutputValue | undefined): number {
+  if (!output || output.kind === "judgment") return 0;
+  const value = output.value.value;
+  const numeric = typeof value === "number" ? value : Number(value);
+  return Number.isFinite(numeric) ? numeric : 0;
+}
+
+function executeProgramPeriod(
   runtime: Runtime,
   program: ManifestProgram,
-  month: string,
+  period: ReturnType<typeof monthPeriod>,
   values: Record<string, InputValue>,
-): ProgramResult {
-  const period =
-    program.cadence === "annual"
-      ? annualPeriod(Number(month.slice(0, 4)))
-      : monthPeriod(month);
-
+) {
   const inputs = program.inputs.map((programInput) => {
     const input = runtime.inputs.get(programInput.slot);
     if (!input) throw new Error(`Unknown manifest input ${programInput.slot}`);
@@ -176,7 +184,6 @@ function executeProgram(
   if (!firstResult) throw new Error(`${program.label} returned no result`);
 
   return {
-    programId: program.id,
     requestedMode: response.metadata.requested_mode,
     actualMode: response.metadata.actual_mode,
     fallbackReason: response.metadata.fallback_reason,
@@ -184,24 +191,78 @@ function executeProgram(
   };
 }
 
+function executeProgram(
+  runtime: Runtime,
+  program: ManifestProgram,
+  fiscalYear: number,
+  values: Record<string, InputValue>,
+): ProgramResult {
+  if (program.cadence === "annual") {
+    const execution = executeProgramPeriod(
+      runtime,
+      program,
+      taxPeriodForFiscalYear(fiscalYear),
+      values,
+    );
+    return {
+      programId: program.id,
+      ...execution,
+      summaryAmount: numericOutput(execution.outputs[program.summaryOutput]),
+      monthlySummaries: [],
+    };
+  }
+
+  const executions = fiscalYearMonths(fiscalYear).map((month) => ({
+    month,
+    execution: executeProgramPeriod(
+      runtime,
+      program,
+      monthPeriod(month),
+      values,
+    ),
+  }));
+  const last = executions.at(-1);
+  if (!last) throw new Error(`${program.label} has no fiscal-year months`);
+  return {
+    programId: program.id,
+    requestedMode: last.execution.requestedMode,
+    actualMode: last.execution.actualMode,
+    fallbackReason:
+      executions.find(({ execution }) => execution.fallbackReason)?.execution
+        .fallbackReason ?? null,
+    outputs: last.execution.outputs,
+    summaryAmount: executions.reduce(
+      (total, { execution }) =>
+        total + numericOutput(execution.outputs[program.summaryOutput]),
+      0,
+    ),
+    monthlySummaries: executions.map(({ month, execution }) => ({
+      month,
+      amount: numericOutput(execution.outputs[program.summaryOutput]),
+    })),
+  };
+}
+
 async function calculate(
   runtime: Runtime,
-  month: string,
+  fiscalYear: number,
   values: Record<string, InputValue>,
 ): Promise<CalculationResult> {
   const started = performance.now();
-  const taxYear = Number(month.slice(0, 4));
-  if (!Number.isInteger(taxYear) || !isSupportedMonth(month)) {
-    throw new Error("Choose a calculation month between April 2017 and December 2026");
+  if (!Number.isInteger(fiscalYear) || !isSupportedFiscalYear(fiscalYear)) {
+    throw new Error("Choose a supported fiscal year between FY2017 and FY2025");
   }
 
   const programs = runtime.manifest.programs.map((program) =>
-    executeProgram(runtime, program, month, values),
+    executeProgram(runtime, program, fiscalYear, values),
   );
+  const fiscalPeriod = fiscalYearPeriod(fiscalYear);
 
   return {
-    month,
-    taxYear,
+    fiscalYear,
+    fiscalYearStart: fiscalPeriod.start,
+    fiscalYearEnd: fiscalPeriod.end,
+    taxCalendarYear: fiscalYear,
     programs,
     elapsedMs: performance.now() - started,
   };
@@ -227,7 +288,7 @@ self.addEventListener("message", async (event: MessageEvent<WorkerRequest>) => {
       throw new Error("The Axiom worker has not been initialized");
     }
     const runtime = await runtimePromise;
-    const result = await calculate(runtime, message.month, message.values);
+    const result = await calculate(runtime, message.fiscalYear, message.values);
     respond({ type: "calculated", id: message.id, result });
   } catch (error) {
     respond({

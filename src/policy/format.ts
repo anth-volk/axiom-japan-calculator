@@ -1,14 +1,9 @@
 import type { AxiomOutputValue, ManifestOutput } from "../engine/types";
+import type { Language } from "../i18n/translations";
 
-const yen = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "JPY",
-  maximumFractionDigits: 0,
-});
-
-const number = new Intl.NumberFormat("en-US", {
-  maximumFractionDigits: 2,
-});
+function locale(language: Language) {
+  return language === "ja" ? "ja-JP" : "en-US";
+}
 
 export function outputPrimitive(output: AxiomOutputValue | undefined) {
   if (!output) return null;
@@ -26,20 +21,38 @@ export function numericOutput(output: AxiomOutputValue | undefined): number {
   return 0;
 }
 
-export function formatYen(value: number): string {
-  return yen.format(value);
+export function formatYen(value: number, language: Language = "en"): string {
+  return new Intl.NumberFormat(locale(language), {
+    style: "currency",
+    currency: "JPY",
+    currencyDisplay: "narrowSymbol",
+    maximumFractionDigits: 0,
+  }).format(value);
 }
 
 export function formatOutput(
   value: AxiomOutputValue | undefined,
   metadata: ManifestOutput,
+  language: Language = "en",
 ): string {
   const primitive = outputPrimitive(value);
   if (primitive === null || primitive === undefined) return "—";
   if (typeof primitive === "boolean") return primitive ? "Yes" : "No";
   const numeric = typeof primitive === "number" ? primitive : Number(primitive);
   if (!Number.isFinite(numeric)) return String(primitive);
+  const number = new Intl.NumberFormat(locale(language), {
+    maximumFractionDigits: 2,
+  });
   if (metadata.role === "rate") return `${number.format(numeric * 100)}%`;
-  if (metadata.unit === "JPY") return formatYen(numeric);
+  if (metadata.unit === "JPY") return formatYen(numeric, language);
   return number.format(numeric);
+}
+
+export function formatMonth(month: string, language: Language): string {
+  const [year, rawMonth] = month.split("-").map(Number);
+  return new Intl.DateTimeFormat(locale(language), {
+    year: "numeric",
+    month: language === "ja" ? "long" : "short",
+    timeZone: "UTC",
+  }).format(new Date(Date.UTC(year, rawMonth - 1, 1)));
 }

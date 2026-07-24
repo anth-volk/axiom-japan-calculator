@@ -157,11 +157,6 @@ export default function App() {
         </div>
       </header>
 
-      <section className="scope-banner">
-        <span>{copy.experimental}</span>
-        <p>{copy.scope}</p>
-      </section>
-
       <div className="workspace">
         {manifest && household ? (
           <HouseholdWizard
@@ -194,6 +189,11 @@ export default function App() {
           {copy.footerTail}
         </p>
       </footer>
+
+      <section className="scope-banner scope-banner--bottom">
+        <span>{copy.experimental}</span>
+        <p>{copy.scope}</p>
+      </section>
     </main>
   );
 }

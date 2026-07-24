@@ -141,6 +141,7 @@ svg {
 }
 .scope-banner > span { margin-top: 2px; padding: 4px 7px; border: 1px solid #c87b70; border-radius: 2px; color: #994237; font-size: 16px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
 .scope-banner p { max-width: 970px; margin: 0; color: var(--muted); font-size: 16px; line-height: 1.6; }
+.scope-banner--bottom { border-top: 1px solid var(--line); border-bottom: 0; }
 .workspace {
   display: grid;
   gap: clamp(38px, 5vw, 72px);

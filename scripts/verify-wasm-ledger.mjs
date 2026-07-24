@@ -52,15 +52,14 @@ for (const program of manifest.programs) {
     program.cadence === "annual"
       ? [
           {
-          period_kind: "tax_year",
-          start: "2018-01-01",
-          end: "2018-12-31",
+            period_kind: "tax_year",
+            start: "2018-01-01",
+            end: "2018-12-31",
           },
         ]
       : Array.from({ length: 12 }, (_, index) => {
-          const offset = index + 3;
-          const year = 2018 + Math.floor(offset / 12);
-          const month = (offset % 12) + 1;
+          const year = 2018;
+          const month = index + 1;
           const lastDay = new Date(Date.UTC(year, month, 0)).getUTCDate();
           const prefix = `${year}-${String(month).padStart(2, "0")}`;
           return {
@@ -117,4 +116,6 @@ for (const program of manifest.programs) {
   console.log(`${program.id}: ${actual}`);
 }
 
-console.log("Validated the complete nine-program FY2018 WASM component ledger");
+console.log(
+  "Validated the complete nine-program calendar-year 2018 WASM component ledger",
+);

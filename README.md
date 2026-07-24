@@ -18,56 +18,60 @@ Foundation or the Government of Japan, and is not tax advice.
 
 ## What it calculates
 
-The UI exposes the complete generated input contract: **108 explicit inputs**
-used by nine executable programs.
+The household wizard covers the complete generated input contract: **108
+inputs** used by nine executable programs. Biographical and family answers
+produce the relevant aggregate count inputs; fact-intensive legal
+classifications remain explicit fields.
 
 | Cadence | Wave 1 component |
 |---|---|
-| Calendar year matching the fiscal-year start | National income tax for the encoded employment and public-pension path |
-| April–March fiscal-year total | Employees' Pension employee contribution |
-| April–March fiscal-year total | Employment Insurance employee contribution |
-| April–March fiscal-year total | National Pension contribution after encoded relief |
-| April–March fiscal-year total | Child Allowance |
-| April–March fiscal-year total | Child Rearing Allowance |
-| April–March fiscal-year total | Special Child Rearing Allowance |
-| April–March fiscal-year total | Disabled Child Welfare Allowance |
-| April–March fiscal-year total | Special Disability Allowance |
+| Calendar year | National income tax for the encoded employment and public-pension path |
+| Monthly executions summed within the calendar year | Employees' Pension employee contribution |
+| Monthly executions summed within the calendar year | Employment Insurance employee contribution |
+| Monthly executions summed within the calendar year | National Pension contribution after encoded relief |
+| Monthly executions summed within the calendar year | Child Allowance |
+| Monthly executions summed within the calendar year | Child Rearing Allowance |
+| Monthly executions summed within the calendar year | Special Child Rearing Allowance |
+| Monthly executions summed within the calendar year | Disabled Child Welfare Allowance |
+| Monthly executions summed within the calendar year | Special Disability Allowance |
 
 Fact-intensive determinations—such as custody, co-residence, disability grade,
 agency approval, or pension coverage—remain explicit inputs. The calculator
 does not infer them.
 
-The current RuleSpec programs are person-scoped. The browser therefore
-evaluates one primary `Person`, with household, dependant, child, supporter,
-and status facts supplied as aggregate/count inputs where the encoded rule
-requires them. There is no multi-person relationship graph in Wave 1.
+The current RuleSpec programs are person-scoped. The browser evaluates tax and
+contribution programs once for each household member selected for calculation.
+It evaluates benefit programs once for the primary household claimant.
+Household relationships are translated into each `Person` request; the Wave 1
+artifacts themselves do not yet consume a multi-person relationship graph.
 
-## Household setter and rule sections
+## Household wizard
 
-The left side is an explicit input editor, not a conventional family-member
-builder.
+The wizard is a conventional family-member builder arranged vertically above
+the result:
 
-- The calculator always runs all nine compiled rule programs. Expanding,
-  collapsing, or searching an input section does not activate or deactivate a
-  program.
-- A boolean switch asserts a legal or household fact. Off means that the fact
-  is false; it does not mean that the corresponding program is skipped.
-- Numeric fields supply statutory income measures, payment amounts, ages, and
-  counts. Some measures—such as total income for a deduction—must be supplied
-  explicitly because Wave 1 does not derive every legal income concept.
-- The current model evaluates one primary `Person`. Spouses, children,
-  dependants, and supporters are represented through counts, amounts, and
-  status facts rather than separate person records.
-- Monthly inputs are reused for each of the 12 months in the selected fiscal
-  year. A changing salary, bonus, custody status, or child count cannot yet be
-  entered month by month.
-- Annual income inputs are used for national income tax in the calendar year
-  matching the fiscal year's starting year. They are not constructed by adding
-  the monthly contribution inputs.
+1. **Household** selects the calendar year, household size, marital status,
+   member roles, birthdates, and which members receive an individual
+   tax-and-contribution calculation.
+2. **Income & insurance** collects annual tax measures and monthly social
+   insurance facts for each selected member. June and December bonuses can
+   differ from ordinary monthly remuneration.
+3. **Tax facts** assigns dependant and disability categories to people. The
+   wizard derives the primary taxpayer's encoded counts and retains all other
+   statutory tests as explicit fields.
+4. **Benefits** assigns each child an explicit Child Allowance band and
+   collects the primary claimant's income, eligibility, supporter, and
+   disability-allowance facts.
+5. **Review** shows who will be calculated before executing the worker.
 
-The sections are grouped by the policy programs that consume their facts so a
-user can find relevant inputs. They are therefore rule-oriented input groups,
-not rule selectors.
+The social-insurance deduction can either be supplied manually or linked to
+the calendar-year Employees' Pension, National Pension, and Employment
+Insurance amounts calculated for that member. The linked option is on by
+default.
+
+The wizard never treats a section as a rule selector. All applicable compiled
+programs run. A boolean asserts a legal fact, while an off value says the fact
+does not hold.
 
 ## Important boundary
 
@@ -76,31 +80,27 @@ income. It does not include individual inhabitant tax, National Health
 Insurance, employee health-insurance premiums, long-term-care premiums, Public
 Assistance amounts, municipal benefits, or other Wave 1 exclusions.
 
-Monthly benefit and contribution rules and the interface have an inclusive
-support boundary of `2017-04-01`. The selectable complete fiscal years are
-FY2017 through FY2025. FY2018 means April 2018 through March 2019.
+Monthly and annual rules have an inclusive support boundary of `2017-04-01`.
+The selector uses calendar years 2017 through 2026 because Japanese individual
+income tax is assessed by calendar year. Calendar Year 2018 is the first
+complete model year.
 
-Each selector option also shows the Japanese era-year convention: for example,
-`FY 2018 (Heisei 30)` / `2018年度（平成30年度）`. FY2019 is shown as
-`FY 2019 (Reiwa 1)` / `2019年度（令和元年度）`, following the government's
-post-transition convention that the whole national budget year use
-`令和元年度`. See the
-[Cabinet Office transition explanation](https://www.cao.go.jp/minister/1810_t_hirai/kaiken/2019/0402kaiken.html)
-and the
-[Ministry of Finance FY2019 accounts](https://www.mof.go.jp/policy/budget/budger_workflow/account/fy2019/index.html).
+Each option also shows the Japanese era year. For example, 2018 is `2018
+(Heisei 30)` / `2018年（平成30年）`. Because the era changed on May 1, 2019,
+that calendar year is shown as `2019 (Heisei 31 / Reiwa 1)` /
+`2019年（平成31年・令和元年）`. See the government's
+[era transition information](https://www.nta.go.jp/information/other/shingengo/index.htm).
 
-For FY2017, the national income-tax execution interval begins at the April 1
-support boundary and ends December 31; supplied annual values are not
-prorated. Calendar Year 2018 is the first complete annual component-validation
-period and remains the default preset. Japanese source provenance preserves
-era dates such as `平成29年4月1日`, while execution uses normalized Gregorian
-ISO dates.
+For 2017, both annual and monthly execution begin at the April 1 support
+boundary and end December 31; supplied annual values are not prorated.
+Japanese source provenance preserves era dates such as `平成29年4月1日`, while
+execution uses normalized Gregorian ISO dates.
 
 ## Architecture
 
 ```text
-React form (main thread)
-        │ 108 explicit input values
+React household wizard (main thread)
+        │ member-scoped answers + derived household counts
         ▼
 Web Worker
   ├─ verifies SHA-256 of the WASM binary
@@ -108,7 +108,7 @@ Web Worker
   ├─ executes the Axiom WASM engine
   └─ returns typed policy outputs
         ▼
-Component ledger and rule-level breakdown
+Household component ledger and person/rule breakdown
 ```
 
 The committed generated assets let an ordinary frontend build run without a
@@ -190,9 +190,10 @@ ledger outputs, so this exception does not bypass runtime verification.
 
 `npm test` checks the input manifest, presets, and output formatting.
 `npm run verify:generated` checks the committed asset hashes and program
-contract. `npm run verify:wasm` executes the validated FY2018 scenario through
+contract. `npm run verify:wasm` executes the validated calendar-year 2018
+scenario through
 all nine programs using the committed WASM binary without a browser, including
-all 12 April–March monthly executions.
+all 12 January–December monthly executions.
 `npm run verify:native` runs the same ledger when `JP_ENGINE_BIN` points to the
 native Axiom engine. `npm run check` performs strict TypeScript checking, and
 `npm run build` produces the static application.

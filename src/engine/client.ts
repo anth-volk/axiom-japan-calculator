@@ -1,8 +1,8 @@
 import AxiomWorker from "./axiom.worker?worker";
 import type {
+  CalculationPersonInput,
   CalculationResult,
   GeneratedManifest,
-  InputValue,
   WorkerRequest,
   WorkerResponse,
 } from "./types";
@@ -11,8 +11,8 @@ type WorkerRequestWithoutId =
   | { type: "boot"; baseUrl: string }
   | {
       type: "calculate";
-      fiscalYear: number;
-      values: Record<string, InputValue>;
+      calendarYear: number;
+      people: CalculationPersonInput[];
     };
 
 interface PendingRequest<T> {
@@ -64,10 +64,10 @@ export class AxiomEngineClient {
   }
 
   calculate(
-    fiscalYear: number,
-    values: Record<string, InputValue>,
+    calendarYear: number,
+    people: CalculationPersonInput[],
   ): Promise<CalculationResult> {
-    return this.request({ type: "calculate", fiscalYear, values });
+    return this.request({ type: "calculate", calendarYear, people });
   }
 
   destroy() {

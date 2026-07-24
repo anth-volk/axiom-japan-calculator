@@ -46,9 +46,8 @@ function periodsFor(program) {
     ];
   }
   return Array.from({ length: 12 }, (_, index) => {
-    const offset = index + 3;
-    const year = 2018 + Math.floor(offset / 12);
-    const month = (offset % 12) + 1;
+    const year = 2018;
+    const month = index + 1;
     const lastDay = new Date(Date.UTC(year, month, 0)).getUTCDate();
     const prefix = `${year}-${String(month).padStart(2, "0")}`;
     return {
@@ -122,5 +121,5 @@ for (const program of manifest.programs) {
 }
 
 console.log(
-  "Validated the complete nine-program FY2018 native component ledger",
+  "Validated the complete nine-program calendar-year 2018 native component ledger",
 );

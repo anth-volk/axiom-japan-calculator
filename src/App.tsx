@@ -1,23 +1,21 @@
 import { useEffect, useRef, useState } from "react";
-import { InputPanel } from "./components/InputPanel";
+import { HouseholdWizard } from "./components/HouseholdWizard";
 import { ResultsPanel } from "./components/ResultsPanel";
 import { AxiomEngineClient } from "./engine/client";
-import {
-  SUPPORTED_FISCAL_YEARS,
-  fiscalYearLabel,
-} from "./engine/periods";
 import type {
   CalculationResult,
   GeneratedManifest,
-  InputValue,
 } from "./engine/types";
 import {
   LANGUAGES,
-  PRESET_COPY,
   UI_COPY,
   type Language,
 } from "./i18n/translations";
-import { buildPreset, PRESETS, type PresetId } from "./policy/presets";
+import {
+  buildCalculationPeople,
+  createExampleHousehold,
+  type HouseholdDraft,
+} from "./policy/household";
 
 function initialLanguage(): Language {
   const stored = window.localStorage.getItem("axiom-japan-language");
@@ -28,15 +26,12 @@ function initialLanguage(): Language {
 export default function App() {
   const clientRef = useRef<AxiomEngineClient | null>(null);
   const [manifest, setManifest] = useState<GeneratedManifest | null>(null);
-  const [values, setValues] = useState<Record<string, InputValue>>({});
-  const [fiscalYear, setFiscalYear] = useState(2018);
-  const [preset, setPreset] = useState<PresetId>("validated-working-parent");
+  const [household, setHousehold] = useState<HouseholdDraft | null>(null);
   const [language, setLanguage] = useState<Language>(initialLanguage);
   const [result, setResult] = useState<CalculationResult | null>(null);
   const [calculating, setCalculating] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const copy = UI_COPY[language];
-  const presetCopy = PRESET_COPY[language];
 
   useEffect(() => {
     document.documentElement.lang = language;
@@ -54,10 +49,13 @@ export default function App() {
       .boot(baseUrl)
       .then(async (loadedManifest) => {
         if (!active) return;
-        const initialValues = buildPreset(loadedManifest, "validated-working-parent");
+        const initialHousehold = createExampleHousehold(loadedManifest, language);
         setManifest(loadedManifest);
-        setValues(initialValues);
-        const initialResult = await client.calculate(2018, initialValues);
+        setHousehold(initialHousehold);
+        const initialResult = await client.calculate(
+          initialHousehold.calendarYear,
+          buildCalculationPeople(initialHousehold),
+        );
         if (active) setResult(initialResult);
       })
       .catch((bootError: unknown) => {
@@ -76,26 +74,24 @@ export default function App() {
     };
   }, []);
 
-  function updateValue(slot: string, value: InputValue) {
-    setValues((current) => ({ ...current, [slot]: value }));
-  }
-
-  function applyPreset(nextPreset: PresetId) {
-    if (!manifest) return;
-    setPreset(nextPreset);
-    setFiscalYear(2018);
-    setValues(buildPreset(manifest, nextPreset));
+  function updateHousehold(nextHousehold: HouseholdDraft) {
+    setHousehold(nextHousehold);
     setResult(null);
     setError(null);
   }
 
   async function calculate() {
     const client = clientRef.current;
-    if (!client || !manifest) return;
+    if (!client || !manifest || !household) return;
     setCalculating(true);
     setError(null);
     try {
-      setResult(await client.calculate(fiscalYear, values));
+      setResult(
+        await client.calculate(
+          household.calendarYear,
+          buildCalculationPeople(household),
+        ),
+      );
     } catch (calculationError) {
       setError(
         calculationError instanceof Error
@@ -162,74 +158,23 @@ export default function App() {
         </div>
       </header>
 
-      <section className="control-bar" aria-label={copy.calculate}>
-        <label>
-          <span>{copy.scenario}</span>
-          <select
-            data-testid="preset-select"
-            disabled={!manifest || calculating}
-            value={preset}
-            onChange={(event) => applyPreset(event.target.value as PresetId)}
-          >
-            {PRESETS.map((item) => (
-              <option key={item.id} value={item.id}>
-                {presetCopy[item.id].label}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          <span>{copy.fiscalYear}</span>
-          <select
-            data-testid="fiscal-year-select"
-            disabled={!manifest || calculating}
-            value={fiscalYear}
-            onChange={(event) => {
-              setFiscalYear(Number(event.target.value));
-              setResult(null);
-            }}
-          >
-            {SUPPORTED_FISCAL_YEARS.map((year) => (
-              <option key={year} value={year}>
-                {fiscalYearLabel(year, language, true)}
-              </option>
-            ))}
-          </select>
-        </label>
-        <div className="scenario-description">
-          <span>{copy.presetNote}</span>
-          <p>{presetCopy[preset].description}</p>
-        </div>
-        <button
-          className="calculate-button"
-          data-testid="calculate-button"
-          disabled={!manifest || calculating}
-          type="button"
-          onClick={calculate}
-        >
-          <span>{calculating ? copy.calculating : copy.calculate}</span>
-          <svg aria-hidden="true" viewBox="0 0 20 20">
-            <path d="M4 10h12m-4-4 4 4-4 4" />
-          </svg>
-        </button>
-      </section>
-
       <section className="scope-banner">
         <span>{copy.experimental}</span>
         <p>{copy.scope}</p>
       </section>
 
       <div className="workspace">
-        {manifest ? (
-          <InputPanel
+        {manifest && household ? (
+          <HouseholdWizard
             disabled={calculating}
+            household={household}
             language={language}
             manifest={manifest}
-            values={values}
-            onChange={updateValue}
+            onCalculate={calculate}
+            onChange={updateHousehold}
           />
         ) : (
-          <section className="input-panel input-panel--placeholder">
+          <section className="wizard input-panel--placeholder">
             <p>{copy.loadingInputs}</p>
           </section>
         )}

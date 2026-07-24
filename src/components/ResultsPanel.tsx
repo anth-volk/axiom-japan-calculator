@@ -1,7 +1,6 @@
 import type {
   CalculationResult,
   GeneratedManifest,
-  ProgramResult,
 } from "../engine/types";
 import {
   RESULT_COPY,
@@ -9,7 +8,7 @@ import {
   programCopy,
   type Language,
 } from "../i18n/translations";
-import { fiscalYearLabel } from "../engine/periods";
+import { calendarYearLabel } from "../engine/periods";
 import { formatMonth, formatOutput, formatYen } from "../policy/format";
 
 interface ResultsPanelProps {
@@ -20,21 +19,21 @@ interface ResultsPanelProps {
   language: Language;
 }
 
-function resultMap(result: CalculationResult) {
-  return new Map(result.programs.map((program) => [program.programId, program]));
-}
-
 function summaryValue(
   manifest: GeneratedManifest,
-  results: Map<string, ProgramResult>,
+  result: CalculationResult,
   bucket: "annualTax" | "monthlyDeduction" | "monthlyBenefit",
 ) {
-  return manifest.programs
-    .filter((program) => program.summaryBucket === bucket)
-    .reduce(
-      (sum, program) => sum + (results.get(program.id)?.summaryAmount ?? 0),
-      0,
-    );
+  const ids = new Set(
+    manifest.programs
+      .filter((program) => program.summaryBucket === bucket)
+      .map((program) => program.id),
+  );
+  return result.programs.reduce(
+    (sum, program) =>
+      sum + (ids.has(program.programId) ? program.summaryAmount : 0),
+    0,
+  );
 }
 
 export function ResultsPanel({
@@ -71,16 +70,11 @@ export function ResultsPanel({
     );
   }
 
-  const byProgram = resultMap(result);
-  const annualTax = summaryValue(manifest, byProgram, "annualTax");
-  const fiscalDeductions = summaryValue(
-    manifest,
-    byProgram,
-    "monthlyDeduction",
-  );
-  const fiscalBenefits = summaryValue(manifest, byProgram, "monthlyBenefit");
-  const fiscalPosition = fiscalBenefits - fiscalDeductions;
-  const fiscalLabel = fiscalYearLabel(result.fiscalYear, language);
+  const annualTax = summaryValue(manifest, result, "annualTax");
+  const annualDeductions = summaryValue(manifest, result, "monthlyDeduction");
+  const annualBenefits = summaryValue(manifest, result, "monthlyBenefit");
+  const annualPosition = annualBenefits - annualDeductions;
+  const yearLabel = calendarYearLabel(result.calendarYear, language);
 
   return (
     <aside className="results-panel" aria-busy={calculating} aria-live="polite">
@@ -100,27 +94,27 @@ export function ResultsPanel({
           <strong data-testid="summary-annual-tax">
             {formatYen(annualTax, language)}
           </strong>
-          <small>{copy.calendarTaxNote(result.taxCalendarYear)}</small>
+          <small>{copy.calendarTaxNote(result.calendarYear)}</small>
         </article>
         <article className="summary-card">
-          <span>{copy.fiscalDeductions}</span>
-          <strong data-testid="summary-fiscal-deductions">
-            {formatYen(fiscalDeductions, language)}
+          <span>{copy.annualDeductions}</span>
+          <strong data-testid="summary-annual-deductions">
+            {formatYen(annualDeductions, language)}
           </strong>
-          <small>{copy.fiscalNote(fiscalLabel)}</small>
+          <small>{copy.annualNote(yearLabel)}</small>
         </article>
         <article className="summary-card">
-          <span>{copy.fiscalBenefits}</span>
-          <strong data-testid="summary-fiscal-benefits">
-            {formatYen(fiscalBenefits, language)}
+          <span>{copy.annualBenefits}</span>
+          <strong data-testid="summary-annual-benefits">
+            {formatYen(annualBenefits, language)}
           </strong>
           <small>{copy.benefitsNote}</small>
         </article>
         <article className="summary-card summary-card--accent">
-          <span>{copy.fiscalPosition}</span>
-          <strong data-testid="summary-fiscal-position">
-            {fiscalPosition < 0 ? "−" : "+"}
-            {formatYen(Math.abs(fiscalPosition), language)}
+          <span>{copy.annualPosition}</span>
+          <strong data-testid="summary-annual-position">
+            {annualPosition < 0 ? "−" : "+"}
+            {formatYen(Math.abs(annualPosition), language)}
           </strong>
           <small>{copy.positionNote}</small>
         </article>
@@ -132,10 +126,10 @@ export function ResultsPanel({
         </svg>
         <p>
           {copy.warning}
-          {result.fiscalYear === 2017 &&
+          {result.calendarYear === 2017 &&
             (language === "ja"
-              ? " 2017年分の所得税の実行期間は、対応開始日の4月1日から12月31日までです。年額入力は按分しません。"
-              : " The 2017 income-tax execution interval begins at the April 1 support boundary and annual inputs are not prorated.")}
+              ? " 2017年のすべての月次・年次実行期間は、対応開始日の4月1日から12月31日までです。年額入力は按分しません。"
+              : " Every 2017 execution begins at the April 1 support boundary; annual inputs are not prorated.")}
         </p>
       </div>
 
@@ -143,85 +137,91 @@ export function ResultsPanel({
         <div className="breakdown-heading">
           <h3>{copy.breakdown}</h3>
           <span>
-            {manifest.programs.length} {copy.compiledPrograms}
+            {result.programs.length} {copy.executions}
           </span>
         </div>
 
-        {manifest.programs.map((program) => {
-          const programResult = byProgram.get(program.id);
+        {result.programs.map((programResult) => {
+          const program = manifest.programs.find(
+            (candidate) => candidate.id === programResult.programId,
+          );
+          if (!program) return null;
           const localizedProgram = programCopy(program, language);
           const isAnnual = program.cadence === "annual";
           return (
-            <details
-              key={program.id}
-              className="result-program"
-              open={
-                program.id === "national-income-tax" ||
-                (programResult?.summaryAmount ?? 0) > 0
-              }
-            >
-              <summary>
-                <span>
-                  <strong>{localizedProgram.label}</strong>
-                  <small>{localizedProgram.description}</small>
-                </span>
-                <span className="program-amount">
-                  {formatYen(programResult?.summaryAmount ?? 0, language)}
-                  <svg aria-hidden="true" viewBox="0 0 16 16">
-                    <path d="m3 6 5 5 5-5" />
-                  </svg>
-                </span>
-              </summary>
-              <div className="program-body">
-                {!isAnnual && (
-                  <p className="program-period-label">{copy.fiscalTotal}</p>
-                )}
-
-                {!isAnnual && programResult?.monthlySummaries.length ? (
-                  <div className="monthly-schedule">
-                    <strong>{copy.monthlySchedule}</strong>
-                    <dl>
-                      {programResult.monthlySummaries.map((month) => (
-                        <div key={month.month}>
-                          <dt>{formatMonth(month.month, language)}</dt>
-                          <dd>{formatYen(month.amount, language)}</dd>
-                        </div>
-                      ))}
-                    </dl>
-                  </div>
-                ) : null}
-
-                <p className="program-period-label">
-                  {isAnnual ? copy.calendarTotal : copy.endSnapshot}
-                </p>
-                <dl>
-                  {program.outputs.map((output) => (
-                    <div key={output.id}>
-                      <dt>{outputLabel(output, language)}</dt>
-                      <dd>
-                        {formatOutput(
-                          programResult?.outputs[output.id],
-                          output,
-                          language,
-                        )}
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
-                <div className="program-provenance">
+              <details
+                key={`${programResult.personId}-${program.id}`}
+                className="result-program"
+                open={
+                  program.id === "national-income-tax" ||
+                  programResult.summaryAmount > 0
+                }
+              >
+                <summary>
                   <span>
-                    {copy.execution}: {programResult?.actualMode ?? "—"}
-                    {programResult?.fallbackReason
-                      ? ` (${programResult.fallbackReason})`
-                      : ""}
+                    <strong>
+                      {localizedProgram.label} · {programResult.personLabel}
+                    </strong>
+                    <small>{localizedProgram.description}</small>
                   </span>
-                  <code>
-                    {program.outputs.find((output) => output.corpusCitationPath)
-                      ?.corpusCitationPath ?? program.summaryOutput}
-                  </code>
+                  <span className="program-amount">
+                    {formatYen(programResult.summaryAmount, language)}
+                    <svg aria-hidden="true" viewBox="0 0 16 16">
+                      <path d="m3 6 5 5 5-5" />
+                    </svg>
+                  </span>
+                </summary>
+                <div className="program-body">
+                  {!isAnnual && (
+                    <p className="program-period-label">{copy.annualTotal}</p>
+                  )}
+
+                  {!isAnnual && programResult.monthlySummaries.length ? (
+                    <div className="monthly-schedule">
+                      <strong>{copy.monthlySchedule}</strong>
+                      <dl>
+                        {programResult.monthlySummaries.map((month) => (
+                          <div key={month.month}>
+                            <dt>{formatMonth(month.month, language)}</dt>
+                            <dd>{formatYen(month.amount, language)}</dd>
+                          </div>
+                        ))}
+                      </dl>
+                    </div>
+                  ) : null}
+
+                  <p className="program-period-label">
+                    {isAnnual ? copy.calendarTotal : copy.endSnapshot}
+                  </p>
+                  <dl>
+                    {program.outputs.map((output) => (
+                      <div key={output.id}>
+                        <dt>{outputLabel(output, language)}</dt>
+                        <dd>
+                          {formatOutput(
+                            programResult.outputs[output.id],
+                            output,
+                            language,
+                          )}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                  <div className="program-provenance">
+                    <span>
+                      {copy.execution}: {programResult.actualMode}
+                      {programResult.fallbackReason
+                        ? ` (${programResult.fallbackReason})`
+                        : ""}
+                    </span>
+                    <code>
+                      {program.outputs.find(
+                        (output) => output.corpusCitationPath,
+                      )?.corpusCitationPath ?? program.summaryOutput}
+                    </code>
+                  </div>
                 </div>
-              </div>
-            </details>
+              </details>
           );
         })}
       </div>

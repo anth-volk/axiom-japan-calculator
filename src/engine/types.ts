@@ -104,6 +104,8 @@ export type AxiomOutputValue =
 
 export interface ProgramResult {
   programId: string;
+  personId: string;
+  personLabel: string;
   requestedMode: string;
   actualMode: string;
   fallbackReason: string | null;
@@ -116,12 +118,20 @@ export interface ProgramResult {
 }
 
 export interface CalculationResult {
-  fiscalYear: number;
-  fiscalYearStart: string;
-  fiscalYearEnd: string;
-  taxCalendarYear: number;
+  calendarYear: number;
+  calendarYearStart: string;
+  calendarYearEnd: string;
   programs: ProgramResult[];
   elapsedMs: number;
+}
+
+export interface CalculationPersonInput {
+  id: string;
+  label: string;
+  values: Record<string, InputValue>;
+  monthlyOverrides: Record<string, Record<string, InputValue>>;
+  includeBenefits: boolean;
+  useModeledSocialInsurance: boolean;
 }
 
 export type WorkerRequest =
@@ -129,8 +139,8 @@ export type WorkerRequest =
   | {
       type: "calculate";
       id: number;
-      fiscalYear: number;
-      values: Record<string, InputValue>;
+      calendarYear: number;
+      people: CalculationPersonInput[];
     };
 
 export type WorkerResponse =

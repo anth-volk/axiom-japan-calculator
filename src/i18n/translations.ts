@@ -18,14 +18,11 @@ export const UI_COPY = {
     brandNote: "Independent Wave 1 calculator",
     language: "Language",
     source: "Source",
-    heroEyebrow: "National policy · FY2017–FY2025",
+    heroEyebrow: "National policy · calendar years 2017–2026",
     heroTitle: "See the rules shape a household.",
     heroIntro:
       "Calculate encoded Japanese national income tax, pension and Employment Insurance deductions, and five national benefit paths.",
     privacy: "Runs locally in your browser. Household answers are not uploaded.",
-    scenario: "Scenario",
-    fiscalYear: "Fiscal year",
-    presetNote: "Preset note",
     calculate: "Calculate with Axiom",
     calculating: "Calculating…",
     experimental: "Experimental & unsigned",
@@ -42,15 +39,12 @@ export const UI_COPY = {
     brandNote: "独立版 Wave 1 計算機",
     language: "言語",
     source: "ソース",
-    heroEyebrow: "国の制度 · 2017年度〜2025年度",
+    heroEyebrow: "国の制度 · 2017年〜2026年",
     heroTitle: "制度が世帯に与える影響を見る。",
     heroIntro:
       "日本の国の所得税、年金・雇用保険の控除、および5つの給付経路について、エンコード済みの規則を計算します。",
     privacy:
       "ブラウザー内で実行されます。入力した世帯情報は送信されません。",
-    scenario: "シナリオ",
-    fiscalYear: "年度",
-    presetNote: "プリセットの説明",
     calculate: "Axiomで計算",
     calculating: "計算中…",
     experimental: "実験版・未署名",
@@ -101,7 +95,7 @@ export const INPUT_PANEL_COPY = {
     explainerPoints: [
       "A switch asserts a legal or household fact; off means that fact is false.",
       "The current model has one primary person. Spouses, children, dependants, and supporters are represented by amounts, counts, and status facts—not separate people.",
-      "Monthly facts are reused for every month of the selected fiscal year. Annual income facts feed the calendar-year national income-tax calculation.",
+      "Monthly facts are reused for every month of the selected calendar year. Annual income facts feed that calendar year's national income-tax calculation.",
     ],
     search: "Find an income, deduction, status, or allowance…",
     clear: "Clear",
@@ -117,7 +111,7 @@ export const INPUT_PANEL_COPY = {
     explainerPoints: [
       "スイッチをオンにすると法的・世帯上の事実が成立すると指定します。オフはその事実が成立しないという意味です。",
       "現在のモデルは1人の主たる本人を計算します。配偶者、子、扶養親族、扶養義務者は、個別の人物ではなく金額・人数・状態として入力します。",
-      "月次の事実は選択した年度の各月に同じ値を使用します。年額の所得情報は、年度開始年と同じ暦年の国の所得税計算に使用します。",
+      "月次の事実は選択した暦年の各月に同じ値を使用します。年額の所得情報は同じ暦年の国の所得税計算に使用します。",
     ],
     search: "所得、控除、状態、手当を検索…",
     clear: "消去",
@@ -129,7 +123,7 @@ export const RESULT_COPY = {
   en: {
     stopped: "Calculation stopped",
     review:
-      "Review the fiscal year and explicit statutory inputs, then run the calculator again.",
+      "Review the calendar year and explicit statutory inputs, then run the calculator again.",
     running: "Running the Axiom engine…",
     preparing: "Preparing the policy engine…",
     eyebrow: "Axiom result",
@@ -138,17 +132,17 @@ export const RESULT_COPY = {
     calendarTax: "Calendar-year national income tax",
     calendarTaxNote: (year: number) =>
       `Tax year ${year}, including encoded national surtaxes`,
-    fiscalDeductions: "Fiscal-year modeled deductions",
-    fiscalBenefits: "Fiscal-year modeled benefits",
-    fiscalPosition: "Benefits minus contributions",
-    fiscalNote: (label: string) => `${label}, April–March total`,
+    annualDeductions: "Calendar-year modeled contributions",
+    annualBenefits: "Calendar-year modeled benefits",
+    annualPosition: "Benefits minus contributions",
+    annualNote: (label: string) => `${label} total`,
     benefitsNote: "National benefits with supplied eligibility facts",
     positionNote: "National income tax is shown separately",
     warning:
       "This is a component ledger, not take-home pay or disposable income. Inhabitant tax and health and long-term-care premiums are not encoded.",
     breakdown: "Rule-by-rule breakdown",
-    compiledPrograms: "compiled programs",
-    fiscalTotal: "fiscal-year total",
+    executions: "person-program executions",
+    annualTotal: "calendar-year total",
     calendarTotal: "calendar-year amount",
     endSnapshot: "End-of-year rule snapshot",
     monthlySchedule: "Monthly schedule",
@@ -164,7 +158,7 @@ export const RESULT_COPY = {
   ja: {
     stopped: "計算を停止しました",
     review:
-      "年度と明示的な法定入力を確認してから、もう一度計算してください。",
+      "暦年と明示的な法定入力を確認してから、もう一度計算してください。",
     running: "Axiomエンジンで計算しています…",
     preparing: "制度エンジンを準備しています…",
     eyebrow: "Axiomの計算結果",
@@ -173,19 +167,19 @@ export const RESULT_COPY = {
     calendarTax: "暦年の国の所得税",
     calendarTaxNote: (year: number) =>
       `${year}年分（エンコード済みの国税の付加税を含む）`,
-    fiscalDeductions: "年度内のモデル控除額",
-    fiscalBenefits: "年度内のモデル給付額",
-    fiscalPosition: "給付額－拠出額",
-    fiscalNote: (label: string) => `${label}（4月〜翌年3月）の合計`,
+    annualDeductions: "暦年内のモデル保険料",
+    annualBenefits: "暦年内のモデル給付額",
+    annualPosition: "給付額－拠出額",
+    annualNote: (label: string) => `${label}の合計`,
     benefitsNote: "入力された受給要件に基づく国の給付",
     positionNote: "国の所得税は別に表示しています",
     warning:
       "これは構成要素ごとの収支であり、手取り額や可処分所得ではありません。住民税、医療保険料、介護保険料はエンコードされていません。",
     breakdown: "規則別の内訳",
-    compiledPrograms: "個のコンパイル済みプログラム",
-    fiscalTotal: "年度合計",
+    executions: "件の個人・制度別実行",
+    annualTotal: "暦年合計",
     calendarTotal: "暦年額",
-    endSnapshot: "年度末時点の規則スナップショット",
+    endSnapshot: "年末時点の規則スナップショット",
     monthlySchedule: "月別推移",
     execution: "実行方式",
     reproducibility: "再現性",
@@ -515,40 +509,40 @@ const EN_PROGRAMS: Record<
   "employees-pension": {
     label: "Employees’ Pension",
     description:
-      "Fiscal-year employee contribution total using the supplied monthly remuneration and bonus facts.",
+      "Calendar-year employee contribution total using the supplied monthly remuneration and bonus facts.",
   },
   "national-pension": {
     label: "National Pension",
     description:
-      "Fiscal-year Category 1 contribution total after encoded exemptions and deferrals.",
+      "Calendar-year Category 1 contribution total after encoded exemptions and deferrals.",
   },
   "employment-insurance": {
     label: "Employment Insurance",
     description:
-      "Fiscal-year employee deduction total using the supplied monthly covered wages.",
+      "Calendar-year employee deduction total using the supplied monthly covered wages.",
   },
   "child-allowance": {
     label: "Child Allowance",
     description:
-      "Fiscal-year national Child Allowance total for the encoded child bands and income limits.",
+      "Calendar-year national Child Allowance total for the encoded child bands and income limits.",
   },
   "child-rearing-allowance": {
     label: "Child Rearing Allowance",
     description:
-      "Fiscal-year full or partial allowance total using claimant, supporter, and child-support inputs.",
+      "Calendar-year full or partial allowance total using claimant, supporter, and child-support inputs.",
   },
   "special-child-rearing-allowance": {
     label: "Special Child Rearing Allowance",
     description:
-      "Fiscal-year grade-one and grade-two disability-related child allowance total.",
+      "Calendar-year grade-one and grade-two disability-related child allowance total.",
   },
   "disabled-child-welfare-allowance": {
     label: "Disabled Child Welfare Allowance",
-    description: "Fiscal-year national cash allowance total after income tests.",
+    description: "Calendar-year national cash allowance total after income tests.",
   },
   "special-disability-allowance": {
     label: "Special Disability Allowance",
-    description: "Fiscal-year national cash allowance total after income tests.",
+    description: "Calendar-year national cash allowance total after income tests.",
   },
 };
 
@@ -562,19 +556,19 @@ const JA_PROGRAMS: Record<
   },
   "employees-pension": {
     label: "厚生年金保険",
-    description: "一般の被保険者について年度内に本人が負担する保険料。",
+    description: "一般の被保険者について暦年内に本人が負担する保険料。",
   },
   "national-pension": {
     label: "国民年金",
-    description: "免除・猶予を反映した第1号被保険者の年度内保険料。",
+    description: "免除・猶予を反映した第1号被保険者の暦年内保険料。",
   },
   "employment-insurance": {
     label: "雇用保険",
-    description: "各月の賃金から控除される被保険者負担の年度合計。",
+    description: "各月の賃金から控除される被保険者負担の暦年合計。",
   },
   "child-allowance": {
     label: "児童手当",
-    description: "年齢・出生順位・所得制限に基づく国の年度内手当額。",
+    description: "年齢・出生順位・所得制限に基づく国の暦年内手当額。",
   },
   "child-rearing-allowance": {
     label: "児童扶養手当",
@@ -583,15 +577,15 @@ const JA_PROGRAMS: Record<
   },
   "special-child-rearing-allowance": {
     label: "特別児童扶養手当",
-    description: "1級・2級の障害区分に基づく年度内の児童手当。",
+    description: "1級・2級の障害区分に基づく暦年内の児童手当。",
   },
   "disabled-child-welfare-allowance": {
     label: "障害児福祉手当",
-    description: "所得審査後の国の年度内現金給付。",
+    description: "所得審査後の国の暦年内現金給付。",
   },
   "special-disability-allowance": {
     label: "特別障害者手当",
-    description: "所得審査後の国の年度内現金給付。",
+    description: "所得審査後の国の暦年内現金給付。",
   },
 };
 
@@ -658,8 +652,8 @@ export function outputLabel(
 
 export const INPUT_HELP: Record<string, Record<Language, string>> = {
   japan_social_insurance_contributions_paid_or_withheld: {
-    en: "Annual amount used by the national PIT social-insurance deduction. It is not automatically replaced by the fiscal-year contributions modeled below.",
-    ja: "国の所得税の社会保険料控除に使用する年額です。下で計算する年度内の保険料で自動的に置き換えることはありません。",
+    en: "Manual annual amount used only when the modeled-contributions option below is off.",
+    ja: "下の「計算した保険料を使用」をオフにした場合のみ使われる手入力の年額です。",
   },
   japan_pit_total_income_amount: {
     en: "A statutory total-income input used by several deductions and credits. The current RuleSpec does not infer it from every income class.",

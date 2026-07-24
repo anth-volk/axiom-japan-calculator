@@ -2,6 +2,7 @@
 
 import type {
   AxiomOutputValue,
+  CalculationPersonInput,
   CalculationResult,
   GeneratedManifest,
   InputValue,
@@ -12,11 +13,10 @@ import type {
   WorkerResponse,
 } from "./types";
 import {
-  fiscalYearMonths,
-  fiscalYearPeriod,
-  isSupportedFiscalYear,
+  calendarYearMonths,
+  calendarYearPeriod,
+  isSupportedCalendarYear,
   monthPeriod,
-  taxPeriodForFiscalYear,
 } from "./periods";
 
 interface AxiomWasmModule {
@@ -194,37 +194,42 @@ function executeProgramPeriod(
 function executeProgram(
   runtime: Runtime,
   program: ManifestProgram,
-  fiscalYear: number,
-  values: Record<string, InputValue>,
+  calendarYear: number,
+  person: CalculationPersonInput,
+  values = person.values,
 ): ProgramResult {
   if (program.cadence === "annual") {
     const execution = executeProgramPeriod(
       runtime,
       program,
-      taxPeriodForFiscalYear(fiscalYear),
+      calendarYearPeriod(calendarYear),
       values,
     );
     return {
       programId: program.id,
+      personId: person.id,
+      personLabel: person.label,
       ...execution,
       summaryAmount: numericOutput(execution.outputs[program.summaryOutput]),
       monthlySummaries: [],
     };
   }
 
-  const executions = fiscalYearMonths(fiscalYear).map((month) => ({
+  const executions = calendarYearMonths(calendarYear).map((month) => ({
     month,
     execution: executeProgramPeriod(
       runtime,
       program,
       monthPeriod(month),
-      values,
+      { ...values, ...(person.monthlyOverrides[month] ?? {}) },
     ),
   }));
   const last = executions.at(-1);
-  if (!last) throw new Error(`${program.label} has no fiscal-year months`);
+  if (!last) throw new Error(`${program.label} has no calendar-year months`);
   return {
     programId: program.id,
+    personId: person.id,
+    personLabel: person.label,
     requestedMode: last.execution.requestedMode,
     actualMode: last.execution.actualMode,
     fallbackReason:
@@ -245,24 +250,72 @@ function executeProgram(
 
 async function calculate(
   runtime: Runtime,
-  fiscalYear: number,
-  values: Record<string, InputValue>,
+  calendarYear: number,
+  people: CalculationPersonInput[],
 ): Promise<CalculationResult> {
   const started = performance.now();
-  if (!Number.isInteger(fiscalYear) || !isSupportedFiscalYear(fiscalYear)) {
-    throw new Error("Choose a supported fiscal year between FY2017 and FY2025");
+  if (
+    !Number.isInteger(calendarYear) ||
+    !isSupportedCalendarYear(calendarYear)
+  ) {
+    throw new Error("Choose a supported calendar year between 2017 and 2026");
+  }
+  if (!people.length) {
+    throw new Error("Choose at least one household member to calculate");
   }
 
-  const programs = runtime.manifest.programs.map((program) =>
-    executeProgram(runtime, program, fiscalYear, values),
+  const contributionIds = new Set([
+    "employees-pension",
+    "national-pension",
+    "employment-insurance",
+  ]);
+  const benefitPrograms = runtime.manifest.programs.filter(
+    (program) => program.summaryBucket === "monthlyBenefit",
   );
-  const fiscalPeriod = fiscalYearPeriod(fiscalYear);
+  const contributionPrograms = runtime.manifest.programs.filter((program) =>
+    contributionIds.has(program.id),
+  );
+  const taxProgram = runtime.manifest.programs.find(
+    (program) => program.id === "national-income-tax",
+  );
+  if (!taxProgram) throw new Error("The national income-tax program is missing");
 
+  const programs: ProgramResult[] = [];
+  for (const person of people) {
+    const contributions = contributionPrograms.map((program) =>
+      executeProgram(runtime, program, calendarYear, person),
+    );
+    programs.push(...contributions);
+
+    const modeledSocialInsurance = contributions.reduce(
+      (sum, result) => sum + result.summaryAmount,
+      0,
+    );
+    const taxValues = person.useModeledSocialInsurance
+      ? {
+          ...person.values,
+          japan_social_insurance_contributions_paid_or_withheld: String(
+            modeledSocialInsurance,
+          ),
+        }
+      : person.values;
+    programs.push(
+      executeProgram(runtime, taxProgram, calendarYear, person, taxValues),
+    );
+
+    if (person.includeBenefits) {
+      programs.push(
+        ...benefitPrograms.map((program) =>
+          executeProgram(runtime, program, calendarYear, person),
+        ),
+      );
+    }
+  }
+  const period = calendarYearPeriod(calendarYear);
   return {
-    fiscalYear,
-    fiscalYearStart: fiscalPeriod.start,
-    fiscalYearEnd: fiscalPeriod.end,
-    taxCalendarYear: fiscalYear,
+    calendarYear,
+    calendarYearStart: period.start,
+    calendarYearEnd: period.end,
     programs,
     elapsedMs: performance.now() - started,
   };
@@ -288,7 +341,11 @@ self.addEventListener("message", async (event: MessageEvent<WorkerRequest>) => {
       throw new Error("The Axiom worker has not been initialized");
     }
     const runtime = await runtimePromise;
-    const result = await calculate(runtime, message.fiscalYear, message.values);
+    const result = await calculate(
+      runtime,
+      message.calendarYear,
+      message.people,
+    );
     respond({ type: "calculated", id: message.id, result });
   } catch (error) {
     respond({

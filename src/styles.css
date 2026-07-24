@@ -436,6 +436,12 @@ details[open] > summary .group-meta svg, details[open] > summary .program-amount
   font-size: 16px;
   white-space: nowrap;
 }
+.wizard-number__prefix {
+  flex: none;
+  padding-left: 10px;
+  color: #5d6861;
+  font-size: 16px;
+}
 .wizard-number input[type="number"] { min-height: 40px; padding: 5px 8px; border: 0; background: transparent; text-align: right; }
 .bonus-grid {
   display: grid;

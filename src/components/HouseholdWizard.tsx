@@ -30,6 +30,7 @@ import {
   displayToYen,
   isMoneyInput,
   moneyCadence,
+  moneyPrefix,
   moneyUnit,
   yenToDisplay,
 } from "../policy/currency";
@@ -409,6 +410,11 @@ function FactField({
         <small>{help}</small>
       </span>
       <span className="wizard-number">
+        {isMoney && moneyPrefix(language) && (
+          <span className="wizard-number__prefix">
+            {moneyPrefix(language)}
+          </span>
+        )}
         <input
           disabled={disabled}
           inputMode={input.integer ? "numeric" : "decimal"}
@@ -862,6 +868,11 @@ export function HouseholdWizard({
                           <span>{label}</span>
                           <small>{copy.bonusDescription}</small>
                           <span className="wizard-number">
+                            {moneyPrefix(language) && (
+                              <span className="wizard-number__prefix">
+                                {moneyPrefix(language)}
+                              </span>
+                            )}
                             <input
                               disabled={disabled}
                               min="0"

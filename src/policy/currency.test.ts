@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   displayToYen,
+  moneyPrefix,
   moneyScale,
   moneyUnit,
   yenToDisplay,
@@ -9,6 +10,7 @@ import {
 describe("localized money inputs", () => {
   it("uses millions for English annual values", () => {
     expect(moneyScale("en", "annual")).toBe(1_000_000);
+    expect(moneyPrefix("en")).toBe("¥");
     expect(moneyUnit("en", "annual")).toBe("million");
     expect(yenToDisplay("3600000", "en", "annual")).toBe("3.6");
     expect(displayToYen("3.6", "en", "annual")).toBe("3600000");
@@ -16,6 +18,7 @@ describe("localized money inputs", () => {
 
   it("uses ten-thousand yen for Japanese annual values", () => {
     expect(moneyScale("ja", "annual")).toBe(10_000);
+    expect(moneyPrefix("ja")).toBe("");
     expect(moneyUnit("ja", "annual")).toBe("万円");
     expect(yenToDisplay("3600000", "ja", "annual")).toBe("360");
     expect(displayToYen("360", "ja", "annual")).toBe("3600000");

@@ -71,10 +71,10 @@ Insurance amounts calculated for that member. The linked option is on by
 default, and the redundant manual amount is hidden while it is active.
 
 Currency entry is localized without changing the integer-yen values sent to
-Axiom. English annual inputs use millions of yen and monthly inputs use
-thousands of yen. Japanese annual inputs use `万円` and monthly inputs use
-`千円`, with the unit after the value. Japanese calculated amounts likewise
-place `円` after the number.
+Axiom. English inputs place `¥` before the value, with annual values in millions
+and monthly values in thousands. Japanese annual inputs use `万円` and monthly
+inputs use `千円`, with the unit after the value. Japanese calculated amounts
+likewise place `円` after the number.
 
 Provision-specific fields are filtered using their encoded effective periods.
 For example, historical widow/widower fields are replaced from 2020, the 2025

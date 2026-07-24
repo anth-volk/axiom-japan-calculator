@@ -33,6 +33,10 @@ export function moneyUnit(
   return language === "ja" ? "万円" : "million";
 }
 
+export function moneyPrefix(language: Language): string {
+  return language === "en" ? "¥" : "";
+}
+
 export function yenToDisplay(
   rawYen: string | undefined,
   language: Language,

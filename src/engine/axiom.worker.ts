@@ -9,6 +9,7 @@ import type {
   ManifestInput,
   ManifestProgram,
   ProgramResult,
+  ResolvedPersonValues,
   WorkerRequest,
   WorkerResponse,
 } from "./types";
@@ -142,6 +143,16 @@ function numericOutput(output: AxiomOutputValue | undefined): number {
   return Number.isFinite(numeric) ? numeric : 0;
 }
 
+function numericInput(values: Record<string, InputValue>, slot: string): number {
+  const value = values[slot];
+  const numeric = typeof value === "string" ? Number(value) : 0;
+  return Number.isFinite(numeric) ? numeric : 0;
+}
+
+function usesAutomaticValue(person: CalculationPersonInput, slot: string) {
+  return person.autoLinkedSlots.includes(slot);
+}
+
 function executeProgramPeriod(
   runtime: Runtime,
   program: ManifestProgram,
@@ -248,6 +259,154 @@ function executeProgram(
   };
 }
 
+const EMPLOYMENT_INCOME_OUTPUT =
+  "jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_article_28";
+const PUBLIC_PENSION_INCOME_OUTPUT =
+  "jp:statutes/e-gov/332ac0000000026/article/41-15-3#japan_public_pension_income";
+
+function resolveAutomaticIncomeValues(
+  runtime: Runtime,
+  taxProgram: ManifestProgram,
+  calendarYear: number,
+  person: CalculationPersonInput,
+): CalculationPersonInput {
+  const values = { ...person.values };
+  let taxPreview = executeProgram(
+    runtime,
+    taxProgram,
+    calendarYear,
+    person,
+    values,
+  );
+  const employmentIncome = numericOutput(
+    taxPreview.outputs[EMPLOYMENT_INCOME_OUTPUT],
+  );
+  const nonLaborIncome = numericInput(
+    values,
+    "japan_pit_non_labor_income_amount",
+  );
+
+  if (
+    usesAutomaticValue(
+      person,
+      "japan_public_pension_other_income_excluding_public_pension",
+    )
+  ) {
+    values.japan_public_pension_other_income_excluding_public_pension = String(
+      employmentIncome + nonLaborIncome,
+    );
+    taxPreview = executeProgram(
+      runtime,
+      taxProgram,
+      calendarYear,
+      person,
+      values,
+    );
+  }
+
+  const publicPensionIncome = numericOutput(
+    taxPreview.outputs[PUBLIC_PENSION_INCOME_OUTPUT],
+  );
+  const calculatedTotalIncome =
+    employmentIncome + publicPensionIncome + nonLaborIncome;
+  if (usesAutomaticValue(person, "japan_pit_total_income_amount")) {
+    values.japan_pit_total_income_amount = String(calculatedTotalIncome);
+  }
+  if (usesAutomaticValue(person, "japan_pit_taxpayer_total_income")) {
+    values.japan_pit_taxpayer_total_income = String(
+      numericInput(values, "japan_pit_total_income_amount"),
+    );
+  }
+
+  const totalIncome = numericInput(values, "japan_pit_total_income_amount");
+  for (const slot of [
+    "japan_national_pension_applicant_adjusted_income",
+    "japan_child_allowance_assessed_income",
+    "japan_child_rearing_allowance_adjusted_prior_year_income",
+    "japan_disabled_child_welfare_allowance_claimant_adjusted_income",
+    "japan_special_child_rearing_allowance_claimant_adjusted_income",
+    "japan_special_disability_allowance_claimant_adjusted_income",
+  ]) {
+    if (usesAutomaticValue(person, slot)) values[slot] = String(totalIncome);
+  }
+
+  return { ...person, values };
+}
+
+function resolveAutomaticHouseholdIncomeValues(
+  people: CalculationPersonInput[],
+): CalculationPersonInput[] {
+  const peopleById = new Map(people.map((person) => [person.id, person]));
+  const highestHouseholdIncome = Math.max(
+    0,
+    ...people.map((person) =>
+      numericInput(person.values, "japan_pit_total_income_amount"),
+    ),
+  );
+  return people.map((person) => {
+    const values = { ...person.values };
+    const spouse = person.spouseId ? peopleById.get(person.spouseId) : undefined;
+    if (spouse && usesAutomaticValue(person, "japan_pit_spouse_total_income")) {
+      values.japan_pit_spouse_total_income = String(
+        numericInput(spouse.values, "japan_pit_total_income_amount"),
+      );
+    }
+    for (const slot of [
+      "japan_child_rearing_allowance_highest_supporter_adjusted_income",
+      "japan_disabled_child_welfare_allowance_highest_supporter_adjusted_income",
+      "japan_special_child_rearing_allowance_highest_supporter_adjusted_income",
+      "japan_special_disability_allowance_highest_supporter_adjusted_income",
+    ]) {
+      if (usesAutomaticValue(person, slot)) {
+        values[slot] = String(highestHouseholdIncome);
+      }
+    }
+    return { ...person, values };
+  });
+}
+
+function resolvePeople(
+  runtime: Runtime,
+  calendarYear: number,
+  people: CalculationPersonInput[],
+): CalculationPersonInput[] {
+  const taxProgram = runtime.manifest.programs.find(
+    (program) => program.id === "national-income-tax",
+  );
+  if (!taxProgram) throw new Error("The national income-tax program is missing");
+
+  return resolveAutomaticHouseholdIncomeValues(
+    people.map((person) =>
+      resolveAutomaticIncomeValues(runtime, taxProgram, calendarYear, person),
+    ),
+  );
+}
+
+function automaticValuesFor(
+  people: CalculationPersonInput[],
+): ResolvedPersonValues[] {
+  return people.map((person) => ({
+    personId: person.id,
+    values: Object.fromEntries(
+      person.autoLinkedSlots.map((slot) => [slot, person.values[slot]]),
+    ),
+  }));
+}
+
+async function previewAutomaticValues(
+  runtime: Runtime,
+  calendarYear: number,
+  people: CalculationPersonInput[],
+) {
+  if (!Number.isInteger(calendarYear) || !isSupportedCalendarYear(calendarYear)) {
+    throw new Error("Choose a supported calendar year between 2017 and 2026");
+  }
+  if (!people.length) {
+    throw new Error("Choose at least one household member to calculate");
+  }
+  return automaticValuesFor(resolvePeople(runtime, calendarYear, people));
+}
+
 async function calculate(
   runtime: Runtime,
   calendarYear: number,
@@ -279,9 +438,10 @@ async function calculate(
     (program) => program.id === "national-income-tax",
   );
   if (!taxProgram) throw new Error("The national income-tax program is missing");
+  const resolvedPeople = resolvePeople(runtime, calendarYear, people);
 
   const programs: ProgramResult[] = [];
-  for (const person of people) {
+  for (const person of resolvedPeople) {
     const contributions = contributionPrograms.map((program) =>
       executeProgram(runtime, program, calendarYear, person),
     );
@@ -314,6 +474,7 @@ async function calculate(
     calendarYear,
     calendarYearStart: period.start,
     calendarYearEnd: period.end,
+    resolvedPeople: automaticValuesFor(resolvedPeople),
     programs,
     elapsedMs: performance.now() - started,
   };
@@ -339,6 +500,15 @@ self.addEventListener("message", async (event: MessageEvent<WorkerRequest>) => {
       throw new Error("The Axiom worker has not been initialized");
     }
     const runtime = await runtimePromise;
+    if (message.type === "preview") {
+      const values = await previewAutomaticValues(
+        runtime,
+        message.calendarYear,
+        message.people,
+      );
+      respond({ type: "previewed", id: message.id, values });
+      return;
+    }
     const result = await calculate(
       runtime,
       message.calendarYear,

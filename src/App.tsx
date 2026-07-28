@@ -4,6 +4,7 @@ import { AxiomEngineClient } from "./engine/client";
 import type {
   CalculationResult,
   GeneratedManifest,
+  ResolvedPersonValues,
 } from "./engine/types";
 import {
   LANGUAGES,
@@ -24,10 +25,15 @@ function initialLanguage(): Language {
 
 export default function App() {
   const clientRef = useRef<AxiomEngineClient | null>(null);
+  const householdRef = useRef<HouseholdDraft | null>(null);
+  const previewVersionRef = useRef(0);
   const [manifest, setManifest] = useState<GeneratedManifest | null>(null);
   const [household, setHousehold] = useState<HouseholdDraft | null>(null);
   const [language, setLanguage] = useState<Language>(initialLanguage);
   const [result, setResult] = useState<CalculationResult | null>(null);
+  const [automaticValues, setAutomaticValues] = useState<
+    ResolvedPersonValues[]
+  >([]);
   const [calculating, setCalculating] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const copy = UI_COPY[language];
@@ -49,13 +55,17 @@ export default function App() {
       .then(async (loadedManifest) => {
         if (!active) return;
         const initialHousehold = createExampleHousehold(loadedManifest, language);
+        householdRef.current = initialHousehold;
         setManifest(loadedManifest);
         setHousehold(initialHousehold);
         const initialResult = await client.calculate(
           initialHousehold.calendarYear,
           buildCalculationPeople(initialHousehold),
         );
-        if (active) setResult(initialResult);
+        if (active) {
+          setResult(initialResult);
+          setAutomaticValues(initialResult.resolvedPeople);
+        }
       })
       .catch((bootError: unknown) => {
         if (active) {
@@ -73,7 +83,26 @@ export default function App() {
     };
   }, []);
 
+  function previewAutomaticValuesAfterBlur() {
+    const client = clientRef.current;
+    const householdDraft = householdRef.current;
+    if (!client || !householdDraft) return;
+    const version = ++previewVersionRef.current;
+    client
+      .previewAutomaticValues(
+        householdDraft.calendarYear,
+        buildCalculationPeople(householdDraft),
+      )
+      .then((values) => {
+        if (previewVersionRef.current === version) setAutomaticValues(values);
+      })
+      .catch(() => {
+        // Preview failures must not replace the user's inputs or results error.
+      });
+  }
+
   function updateHousehold(nextHousehold: HouseholdDraft) {
+    householdRef.current = nextHousehold;
     setHousehold(nextHousehold);
     setResult(null);
     setError(null);
@@ -82,15 +111,16 @@ export default function App() {
   async function calculate() {
     const client = clientRef.current;
     if (!client || !manifest || !household) return;
+    previewVersionRef.current += 1;
     setCalculating(true);
     setError(null);
     try {
-      setResult(
-        await client.calculate(
-          household.calendarYear,
-          buildCalculationPeople(household),
-        ),
+      const calculation = await client.calculate(
+        household.calendarYear,
+        buildCalculationPeople(household),
       );
+      setResult(calculation);
+      setAutomaticValues(calculation.resolvedPeople);
     } catch (calculationError) {
       setError(
         calculationError instanceof Error
@@ -161,12 +191,14 @@ export default function App() {
           <HouseholdWizard
             disabled={calculating}
             error={error}
+            automaticValues={automaticValues}
             household={household}
             language={language}
             manifest={manifest}
             result={result}
             onCalculate={calculate}
             onChange={updateHousehold}
+            onAutomaticValuesBlur={previewAutomaticValuesAfterBlur}
           />
         ) : (
           <section className="wizard input-panel--placeholder">

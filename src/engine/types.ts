@@ -117,10 +117,16 @@ export interface ProgramResult {
   }>;
 }
 
+export interface ResolvedPersonValues {
+  personId: string;
+  values: Record<string, InputValue>;
+}
+
 export interface CalculationResult {
   calendarYear: number;
   calendarYearStart: string;
   calendarYearEnd: string;
+  resolvedPeople: ResolvedPersonValues[];
   programs: ProgramResult[];
   elapsedMs: number;
 }
@@ -128,9 +134,11 @@ export interface CalculationResult {
 export interface CalculationPersonInput {
   id: string;
   label: string;
+  spouseId: string | null;
   values: Record<string, InputValue>;
   monthlyOverrides: Record<string, Record<string, InputValue>>;
   useModeledSocialInsurance: boolean;
+  autoLinkedSlots: string[];
 }
 
 export type WorkerRequest =
@@ -140,9 +148,16 @@ export type WorkerRequest =
       id: number;
       calendarYear: number;
       people: CalculationPersonInput[];
+    }
+  | {
+      type: "preview";
+      id: number;
+      calendarYear: number;
+      people: CalculationPersonInput[];
     };
 
 export type WorkerResponse =
   | { type: "booted"; id: number; manifest: GeneratedManifest }
   | { type: "calculated"; id: number; result: CalculationResult }
+  | { type: "previewed"; id: number; values: ResolvedPersonValues[] }
   | { type: "error"; id: number; message: string };

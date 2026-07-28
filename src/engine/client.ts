@@ -3,6 +3,7 @@ import type {
   CalculationPersonInput,
   CalculationResult,
   GeneratedManifest,
+  ResolvedPersonValues,
   WorkerRequest,
   WorkerResponse,
 } from "./types";
@@ -11,6 +12,11 @@ type WorkerRequestWithoutId =
   | { type: "boot"; baseUrl: string }
   | {
       type: "calculate";
+      calendarYear: number;
+      people: CalculationPersonInput[];
+    }
+  | {
+      type: "preview";
       calendarYear: number;
       people: CalculationPersonInput[];
     };
@@ -36,6 +42,8 @@ export class AxiomEngineClient {
         pending.reject(new Error(message.message));
       } else if (message.type === "booted") {
         pending.resolve(message.manifest);
+      } else if (message.type === "previewed") {
+        pending.resolve(message.values);
       } else {
         pending.resolve(message.result);
       }
@@ -68,6 +76,13 @@ export class AxiomEngineClient {
     people: CalculationPersonInput[],
   ): Promise<CalculationResult> {
     return this.request({ type: "calculate", calendarYear, people });
+  }
+
+  previewAutomaticValues(
+    calendarYear: number,
+    people: CalculationPersonInput[],
+  ): Promise<ResolvedPersonValues[]> {
+    return this.request({ type: "preview", calendarYear, people });
   }
 
   destroy() {

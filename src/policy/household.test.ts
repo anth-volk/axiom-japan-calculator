@@ -23,7 +23,7 @@ describe("household wizard mapping", () => {
       people[1].values
         .japan_child_allowance_primary_age_first_or_second_count,
     ).toBe("0");
-    expect(people[0].values.japan_pit_ordinary_dependent_count).toBe("0");
+    expect(people[0].values.japan_pit_ordinary_dependent_count).toBe("1");
   });
 
   it("creates separate taxpayer payloads and month-specific bonuses", () => {

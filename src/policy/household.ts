@@ -3,6 +3,7 @@ import type {
   GeneratedManifest,
   InputValue,
 } from "../engine/types";
+import { calendarYearMonths } from "../engine/periods";
 import { buildPreset } from "./presets";
 
 export type MaritalStatus = "single" | "married" | "divorced" | "widowed";
@@ -29,6 +30,59 @@ export type ChildAllowanceBand =
   | "high-school-first-second"
   | "high-school-third-plus";
 
+export const MONTHLY_VALUE_SLOTS = [
+  "japan_employees_pension_monthly_remuneration",
+  "japan_employment_insurance_covered_wages_paid",
+] as const;
+
+export type MonthlyValueSlot = (typeof MONTHLY_VALUE_SLOTS)[number];
+export type MonthlyValueSource = "annual" | "manual";
+
+export const AUTO_LINKED_SLOTS = [
+  "japan_pit_total_income_amount",
+  "japan_pit_taxpayer_total_income",
+  "japan_pit_spouse_total_income",
+  "japan_public_pension_other_income_excluding_public_pension",
+  "japan_national_pension_is_category_one_insured",
+  "japan_national_pension_applicant_adjusted_income",
+  "japan_national_pension_income_test_dependent_count",
+  "japan_national_pension_ordinary_dependent_count",
+  "japan_national_pension_specified_dependent_count",
+  "japan_national_pension_elderly_dependent_count",
+  "japan_child_allowance_assessed_income",
+  "japan_child_allowance_ordinary_dependent_count",
+  "japan_child_allowance_elderly_dependent_count",
+  "japan_child_rearing_allowance_adjusted_prior_year_income",
+  "japan_child_rearing_allowance_highest_supporter_adjusted_income",
+  "japan_child_rearing_allowance_income_limit_person_count",
+  "japan_child_rearing_allowance_qualifying_child_count",
+  "japan_child_rearing_allowance_specified_dependent_count",
+  "japan_child_rearing_allowance_elderly_dependent_count",
+  "japan_child_rearing_allowance_supporter_dependent_count",
+  "japan_child_rearing_allowance_supporter_elderly_dependent_count",
+  "japan_disability_allowance_supporter_dependent_count",
+  "japan_disability_allowance_supporter_elderly_dependent_count",
+  "japan_disabled_child_welfare_allowance_claimant_adjusted_income",
+  "japan_disabled_child_welfare_allowance_highest_supporter_adjusted_income",
+  "japan_individual_disability_allowance_claimant_ordinary_dependent_count",
+  "japan_individual_disability_allowance_claimant_specified_dependent_count",
+  "japan_individual_disability_allowance_claimant_elderly_dependent_count",
+  "japan_special_child_rearing_allowance_claimant_adjusted_income",
+  "japan_special_child_rearing_allowance_highest_supporter_adjusted_income",
+  "japan_special_child_rearing_allowance_claimant_ordinary_dependent_count",
+  "japan_special_child_rearing_allowance_claimant_specified_dependent_count",
+  "japan_special_child_rearing_allowance_claimant_elderly_dependent_count",
+  "japan_special_disability_allowance_claimant_adjusted_income",
+  "japan_special_disability_allowance_highest_supporter_adjusted_income",
+] as const;
+
+export type AutoLinkedSlot = (typeof AUTO_LINKED_SLOTS)[number];
+const AUTO_LINKED_SLOT_SET = new Set<string>(AUTO_LINKED_SLOTS);
+
+export function isAutoLinkedSlot(slot: string): slot is AutoLinkedSlot {
+  return AUTO_LINKED_SLOT_SET.has(slot);
+}
+
 export interface HouseholdMember {
   id: string;
   name: string;
@@ -40,6 +94,9 @@ export interface HouseholdMember {
   summerBonus: string;
   winterBonus: string;
   useModeledSocialInsurance: boolean;
+  manualOverrideSlots: AutoLinkedSlot[];
+  monthlyValueSources: Record<MonthlyValueSlot, MonthlyValueSource>;
+  monthlyValues: Record<string, Partial<Record<MonthlyValueSlot, string>>>;
   values: Record<string, InputValue>;
 }
 
@@ -73,12 +130,18 @@ export function createMember(
         : index === 0
           ? "1978-06-15"
           : "1980-06-15",
-    dependentCategory: "none",
+    dependentCategory: role === "child" ? "ordinary" : "none",
     disabilityCategory: "none",
     childAllowanceBand: role === "child" ? "primary-first-second" : "none",
     summerBonus: "0",
     winterBonus: "0",
     useModeledSocialInsurance: true,
+    manualOverrideSlots: [],
+    monthlyValueSources: {
+      japan_employees_pension_monthly_remuneration: "annual",
+      japan_employment_insurance_covered_wages_paid: "annual",
+    },
+    monthlyValues: {},
     values,
   };
 }
@@ -184,6 +247,24 @@ function setCount(
   values[slot] = String(count);
 }
 
+export function usesAutomaticValue(
+  member: HouseholdMember,
+  slot: string,
+): boolean {
+  return (
+    isAutoLinkedSlot(slot) && !member.manualOverrideSlots.includes(slot)
+  );
+}
+
+function setAutomaticValue(
+  member: HouseholdMember,
+  values: Record<string, InputValue>,
+  slot: AutoLinkedSlot,
+  value: InputValue,
+) {
+  if (usesAutomaticValue(member, slot)) values[slot] = value;
+}
+
 function applyFamilyFacts(
   household: HouseholdDraft,
   member: HouseholdMember,
@@ -198,8 +279,6 @@ function applyFamilyFacts(
         )
       : undefined;
   if (spouse) {
-    values.japan_pit_spouse_total_income =
-      spouse.values.japan_pit_total_income_amount ?? "0";
     values.japan_pit_spouse_is_elderly =
       ageAtYearEnd(spouse.birthDate, household.calendarYear) >= 70;
   }
@@ -213,6 +292,27 @@ function applyFamilyFacts(
             candidate.dependentCategory !== "none",
         )
       : [];
+  const householdDependants = household.members.filter(
+    (candidate) =>
+      candidate.id !== member.id &&
+      candidate.role !== "spouse" &&
+      candidate.dependentCategory !== "none",
+  );
+  const ordinaryHouseholdDependants = householdDependants.filter(
+    (item) => item.dependentCategory === "ordinary",
+  ).length;
+  const specifiedHouseholdDependants = householdDependants.filter(
+    (item) => item.dependentCategory === "specified",
+  ).length;
+  const elderlyHouseholdDependants = householdDependants.filter(
+    (item) =>
+      item.dependentCategory === "elderly" ||
+      item.dependentCategory === "cohabiting-elderly",
+  ).length;
+  const householdDependantCount = householdDependants.length;
+  const householdChildCount = household.members.filter(
+    (candidate) => candidate.role === "child",
+  ).length;
   setCount(
     values,
     "japan_pit_ordinary_dependent_count",
@@ -277,6 +377,117 @@ function applyFamilyFacts(
     ageAtYearEnd(member.birthDate, household.calendarYear),
   );
 
+  setAutomaticValue(
+    member,
+    values,
+    "japan_national_pension_is_category_one_insured",
+    ageAtYearEnd(member.birthDate, household.calendarYear) >= 20 &&
+      ageAtYearEnd(member.birthDate, household.calendarYear) < 60 &&
+      values.japan_employees_pension_is_ordinary_covered_employee !== true,
+  );
+  setAutomaticValue(
+    member,
+    values,
+    "japan_national_pension_income_test_dependent_count",
+    String(householdDependantCount),
+  );
+  setAutomaticValue(
+    member,
+    values,
+    "japan_national_pension_ordinary_dependent_count",
+    String(ordinaryHouseholdDependants),
+  );
+  setAutomaticValue(
+    member,
+    values,
+    "japan_national_pension_specified_dependent_count",
+    String(specifiedHouseholdDependants),
+  );
+  setAutomaticValue(
+    member,
+    values,
+    "japan_national_pension_elderly_dependent_count",
+    String(elderlyHouseholdDependants),
+  );
+  setAutomaticValue(
+    member,
+    values,
+    "japan_child_allowance_ordinary_dependent_count",
+    String(ordinaryHouseholdDependants + specifiedHouseholdDependants),
+  );
+  setAutomaticValue(
+    member,
+    values,
+    "japan_child_allowance_elderly_dependent_count",
+    String(elderlyHouseholdDependants),
+  );
+  setAutomaticValue(
+    member,
+    values,
+    "japan_child_rearing_allowance_income_limit_person_count",
+    String(householdDependantCount),
+  );
+  setAutomaticValue(
+    member,
+    values,
+    "japan_child_rearing_allowance_qualifying_child_count",
+    String(householdChildCount),
+  );
+  setAutomaticValue(
+    member,
+    values,
+    "japan_child_rearing_allowance_specified_dependent_count",
+    String(specifiedHouseholdDependants),
+  );
+  setAutomaticValue(
+    member,
+    values,
+    "japan_child_rearing_allowance_elderly_dependent_count",
+    String(elderlyHouseholdDependants),
+  );
+  setAutomaticValue(
+    member,
+    values,
+    "japan_child_rearing_allowance_supporter_dependent_count",
+    String(householdDependantCount),
+  );
+  setAutomaticValue(
+    member,
+    values,
+    "japan_child_rearing_allowance_supporter_elderly_dependent_count",
+    String(elderlyHouseholdDependants),
+  );
+  setAutomaticValue(
+    member,
+    values,
+    "japan_disability_allowance_supporter_dependent_count",
+    String(householdDependantCount),
+  );
+  setAutomaticValue(
+    member,
+    values,
+    "japan_disability_allowance_supporter_elderly_dependent_count",
+    String(elderlyHouseholdDependants),
+  );
+  for (const slot of [
+    "japan_individual_disability_allowance_claimant_ordinary_dependent_count",
+    "japan_special_child_rearing_allowance_claimant_ordinary_dependent_count",
+  ] as const) {
+    setAutomaticValue(member, values, slot, String(ordinaryHouseholdDependants));
+  }
+  for (const slot of [
+    "japan_individual_disability_allowance_claimant_specified_dependent_count",
+    "japan_special_child_rearing_allowance_claimant_specified_dependent_count",
+  ] as const) {
+    setAutomaticValue(member, values, slot, String(specifiedHouseholdDependants));
+  }
+  for (const slot of [
+    "japan_individual_disability_allowance_claimant_elderly_dependent_count",
+    "japan_special_child_rearing_allowance_claimant_elderly_dependent_count",
+  ] as const) {
+    setAutomaticValue(member, values, slot, String(elderlyHouseholdDependants));
+  }
+
   const bandSlots: Record<Exclude<ChildAllowanceBand, "none">, string> = {
     "under-three-first-second":
       "japan_child_allowance_under_three_first_or_second_count",
@@ -314,22 +525,59 @@ export function buildCalculationPeople(
       string,
       Record<string, InputValue>
     > = {};
-    if (numberValue(member.summerBonus) !== 0) {
-      monthlyOverrides[`${household.calendarYear}-06`] = {
-        japan_employees_pension_gross_bonus: member.summerBonus,
+    const monthlyEmploymentEarnings = Math.round(
+      numberValue(member.values.japan_employment_gross_cash_earnings) / 12,
+    );
+    for (const month of calendarYearMonths(household.calendarYear)) {
+      monthlyOverrides[month] = {
+        japan_employees_pension_monthly_remuneration:
+          member.monthlyValueSources
+            .japan_employees_pension_monthly_remuneration === "manual"
+            ? member.monthlyValues[month]
+                ?.japan_employees_pension_monthly_remuneration ??
+              String(monthlyEmploymentEarnings)
+            : String(monthlyEmploymentEarnings),
+        japan_employment_insurance_covered_wages_paid:
+          member.monthlyValueSources
+            .japan_employment_insurance_covered_wages_paid === "manual"
+            ? member.monthlyValues[month]
+                ?.japan_employment_insurance_covered_wages_paid ??
+              String(monthlyEmploymentEarnings)
+            : String(monthlyEmploymentEarnings),
       };
     }
+    if (numberValue(member.summerBonus) !== 0) {
+      const month = `${household.calendarYear}-06`;
+      if (monthlyOverrides[month]) {
+        monthlyOverrides[month].japan_employees_pension_gross_bonus =
+          member.summerBonus;
+      }
+    }
     if (numberValue(member.winterBonus) !== 0) {
-      monthlyOverrides[`${household.calendarYear}-12`] = {
-        japan_employees_pension_gross_bonus: member.winterBonus,
-      };
+      const month = `${household.calendarYear}-12`;
+      if (monthlyOverrides[month]) {
+        monthlyOverrides[month].japan_employees_pension_gross_bonus =
+          member.winterBonus;
+      }
     }
     return {
       id: member.id,
       label: member.name,
+      spouseId:
+        household.maritalStatus === "married"
+          ? household.members.find(
+              (candidate) =>
+                candidate.id !== member.id &&
+                ((member.role === "primary" && candidate.role === "spouse") ||
+                  (member.role === "spouse" && candidate.role === "primary")),
+            )?.id ?? null
+          : null,
       values: applyFamilyFacts(household, member),
       monthlyOverrides,
       useModeledSocialInsurance: member.useModeledSocialInsurance,
+      autoLinkedSlots: AUTO_LINKED_SLOTS.filter((slot) =>
+        usesAutomaticValue(member, slot),
+      ),
     };
   });
 }

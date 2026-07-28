@@ -1,14 +1,17 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import type { ReactNode } from "react";
 import {
   SUPPORTED_CALENDAR_YEARS,
+  calendarYearMonths,
   calendarYearLabel,
 } from "../engine/periods";
+import { formatMonth } from "../policy/format";
 import type {
   CalculationResult,
   GeneratedManifest,
   InputValue,
   ManifestInput,
+  ResolvedPersonValues,
 } from "../engine/types";
 import { ResultsPanel } from "./ResultsPanel";
 import {
@@ -18,13 +21,19 @@ import {
 } from "../i18n/translations";
 import {
   ageAtYearEnd,
+  buildCalculationPeople,
+  isAutoLinkedSlot,
   reconcileHouseholdComposition,
+  usesAutomaticValue,
+  MONTHLY_VALUE_SLOTS,
   type ChildAllowanceBand,
   type DependentCategory,
   type DisabilityCategory,
   type HouseholdDraft,
   type HouseholdMember,
   type MaritalStatus,
+  type MonthlyValueSlot,
+  type MonthlyValueSource,
 } from "../policy/household";
 import {
   displayToYen,
@@ -42,9 +51,11 @@ interface HouseholdWizardProps {
   language: Language;
   disabled: boolean;
   error: string | null;
+  automaticValues: ResolvedPersonValues[];
   result: CalculationResult | null;
   onChange: (household: HouseholdDraft) => void;
   onCalculate: () => void;
+  onAutomaticValuesBlur: () => void;
 }
 
 const ANNUAL_INCOME_SLOTS = [
@@ -60,13 +71,11 @@ const MANUAL_SOCIAL_INSURANCE_SLOT =
   "japan_social_insurance_contributions_paid_or_withheld";
 
 const EMPLOYEES_PENSION_SLOTS = [
-  "japan_employees_pension_monthly_remuneration",
   "japan_employees_pension_is_ordinary_covered_employee",
   "japan_employees_pension_employee_pays_share_in_cash",
 ];
 
 const EMPLOYMENT_INSURANCE_SLOTS = [
-  "japan_employment_insurance_covered_wages_paid",
   "japan_employment_insurance_is_withheld_from_wages",
   "japan_employment_insurance_is_agriculture_fisheries_or_sake_business",
   "japan_employment_insurance_is_construction_business",
@@ -98,7 +107,6 @@ const INCOME_TAX_PERSONAL_SLOTS = [
 const DERIVED_SLOTS = new Set([
   "japan_2024_fixed_credit_qualifying_family_member_count",
   "japan_public_pension_recipient_age_at_statutory_test_date",
-  "japan_pit_spouse_total_income",
   "japan_pit_spouse_is_elderly",
   "japan_pit_ordinary_dependent_count",
   "japan_pit_specified_dependent_count",
@@ -146,7 +154,7 @@ const COPY = {
     birthDate: "Date of birth",
     age: "Age at year end",
     incomeIntro:
-      "Annual income and monthly coverage facts are entered separately for every household member. Every member receives the complete calculation.",
+      "Annual income supplies the monthly-pay defaults. Use the schedule to enter a different amount for any supported month. Every member receives the complete calculation.",
     income: "Annual income and tax measures",
     employeesPension: "Employees’ pension",
     employeesPensionDescription:
@@ -154,6 +162,19 @@ const COPY = {
     employmentInsurance: "Employment insurance",
     employmentInsuranceDescription:
       "Monthly covered wages and the industry facts that determine the employee rate.",
+    monthlyPaySchedule: "Monthly pay schedule",
+    monthlyPayScheduleDescription:
+      "Use a flat monthly amount from annual employment earnings, or enter a different amount for each supported month.",
+    pensionMonthlyRemuneration: "Employees’ Pension monthly remuneration",
+    employmentInsuranceCoveredWages: "Employment Insurance covered wages",
+    useAnnualMonthlyAmount: "Use annual employment earnings divided by 12",
+    enterMonthlyAmounts: "Enter monthly amounts manually",
+    annualMonthlySource:
+      "Automatically derived from annual gross employment earnings divided equally across 12 months.",
+    manualMonthlySource:
+      "These monthly amounts replace the annual-earnings default for this contribution program.",
+    enterManually: "Enter manually",
+    useAutomaticValue: "Use automatic value",
     nationalPensionCoverage: "National pension coverage",
     nationalPensionCoverageDescription:
       "Whether this member is insured as a Category 1 National Pension member.",
@@ -207,6 +228,8 @@ const COPY = {
       "These are legal classifications or statutory income measures that the model cannot infer safely from biography or gross pay.",
     benefitsIntro:
       "Every household member is evaluated under all five benefit programs. Assign each child’s statutory Child Allowance band once, then enter each member’s claimant and eligibility facts.",
+    benefitsCalculatedNote:
+      "Benefit values are calculated by default wherever the model can derive them. The remaining sections are collapsed; open and edit one only for a special case.",
     householdChildren: "Household children",
     householdChildrenDescription:
       "These classifications supply Child Allowance counts to each member who meets the program’s nonfinancial conditions.",
@@ -215,11 +238,11 @@ const COPY = {
       none: "Not counted",
       "under-three-first-second": "Under 3 · first or second child",
       "under-three-third-plus": "Under 3 · third or later child",
-      "primary-first-second": "Primary-school age · first or second",
+      "primary-first-second": "Primary-school age · first or second child",
       "primary-third-plus": "Primary-school age · third or later",
-      "junior-high-first-second": "Junior-high age · first or second",
+      "junior-high-first-second": "Junior-high age · first or second child",
       "junior-high-third-plus": "Junior-high age · third or later",
-      "high-school-first-second": "High-school age · first or second",
+      "high-school-first-second": "High-school age · first or second child",
       "high-school-third-plus": "High-school age · third or later",
     },
     childBenefitsModule: "Children and family benefits",
@@ -266,7 +289,7 @@ const COPY = {
     birthDate: "生年月日",
     age: "年末時点の年齢",
     incomeIntro:
-      "年額の所得と月次の加入・賃金情報を世帯員ごとに入力します。すべての世帯員について全制度を計算します。",
+      "年額の給与収入を月額の初期値として使います。対応月ごとに異なる金額は月ごとの設定で入力できます。すべての世帯員について全制度を計算します。",
     income: "年額所得・税務上の金額",
     employeesPension: "厚生年金保険",
     employeesPensionDescription:
@@ -274,6 +297,19 @@ const COPY = {
     employmentInsurance: "雇用保険",
     employmentInsuranceDescription:
       "月額の対象賃金と、本人負担率を決める事業区分を入力します。",
+    monthlyPaySchedule: "月ごとの賃金設定",
+    monthlyPayScheduleDescription:
+      "年額の給与収入を月割りで使うか、対応月ごとに異なる金額を入力します。",
+    pensionMonthlyRemuneration: "厚生年金の月額報酬",
+    employmentInsuranceCoveredWages: "雇用保険の対象賃金",
+    useAnnualMonthlyAmount: "年額の給与収入を12で割って使用",
+    enterMonthlyAmounts: "月ごとの金額を手入力",
+    annualMonthlySource:
+      "年額の給与収入を12か月で均等に割った金額を自動で使用します。",
+    manualMonthlySource:
+      "この月額は、当該保険料について年額給与からの自動設定を置き換えます。",
+    enterManually: "手入力にする",
+    useAutomaticValue: "自動設定に戻す",
     nationalPensionCoverage: "国民年金の加入区分",
     nationalPensionCoverageDescription:
       "この人が国民年金第1号被保険者であるかを指定します。",
@@ -326,6 +362,8 @@ const COPY = {
       "経歴や総収入だけでは安全に推定できない法的区分・法定所得指標です。",
     benefitsIntro:
       "5つの給付制度をすべての世帯員について判定します。児童手当の法定区分を世帯として一度指定し、各世帯員の受給者・受給要件を入力してください。",
+    benefitsCalculatedNote:
+      "給付額に必要な値は、モデルから導ける場合には自動計算します。残りの項目は折りたたんでいます。特別な事情がある場合にだけ開いて編集してください。",
     householdChildren: "世帯の子ども",
     householdChildrenDescription:
       "児童手当の非金銭的要件を満たす世帯員について、ここで指定した児童数を使用します。",
@@ -360,39 +398,145 @@ const COPY = {
   },
 } as const;
 
+function automaticInputSource(slot: string, language: Language): string | null {
+  if (!isAutoLinkedSlot(slot)) return null;
+  const japanese = language === "ja";
+  if (slot === "japan_pit_total_income_amount") {
+    return japanese
+      ? "給与所得控除後の給与所得、公的年金等控除後の公的年金所得、および入力した勤労以外の所得から計算します。"
+      : "Calculated from employment income after its deduction, public-pension income after its deduction, and entered non-labor income.";
+  }
+  if (slot === "japan_pit_taxpayer_total_income") {
+    return japanese
+      ? "自動計算された合計所得金額を使用します。"
+      : "Uses the automatically calculated total-income amount.";
+  }
+  if (slot === "japan_pit_spouse_total_income") {
+    return japanese
+      ? "配偶者として登録された世帯員の自動計算された合計所得金額を使用します。"
+      : "Uses the automatically calculated total-income amount of the household member recorded as this person’s spouse.";
+  }
+  if (slot === "japan_public_pension_other_income_excluding_public_pension") {
+    return japanese
+      ? "給与所得控除後の給与所得と、入力した勤労以外の所得を使用します。"
+      : "Uses employment income after its deduction and entered non-labor income.";
+  }
+  if (slot === "japan_national_pension_is_category_one_insured") {
+    return japanese
+      ? "年末時点で20歳以上60歳未満であり、厚生年金の通常の被保険者でない場合にオンとする初期設定です。"
+      : "Defaults to on for people aged 20–59 who are not ordinary Employees’ Pension members.";
+  }
+  if (slot === "japan_child_rearing_allowance_adjusted_prior_year_income") {
+    return japanese
+      ? "選択した暦年について自動計算された合計所得金額を、前年所得の初期値として使用します。法定の前年所得が異なる場合は手入力にしてください。"
+      : "Uses the selected calendar year’s calculated total-income amount as a starting proxy for prior-year income. Enter the statutory prior-year amount manually when it differs.";
+  }
+  if (
+    slot === "japan_national_pension_applicant_adjusted_income" ||
+    slot === "japan_child_allowance_assessed_income" ||
+    slot.endsWith("_claimant_adjusted_income")
+  ) {
+    return japanese
+      ? "この人の自動計算された合計所得金額を初期値として使用します。法定の調整後所得が異なる場合は手入力にしてください。"
+      : "Uses this member’s calculated total-income amount as a starting value. Enter the statutory adjusted-income amount manually when it differs.";
+  }
+  if (slot.endsWith("_highest_supporter_adjusted_income")) {
+    return japanese
+      ? "モデル化された世帯員のうち、最も高い自動計算後の合計所得金額を初期値として使用します。法定の調整後所得が異なる場合は手入力にしてください。"
+      : "Uses the highest calculated total-income amount among modeled household members as a starting value. Enter the statutory adjusted-income amount manually when it differs.";
+  }
+  if (slot === "japan_child_rearing_allowance_qualifying_child_count") {
+    return japanese
+      ? "モデル化された世帯の子どもの人数を使用します。"
+      : "Uses the number of children in the modeled household.";
+  }
+  return japanese
+    ? "世帯内の他の人に設定した扶養親族区分から計算します。"
+    : "Calculated from the dependant categories selected for other people in this household.";
+}
+
 function FactField({
   input,
   value,
   language,
   disabled,
   onChange,
+  onBlur,
+  link,
 }: {
   input: ManifestInput;
   value: InputValue | undefined;
   language: Language;
   disabled: boolean;
   onChange: (value: InputValue) => void;
+  onBlur: () => void;
+  link?: {
+    automatic: boolean;
+    source: string;
+    enterManuallyLabel: string;
+    useAutomaticLabel: string;
+    onUseManual: (value: InputValue) => void;
+    onUseAutomatic: () => void;
+  };
 }) {
   const help = inputDescription(input, language);
+  const automatic = link?.automatic ?? false;
+  const label = (
+    <span>
+      <strong>{inputLabel(input, language)}</strong>
+      {help && <small>{help}</small>}
+      {automatic && link && (
+        <span className="automatic-note">
+          <small>{link.source}</small>
+        </span>
+      )}
+    </span>
+  );
   if (input.kind === "bool") {
     return (
-      <label className="wizard-fact wizard-fact--boolean">
-        <span>
-          <strong>{inputLabel(input, language)}</strong>
-          {help && <small>{help}</small>}
+      <div className="wizard-fact wizard-fact--boolean">
+        {label}
+        <span
+          className={`wizard-value-control${
+            link ? " wizard-value-control--linked" : ""
+          }`}
+        >
+          <label className="switch">
+            <input
+              checked={value === true}
+              disabled={disabled || automatic}
+              type="checkbox"
+              onBlur={onBlur}
+              onChange={(event) => {
+                if (!automatic) onChange(event.target.checked);
+              }}
+            />
+            <span className="switch-track">
+              <span className="switch-thumb" />
+            </span>
+          </label>
+          {automatic && link && (
+            <button
+              className="automatic-toggle"
+              disabled={disabled}
+              type="button"
+              onClick={() => link.onUseManual(value ?? false)}
+            >
+              {link.enterManuallyLabel}
+            </button>
+          )}
+          {link && !automatic && (
+            <button
+              className="automatic-reset"
+              disabled={disabled}
+              type="button"
+              onClick={link.onUseAutomatic}
+            >
+              {link.useAutomaticLabel}
+            </button>
+          )}
         </span>
-        <span className="switch">
-          <input
-            checked={value === true}
-            disabled={disabled}
-            type="checkbox"
-            onChange={(event) => onChange(event.target.checked)}
-          />
-          <span className="switch-track">
-            <span className="switch-thumb" />
-          </span>
-        </span>
-      </label>
+      </div>
     );
   }
   const isMoney = isMoneyInput(input);
@@ -415,35 +559,69 @@ function FactField({
         ? value
         : "0";
   return (
-    <label className="wizard-fact">
-      <span>
-        <strong>{inputLabel(input, language)}</strong>
-        {help && <small>{help}</small>}
-      </span>
-      <span className="wizard-number">
-        {isMoney && moneyPrefix(language) && (
-          <span className="wizard-number__prefix">
-            {moneyPrefix(language)}
-          </span>
+    <div className="wizard-fact">
+      {label}
+      <span
+        className={`wizard-value-control${
+          link ? " wizard-value-control--linked" : ""
+        }`}
+      >
+        <span
+          className={`wizard-number${
+            automatic ? " wizard-number--automatic" : ""
+          }`}
+        >
+          {isMoney && moneyPrefix(language) && (
+            <span className="wizard-number__prefix">
+              {moneyPrefix(language)}
+            </span>
+          )}
+          <input
+            aria-label={inputLabel(input, language)}
+            disabled={disabled}
+            inputMode={input.integer ? "numeric" : "decimal"}
+            min="0"
+            readOnly={automatic}
+            step={isMoney ? "any" : input.step}
+            type="number"
+            value={displayValue}
+            onBlur={onBlur}
+            onChange={(event) => {
+              if (!automatic) {
+                onChange(
+                  isMoney
+                    ? displayToYen(event.target.value, language, cadence)
+                    : event.target.value,
+                );
+              }
+            }}
+          />
+          {suffix && <span className="wizard-number__unit">{suffix}</span>}
+        </span>
+        {automatic && link && (
+          <button
+            className="automatic-toggle"
+            disabled={disabled}
+            type="button"
+            onClick={() => link.onUseManual(value ?? "0")}
+          >
+            {link.enterManuallyLabel}
+          </button>
         )}
-        <input
-          disabled={disabled}
-          inputMode={input.integer ? "numeric" : "decimal"}
-          min="0"
-          step={isMoney ? "any" : input.step}
-          type="number"
-          value={displayValue}
-          onChange={(event) =>
-            onChange(
-              isMoney
-                ? displayToYen(event.target.value, language, cadence)
-                : event.target.value,
-            )
-          }
-        />
-        {suffix && <span className="wizard-number__unit">{suffix}</span>}
+        {link && !automatic && (
+          <>
+            <button
+              className="automatic-reset"
+              disabled={disabled}
+              type="button"
+              onClick={link.onUseAutomatic}
+            >
+              {link.useAutomaticLabel}
+            </button>
+          </>
+        )}
       </span>
-    </label>
+    </div>
   );
 }
 
@@ -460,6 +638,57 @@ function MemberHeading({
       <span>{copy.roles[member.role]}</span>
       <strong>{member.name}</strong>
     </div>
+  );
+}
+
+function MemberSection({
+  member,
+  language,
+  children,
+  className = "",
+  defaultOpen = true,
+}: {
+  member: HouseholdMember;
+  language: Language;
+  children: ReactNode;
+  className?: string;
+  defaultOpen?: boolean;
+}) {
+  const [isOpen, setIsOpen] = useState(defaultOpen);
+  return (
+    <details
+      className={`wizard-member-section member-section ${className}`}
+      open={isOpen}
+      onToggle={(event) => setIsOpen(event.currentTarget.open)}
+    >
+      <summary>
+        <MemberHeading language={language} member={member} />
+        <svg aria-hidden="true" viewBox="0 0 16 16">
+          <path d="m3 6 5 5 5-5" />
+        </svg>
+      </summary>
+      <div className="member-section__body">{children}</div>
+    </details>
+  );
+}
+
+function BenefitSubsection({
+  title,
+  children,
+}: {
+  title: string;
+  children: ReactNode;
+}) {
+  return (
+    <details className="benefit-subsection">
+      <summary>
+        <strong>{title}</strong>
+        <svg aria-hidden="true" viewBox="0 0 16 16">
+          <path d="m3 6 5 5 5-5" />
+        </svg>
+      </summary>
+      <div className="benefit-subsection__body">{children}</div>
+    </details>
   );
 }
 
@@ -496,12 +725,35 @@ export function HouseholdWizard({
   language,
   disabled,
   error,
+  automaticValues,
   result,
   onChange,
   onCalculate,
+  onAutomaticValuesBlur,
 }: HouseholdWizardProps) {
   const [step, setStep] = useState(0);
+  const wizardProgressRef = useRef<HTMLOListElement>(null);
   const copy = COPY[language];
+  const previewValuesByMemberId = useMemo(
+    () =>
+      new Map(
+        buildCalculationPeople(household).map((person) => [
+          person.id,
+          person.values,
+        ]),
+      ),
+    [household],
+  );
+  const resolvedValuesByMemberId = useMemo(
+    () =>
+      new Map(
+        automaticValues.map((person) => [
+          person.personId,
+          person.values,
+        ]),
+      ),
+    [automaticValues],
+  );
   const inputMap = useMemo(
     () => new Map(manifest.inputs.map((input) => [input.slot, input])),
     [manifest],
@@ -627,6 +879,78 @@ export function HouseholdWizard({
     }));
   }
 
+  function setLinkedInputMode(
+    id: string,
+    slot: string,
+    mode: "automatic" | "manual",
+    manualValue?: InputValue,
+  ) {
+    if (!isAutoLinkedSlot(slot)) return;
+    updateMember(id, (member) => {
+      const manualOverrideSlots = new Set(member.manualOverrideSlots);
+      if (mode === "manual") manualOverrideSlots.add(slot);
+      else manualOverrideSlots.delete(slot);
+      return {
+        ...member,
+        manualOverrideSlots: [...manualOverrideSlots],
+        values:
+          mode === "manual" && manualValue !== undefined
+            ? { ...member.values, [slot]: manualValue }
+            : member.values,
+      };
+    });
+  }
+
+  function flatMonthlyEmploymentEarnings(member: HouseholdMember): string {
+    const annual = Number(member.values.japan_employment_gross_cash_earnings);
+    return String(Math.round((Number.isFinite(annual) ? annual : 0) / 12));
+  }
+
+  function setMonthlyValueSource(
+    id: string,
+    slot: MonthlyValueSlot,
+    source: MonthlyValueSource,
+  ) {
+    updateMember(id, (member) => {
+      const monthlyValues = { ...member.monthlyValues };
+      if (source === "manual") {
+        const fallback = flatMonthlyEmploymentEarnings(member);
+        for (const month of calendarYearMonths(household.calendarYear)) {
+          monthlyValues[month] = {
+            ...monthlyValues[month],
+            [slot]: monthlyValues[month]?.[slot] ?? fallback,
+          };
+        }
+      }
+      return {
+        ...member,
+        monthlyValueSources: {
+          ...member.monthlyValueSources,
+          [slot]: source,
+        },
+        monthlyValues,
+      };
+    });
+  }
+
+  function updateMonthlyValue(
+    id: string,
+    month: string,
+    slot: MonthlyValueSlot,
+    value: string,
+  ) {
+    updateMember(id, (member) => ({
+      ...member,
+      monthlyValues: {
+        ...member.monthlyValues,
+        [month]: {
+          ...member.monthlyValues[month],
+          [slot]: value,
+        },
+      },
+    }));
+  }
+
   function setCalendarYear(calendarYear: number) {
     const members = household.members.map((member) => ({
       ...member,
@@ -663,27 +987,202 @@ export function HouseholdWizard({
     );
   }
 
-  function goToStep(nextStep: number) {
+  function goToStep(nextStep: number, scrollToTop = false) {
     setStep(nextStep);
+    if (scrollToTop) {
+      requestAnimationFrame(() => {
+        const progress = wizardProgressRef.current;
+        if (!progress) return;
+        const topMargin = Number.parseFloat(
+          window.getComputedStyle(progress).marginTop,
+        );
+
+        window.scrollTo({
+          behavior: "auto",
+          top:
+            progress.getBoundingClientRect().top +
+            window.scrollY -
+            topMargin * 0.8,
+        });
+      });
+    }
     if (nextStep === copy.steps.length - 1 && !result) {
       onCalculate();
     }
   }
 
   function renderFields(member: HouseholdMember, inputs: ManifestInput[]) {
+    const visibleInputs = inputs.filter(
+      (input) =>
+        input.slot !== "japan_pit_spouse_total_income" ||
+        (household.maritalStatus === "married" &&
+          (member.role === "primary" || member.role === "spouse")),
+    );
     return (
       <div className="wizard-facts">
-        {inputs.map((input) => (
-          <FactField
-            key={input.slot}
-            disabled={disabled}
-            input={input}
-            language={language}
-            value={member.values[input.slot]}
-            onChange={(value) => updateMemberValue(member.id, input.slot, value)}
-          />
-        ))}
+        {visibleInputs.map((input) => {
+          const source = automaticInputSource(input.slot, language);
+          const automatic = usesAutomaticValue(member, input.slot);
+          const resolvedValue = resolvedValuesByMemberId.get(member.id)?.[
+            input.slot
+          ];
+          const displayedValue = automatic
+            ? resolvedValue ??
+              previewValuesByMemberId.get(member.id)?.[input.slot] ??
+              member.values[input.slot]
+            : member.values[input.slot];
+          const link = source
+            ? {
+                automatic,
+                source,
+                enterManuallyLabel: copy.enterManually,
+                useAutomaticLabel: copy.useAutomaticValue,
+                onUseManual: (value: InputValue) =>
+                  setLinkedInputMode(member.id, input.slot, "manual", value),
+                onUseAutomatic: () =>
+                  setLinkedInputMode(member.id, input.slot, "automatic"),
+              }
+            : undefined;
+          return (
+            <FactField
+              key={input.slot}
+              disabled={disabled}
+              input={input}
+              language={language}
+              link={link}
+              value={displayedValue}
+              onBlur={onAutomaticValuesBlur}
+              onChange={(value) =>
+                updateMemberValue(member.id, input.slot, value)
+              }
+            />
+          );
+        })}
       </div>
+    );
+  }
+
+  function renderMonthlyValueSource(
+    member: HouseholdMember,
+    slot: MonthlyValueSlot,
+    label: string,
+  ) {
+    const source = member.monthlyValueSources[slot];
+    const inputName = `${member.id}-${slot}-source`;
+    return (
+      <section className="monthly-value-source">
+        <h4>{label}</h4>
+        <label>
+          <input
+            checked={source === "annual"}
+            disabled={disabled}
+            name={inputName}
+            type="radio"
+            onChange={() => setMonthlyValueSource(member.id, slot, "annual")}
+          />
+          <span>
+            <strong>{copy.useAnnualMonthlyAmount}</strong>
+            <small>{copy.annualMonthlySource}</small>
+          </span>
+        </label>
+        <label>
+          <input
+            checked={source === "manual"}
+            disabled={disabled}
+            name={inputName}
+            type="radio"
+            onChange={() => setMonthlyValueSource(member.id, slot, "manual")}
+          />
+          <span>
+            <strong>{copy.enterMonthlyAmounts}</strong>
+            <small>{copy.manualMonthlySource}</small>
+          </span>
+        </label>
+      </section>
+    );
+  }
+
+  function renderMonthlyPaySchedule(member: HouseholdMember) {
+    const manualSlots = MONTHLY_VALUE_SLOTS.filter(
+      (slot) => member.monthlyValueSources[slot] === "manual",
+    );
+    const monthlyLabels: Record<MonthlyValueSlot, string> = {
+      japan_employees_pension_monthly_remuneration:
+        copy.pensionMonthlyRemuneration,
+      japan_employment_insurance_covered_wages_paid:
+        copy.employmentInsuranceCoveredWages,
+    };
+    const fallback = flatMonthlyEmploymentEarnings(member);
+    return (
+      <FormModule
+        description={copy.monthlyPayScheduleDescription}
+        open
+        title={copy.monthlyPaySchedule}
+      >
+        <div className="monthly-value-sources">
+          {renderMonthlyValueSource(
+            member,
+            "japan_employees_pension_monthly_remuneration",
+            copy.pensionMonthlyRemuneration,
+          )}
+          {renderMonthlyValueSource(
+            member,
+            "japan_employment_insurance_covered_wages_paid",
+            copy.employmentInsuranceCoveredWages,
+          )}
+        </div>
+        {manualSlots.length > 0 && (
+          <div className={`monthly-value-grid monthly-value-grid--${manualSlots.length}`}>
+            <div className="monthly-value-grid__heading">
+              <span />
+              {manualSlots.map((slot) => (
+                <strong key={slot}>{monthlyLabels[slot]}</strong>
+              ))}
+            </div>
+            {calendarYearMonths(household.calendarYear).map((month) => (
+              <div className="monthly-value-grid__row" key={month}>
+                <strong>{formatMonth(month, language)}</strong>
+                {manualSlots.map((slot) => {
+                  const rawValue = member.monthlyValues[month]?.[slot] ?? fallback;
+                  return (
+                    <label className="monthly-value-cell" key={slot}>
+                      <span className="monthly-value-grid__mobile-label">
+                        {monthlyLabels[slot]}
+                      </span>
+                      <span className="wizard-number">
+                        {moneyPrefix(language) && (
+                          <span className="wizard-number__prefix">
+                            {moneyPrefix(language)}
+                          </span>
+                        )}
+                        <input
+                          aria-label={`${formatMonth(month, language)} ${monthlyLabels[slot]}`}
+                          disabled={disabled}
+                          min="0"
+                          step="any"
+                          type="number"
+                          value={yenToDisplay(rawValue, language, "monthly")}
+                          onChange={(event) =>
+                            updateMonthlyValue(
+                              member.id,
+                              month,
+                              slot,
+                              displayToYen(event.target.value, language, "monthly"),
+                            )
+                          }
+                        />
+                        <span className="wizard-number__unit">
+                          {moneyUnit(language, "monthly")}
+                        </span>
+                      </span>
+                    </label>
+                  );
+                })}
+              </div>
+            ))}
+          </div>
+        )}
+      </FormModule>
     );
   }
 
@@ -695,10 +1194,9 @@ export function HouseholdWizard({
           <h2 id="wizard-title">{copy.title}</h2>
           <p className="wizard-intro">{copy.intro}</p>
         </div>
-        <span className="count-pill">108 encoded inputs</span>
       </div>
 
-      <ol className="wizard-progress">
+      <ol className="wizard-progress" ref={wizardProgressRef}>
         {copy.steps.map((label, index) => (
           <li
             className={
@@ -788,8 +1286,12 @@ export function HouseholdWizard({
 
             <div className="member-cards">
               {household.members.map((member) => (
-                <article className="member-card" key={member.id}>
-                  <MemberHeading language={language} member={member} />
+                <MemberSection
+                  className="member-card"
+                  key={member.id}
+                  language={language}
+                  member={member}
+                >
                   <div className="member-biography">
                     <label>
                       <span>{copy.name}</span>
@@ -827,7 +1329,7 @@ export function HouseholdWizard({
                       </small>
                     </label>
                   </div>
-                </article>
+                </MemberSection>
               ))}
             </div>
           </>
@@ -837,8 +1339,7 @@ export function HouseholdWizard({
           <>
             <p className="wizard-page-intro">{copy.incomeIntro}</p>
             {household.members.map((member) => (
-              <article className="wizard-member-section" key={member.id}>
-                <MemberHeading language={language} member={member} />
+              <MemberSection key={member.id} language={language} member={member}>
                 <h3>{copy.income}</h3>
                 {renderFields(member, inputsFor(ANNUAL_INCOME_SLOTS))}
                 <section
@@ -912,6 +1413,7 @@ export function HouseholdWizard({
                     inputsFor([MANUAL_SOCIAL_INSURANCE_SLOT]),
                   )}
                 <div className="form-module-list">
+                  {renderMonthlyPaySchedule(member)}
                   <FormModule
                     description={copy.employeesPensionDescription}
                     open
@@ -979,7 +1481,7 @@ export function HouseholdWizard({
                     )}
                   </FormModule>
                 </div>
-              </article>
+              </MemberSection>
             ))}
           </>
         )}
@@ -987,10 +1489,10 @@ export function HouseholdWizard({
         {step === 2 && (
           <>
             <p className="wizard-page-intro">{copy.taxIntro}</p>
-            <div className="classification-grid">
-              {household.members.map((member) => (
-                <article key={member.id}>
-                  <MemberHeading language={language} member={member} />
+            <p className="explicit-note">{copy.explicitNote}</p>
+            {household.members.map((member) => (
+              <MemberSection key={member.id} language={language} member={member}>
+                <div className="classification-grid classification-grid--member">
                   {member.role !== "primary" && member.role !== "spouse" && (
                     <label>
                       <span>{copy.dependant}</span>
@@ -1041,13 +1543,7 @@ export function HouseholdWizard({
                       ))}
                     </select>
                   </label>
-                </article>
-              ))}
-            </div>
-            <p className="explicit-note">{copy.explicitNote}</p>
-            {household.members.map((member) => (
-              <article className="wizard-member-section" key={member.id}>
-                <MemberHeading language={language} member={member} />
+                </div>
                 <div className="form-module-list">
                   <FormModule
                     description={copy.residenceDescription}
@@ -1102,7 +1598,7 @@ export function HouseholdWizard({
                     </div>
                   </FormModule>
                 </div>
-              </article>
+              </MemberSection>
             ))}
           </>
         )}
@@ -1110,6 +1606,9 @@ export function HouseholdWizard({
         {step === 3 && (
           <>
             <p className="wizard-page-intro">{copy.benefitsIntro}</p>
+            <p className="benefits-calculated-note">
+              {copy.benefitsCalculatedNote}
+            </p>
             <article className="wizard-member-section household-children">
               <h3>{copy.householdChildren}</h3>
               <p>{copy.householdChildrenDescription}</p>
@@ -1154,34 +1653,32 @@ export function HouseholdWizard({
               </div>
             </article>
             {household.members.map((member) => (
-              <article className="wizard-member-section" key={member.id}>
-                <MemberHeading language={language} member={member} />
+              <MemberSection
+                defaultOpen={false}
+                key={member.id}
+                language={language}
+                member={member}
+              >
                 <div className="form-module-list">
                   <FormModule
                     description={copy.childBenefitsDescription}
-                    open
                     title={copy.childBenefitsModule}
                   >
-                    <div className="form-subsection">
-                      <h4>{copy.childAllowanceSubsection}</h4>
+                    <BenefitSubsection title={copy.childAllowanceSubsection}>
                       {renderFields(member, childAllowanceInputs)}
-                    </div>
-                    <div className="form-subsection">
-                      <h4>{copy.childRearingSubsection}</h4>
+                    </BenefitSubsection>
+                    <BenefitSubsection title={copy.childRearingSubsection}>
                       {renderFields(member, childRearingInputs)}
-                    </div>
-                    <div className="form-subsection">
-                      <h4>{copy.specialChildSubsection}</h4>
+                    </BenefitSubsection>
+                    <BenefitSubsection title={copy.specialChildSubsection}>
                       {renderFields(member, specialChildInputs)}
-                    </div>
-                    <div className="form-subsection">
-                      <h4>{copy.disabledChildSubsection}</h4>
+                    </BenefitSubsection>
+                    <BenefitSubsection title={copy.disabledChildSubsection}>
                       {renderFields(member, disabledChildInputs)}
-                    </div>
-                    <div className="form-subsection">
-                      <h4>{copy.sharedDisabilitySubsection}</h4>
+                    </BenefitSubsection>
+                    <BenefitSubsection title={copy.sharedDisabilitySubsection}>
                       {renderFields(member, sharedDisabilityInputs)}
-                    </div>
+                    </BenefitSubsection>
                   </FormModule>
                   {adultDisabilityInputs.length > 0 && (
                     <FormModule
@@ -1192,7 +1689,7 @@ export function HouseholdWizard({
                     </FormModule>
                   )}
                 </div>
-              </article>
+              </MemberSection>
             ))}
           </>
         )}
@@ -1201,8 +1698,10 @@ export function HouseholdWizard({
           <ResultsPanel
             calculating={disabled}
             error={error}
+            household={household}
             language={language}
             manifest={manifest}
+            onEditHousehold={() => goToStep(0, true)}
             result={result}
           />
         )}
@@ -1222,7 +1721,7 @@ export function HouseholdWizard({
             className="primary-button"
             disabled={disabled}
             type="button"
-            onClick={() => goToStep(step + 1)}
+              onClick={() => goToStep(step + 1, true)}
           >
             {copy.next}
           </button>
@@ -1232,7 +1731,7 @@ export function HouseholdWizard({
             data-testid="calculate-button"
             disabled={disabled}
             type="button"
-            onClick={() => goToStep(copy.steps.length - 1)}
+              onClick={() => goToStep(copy.steps.length - 1, true)}
           >
             {disabled ? copy.calculating : copy.calculate}
           </button>

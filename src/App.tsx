@@ -16,11 +16,16 @@ import {
   createExampleHousehold,
   type HouseholdDraft,
 } from "./policy/household";
+import { usdConversionRateForYear } from "./policy/currency";
 
 function initialLanguage(): Language {
   const stored = window.localStorage.getItem("axiom-japan-language");
   if (stored === "en" || stored === "ja") return stored;
   return window.navigator.language.toLowerCase().startsWith("ja") ? "ja" : "en";
+}
+
+function initialShowUsdEquivalents(): boolean {
+  return window.localStorage.getItem("axiom-japan-show-usd") === "true";
 }
 
 export default function App() {
@@ -30,6 +35,9 @@ export default function App() {
   const [manifest, setManifest] = useState<GeneratedManifest | null>(null);
   const [household, setHousehold] = useState<HouseholdDraft | null>(null);
   const [language, setLanguage] = useState<Language>(initialLanguage);
+  const [showUsdEquivalents, setShowUsdEquivalents] = useState(
+    initialShowUsdEquivalents,
+  );
   const [result, setResult] = useState<CalculationResult | null>(null);
   const [automaticValues, setAutomaticValues] = useState<
     ResolvedPersonValues[]
@@ -43,6 +51,18 @@ export default function App() {
     document.documentElement.dir = "ltr";
     window.localStorage.setItem("axiom-japan-language", language);
   }, [language]);
+
+  useEffect(() => {
+    window.localStorage.setItem(
+      "axiom-japan-show-usd",
+      String(showUsdEquivalents),
+    );
+  }, [showUsdEquivalents]);
+
+  const usdRate =
+    showUsdEquivalents && household
+      ? usdConversionRateForYear(household.calendarYear)
+      : null;
 
   useEffect(() => {
     const client = new AxiomEngineClient();
@@ -151,6 +171,14 @@ export default function App() {
                 <path d="M6 3h7v7M13 3 5 11M3 5v8h8" />
               </svg>
             </a>
+            <label className="currency-selector">
+              <input
+                checked={showUsdEquivalents}
+                type="checkbox"
+                onChange={(event) => setShowUsdEquivalents(event.target.checked)}
+              />
+              <span>{copy.usdEquivalents}</span>
+            </label>
             <label className="language-selector">
               <span className="sr-only">{copy.language}</span>
               <select
@@ -196,6 +224,7 @@ export default function App() {
             language={language}
             manifest={manifest}
             result={result}
+            usdRate={usdRate}
             onCalculate={calculate}
             onChange={updateHousehold}
             onAutomaticValuesBlur={previewAutomaticValuesAfterBlur}

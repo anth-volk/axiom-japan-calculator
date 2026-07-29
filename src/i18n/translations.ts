@@ -16,6 +16,7 @@ export const UI_COPY = {
   en: {
     brand: "Axiom · Japan",
     language: "Language",
+    usdEquivalents: "Show US dollar equivalents",
     source: "Source",
     heroEyebrow: "National policy · calendar years 2017–2026",
     heroTitle: "See the rules shape a household.",
@@ -36,6 +37,7 @@ export const UI_COPY = {
   ja: {
     brand: "アクシオム・ジャパン",
     language: "言語",
+    usdEquivalents: "米ドル換算を表示",
     source: "ソース",
     heroEyebrow: "国の制度 · 2017年〜2026年",
     heroTitle: "制度が世帯に与える影響を見る。",

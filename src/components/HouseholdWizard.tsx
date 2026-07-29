@@ -6,6 +6,7 @@ import {
   calendarYearLabel,
 } from "../engine/periods";
 import { formatMonth } from "../policy/format";
+import { UsdEquivalent } from "./CurrencyValue";
 import type {
   CalculationResult,
   GeneratedManifest,
@@ -41,6 +42,8 @@ import {
   moneyCadence,
   moneyPrefix,
   moneyUnit,
+  usdRateNote,
+  type UsdConversionRate,
   yenToDisplay,
 } from "../policy/currency";
 import { isInputApplicable } from "../policy/provisionPeriods";
@@ -53,6 +56,7 @@ interface HouseholdWizardProps {
   error: string | null;
   automaticValues: ResolvedPersonValues[];
   result: CalculationResult | null;
+  usdRate: UsdConversionRate | null;
   onChange: (household: HouseholdDraft) => void;
   onCalculate: () => void;
   onAutomaticValuesBlur: () => void;
@@ -463,6 +467,7 @@ function FactField({
   onChange,
   onBlur,
   link,
+  usdRate,
 }: {
   input: ManifestInput;
   value: InputValue | undefined;
@@ -478,6 +483,7 @@ function FactField({
     onUseManual: (value: InputValue) => void;
     onUseAutomatic: () => void;
   };
+  usdRate: UsdConversionRate | null;
 }) {
   const help = inputDescription(input, language);
   const automatic = link?.automatic ?? false;
@@ -598,6 +604,13 @@ function FactField({
           />
           {suffix && <span className="wizard-number__unit">{suffix}</span>}
         </span>
+        {isMoney && (
+          <UsdEquivalent
+            language={language}
+            usdRate={usdRate}
+            yen={Number(value ?? 0)}
+          />
+        )}
         {automatic && link && (
           <button
             className="automatic-toggle"
@@ -727,6 +740,7 @@ export function HouseholdWizard({
   error,
   automaticValues,
   result,
+  usdRate,
   onChange,
   onCalculate,
   onAutomaticValuesBlur,
@@ -1050,6 +1064,7 @@ export function HouseholdWizard({
               input={input}
               language={language}
               link={link}
+              usdRate={usdRate}
               value={displayedValue}
               onBlur={onAutomaticValuesBlur}
               onChange={(value) =>
@@ -1175,6 +1190,11 @@ export function HouseholdWizard({
                           {moneyUnit(language, "monthly")}
                         </span>
                       </span>
+                      <UsdEquivalent
+                        language={language}
+                        usdRate={usdRate}
+                        yen={Number(rawValue)}
+                      />
                     </label>
                   );
                 })}
@@ -1193,6 +1213,11 @@ export function HouseholdWizard({
           <p className="eyebrow">{copy.eyebrow}</p>
           <h2 id="wizard-title">{copy.title}</h2>
           <p className="wizard-intro">{copy.intro}</p>
+          {usdRate && (
+            <p className="currency-conversion-note">
+              {usdRateNote(household.calendarYear, language, usdRate)}
+            </p>
+          )}
         </div>
       </div>
 
@@ -1461,6 +1486,13 @@ export function HouseholdWizard({
                               {moneyUnit(language, "monthly")}
                             </span>
                           </span>
+                          <UsdEquivalent
+                            language={language}
+                            usdRate={usdRate}
+                            yen={Number(
+                              member[key as "summerBonus" | "winterBonus"],
+                            )}
+                          />
                         </label>
                       ))}
                     </div>
@@ -1703,6 +1735,7 @@ export function HouseholdWizard({
             manifest={manifest}
             onEditHousehold={() => goToStep(0, true)}
             result={result}
+            usdRate={usdRate}
           />
         )}
       </div>

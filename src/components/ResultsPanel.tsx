@@ -12,9 +12,11 @@ import {
   type Language,
 } from "../i18n/translations";
 import { calendarYearLabel } from "../engine/periods";
-import { formatMonth, formatOutput, formatYen } from "../policy/format";
+import { formatMonth, formatOutput, numericOutput } from "../policy/format";
+import type { UsdConversionRate } from "../policy/currency";
 import type { HouseholdDraft } from "../policy/household";
 import { isOutputApplicable } from "../policy/provisionPeriods";
+import { CurrencyValue } from "./CurrencyValue";
 
 interface ResultsPanelProps {
   manifest: GeneratedManifest;
@@ -23,6 +25,7 @@ interface ResultsPanelProps {
   error: string | null;
   language: Language;
   household: HouseholdDraft;
+  usdRate: UsdConversionRate | null;
   onEditHousehold: () => void;
 }
 
@@ -95,7 +98,12 @@ function ProgramDetails({
   total,
   calendarYear,
   language,
-}: ProgramSummary & { calendarYear: number; language: Language }) {
+  usdRate,
+}: ProgramSummary & {
+  calendarYear: number;
+  language: Language;
+  usdRate: UsdConversionRate | null;
+}) {
   const copy = RESULT_COPY[language];
   const localizedProgram = programCopy(program, language);
   const isAnnual = program.cadence === "annual";
@@ -112,7 +120,7 @@ function ProgramDetails({
           <small>{localizedProgram.description}</small>
         </span>
         <span className="program-amount">
-          {formatYen(total, language)}
+          <CurrencyValue language={language} usdRate={usdRate} yen={total} />
           <svg aria-hidden="true" viewBox="0 0 16 16">
             <path d="m3 6 5 5 5-5" />
           </svg>
@@ -137,7 +145,13 @@ function ProgramDetails({
                   {programResult.monthlySummaries.map((month) => (
                     <div key={month.month}>
                       <dt>{formatMonth(month.month, language)}</dt>
-                      <dd>{formatYen(month.amount, language)}</dd>
+                      <dd>
+                        <CurrencyValue
+                          language={language}
+                          usdRate={usdRate}
+                          yen={month.amount}
+                        />
+                      </dd>
                     </div>
                   ))}
                 </dl>
@@ -152,10 +166,18 @@ function ProgramDetails({
                 <div key={output.id}>
                   <dt>{outputLabel(output, language)}</dt>
                   <dd>
-                    {formatOutput(
-                      programResult.outputs[output.id],
-                      output,
-                      language,
+                    {output.unit === "JPY" && programResult.outputs[output.id] ? (
+                      <CurrencyValue
+                        language={language}
+                        usdRate={usdRate}
+                        yen={numericOutput(programResult.outputs[output.id])}
+                      />
+                    ) : (
+                      formatOutput(
+                        programResult.outputs[output.id],
+                        output,
+                        language,
+                      )
                     )}
                   </dd>
                 </div>
@@ -175,6 +197,7 @@ export function ResultsPanel({
   error,
   language,
   household,
+  usdRate,
   onEditHousehold,
 }: ResultsPanelProps) {
   const copy = RESULT_COPY[language];
@@ -251,7 +274,11 @@ export function ResultsPanel({
         <article className="result-calculation__term result-calculation__term--income">
           <span>{copy.enteredIncome}</span>
           <strong data-testid="summary-entered-income">
-            {formatYen(householdEnteredIncome(household), language)}
+            <CurrencyValue
+              language={language}
+              usdRate={usdRate}
+              yen={householdEnteredIncome(household)}
+            />
           </strong>
           <small>{copy.enteredIncomeNote}</small>
         </article>
@@ -265,7 +292,11 @@ export function ResultsPanel({
         <article className="result-calculation__term result-calculation__term--benefits">
           <span>{copy.receivedBenefits}</span>
           <strong data-testid="summary-annual-benefits">
-            {formatYen(annualBenefits, language)}
+            <CurrencyValue
+              language={language}
+              usdRate={usdRate}
+              yen={annualBenefits}
+            />
           </strong>
           <small>{copy.receivedBenefitsNote}</small>
         </article>
@@ -279,7 +310,11 @@ export function ResultsPanel({
         <article className="result-calculation__term result-calculation__term--payments">
           <span>{copy.paidTaxesAndContributions}</span>
           <strong data-testid="summary-taxes-and-contributions">
-            {formatYen(taxesAndContributions, language)}
+            <CurrencyValue
+              language={language}
+              usdRate={usdRate}
+              yen={taxesAndContributions}
+            />
           </strong>
           <small>{copy.paidTaxesAndContributionsNote}</small>
         </article>
@@ -293,7 +328,11 @@ export function ResultsPanel({
         <article className="result-calculation__term result-calculation__term--net-income">
           <span>{copy.finalNetIncome}</span>
           <strong data-testid="summary-final-net-income">
-            {formatYen(finalNetIncome, language)}
+            <CurrencyValue
+              language={language}
+              usdRate={usdRate}
+              yen={finalNetIncome}
+            />
           </strong>
           <small>{copy.finalNetIncomeNote}</small>
         </article>
@@ -310,6 +349,7 @@ export function ResultsPanel({
               calendarYear={result.calendarYear}
               key={program.program.id}
               language={language}
+              usdRate={usdRate}
               {...program}
             />
           ))}
@@ -327,6 +367,7 @@ export function ResultsPanel({
               calendarYear={result.calendarYear}
               key={program.program.id}
               language={language}
+              usdRate={usdRate}
               {...program}
             />
           ))}
